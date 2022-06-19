@@ -1,16 +1,21 @@
 pub mod two_sum;
+pub mod selection_sort;
 use clap::Parser;
 
 pub mod runner {
 
     use super::*;
     use two_sum::two_sum;
+    use selection_sort::selection_sort;
     
     pub fn exec(algo: Algo) {
         match algo {
             Algo::TwoSum => {
                 two_sum::run();
             },
+            Algo::SelectionSort => {
+                selection_sort::run();
+            }
             _ => {
                 panic!("not supported");
             }
@@ -21,6 +26,7 @@ pub mod runner {
 #[cfg(test)]
 mod test_runner {
     use crate::two_sum::two_sum;
+    use crate::selection_sort::selection_sort;
     use std::collections::HashSet;
 
     #[test]
@@ -44,19 +50,31 @@ mod test_runner {
         let expected:HashSet<i32> = HashSet::from_iter([210, -47]);
         assert_eq!(rset, expected);
     }
+
+    #[test]
+    fn sel_sort_test() {
+        let mut n = vec![1, 9, 4, 10, -3, 9, 15, 2];
+        selection_sort::exec(&mut n);
+        assert_eq!(n, vec![-3, 1, 2, 4, 9, 9, 10, 15]);
+
+    }
 }
 
 
 pub enum Algo {
-    TwoSum
+    TwoSum,
+    SelectionSort,
 }
 
 impl Algo {
     pub fn from_str(algo_str:&str) -> Self {
         match algo_str {
             s if s.to_lowercase() == "twosum" => {
-               Algo::TwoSum 
+                Algo::TwoSum 
             },
+            s if s.to_lowercase() == "selectionsort" => {
+                Algo::SelectionSort
+            }
             _ => panic!("{} has not implemented yet", algo_str),
         }
     }
