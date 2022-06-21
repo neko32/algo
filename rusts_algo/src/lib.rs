@@ -1,5 +1,6 @@
 pub mod two_sum;
 pub mod selection_sort;
+pub mod camelcase;
 use clap::Parser;
 
 pub mod runner {
@@ -7,9 +8,13 @@ pub mod runner {
     use super::*;
     use two_sum::two_sum;
     use selection_sort::selection_sort;
+    use camelcase::camelcase;
     
     pub fn exec(algo: Algo) {
         match algo {
+            Algo::CamelCase => {
+                camelcase::run();
+            }
             Algo::TwoSum => {
                 two_sum::run();
             },
@@ -25,9 +30,16 @@ pub mod runner {
 
 #[cfg(test)]
 mod test_runner {
+    use crate::camelcase::camelcase;
     use crate::two_sum::two_sum;
     use crate::selection_sort::selection_sort;
     use std::collections::HashSet;
+
+    #[test]
+    fn camelcase_test() {
+        let c = camelcase::exec("taKOcHaN".to_string());
+        assert_eq!(c, "Takochan".to_string());
+    }
 
     #[test]
     fn two_sum_case1() {
@@ -62,13 +74,17 @@ mod test_runner {
 
 
 pub enum Algo {
-    TwoSum,
+    CamelCase,
     SelectionSort,
+    TwoSum,
 }
 
 impl Algo {
     pub fn from_str(algo_str:&str) -> Self {
         match algo_str {
+            s if s.to_lowercase() == "camelcase" => {
+                Algo::CamelCase
+            }
             s if s.to_lowercase() == "twosum" => {
                 Algo::TwoSum 
             },
