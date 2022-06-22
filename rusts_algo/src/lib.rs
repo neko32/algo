@@ -1,11 +1,13 @@
 pub mod two_sum;
 pub mod selection_sort;
 pub mod camelcase;
+pub mod tandem_repeat;
 use clap::Parser;
 
 pub mod runner {
 
     use super::*;
+    use tandem_repeat::tandem_repeat;
     use two_sum::two_sum;
     use selection_sort::selection_sort;
     use camelcase::camelcase;
@@ -14,7 +16,10 @@ pub mod runner {
         match algo {
             Algo::CamelCase => {
                 camelcase::run();
-            }
+            },
+            Algo::TandemRepeat => {
+                tandem_repeat::run()
+            },
             Algo::TwoSum => {
                 two_sum::run();
             },
@@ -31,6 +36,7 @@ pub mod runner {
 #[cfg(test)]
 mod test_runner {
     use crate::camelcase::camelcase;
+    use crate::tandem_repeat::tandem_repeat;
     use crate::two_sum::two_sum;
     use crate::selection_sort::selection_sort;
     use std::collections::HashSet;
@@ -39,6 +45,19 @@ mod test_runner {
     fn camelcase_test() {
         let c = camelcase::exec("taKOcHaN".to_string());
         assert_eq!(c, "Takochan".to_string());
+    }
+
+    #[test]
+    fn tandem_repeat_case1() {
+        let c = "CatCat".to_string();
+        assert!(tandem_repeat::exec(c));
+    }
+
+    #[test]
+    fn tandem_repeat_case2() {
+        let a = "ABA".to_string();
+        let b = "cattac".to_string();
+        assert!(!tandem_repeat::exec(a) && !tandem_repeat::exec(b));
     }
 
     #[test]
@@ -76,6 +95,7 @@ mod test_runner {
 pub enum Algo {
     CamelCase,
     SelectionSort,
+    TandemRepeat,
     TwoSum,
 }
 
@@ -84,6 +104,9 @@ impl Algo {
         match algo_str {
             s if s.to_lowercase() == "camelcase" => {
                 Algo::CamelCase
+            }
+            s if s.to_lowercase() == "tandemrepeat" => {
+                Algo::TandemRepeat
             }
             s if s.to_lowercase() == "twosum" => {
                 Algo::TwoSum 
