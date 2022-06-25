@@ -1,3 +1,4 @@
+pub mod dectobin;
 pub mod two_sum;
 pub mod selection_sort;
 pub mod camelcase;
@@ -7,6 +8,7 @@ use clap::Parser;
 pub mod runner {
 
     use super::*;
+    use dectobin::dectobin;
     use tandem_repeat::tandem_repeat;
     use two_sum::two_sum;
     use selection_sort::selection_sort;
@@ -17,6 +19,9 @@ pub mod runner {
             Algo::CamelCase => {
                 camelcase::run();
             },
+            Algo::DecToBin => {
+                dectobin::run();
+            },
             Algo::TandemRepeat => {
                 tandem_repeat::run()
             },
@@ -26,9 +31,6 @@ pub mod runner {
             Algo::SelectionSort => {
                 selection_sort::run();
             }
-            _ => {
-                panic!("not supported");
-            }
         }    
     }   
 }
@@ -36,6 +38,7 @@ pub mod runner {
 #[cfg(test)]
 mod test_runner {
     use crate::camelcase::camelcase;
+    use crate::dectobin::dectobin;
     use crate::tandem_repeat::tandem_repeat;
     use crate::two_sum::two_sum;
     use crate::selection_sort::selection_sort;
@@ -51,6 +54,13 @@ mod test_runner {
     fn tandem_repeat_case1() {
         let c = "CatCat".to_string();
         assert!(tandem_repeat::exec(c));
+    }
+
+    #[test]
+    fn dec_to_bin_test1() {
+        let n = 23;
+        let b = dectobin::exec(n);
+        assert_eq!(b, "10111".to_string());
     }
 
     #[test]
@@ -94,6 +104,7 @@ mod test_runner {
 
 pub enum Algo {
     CamelCase,
+    DecToBin,
     SelectionSort,
     TandemRepeat,
     TwoSum,
@@ -104,6 +115,9 @@ impl Algo {
         match algo_str {
             s if s.to_lowercase() == "camelcase" => {
                 Algo::CamelCase
+            }
+            s if s.to_lowercase() == "dectobin" => {
+                Algo::DecToBin
             }
             s if s.to_lowercase() == "tandemrepeat" => {
                 Algo::TandemRepeat
