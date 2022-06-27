@@ -4,7 +4,7 @@ pub mod dectobin {
     pub fn exec(n:i32) -> String {
         let mut rez:String = String::new();
         let mut n = n;
-        let mut r = 0;
+        let mut r;
 
         while n > 1 {
             r = n % 2;

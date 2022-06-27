@@ -1,4 +1,5 @@
 pub mod dectobin;
+pub mod kadane;
 pub mod two_sum;
 pub mod selection_sort;
 pub mod camelcase;
@@ -9,6 +10,7 @@ pub mod runner {
 
     use super::*;
     use dectobin::dectobin;
+    use kadane::kadane;
     use tandem_repeat::tandem_repeat;
     use two_sum::two_sum;
     use selection_sort::selection_sort;
@@ -22,6 +24,9 @@ pub mod runner {
             Algo::DecToBin => {
                 dectobin::run();
             },
+            Algo::Kadane => {
+                kadane::run();
+            }
             Algo::TandemRepeat => {
                 tandem_repeat::run()
             },
@@ -39,6 +44,7 @@ pub mod runner {
 mod test_runner {
     use crate::camelcase::camelcase;
     use crate::dectobin::dectobin;
+    use crate::kadane::kadane;
     use crate::tandem_repeat::tandem_repeat;
     use crate::two_sum::two_sum;
     use crate::selection_sort::selection_sort;
@@ -48,6 +54,12 @@ mod test_runner {
     fn camelcase_test() {
         let c = camelcase::exec("taKOcHaN".to_string());
         assert_eq!(c, "Takochan".to_string());
+    }
+
+    #[test]
+    fn kadane_test() {
+        let v = vec![3,5,-9,1,3,-2,3,4,7,2,-9,6,3,1,-5,4];
+        assert_eq!(19, kadane::exec(v));
     }
 
     #[test]
@@ -105,6 +117,7 @@ mod test_runner {
 pub enum Algo {
     CamelCase,
     DecToBin,
+    Kadane,
     SelectionSort,
     TandemRepeat,
     TwoSum,
@@ -118,6 +131,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "dectobin" => {
                 Algo::DecToBin
+            }
+            s if s.to_lowercase() == "kadane" => {
+                Algo::Kadane
             }
             s if s.to_lowercase() == "tandemrepeat" => {
                 Algo::TandemRepeat
