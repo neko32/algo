@@ -1,9 +1,12 @@
+pub mod camelcase;
 pub mod dectobin;
 pub mod kadane;
-pub mod two_sum;
+pub mod rightmost_diffbit;
+pub mod rightmost_samebit;
 pub mod selection_sort;
-pub mod camelcase;
 pub mod tandem_repeat;
+pub mod two_sum;
+
 use clap::Parser;
 
 pub mod runner {
@@ -11,6 +14,8 @@ pub mod runner {
     use super::*;
     use dectobin::dectobin;
     use kadane::kadane;
+    use rightmost_diffbit::rightmost_diffbit;
+    use rightmost_samebit::rightmost_samebit;
     use tandem_repeat::tandem_repeat;
     use two_sum::two_sum;
     use selection_sort::selection_sort;
@@ -26,7 +31,13 @@ pub mod runner {
             },
             Algo::Kadane => {
                 kadane::run();
+            },
+            Algo::RightMostDiffBit => {
+                rightmost_diffbit::run();
             }
+            Algo::RightMostSameBit => {
+                rightmost_samebit::run();
+            },
             Algo::TandemRepeat => {
                 tandem_repeat::run()
             },
@@ -45,6 +56,8 @@ mod test_runner {
     use crate::camelcase::camelcase;
     use crate::dectobin::dectobin;
     use crate::kadane::kadane;
+    use crate::rightmost_diffbit::rightmost_diffbit;
+    use crate::rightmost_samebit::rightmost_samebit;
     use crate::tandem_repeat::tandem_repeat;
     use crate::two_sum::two_sum;
     use crate::selection_sort::selection_sort;
@@ -73,6 +86,27 @@ mod test_runner {
         let n = 23;
         let b = dectobin::exec(n);
         assert_eq!(b, "10111".to_string());
+    }
+
+    #[test]
+    fn rightmost_diffbit_case1() {
+        let m = 13;
+        let n = 11;
+        assert_eq!(2, rightmost_diffbit::exec(m, n));
+    }
+
+    #[test]
+    fn rightmost_diffbit_case2() {
+        let m = 7;
+        let n = 23;
+        assert_eq!(16, rightmost_diffbit::exec(m, n));
+    }
+
+    #[test]
+    fn rightmost_samebit_case1() {
+        let m = 10;
+        let n = 11;
+        assert_eq!(2, rightmost_samebit::exec(m, n));
     }
 
     #[test]
@@ -118,6 +152,8 @@ pub enum Algo {
     CamelCase,
     DecToBin,
     Kadane,
+    RightMostDiffBit,
+    RightMostSameBit,
     SelectionSort,
     TandemRepeat,
     TwoSum,
@@ -134,6 +170,12 @@ impl Algo {
             }
             s if s.to_lowercase() == "kadane" => {
                 Algo::Kadane
+            }
+            s if s.to_lowercase() == "rightmost_diffbit" => {
+                Algo::RightMostDiffBit
+            }
+            s if s.to_lowercase() == "rightmost_samebit" => {
+                Algo::RightMostSameBit
             }
             s if s.to_lowercase() == "tandemrepeat" => {
                 Algo::TandemRepeat
