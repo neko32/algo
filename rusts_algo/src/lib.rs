@@ -1,3 +1,4 @@
+pub mod appear_twice;
 pub mod camelcase;
 pub mod dectobin;
 pub mod kadane;
@@ -12,6 +13,7 @@ use clap::Parser;
 pub mod runner {
 
     use super::*;
+    use appear_twice::appear_twice;
     use dectobin::dectobin;
     use kadane::kadane;
     use rightmost_diffbit::rightmost_diffbit;
@@ -23,6 +25,9 @@ pub mod runner {
     
     pub fn exec(algo: Algo) {
         match algo {
+            Algo::AppearTwice => {
+                appear_twice::run();
+            },
             Algo::CamelCase => {
                 camelcase::run();
             },
@@ -53,6 +58,7 @@ pub mod runner {
 
 #[cfg(test)]
 mod test_runner {
+    use crate::appear_twice::appear_twice;
     use crate::camelcase::camelcase;
     use crate::dectobin::dectobin;
     use crate::kadane::kadane;
@@ -61,7 +67,14 @@ mod test_runner {
     use crate::tandem_repeat::tandem_repeat;
     use crate::two_sum::two_sum;
     use crate::selection_sort::selection_sort;
-    use std::collections::HashSet;
+    use std::collections::{BTreeSet, HashSet};
+
+    #[test]
+    fn appear_twice_test() {
+        let expected:BTreeSet<char> = BTreeSet::from_iter(['b', 'd']);
+        let rez = appear_twice::exec();
+        assert_eq!(expected, rez);
+    }
 
     #[test]
     fn camelcase_test() {
@@ -149,6 +162,7 @@ mod test_runner {
 
 
 pub enum Algo {
+    AppearTwice,
     CamelCase,
     DecToBin,
     Kadane,
@@ -162,6 +176,9 @@ pub enum Algo {
 impl Algo {
     pub fn from_str(algo_str:&str) -> Self {
         match algo_str {
+            s if s.to_lowercase() == "appear_twice" => {
+                Algo::AppearTwice
+            }
             s if s.to_lowercase() == "camelcase" => {
                 Algo::CamelCase
             }
