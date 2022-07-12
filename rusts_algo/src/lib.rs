@@ -6,6 +6,7 @@ pub mod kadane;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod selection_sort;
+pub mod smallest_positive_product;
 pub mod tandem_repeat;
 pub mod toggle_bit;
 pub mod two_sum;
@@ -15,17 +16,18 @@ use clap::Parser;
 pub mod runner {
 
     use super::*;
-    use bintodec::bin_to_dec;
     use appear_twice::appear_twice;
+    use bintodec::bin_to_dec;
+    use camelcase::camelcase;
     use dectobin::dectobin;
     use kadane::kadane;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
+    use selection_sort::selection_sort;
+    use smallest_positive_product::smallest_positive_product;
     use tandem_repeat::tandem_repeat;
     use toggle_bit::toggle_bit;
     use two_sum::two_sum;
-    use selection_sort::selection_sort;
-    use camelcase::camelcase;
     
     pub fn exec(algo: Algo) {
         match algo {
@@ -50,6 +52,12 @@ pub mod runner {
             Algo::RightMostSameBit => {
                 rightmost_samebit::run();
             },
+            Algo::SelectionSort => {
+                selection_sort::run();
+            }
+            Algo::SmallestPositiveProduct => {
+                smallest_positive_product::run();
+            }
             Algo::TandemRepeat => {
                 tandem_repeat::run()
             },
@@ -59,9 +67,6 @@ pub mod runner {
             Algo::TwoSum => {
                 two_sum::run();
             },
-            Algo::SelectionSort => {
-                selection_sort::run();
-            }
         }    
     }   
 }
@@ -75,10 +80,11 @@ mod test_runner {
     use crate::kadane::kadane;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
+    use crate::selection_sort::selection_sort;
+    use crate::smallest_positive_product::smallest_positive_product;
     use crate::tandem_repeat::tandem_repeat;
     use crate::toggle_bit::toggle_bit;
     use crate::two_sum::two_sum;
-    use crate::selection_sort::selection_sort;
     use std::collections::{BTreeSet, HashSet};
 
     #[test]
@@ -112,6 +118,18 @@ mod test_runner {
     fn kadane_test() {
         let v = vec![3,5,-9,1,3,-2,3,4,7,2,-9,6,3,1,-5,4];
         assert_eq!(19, kadane::exec(v));
+    }
+
+    #[test]
+    fn smallest_positive_good_case() {
+        let n = 12;
+        assert_eq!(smallest_positive_product::exec(n), 26);
+    }
+
+    #[test]
+    fn smallest_positive_bad_case() {
+        let n = 19;
+        assert_eq!(smallest_positive_product::exec(n), -1);
     }
 
     #[test]
@@ -206,6 +224,7 @@ pub enum Algo {
     RightMostDiffBit,
     RightMostSameBit,
     SelectionSort,
+    SmallestPositiveProduct,
     TandemRepeat,
     ToggleBit,
     TwoSum,
@@ -234,6 +253,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "rightmost_samebit" => {
                 Algo::RightMostSameBit
+            }
+            s if s.to_lowercase() == "smallest_positive_product" => {
+                Algo::SmallestPositiveProduct
             }
             s if s.to_lowercase() == "tandemrepeat" => {
                 Algo::TandemRepeat
