@@ -6,6 +6,7 @@ pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod selection_sort;
 pub mod tandem_repeat;
+pub mod toggle_bit;
 pub mod two_sum;
 
 use clap::Parser;
@@ -19,6 +20,7 @@ pub mod runner {
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use tandem_repeat::tandem_repeat;
+    use toggle_bit::toggle_bit;
     use two_sum::two_sum;
     use selection_sort::selection_sort;
     use camelcase::camelcase;
@@ -46,6 +48,9 @@ pub mod runner {
             Algo::TandemRepeat => {
                 tandem_repeat::run()
             },
+            Algo::ToggleBit => {
+                toggle_bit::run();
+            }
             Algo::TwoSum => {
                 two_sum::run();
             },
@@ -65,6 +70,7 @@ mod test_runner {
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::tandem_repeat::tandem_repeat;
+    use crate::toggle_bit::toggle_bit;
     use crate::two_sum::two_sum;
     use crate::selection_sort::selection_sort;
     use std::collections::{BTreeSet, HashSet};
@@ -130,6 +136,16 @@ mod test_runner {
     }
 
     #[test]
+    fn toggle_bit_test() {
+        let n = 15;
+        let k = 2;
+        let rez1 = toggle_bit::exec(n, k); 
+        assert_eq!(rez1, 13);
+        let rez2 = toggle_bit::exec(rez1, k);
+        assert_eq!(rez2, n);
+    }
+
+    #[test]
     fn two_sum_case1() {
         let rez = two_sum::exec(vec![3,5,-4,8,11,1,-1,6], 10);
         assert_eq!(rez, vec![-1,11])
@@ -170,6 +186,7 @@ pub enum Algo {
     RightMostSameBit,
     SelectionSort,
     TandemRepeat,
+    ToggleBit,
     TwoSum,
 }
 
@@ -196,6 +213,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "tandemrepeat" => {
                 Algo::TandemRepeat
+            }
+            s if s.to_lowercase() == "toggle_bit" => {
+                Algo::ToggleBit
             }
             s if s.to_lowercase() == "twosum" => {
                 Algo::TwoSum 
