@@ -1,4 +1,5 @@
 pub mod appear_twice;
+pub mod bintodec;
 pub mod camelcase;
 pub mod dectobin;
 pub mod kadane;
@@ -14,6 +15,7 @@ use clap::Parser;
 pub mod runner {
 
     use super::*;
+    use bintodec::bin_to_dec;
     use appear_twice::appear_twice;
     use dectobin::dectobin;
     use kadane::kadane;
@@ -29,6 +31,9 @@ pub mod runner {
         match algo {
             Algo::AppearTwice => {
                 appear_twice::run();
+            },
+            Algo::BinToDec => {
+                bin_to_dec::run();
             },
             Algo::CamelCase => {
                 camelcase::run();
@@ -64,6 +69,7 @@ pub mod runner {
 #[cfg(test)]
 mod test_runner {
     use crate::appear_twice::appear_twice;
+    use crate::bintodec::bin_to_dec;
     use crate::camelcase::camelcase;
     use crate::dectobin::dectobin;
     use crate::kadane::kadane;
@@ -80,6 +86,20 @@ mod test_runner {
         let expected:BTreeSet<char> = BTreeSet::from_iter(['b', 'd']);
         let rez = appear_twice::exec();
         assert_eq!(expected, rez);
+    }
+
+    #[test]
+    fn bin_to_dec_test1() {
+        let b = "10001010";
+        let r = bin_to_dec::exec(b);
+        assert_eq!(r, 138);
+    }
+
+    #[test]
+    fn bin_to_dec_test2() {
+        let b = "01001111";
+        let r = bin_to_dec::exec(b);
+        assert_eq!(r, 79);
     }
 
     #[test]
@@ -179,6 +199,7 @@ mod test_runner {
 
 pub enum Algo {
     AppearTwice,
+    BinToDec,
     CamelCase,
     DecToBin,
     Kadane,
@@ -195,6 +216,9 @@ impl Algo {
         match algo_str {
             s if s.to_lowercase() == "appear_twice" => {
                 Algo::AppearTwice
+            }
+            s if s.to_lowercase() == "bintodec" => {
+                Algo::BinToDec
             }
             s if s.to_lowercase() == "camelcase" => {
                 Algo::CamelCase
