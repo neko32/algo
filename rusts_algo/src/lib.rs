@@ -3,6 +3,7 @@ pub mod bintodec;
 pub mod camelcase;
 pub mod dectobin;
 pub mod kadane;
+pub mod repeat_product;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod selection_sort;
@@ -21,6 +22,7 @@ pub mod runner {
     use camelcase::camelcase;
     use dectobin::dectobin;
     use kadane::kadane;
+    use repeat_product::repeat_product;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use selection_sort::selection_sort;
@@ -46,6 +48,9 @@ pub mod runner {
             Algo::Kadane => {
                 kadane::run();
             },
+            Algo::RepeatProduct => {
+                repeat_product::run();
+            }
             Algo::RightMostDiffBit => {
                 rightmost_diffbit::run();
             }
@@ -78,6 +83,7 @@ mod test_runner {
     use crate::camelcase::camelcase;
     use crate::dectobin::dectobin;
     use crate::kadane::kadane;
+    use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::selection_sort::selection_sort;
@@ -118,6 +124,12 @@ mod test_runner {
     fn kadane_test() {
         let v = vec![3,5,-9,1,3,-2,3,4,7,2,-9,6,3,1,-5,4];
         assert_eq!(19, kadane::exec(v));
+    }
+
+    #[test]
+    fn repeat_product_test() {
+        let n = 16;
+        assert_eq!(repeat_product::exec(n), 9);
     }
 
     #[test]
@@ -221,6 +233,7 @@ pub enum Algo {
     CamelCase,
     DecToBin,
     Kadane,
+    RepeatProduct,
     RightMostDiffBit,
     RightMostSameBit,
     SelectionSort,
@@ -247,6 +260,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "kadane" => {
                 Algo::Kadane
+            }
+            s if s.to_lowercase() == "repeatproduct" => {
+                Algo::RepeatProduct
             }
             s if s.to_lowercase() == "rightmost_diffbit" => {
                 Algo::RightMostDiffBit
