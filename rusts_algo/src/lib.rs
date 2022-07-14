@@ -1,5 +1,6 @@
 pub mod appear_twice;
 pub mod bintodec;
+pub mod caesar_crypt;
 pub mod camelcase;
 pub mod dectobin;
 pub mod kadane;
@@ -19,6 +20,7 @@ pub mod runner {
     use super::*;
     use appear_twice::appear_twice;
     use bintodec::bin_to_dec;
+    use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use dectobin::dectobin;
     use kadane::kadane;
@@ -39,6 +41,9 @@ pub mod runner {
             Algo::BinToDec => {
                 bin_to_dec::run();
             },
+            Algo::CaesarCrypt => {
+                caesar_crypt::run();
+            }
             Algo::CamelCase => {
                 camelcase::run();
             },
@@ -80,6 +85,7 @@ pub mod runner {
 mod test_runner {
     use crate::appear_twice::appear_twice;
     use crate::bintodec::bin_to_dec;
+    use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::dectobin::dectobin;
     use crate::kadane::kadane;
@@ -112,6 +118,13 @@ mod test_runner {
         let b = "01001111";
         let r = bin_to_dec::exec(b);
         assert_eq!(r, 79);
+    }
+
+    #[test]
+    fn caesar_crypt_test() {
+        let s = "TAkonbiz";
+        let n = 3;
+        assert_eq!("wdnrqelc", caesar_crypt::exec(s, n));
     }
 
     #[test]
@@ -230,6 +243,7 @@ mod test_runner {
 pub enum Algo {
     AppearTwice,
     BinToDec,
+    CaesarCrypt,
     CamelCase,
     DecToBin,
     Kadane,
@@ -251,6 +265,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "bintodec" => {
                 Algo::BinToDec
+            }
+            s if s.to_lowercase() == "caesar_crypt" => {
+                Algo::CaesarCrypt
             }
             s if s.to_lowercase() == "camelcase" => {
                 Algo::CamelCase
