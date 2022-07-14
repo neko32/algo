@@ -4,6 +4,7 @@ pub mod caesar_crypt;
 pub mod camelcase;
 pub mod dectobin;
 pub mod kadane;
+pub mod lcs;
 pub mod repeat_product;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
@@ -24,6 +25,7 @@ pub mod runner {
     use camelcase::camelcase;
     use dectobin::dectobin;
     use kadane::kadane;
+    use lcs::lcs;
     use repeat_product::repeat_product;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
@@ -52,6 +54,9 @@ pub mod runner {
             },
             Algo::Kadane => {
                 kadane::run();
+            },
+            Algo::LCS => {
+                lcs::run();
             },
             Algo::RepeatProduct => {
                 repeat_product::run();
@@ -89,6 +94,7 @@ mod test_runner {
     use crate::camelcase::camelcase;
     use crate::dectobin::dectobin;
     use crate::kadane::kadane;
+    use crate::lcs::lcs;
     use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
@@ -137,6 +143,20 @@ mod test_runner {
     fn kadane_test() {
         let v = vec![3,5,-9,1,3,-2,3,4,7,2,-9,6,3,1,-5,4];
         assert_eq!(19, kadane::exec(v));
+    }
+
+    #[test]
+    fn lcs_test1() {
+        let m = "abcde";
+        let n = "acbef";
+        assert_eq!(lcs::exec(m, n), 3);
+    }
+
+    #[test]
+    fn lcs_test2() {
+        let m = "pirikapirirara";
+        let n = "poporinapeperuto";
+        assert_eq!(lcs::exec(m, n), 6);
     }
 
     #[test]
@@ -247,6 +267,7 @@ pub enum Algo {
     CamelCase,
     DecToBin,
     Kadane,
+    LCS,
     RepeatProduct,
     RightMostDiffBit,
     RightMostSameBit,
@@ -277,6 +298,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "kadane" => {
                 Algo::Kadane
+            }
+            s if s.to_lowercase() == "lcs" => {
+                Algo::LCS
             }
             s if s.to_lowercase() == "repeatproduct" => {
                 Algo::RepeatProduct
