@@ -3,11 +3,13 @@ pub mod bintodec;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod dectobin;
+pub mod diagonal;
 pub mod kadane;
 pub mod lcs;
 pub mod repeat_product;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
+pub mod shared;
 pub mod selection_sort;
 pub mod smallest_positive_product;
 pub mod tandem_repeat;
@@ -24,6 +26,7 @@ pub mod runner {
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use dectobin::dectobin;
+    use diagonal::diagonal;
     use kadane::kadane;
     use lcs::lcs;
     use repeat_product::repeat_product;
@@ -52,6 +55,9 @@ pub mod runner {
             Algo::DecToBin => {
                 dectobin::run();
             },
+            Algo::Diagonal => {
+                diagonal::run();
+            }
             Algo::Kadane => {
                 kadane::run();
             },
@@ -93,6 +99,7 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::dectobin::dectobin;
+    use crate::diagonal::diagonal;
     use crate::kadane::kadane;
     use crate::lcs::lcs;
     use crate::repeat_product::repeat_product;
@@ -100,6 +107,7 @@ mod test_runner {
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::selection_sort::selection_sort;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::shared::shared::*;
     use crate::tandem_repeat::tandem_repeat;
     use crate::toggle_bit::toggle_bit;
     use crate::two_sum::two_sum;
@@ -191,6 +199,23 @@ mod test_runner {
     }
 
     #[test]
+    fn diagonal_is_diag_yes() {
+        let a = Point::new(1, 5);
+        let b = Point::new(9, 13);
+        println!("a:{},b:{} must be diagonal - result is {}", a, b, diagonal::exec(&a, &b));
+        assert!(diagonal::exec(&a, &b));
+    }
+
+
+    #[test]
+    fn diagonal_is_diag_no() {
+        let a = Point::new(3, 5);
+        let b = Point::new(8, 5);
+        println!("a:{},b:{} must be diagonal - result is {}", a, b, diagonal::exec(&a, &b));
+        assert!(diagonal::exec(&a, &b) == false);
+    }
+
+    #[test]
     fn rightmost_diffbit_case1() {
         let m = 13;
         let n = 11;
@@ -266,6 +291,7 @@ pub enum Algo {
     CaesarCrypt,
     CamelCase,
     DecToBin,
+    Diagonal,
     Kadane,
     LCS,
     RepeatProduct,
@@ -295,6 +321,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "dectobin" => {
                 Algo::DecToBin
+            }
+            s if s.to_lowercase() == "diagonal" => {
+                Algo::Diagonal
             }
             s if s.to_lowercase() == "kadane" => {
                 Algo::Kadane
