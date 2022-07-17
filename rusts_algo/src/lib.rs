@@ -12,6 +12,7 @@ pub mod rightmost_samebit;
 pub mod shared;
 pub mod selection_sort;
 pub mod smallest_positive_product;
+pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod toggle_bit;
 pub mod two_sum;
@@ -34,6 +35,7 @@ pub mod runner {
     use rightmost_samebit::rightmost_samebit;
     use selection_sort::selection_sort;
     use smallest_positive_product::smallest_positive_product;
+    use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
     use toggle_bit::toggle_bit;
     use two_sum::two_sum;
@@ -79,6 +81,9 @@ pub mod runner {
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
+            Algo::SwapSibling => {
+                swap_sibling::run();
+            }
             Algo::TandemRepeat => {
                 tandem_repeat::run()
             },
@@ -108,6 +113,7 @@ mod test_runner {
     use crate::selection_sort::selection_sort;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::shared::shared::*;
+    use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
     use crate::toggle_bit::toggle_bit;
     use crate::two_sum::two_sum;
@@ -237,6 +243,14 @@ mod test_runner {
     }
 
     #[test]
+    fn swap_sibling_test() {
+        let mut v:Vec<i32> = (1..=6).collect();
+        swap_sibling::exec(&mut v);
+        let expected:Vec<i32> = vec![2, 1, 4, 3, 6, 5];
+        assert_eq!(v, expected);
+    }
+
+    #[test]
     fn tandem_repeat_case2() {
         let a = "ABA".to_string();
         let b = "cattac".to_string();
@@ -299,6 +313,7 @@ pub enum Algo {
     RightMostSameBit,
     SelectionSort,
     SmallestPositiveProduct,
+    SwapSibling,
     TandemRepeat,
     ToggleBit,
     TwoSum,
@@ -342,6 +357,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "smallest_positive_product" => {
                 Algo::SmallestPositiveProduct
+            }
+            s if s.to_lowercase() == "swap_sibling" => {
+                Algo::SwapSibling
             }
             s if s.to_lowercase() == "tandemrepeat" => {
                 Algo::TandemRepeat
