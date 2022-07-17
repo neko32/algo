@@ -8,6 +8,7 @@ pub mod kadane;
 pub mod lcs;
 pub mod max_sibling_product;
 pub mod repeat_product;
+pub mod reverse_poland_calc;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod shared;
@@ -33,6 +34,7 @@ pub mod runner {
     use lcs::lcs;
     use max_sibling_product::max_sibling_product;
     use repeat_product::repeat_product;
+    use reverse_poland_calc::reverse_poland_calc;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use selection_sort::selection_sort;
@@ -73,6 +75,9 @@ pub mod runner {
             }
             Algo::RepeatProduct => {
                 repeat_product::run();
+            }
+            Algo::ReversePoland => {
+                reverse_poland_calc::run();
             }
             Algo::RightMostDiffBit => {
                 rightmost_diffbit::run();
@@ -116,6 +121,7 @@ mod test_runner {
     use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
+    use crate::reverse_poland_calc::reverse_poland_calc;
     use crate::selection_sort::selection_sort;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::shared::shared::*;
@@ -190,6 +196,18 @@ mod test_runner {
     fn repeat_product_test() {
         let n = 16;
         assert_eq!(repeat_product::exec(n), 9);
+    }
+
+    #[test]
+    fn reverse_poland_test1() {
+        let s = "12+3+4+";
+        assert_eq!(reverse_poland_calc::exec(s), 10_f32);
+    }
+
+    #[test]
+    fn reverse_poland_test2() {
+        let s = "374/-8*";
+        assert_eq!(reverse_poland_calc::exec(s), 10_f32);
     }
 
     #[test]
@@ -323,6 +341,7 @@ pub enum Algo {
     LCS,
     MaxSiblingProduct,
     RepeatProduct,
+    ReversePoland,
     RightMostDiffBit,
     RightMostSameBit,
     SelectionSort,
@@ -365,6 +384,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "repeatproduct" => {
                 Algo::RepeatProduct
+            }
+            s if s.to_lowercase() == "reverse_poland" => {
+                Algo::ReversePoland
             }
             s if s.to_lowercase() == "rightmost_diffbit" => {
                 Algo::RightMostDiffBit
