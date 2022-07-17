@@ -6,6 +6,7 @@ pub mod dectobin;
 pub mod diagonal;
 pub mod kadane;
 pub mod lcs;
+pub mod max_sibling_product;
 pub mod repeat_product;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
@@ -30,6 +31,7 @@ pub mod runner {
     use diagonal::diagonal;
     use kadane::kadane;
     use lcs::lcs;
+    use max_sibling_product::max_sibling_product;
     use repeat_product::repeat_product;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
@@ -66,6 +68,9 @@ pub mod runner {
             Algo::LCS => {
                 lcs::run();
             },
+            Algo::MaxSiblingProduct => {
+                max_sibling_product::run();
+            }
             Algo::RepeatProduct => {
                 repeat_product::run();
             }
@@ -107,6 +112,7 @@ mod test_runner {
     use crate::diagonal::diagonal;
     use crate::kadane::kadane;
     use crate::lcs::lcs;
+    use crate::max_sibling_product::max_sibling_product;
     use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
@@ -164,6 +170,13 @@ mod test_runner {
         let m = "abcde";
         let n = "acbef";
         assert_eq!(lcs::exec(m, n), 3);
+    }
+
+    #[test]
+    fn max_sibling_product_test () {
+        let s = vec![3, 6, -2, -5, 7, 3];
+        let r = max_sibling_product::exec(s);
+        assert_eq!(r, 21);
     }
 
     #[test]
@@ -308,6 +321,7 @@ pub enum Algo {
     Diagonal,
     Kadane,
     LCS,
+    MaxSiblingProduct,
     RepeatProduct,
     RightMostDiffBit,
     RightMostSameBit,
@@ -345,6 +359,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "lcs" => {
                 Algo::LCS
+            }
+            s if s.to_lowercase() == "max_sibling_product" => {
+                Algo::MaxSiblingProduct
             }
             s if s.to_lowercase() == "repeatproduct" => {
                 Algo::RepeatProduct
