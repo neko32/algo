@@ -18,6 +18,7 @@ pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod toggle_bit;
 pub mod two_sum;
+pub mod waterarea;
 
 use clap::Parser;
 
@@ -43,6 +44,7 @@ pub mod runner {
     use tandem_repeat::tandem_repeat;
     use toggle_bit::toggle_bit;
     use two_sum::two_sum;
+    use waterarea::waterarea;
     
     pub fn exec(algo: Algo) {
         match algo {
@@ -103,6 +105,9 @@ pub mod runner {
             Algo::TwoSum => {
                 two_sum::run();
             },
+            Algo::WaterArea => {
+                waterarea::run();
+            }
         }    
     }   
 }
@@ -129,6 +134,7 @@ mod test_runner {
     use crate::tandem_repeat::tandem_repeat;
     use crate::toggle_bit::toggle_bit;
     use crate::two_sum::two_sum;
+    use crate::waterarea::waterarea;
     use std::collections::{BTreeSet, HashSet};
 
     #[test]
@@ -327,6 +333,13 @@ mod test_runner {
         assert_eq!(n, vec![-3, 1, 2, 4, 9, 9, 10, 15]);
 
     }
+
+    #[test]
+    fn waterarea_test() {
+        let a:Vec<u32> = vec![0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3];
+        let r = waterarea::exec(a);
+        assert_eq!(r, 48);
+    }
 }
 
 
@@ -350,6 +363,7 @@ pub enum Algo {
     TandemRepeat,
     ToggleBit,
     TwoSum,
+    WaterArea,
 }
 
 impl Algo {
@@ -411,6 +425,9 @@ impl Algo {
             },
             s if s.to_lowercase() == "selectionsort" => {
                 Algo::SelectionSort
+            }
+            s if s.to_lowercase() == "waterarea" => {
+                Algo::WaterArea
             }
             _ => panic!("{} has not implemented yet", algo_str),
         }
