@@ -14,6 +14,7 @@ pub mod rightmost_samebit;
 pub mod shared;
 pub mod selection_sort;
 pub mod smallest_positive_product;
+pub mod string_construction;
 pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod toggle_bit;
@@ -40,6 +41,7 @@ pub mod runner {
     use rightmost_samebit::rightmost_samebit;
     use selection_sort::selection_sort;
     use smallest_positive_product::smallest_positive_product;
+    use string_construction::string_construction;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
     use toggle_bit::toggle_bit;
@@ -93,6 +95,9 @@ pub mod runner {
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
+            Algo::StringConstruction => {
+                string_construction::run();
+            }
             Algo::SwapSibling => {
                 swap_sibling::run();
             }
@@ -130,6 +135,7 @@ mod test_runner {
     use crate::selection_sort::selection_sort;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::shared::shared::*;
+    use crate::string_construction::string_construction;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
     use crate::toggle_bit::toggle_bit;
@@ -226,6 +232,21 @@ mod test_runner {
     fn smallest_positive_bad_case() {
         let n = 19;
         assert_eq!(smallest_positive_product::exec(n), -1);
+    }
+
+    #[test]
+    fn string_construction_test1() {
+        let a = "abc";
+        let b = "abccba";
+        assert_eq!(string_construction::exec(a, b), 2);
+    }
+
+
+    #[test]
+    fn string_construction_test2() {
+        let a = "abc";
+        let b = "abba";
+        assert_eq!(string_construction::exec(a, b), 0);
     }
 
     #[test]
@@ -360,6 +381,7 @@ pub enum Algo {
     SelectionSort,
     SmallestPositiveProduct,
     SwapSibling,
+    StringConstruction,
     TandemRepeat,
     ToggleBit,
     TwoSum,
@@ -413,6 +435,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "swap_sibling" => {
                 Algo::SwapSibling
+            }
+            s if s.to_lowercase() == "string_construction" => {
+                Algo::StringConstruction
             }
             s if s.to_lowercase() == "tandemrepeat" => {
                 Algo::TandemRepeat
