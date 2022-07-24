@@ -5,6 +5,7 @@ pub mod camelcase;
 pub mod century;
 pub mod dectobin;
 pub mod diagonal;
+pub mod is_mac_addr;
 pub mod kadane;
 pub mod lcs;
 pub mod max_sibling_product;
@@ -35,6 +36,7 @@ pub mod runner {
     use century::century;
     use dectobin::dectobin;
     use diagonal::diagonal;
+    use is_mac_addr::is_mac_addr;
     use kadane::kadane;
     use lcs::lcs;
     use max_sibling_product::max_sibling_product;
@@ -74,6 +76,9 @@ pub mod runner {
             },
             Algo::Diagonal => {
                 diagonal::run();
+            }
+            Algo::IsMacAddr => {
+                is_mac_addr::run();
             }
             Algo::Kadane => {
                 kadane::run();
@@ -136,6 +141,7 @@ mod test_runner {
     use crate::century::century;
     use crate::dectobin::dectobin;
     use crate::diagonal::diagonal;
+    use crate::is_mac_addr::is_mac_addr;
     use crate::kadane::kadane;
     use crate::lcs::lcs;
     use crate::max_sibling_product::max_sibling_product;
@@ -201,6 +207,18 @@ mod test_runner {
         let n = 1700;
         let nr = century::exec(n);
         assert_eq!(nr, 17);
+    }
+
+    #[test]
+    fn is_mac_addr_good() {
+        let mac = "00-1B-63-84-45-E6";
+        assert_eq!(is_mac_addr::exec(mac), true);
+    }
+
+    #[test]
+    fn is_mac_addr_bad() {
+        let mac = "00-1B-63-84-45-Z6";
+        assert_eq!(is_mac_addr::exec(mac), false);
     }
 
     #[test]
@@ -405,6 +423,7 @@ pub enum Algo {
     CaesarCrypt,
     DecToBin,
     Diagonal,
+    IsMacAddr,
     Kadane,
     LCS,
     MaxSiblingProduct,
@@ -446,6 +465,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "diagonal" => {
                 Algo::Diagonal
+            }
+            s if s.to_lowercase() == "is_mac_addr" => {
+                Algo::IsMacAddr
             }
             s if s.to_lowercase() == "kadane" => {
                 Algo::Kadane
