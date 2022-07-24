@@ -8,6 +8,7 @@ pub mod diagonal;
 pub mod kadane;
 pub mod lcs;
 pub mod max_sibling_product;
+pub mod product_array_sort;
 pub mod repeat_product;
 pub mod reverse_poland_calc;
 pub mod rightmost_diffbit;
@@ -37,6 +38,7 @@ pub mod runner {
     use kadane::kadane;
     use lcs::lcs;
     use max_sibling_product::max_sibling_product;
+    use product_array_sort::product_array_sort;
     use repeat_product::repeat_product;
     use reverse_poland_calc::reverse_poland_calc;
     use rightmost_diffbit::rightmost_diffbit;
@@ -81,6 +83,9 @@ pub mod runner {
             },
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
+            }
+            Algo::ProductArraySort => {
+                product_array_sort::run();
             }
             Algo::RepeatProduct => {
                 repeat_product::run();
@@ -134,6 +139,7 @@ mod test_runner {
     use crate::kadane::kadane;
     use crate::lcs::lcs;
     use crate::max_sibling_product::max_sibling_product;
+    use crate::product_array_sort::product_array_sort;
     use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
@@ -300,6 +306,13 @@ mod test_runner {
     }
 
     #[test]
+    fn product_array_sort_test() {
+        let v = vec![-11, -6, 0, 5, 8, 10];
+        let w = product_array_sort::exec(&v);
+        assert_eq!(w, vec![0, 25, 36, 64, 100, 121]);
+    }
+
+    #[test]
     fn rightmost_diffbit_case1() {
         let m = 13;
         let n = 11;
@@ -395,6 +408,7 @@ pub enum Algo {
     Kadane,
     LCS,
     MaxSiblingProduct,
+    ProductArraySort,
     RepeatProduct,
     ReversePoland,
     RightMostDiffBit,
@@ -441,6 +455,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "max_sibling_product" => {
                 Algo::MaxSiblingProduct
+            }
+            s if s.to_lowercase() == "product_array_sort" => {
+                Algo::ProductArraySort
             }
             s if s.to_lowercase() == "repeatproduct" => {
                 Algo::RepeatProduct
