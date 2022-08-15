@@ -3,6 +3,7 @@ pub mod bintodec;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod century;
+pub mod cyclic_chars;
 pub mod decode_reverse_poland;
 pub mod dectobin;
 pub mod diagonal;
@@ -36,6 +37,7 @@ pub mod runner {
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use century::century;
+    use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
     use diagonal::diagonal;
@@ -74,6 +76,9 @@ pub mod runner {
             },
             Algo::Century => {
                 century::run();
+            }
+            Algo::CyclicChars => {
+                cyclic_chars::run();
             }
             Algo::DecodeReversePoland => {
                 decode_reverse_poland::run();
@@ -149,6 +154,7 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::century::century;
+    use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
     use crate::diagonal::diagonal;
@@ -219,6 +225,13 @@ mod test_runner {
         let n = 1700;
         let nr = century::exec(n);
         assert_eq!(nr, 17);
+    }
+
+    #[test]
+    fn cyclic_chars_test() {
+        let n = 7;
+        let s = "ABC";
+        assert_eq!(cyclic_chars::exec(s, n), "ABCABCA");
     }
 
     #[test]
@@ -449,6 +462,7 @@ pub enum Algo {
     CamelCase,
     Century,
     CaesarCrypt,
+    CyclicChars,
     DecodeReversePoland,
     DecToBin,
     Diagonal,
@@ -489,6 +503,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "century" => {
                 Algo::Century
+            }
+            s if s.to_lowercase() == "cyclic_chars" => {
+                Algo::CyclicChars
             }
             s if s.to_lowercase() == "decode_reverse_poland" => {
                 Algo::DecodeReversePoland
