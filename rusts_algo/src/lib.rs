@@ -1,4 +1,5 @@
 pub mod appear_twice;
+pub mod applebox;
 pub mod bintodec;
 pub mod caesar_crypt;
 pub mod camelcase;
@@ -34,6 +35,7 @@ pub mod runner {
 
     use super::*;
     use appear_twice::appear_twice;
+    use applebox::applebox;
     use bintodec::bin_to_dec;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
@@ -67,6 +69,9 @@ pub mod runner {
             Algo::AppearTwice => {
                 appear_twice::run();
             },
+            Algo::Applebox => {
+                applebox::run();
+            }
             Algo::BinToDec => {
                 bin_to_dec::run();
             },
@@ -155,6 +160,7 @@ pub mod runner {
 #[cfg(test)]
 mod test_runner {
     use crate::appear_twice::appear_twice;
+    use crate::applebox::applebox;
     use crate::bintodec::bin_to_dec;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
@@ -190,6 +196,13 @@ mod test_runner {
         let expected:BTreeSet<char> = BTreeSet::from_iter(['b', 'd']);
         let rez = appear_twice::exec();
         assert_eq!(expected, rez);
+    }
+
+    #[test]
+    fn applebox_test() {
+        let n = 5;
+        let expected = -15;
+        assert_eq!(applebox::exec(n), expected);
     }
 
     #[test]
@@ -471,6 +484,7 @@ mod test_runner {
 
 pub enum Algo {
     AppearTwice,
+    Applebox,
     BinToDec,
     CamelCase,
     Century,
@@ -505,6 +519,9 @@ impl Algo {
         match algo_str {
             s if s.to_lowercase() == "appear_twice" => {
                 Algo::AppearTwice
+            }
+            s if s.to_lowercase() == "applebox" => {
+                Algo::Applebox
             }
             s if s.to_lowercase() == "bintodec" => {
                 Algo::BinToDec
