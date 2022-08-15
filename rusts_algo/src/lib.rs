@@ -6,6 +6,7 @@ pub mod century;
 pub mod decode_reverse_poland;
 pub mod dectobin;
 pub mod diagonal;
+pub mod fizzbuzz;
 pub mod is_mac_addr;
 pub mod kadane;
 pub mod lcs;
@@ -38,6 +39,7 @@ pub mod runner {
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
     use diagonal::diagonal;
+    use fizzbuzz::fizzbuzz;
     use is_mac_addr::is_mac_addr;
     use kadane::kadane;
     use lcs::lcs;
@@ -81,6 +83,9 @@ pub mod runner {
             },
             Algo::Diagonal => {
                 diagonal::run();
+            }
+            Algo::FizzBuzz => {
+                fizzbuzz::run();
             }
             Algo::IsMacAddr => {
                 is_mac_addr::run();
@@ -147,6 +152,7 @@ mod test_runner {
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
     use crate::diagonal::diagonal;
+    use crate::fizzbuzz::fizzbuzz;
     use crate::is_mac_addr::is_mac_addr;
     use crate::kadane::kadane;
     use crate::lcs::lcs;
@@ -218,8 +224,17 @@ mod test_runner {
     #[test]
     fn decode_reverse_poland_test() {
         let s = "612+*8-";
+        
         let expected = "6*(1+2)-8";
         assert_eq!(decode_reverse_poland::exec(s), expected); 
+    }
+
+    #[test]
+    fn test_fizzbuzz() {
+        let n = 30;
+        let rez = fizzbuzz::exec(n);
+        let expected:String = "12fizz4buzzfizz78fizzbuzz11fizz1314fizzbuzz1617fizz19buzzfizz2223fizzbuzz26fizz2829fizzbuzz".to_string();
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -437,6 +452,7 @@ pub enum Algo {
     DecodeReversePoland,
     DecToBin,
     Diagonal,
+    FizzBuzz,
     IsMacAddr,
     Kadane,
     LCS,
@@ -482,6 +498,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "diagonal" => {
                 Algo::Diagonal
+            }
+            s if s.to_lowercase() == "fizzbuzz" => {
+                Algo::FizzBuzz
             }
             s if s.to_lowercase() == "is_mac_addr" => {
                 Algo::IsMacAddr
