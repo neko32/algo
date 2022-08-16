@@ -9,6 +9,7 @@ pub mod cyclic_chars;
 pub mod decode_reverse_poland;
 pub mod dectobin;
 pub mod diagonal;
+pub mod euclidean;
 pub mod fizzbuzz;
 pub mod is_mac_addr;
 pub mod kadane;
@@ -45,6 +46,7 @@ pub mod runner {
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
     use diagonal::diagonal;
+    use euclidean::euclidean;
     use fizzbuzz::fizzbuzz;
     use is_mac_addr::is_mac_addr;
     use kadane::kadane;
@@ -98,6 +100,9 @@ pub mod runner {
             },
             Algo::Diagonal => {
                 diagonal::run();
+            }
+            Algo::Euclidean => {
+                euclidean::run();
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
@@ -170,6 +175,7 @@ mod test_runner {
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
     use crate::diagonal::diagonal;
+    use crate::euclidean::euclidean;
     use crate::fizzbuzz::fizzbuzz;
     use crate::is_mac_addr::is_mac_addr;
     use crate::kadane::kadane;
@@ -190,6 +196,7 @@ mod test_runner {
     use crate::two_sum::two_sum;
     use crate::waterarea::waterarea;
     use std::collections::{BTreeSet, HashSet};
+    use num::integer::gcd;
 
     #[test]
     fn appear_twice_test() {
@@ -266,6 +273,22 @@ mod test_runner {
         
         let expected = "6*(1+2)-8";
         assert_eq!(decode_reverse_poland::exec(s), expected); 
+    }
+
+    #[test]
+    fn euclidean_test1() {
+        let m = 128;
+        let n = 72;
+        let gcd = gcd(m, n);
+        assert_eq!(euclidean::exec(m, n), gcd);
+    }
+
+    #[test]
+    fn euclidean_test2() {
+        let m = 72;
+        let n = 128;
+        let gcd = gcd(m, n);
+        assert_eq!(euclidean::exec(m, n), gcd);
     }
 
     #[test]
@@ -494,6 +517,7 @@ pub enum Algo {
     DecodeReversePoland,
     DecToBin,
     Diagonal,
+    Euclidean,
     FizzBuzz,
     IsMacAddr,
     Kadane,
@@ -549,6 +573,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "diagonal" => {
                 Algo::Diagonal
+            }
+            s if s.to_lowercase() == "euclidean" => {
+                Algo::Euclidean
             }
             s if s.to_lowercase() == "fizzbuzz" => {
                 Algo::FizzBuzz
