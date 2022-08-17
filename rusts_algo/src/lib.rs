@@ -21,6 +21,7 @@ pub mod repeat_product;
 pub mod reverse_poland_calc;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
+pub mod runlength;
 pub mod shared;
 pub mod selection_sort;
 pub mod smallest_positive_product;
@@ -59,6 +60,7 @@ pub mod runner {
     use reverse_poland_calc::reverse_poland_calc;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
+    use runlength::runlength;
     use selection_sort::selection_sort;
     use smallest_positive_product::smallest_positive_product;
     use string_construction::string_construction;
@@ -139,6 +141,9 @@ pub mod runner {
             Algo::RightMostSameBit => {
                 rightmost_samebit::run();
             },
+            Algo::RunLength => {
+                runlength::run();
+            }
             Algo::SelectionSort => {
                 selection_sort::run();
             }
@@ -191,6 +196,7 @@ mod test_runner {
     use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
+    use crate::runlength::runlength;
     use crate::reverse_poland_calc::reverse_poland_calc;
     use crate::selection_sort::selection_sort;
     use crate::smallest_positive_product::smallest_positive_product;
@@ -377,6 +383,20 @@ mod test_runner {
     }
 
     #[test]
+    fn runlength_test1() {
+        let s = "AAAAAAAAAAAA".to_string();
+        let rez = runlength::exec(s);
+        assert_eq!(rez, "9A3A".to_string());
+    }
+
+    #[test]
+    fn runlength_test2() {
+        let s = "AABBBCDD".to_string();
+        let rez = runlength::exec(s);
+        assert_eq!(rez, "2A3B1C2D".to_string());
+    }
+
+    #[test]
     fn smallest_positive_good_case() {
         let n = 12;
         assert_eq!(smallest_positive_product::exec(n), 26);
@@ -549,6 +569,7 @@ pub enum Algo {
     ReversePoland,
     RightMostDiffBit,
     RightMostSameBit,
+    RunLength,
     SelectionSort,
     SmallestPositiveProduct,
     SwapSibling,
@@ -630,6 +651,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "rightmost_samebit" => {
                 Algo::RightMostSameBit
+            }
+            s if s.to_lowercase() == "runlength" => {
+                Algo::RunLength
             }
             s if s.to_lowercase() == "smallest_positive_product" => {
                 Algo::SmallestPositiveProduct
