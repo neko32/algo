@@ -15,6 +15,7 @@ pub mod is_mac_addr;
 pub mod kadane;
 pub mod lcs;
 pub mod max_sibling_product;
+pub mod max_with_lessdigit;
 pub mod product_array_sort;
 pub mod repeat_product;
 pub mod reverse_poland_calc;
@@ -52,6 +53,7 @@ pub mod runner {
     use kadane::kadane;
     use lcs::lcs;
     use max_sibling_product::max_sibling_product;
+    use max_with_lessdigit::max_with_lessdigit;
     use product_array_sort::product_array_sort;
     use repeat_product::repeat_product;
     use reverse_poland_calc::reverse_poland_calc;
@@ -119,6 +121,9 @@ pub mod runner {
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
             }
+            Algo::MaxWithLessDigit => {
+                max_with_lessdigit::run();
+            }
             Algo::ProductArraySort => {
                 product_array_sort::run();
             }
@@ -181,6 +186,7 @@ mod test_runner {
     use crate::kadane::kadane;
     use crate::lcs::lcs;
     use crate::max_sibling_product::max_sibling_product;
+    use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::product_array_sort::product_array_sort;
     use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
@@ -329,6 +335,20 @@ mod test_runner {
         let s = vec![3, 6, -2, -5, 7, 3];
         let r = max_sibling_product::exec(s);
         assert_eq!(r, 21);
+    }
+
+    #[test]
+    fn max_with_lessdigit_test1() {
+        let n = 1001;
+        let maxv = max_with_lessdigit::exec(n);
+        assert_eq!(maxv, 101);
+    }
+
+    #[test]
+    fn max_with_lessdigit_test2() {
+        let n = 597;
+        let maxv = max_with_lessdigit::exec(n);
+        assert_eq!(maxv, 97);
     }
 
     #[test]
@@ -523,6 +543,7 @@ pub enum Algo {
     Kadane,
     LCS,
     MaxSiblingProduct,
+    MaxWithLessDigit,
     ProductArraySort,
     RepeatProduct,
     ReversePoland,
@@ -591,6 +612,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "max_sibling_product" => {
                 Algo::MaxSiblingProduct
+            }
+            s if s.to_lowercase() == "max_with_lessdigit" => {
+                Algo::MaxWithLessDigit
             }
             s if s.to_lowercase() == "product_array_sort" => {
                 Algo::ProductArraySort
