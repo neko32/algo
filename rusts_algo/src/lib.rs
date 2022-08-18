@@ -1,5 +1,6 @@
 pub mod appear_twice;
 pub mod applebox;
+pub mod array_product_sum;
 pub mod bintodec;
 pub mod caesar_crypt;
 pub mod camelcase;
@@ -39,6 +40,7 @@ pub mod runner {
     use super::*;
     use appear_twice::appear_twice;
     use applebox::applebox;
+    use array_product_sum::array_product_sum;
     use bintodec::bin_to_dec;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
@@ -77,6 +79,9 @@ pub mod runner {
             },
             Algo::Applebox => {
                 applebox::run();
+            }
+            Algo::ArrayProductSum => {
+                array_product_sum::run();
             }
             Algo::BinToDec => {
                 bin_to_dec::run();
@@ -176,6 +181,7 @@ pub mod runner {
 mod test_runner {
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
+    use crate::array_product_sum::array_product_sum;
     use crate::bintodec::bin_to_dec;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
@@ -207,7 +213,7 @@ mod test_runner {
     use crate::toggle_bit::toggle_bit;
     use crate::two_sum::two_sum;
     use crate::waterarea::waterarea;
-    use std::collections::{BTreeSet, HashSet};
+    use std::{collections::{BTreeSet, HashSet}, array};
     use num::integer::gcd;
 
     #[test]
@@ -222,6 +228,14 @@ mod test_runner {
         let n = 5;
         let expected = -15;
         assert_eq!(applebox::exec(n), expected);
+    }
+
+    #[test]
+    fn array_product_sum_test() {
+        let n = [5, 1, 4, 2];
+        let p = &n[..];
+        let r = array_product_sum::exec(p);
+        assert_eq!(r, vec![8, 40, 10, 20]);
     }
 
     #[test]
@@ -548,6 +562,7 @@ mod test_runner {
 pub enum Algo {
     AppearTwice,
     Applebox,
+    ArrayProductSum,
     BinToDec,
     CamelCase,
     Century,
@@ -588,6 +603,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "applebox" => {
                 Algo::Applebox
+            }
+            s if s.to_lowercase() == "array_product_sum" => {
+                Algo::ArrayProductSum
             }
             s if s.to_lowercase() == "bintodec" => {
                 Algo::BinToDec
