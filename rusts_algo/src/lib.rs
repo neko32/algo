@@ -18,6 +18,7 @@ pub mod lcs;
 pub mod least_factorial;
 pub mod max_sibling_product;
 pub mod max_with_lessdigit;
+pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod repeat_product;
 pub mod reverse_poland_calc;
@@ -59,6 +60,7 @@ pub mod runner {
     use least_factorial::least_factorial;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
+    use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use repeat_product::repeat_product;
     use reverse_poland_calc::reverse_poland_calc;
@@ -136,6 +138,9 @@ pub mod runner {
             Algo::MaxWithLessDigit => {
                 max_with_lessdigit::run();
             }
+            Algo::PreOrderTraversal => {
+                preorder_traversal::run();
+            }
             Algo::ProductArraySort => {
                 product_array_sort::run();
             }
@@ -204,6 +209,7 @@ mod test_runner {
     use crate::least_factorial::least_factorial;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_with_lessdigit::max_with_lessdigit;
+    use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
@@ -388,6 +394,13 @@ mod test_runner {
         let m = "pirikapirirara";
         let n = "poporinapeperuto";
         assert_eq!(lcs::exec(m, n), 6);
+    }
+
+    #[test]
+    fn preorder_trav_test() {
+        let v:Vec<i32> = vec![5, 9, 2, 10, 1, 4];
+        let r:Vec<i32> = preorder_traversal::exec(v);
+        assert_eq!(r, vec![5, 2, 1, 4, 9, 10]);
     }
 
     #[test]
@@ -592,6 +605,7 @@ pub enum Algo {
     LeastFactorial,
     MaxSiblingProduct,
     MaxWithLessDigit,
+    PreOrderTraversal,
     ProductArraySort,
     RepeatProduct,
     ReversePoland,
@@ -670,6 +684,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "max_with_lessdigit" => {
                 Algo::MaxWithLessDigit
+            }
+            s if s.to_lowercase() == "preorder_traversal" => {
+                Algo::PreOrderTraversal
             }
             s if s.to_lowercase() == "product_array_sort" => {
                 Algo::ProductArraySort
