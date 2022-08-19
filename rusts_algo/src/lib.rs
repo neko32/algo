@@ -15,6 +15,7 @@ pub mod fizzbuzz;
 pub mod is_mac_addr;
 pub mod kadane;
 pub mod lcs;
+pub mod least_factorial;
 pub mod max_sibling_product;
 pub mod max_with_lessdigit;
 pub mod product_array_sort;
@@ -55,6 +56,7 @@ pub mod runner {
     use is_mac_addr::is_mac_addr;
     use kadane::kadane;
     use lcs::lcs;
+    use least_factorial::least_factorial;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use product_array_sort::product_array_sort;
@@ -125,6 +127,9 @@ pub mod runner {
             Algo::LCS => {
                 lcs::run();
             },
+            Algo::LeastFactorial => {
+                least_factorial::run();
+            }
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
             }
@@ -196,6 +201,7 @@ mod test_runner {
     use crate::is_mac_addr::is_mac_addr;
     use crate::kadane::kadane;
     use crate::lcs::lcs;
+    use crate::least_factorial::least_factorial;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::product_array_sort::product_array_sort;
@@ -348,6 +354,12 @@ mod test_runner {
         let m = "abcde";
         let n = "acbef";
         assert_eq!(lcs::exec(m, n), 3);
+    }
+
+    #[test]
+    fn least_factorial_test() {
+        let n = 17;
+        assert_eq!(least_factorial::exec(n), 24);
     }
 
     #[test]
@@ -577,6 +589,7 @@ pub enum Algo {
     IsMacAddr,
     Kadane,
     LCS,
+    LeastFactorial,
     MaxSiblingProduct,
     MaxWithLessDigit,
     ProductArraySort,
@@ -648,6 +661,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "lcs" => {
                 Algo::LCS
+            }
+            s if s.to_lowercase() == "least_factorial" => {
+                Algo::LeastFactorial
             }
             s if s.to_lowercase() == "max_sibling_product" => {
                 Algo::MaxSiblingProduct
