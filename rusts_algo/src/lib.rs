@@ -21,6 +21,7 @@ pub mod max_with_lessdigit;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod repeat_product;
+pub mod request_per_sec;
 pub mod reverse_poland_calc;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
@@ -63,6 +64,7 @@ pub mod runner {
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use repeat_product::repeat_product;
+    use request_per_sec::request_per_sec;
     use reverse_poland_calc::reverse_poland_calc;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
@@ -147,6 +149,9 @@ pub mod runner {
             Algo::RepeatProduct => {
                 repeat_product::run();
             }
+            Algo::RequestPerSec => {
+                request_per_sec::run();
+            }
             Algo::ReversePoland => {
                 reverse_poland_calc::run();
             }
@@ -210,6 +215,7 @@ mod test_runner {
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::preorder_traversal::preorder_traversal;
+    use crate::request_per_sec::request_per_sec;
     use crate::product_array_sort::product_array_sort;
     use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
@@ -407,6 +413,13 @@ mod test_runner {
     fn repeat_product_test() {
         let n = 16;
         assert_eq!(repeat_product::exec(n), 9);
+    }
+
+    #[test]
+    fn req_per_sec_test() {
+        let n = 17;
+        let rez = request_per_sec::exec(n); 
+        assert_eq!(rez, 928);
     }
 
     #[test]
@@ -608,6 +621,7 @@ pub enum Algo {
     PreOrderTraversal,
     ProductArraySort,
     RepeatProduct,
+    RequestPerSec,
     ReversePoland,
     RightMostDiffBit,
     RightMostSameBit,
@@ -693,6 +707,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "repeatproduct" => {
                 Algo::RepeatProduct
+            }
+            s if s.to_lowercase() == "request_per_sec" => {
+                Algo::RequestPerSec
             }
             s if s.to_lowercase() == "reverse_poland" => {
                 Algo::ReversePoland
