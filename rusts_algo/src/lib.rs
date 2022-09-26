@@ -10,6 +10,7 @@ pub mod cyclic_chars;
 pub mod decode_reverse_poland;
 pub mod dectobin;
 pub mod diagonal;
+pub mod document_build;
 pub mod euclidean;
 pub mod fizzbuzz;
 pub mod is_mac_addr;
@@ -30,6 +31,7 @@ pub mod shared;
 pub mod selection_sort;
 pub mod smallest_positive_product;
 pub mod string_construction;
+pub mod string_pattern;
 pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod toggle_bit;
@@ -53,6 +55,7 @@ pub mod runner {
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
     use diagonal::diagonal;
+    use document_build::document_build;
     use euclidean::euclidean;
     use fizzbuzz::fizzbuzz;
     use is_mac_addr::is_mac_addr;
@@ -72,6 +75,7 @@ pub mod runner {
     use selection_sort::selection_sort;
     use smallest_positive_product::smallest_positive_product;
     use string_construction::string_construction;
+    use string_pattern::string_pattern;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
     use toggle_bit::toggle_bit;
@@ -115,6 +119,9 @@ pub mod runner {
             },
             Algo::Diagonal => {
                 diagonal::run();
+            }
+            Algo::DocumentBuild => {
+                document_build::run();
             }
             Algo::Euclidean => {
                 euclidean::run();
@@ -173,6 +180,9 @@ pub mod runner {
             Algo::StringConstruction => {
                 string_construction::run();
             }
+            Algo::StringPattern => {
+                string_pattern::run();
+            }
             Algo::SwapSibling => {
                 swap_sibling::run();
             }
@@ -206,6 +216,7 @@ mod test_runner {
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
     use crate::diagonal::diagonal;
+    use crate::document_build::document_build;
     use crate::euclidean::euclidean;
     use crate::fizzbuzz::fizzbuzz;
     use crate::is_mac_addr::is_mac_addr;
@@ -226,6 +237,7 @@ mod test_runner {
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::shared::shared::*;
     use crate::string_construction::string_construction;
+    use crate::string_pattern::string_pattern;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
     use crate::toggle_bit::toggle_bit;
@@ -476,6 +488,21 @@ mod test_runner {
     }
 
     #[test]
+    fn string_pattern_test_simplecase() {
+        let input = "21";
+        let expected = "1211";
+        assert_eq!(string_pattern::exec(input).as_str(), expected);
+    }
+
+
+    #[test]
+    fn string_pattern_test_complexcase() {
+        let input = "33372211115";
+        let expected = "3317224115";
+        assert_eq!(string_pattern::exec(input).as_str(), expected);
+    }
+
+    #[test]
     fn tandem_repeat_case1() {
         let c = "CatCat".to_string();
         assert!(tandem_repeat::exec(c));
@@ -503,6 +530,13 @@ mod test_runner {
         let b = Point::new(8, 5);
         println!("a:{},b:{} must be diagonal - result is {}", a, b, diagonal::exec(&a, &b));
         assert!(diagonal::exec(&a, &b) == false);
+    }
+
+    #[test]
+    fn document_build_test() {
+        let s = "Todd told Tom to trot to the timber".to_string();
+        let expected:Vec<char> = vec![' ', 'T', 'b', 'd', 'e', 'h', 'i', 'l', 'm', 'o', 'r', 't'];
+        assert_eq!(document_build::exec(s), expected);
     }
 
     #[test]
@@ -610,6 +644,7 @@ pub enum Algo {
     DecodeReversePoland,
     DecToBin,
     Diagonal,
+    DocumentBuild,
     Euclidean,
     FizzBuzz,
     IsMacAddr,
@@ -630,6 +665,7 @@ pub enum Algo {
     SmallestPositiveProduct,
     SwapSibling,
     StringConstruction,
+    StringPattern,
     TandemRepeat,
     ToggleBit,
     TwoSum,
@@ -674,6 +710,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "diagonal" => {
                 Algo::Diagonal
+            }
+            s if s.to_lowercase() == "document_build" => {
+                Algo::DocumentBuild
             }
             s if s.to_lowercase() == "euclidean" => {
                 Algo::Euclidean
@@ -731,6 +770,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "string_construction" => {
                 Algo::StringConstruction
+            }
+            s if s.to_lowercase() == "string_pattern" => {
+                Algo::StringPattern
             }
             s if s.to_lowercase() == "tandemrepeat" => {
                 Algo::TandemRepeat
