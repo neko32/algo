@@ -13,6 +13,7 @@ pub mod diagonal;
 pub mod document_build;
 pub mod euclidean;
 pub mod fizzbuzz;
+pub mod is_palindrome;
 pub mod is_mac_addr;
 pub mod kadane;
 pub mod lcs;
@@ -58,6 +59,7 @@ pub mod runner {
     use document_build::document_build;
     use euclidean::euclidean;
     use fizzbuzz::fizzbuzz;
+    use is_palindrome::is_palindrome;
     use is_mac_addr::is_mac_addr;
     use kadane::kadane;
     use lcs::lcs;
@@ -128,6 +130,9 @@ pub mod runner {
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
+            }
+            Algo::IsPalindrome => {
+                is_palindrome::run();
             }
             Algo::IsMacAddr => {
                 is_mac_addr::run();
@@ -219,6 +224,7 @@ mod test_runner {
     use crate::document_build::document_build;
     use crate::euclidean::euclidean;
     use crate::fizzbuzz::fizzbuzz;
+    use crate::is_palindrome::is_palindrome;
     use crate::is_mac_addr::is_mac_addr;
     use crate::kadane::kadane;
     use crate::lcs::lcs;
@@ -359,6 +365,24 @@ mod test_runner {
     fn is_mac_addr_good() {
         let mac = "00-1B-63-84-45-E6";
         assert_eq!(is_mac_addr::exec(mac), true);
+    }
+
+    #[test]
+    fn is_palindrome_good_evencase() {
+        let s = "abccba";
+        assert_eq!(is_palindrome::exec(&s.to_string()), true);
+    }
+
+    #[test]
+    fn is_palindrome_good_oddcase() {
+        let s = "abcba";
+        assert_eq!(is_palindrome::exec(&s.to_string()), true);
+    }
+
+    #[test]
+    fn is_palindrome_badcase() {
+        let s = "abaya";
+        assert_eq!(is_palindrome::exec(&s.to_string()), false);
     }
 
     #[test]
@@ -648,6 +672,7 @@ pub enum Algo {
     Euclidean,
     FizzBuzz,
     IsMacAddr,
+    IsPalindrome,
     Kadane,
     LCS,
     LeastFactorial,
@@ -719,6 +744,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "fizzbuzz" => {
                 Algo::FizzBuzz
+            }
+            s if s.to_lowercase() == "is_palindrome" => {
+                Algo::IsPalindrome
             }
             s if s.to_lowercase() == "is_mac_addr" => {
                 Algo::IsMacAddr
