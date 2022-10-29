@@ -10,6 +10,7 @@ pub mod kadane;
 pub mod lcs;
 pub mod max_sibling_product;
 pub mod product_array_sort;
+pub mod radix_sort;
 pub mod repeat_product;
 pub mod reverse_poland_calc;
 pub mod rightmost_diffbit;
@@ -41,6 +42,7 @@ pub mod runner {
     use lcs::lcs;
     use max_sibling_product::max_sibling_product;
     use product_array_sort::product_array_sort;
+    use radix_sort::radix_sort;
     use repeat_product::repeat_product;
     use reverse_poland_calc::reverse_poland_calc;
     use rightmost_diffbit::rightmost_diffbit;
@@ -86,6 +88,9 @@ pub mod runner {
             Algo::LCS => {
                 lcs::run();
             },
+            Algo::RadixSort => {
+                radix_sort::run();
+            }
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
             }
@@ -145,6 +150,7 @@ mod test_runner {
     use crate::kadane::kadane;
     use crate::lcs::lcs;
     use crate::max_sibling_product::max_sibling_product;
+    use crate::radix_sort::radix_sort;
     use crate::product_array_sort::product_array_sort;
     use crate::repeat_product::repeat_product;
     use crate::rightmost_diffbit::rightmost_diffbit;
@@ -246,6 +252,13 @@ mod test_runner {
         let m = "pirikapirirara";
         let n = "poporinapeperuto";
         assert_eq!(lcs::exec(m, n), 6);
+    }
+
+    #[test]
+    fn radix_sort_test() {
+        let mut v = vec![8762, 654, 3008, 345, 87, 65, 234, 12, 2];
+        radix_sort::exec(&mut v);
+        assert_eq!(vec![2, 12, 65, 87, 234, 345, 654, 3008, 8762], v);
     }
 
     #[test]
@@ -428,6 +441,7 @@ pub enum Algo {
     LCS,
     MaxSiblingProduct,
     ProductArraySort,
+    RadixSort,
     RepeatProduct,
     ReversePoland,
     RightMostDiffBit,
@@ -480,6 +494,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "product_array_sort" => {
                 Algo::ProductArraySort
+            }
+            s if s.to_lowercase() == "radix_sort" => {
+                Algo::RadixSort
             }
             s if s.to_lowercase() == "repeatproduct" => {
                 Algo::RepeatProduct
