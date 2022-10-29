@@ -11,8 +11,10 @@ pub mod decode_reverse_poland;
 pub mod dectobin;
 pub mod diagonal;
 pub mod document_build;
+pub mod even_num_sum;
 pub mod euclidean;
 pub mod fizzbuzz;
+pub mod helon_formula;
 pub mod is_palindrome;
 pub mod is_mac_addr;
 pub mod kadane;
@@ -58,7 +60,9 @@ pub mod runner {
     use dectobin::dectobin;
     use diagonal::diagonal;
     use document_build::document_build;
+    use even_num_sum::even_num_sum;
     use euclidean::euclidean;
+    use helon_formula::helon_formula;
     use fizzbuzz::fizzbuzz;
     use is_palindrome::is_palindrome;
     use is_mac_addr::is_mac_addr;
@@ -127,11 +131,17 @@ pub mod runner {
             Algo::DocumentBuild => {
                 document_build::run();
             }
+            Algo::EvenNumSum => {
+                even_num_sum::run();
+            }
             Algo::Euclidean => {
                 euclidean::run();
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
+            }
+            Algo::HelonFormula => {
+                helon_formula::run();
             }
             Algo::IsPalindrome => {
                 is_palindrome::run();
@@ -227,8 +237,10 @@ mod test_runner {
     use crate::dectobin::dectobin;
     use crate::diagonal::diagonal;
     use crate::document_build::document_build;
+    use crate::even_num_sum::even_num_sum;
     use crate::euclidean::euclidean;
     use crate::fizzbuzz::fizzbuzz;
+    use crate::helon_formula::helon_formula;
     use crate::is_palindrome::is_palindrome;
     use crate::is_mac_addr::is_mac_addr;
     use crate::kadane::kadane;
@@ -256,6 +268,7 @@ mod test_runner {
     use crate::two_sum::two_sum;
     use crate::waterarea::waterarea;
     use std::{collections::{BTreeSet, HashSet}, array};
+    use float_cmp::approx_eq;
     use num::integer::gcd;
 
     #[test]
@@ -344,6 +357,18 @@ mod test_runner {
     }
 
     #[test]
+    fn even_num_sum_match_case() {
+        let n = 1230;
+        assert!(even_num_sum::exec(n));
+    }
+
+    #[test]
+    fn even_num_sum_unmatch_case() {
+        let n = 124568;
+        assert_eq!(false, even_num_sum::exec(n));
+    }
+
+    #[test]
     fn euclidean_test1() {
         let m = 128;
         let n = 72;
@@ -365,6 +390,16 @@ mod test_runner {
         let rez = fizzbuzz::exec(n);
         let expected:String = "12fizz4buzzfizz78fizzbuzz11fizz1314fizzbuzz1617fizz19buzzfizz2223fizzbuzz26fizz2829fizzbuzz".to_string();
         assert_eq!(rez, expected);
+    }
+
+    #[test]
+    fn helon_formula_test() {
+        let a = 5.0;
+        let b = 6.0;
+        let c = 7.0;
+        let expect = 14.6969385;
+        let rez = approx_eq!(f32, expect, helon_formula::exec(a, b, c), ulps = 2);
+        assert!(rez);
     }
 
     #[test]
@@ -682,8 +717,10 @@ pub enum Algo {
     DecToBin,
     Diagonal,
     DocumentBuild,
+    EvenNumSum,
     Euclidean,
     FizzBuzz,
+    HelonFormula,
     IsMacAddr,
     IsPalindrome,
     Kadane,
@@ -753,11 +790,17 @@ impl Algo {
             s if s.to_lowercase() == "document_build" => {
                 Algo::DocumentBuild
             }
+            s if s.to_lowercase() == "even_num_sum" => {
+                Algo::EvenNumSum
+            }
             s if s.to_lowercase() == "euclidean" => {
                 Algo::Euclidean
             }
             s if s.to_lowercase() == "fizzbuzz" => {
                 Algo::FizzBuzz
+            }
+            s if s.to_lowercase() == "helon_formula" => {
+                Algo::HelonFormula
             }
             s if s.to_lowercase() == "is_palindrome" => {
                 Algo::IsPalindrome
