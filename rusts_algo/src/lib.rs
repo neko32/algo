@@ -1,3 +1,4 @@
+pub mod almost_increasing_seq;
 pub mod appear_twice;
 pub mod applebox;
 pub mod array_product_sum;
@@ -47,6 +48,7 @@ use clap::Parser;
 pub mod runner {
 
     use super::*;
+    use almost_increasing_seq::almost_increasing_seq;
     use appear_twice::appear_twice;
     use applebox::applebox;
     use array_product_sum::array_product_sum;
@@ -92,6 +94,9 @@ pub mod runner {
     
     pub fn exec(algo: Algo) {
         match algo {
+            Algo::AlmostIncreasingSeq => {
+                almost_increasing_seq::run();
+            }
             Algo::AppearTwice => {
                 appear_twice::run();
             },
@@ -224,6 +229,7 @@ pub mod runner {
 
 #[cfg(test)]
 mod test_runner {
+    use crate::almost_increasing_seq::almost_increasing_seq;
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
     use crate::array_product_sum::array_product_sum;
@@ -270,6 +276,18 @@ mod test_runner {
     use std::{collections::{BTreeSet, HashSet}, array};
     use float_cmp::approx_eq;
     use num::integer::gcd;
+
+    #[test]
+    fn almost_increasing_seq_false_case() {
+        let s = [1,3,2,1];
+        assert_ne!(true, almost_increasing_seq::exec(&s));
+    }
+
+    #[test]
+    fn almost_increasing_seq_true_case() {
+        let s = [1,2,3,4,5,5,7,6,8];
+        assert!(almost_increasing_seq::exec(&s));
+    }
 
     #[test]
     fn appear_twice_test() {
@@ -704,6 +722,7 @@ mod test_runner {
 
 
 pub enum Algo {
+    AlmostIncreasingSeq,
     AppearTwice,
     Applebox,
     ArrayProductSum,
@@ -751,6 +770,9 @@ pub enum Algo {
 impl Algo {
     pub fn from_str(algo_str:&str) -> Self {
         match algo_str {
+            s if s.to_lowercase() == "almost_increasing_seq" => {
+                Algo::AlmostIncreasingSeq
+            }
             s if s.to_lowercase() == "appear_twice" => {
                 Algo::AppearTwice
             }
