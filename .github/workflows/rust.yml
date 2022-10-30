@@ -22,4 +22,7 @@ jobs:
         cd rusts_algo
         cargo build --verbose
     - name: Run tests
-      run: cargo test --verbose
+      run: |
+        ls -al
+        cd rusts_algo
+        cargo test --verbose
