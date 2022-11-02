@@ -2,6 +2,7 @@ pub mod almost_increasing_seq;
 pub mod appear_twice;
 pub mod applebox;
 pub mod array_product_sum;
+pub mod binarysearch;
 pub mod bintodec;
 pub mod caesar_crypt;
 pub mod camelcase;
@@ -52,6 +53,7 @@ pub mod runner {
     use appear_twice::appear_twice;
     use applebox::applebox;
     use array_product_sum::array_product_sum;
+    use binarysearch::binary_search;
     use bintodec::bin_to_dec;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
@@ -105,6 +107,9 @@ pub mod runner {
             }
             Algo::ArrayProductSum => {
                 array_product_sum::run();
+            }
+            Algo::BinarySearch => {
+                binary_search::run();
             }
             Algo::BinToDec => {
                 bin_to_dec::run();
@@ -233,6 +238,7 @@ mod test_runner {
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
     use crate::array_product_sum::array_product_sum;
+    use crate::binarysearch::binary_search;
     use crate::bintodec::bin_to_dec;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
@@ -309,6 +315,24 @@ mod test_runner {
         let p = &n[..];
         let r = array_product_sum::exec(p);
         assert_eq!(r, vec![8, 40, 10, 20]);
+    }
+
+    #[test]
+    fn binsearch_test_found() {
+        let s = vec![0, 1, 21, 33, 45, 45, 61, 71, 72, 73];
+        let len = s.len();
+        let b:Box<Vec<i32>> = Box::new(s);
+        let r = binary_search::exec(&b, 33, 0, len - 1);
+        assert_eq!(r, 3);
+    }
+
+    #[test]
+    fn binsearch_test_notfound() {
+        let s = vec![0, 1, 21, 33, 45, 45, 61, 71, 72, 73];
+        let len = s.len();
+        let b:Box<Vec<i32>> = Box::new(s);
+        let r = binary_search::exec(&b, 50, 0, len - 1);
+        assert_eq!(r, -1);
     }
 
     #[test]
@@ -726,6 +750,7 @@ pub enum Algo {
     AppearTwice,
     Applebox,
     ArrayProductSum,
+    BinarySearch,
     BinToDec,
     CamelCase,
     Century,
@@ -781,6 +806,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "array_product_sum" => {
                 Algo::ArrayProductSum
+            }
+            s if s.to_lowercase() == "binary_search" => {
+                Algo::BinarySearch
             }
             s if s.to_lowercase() == "bintodec" => {
                 Algo::BinToDec
