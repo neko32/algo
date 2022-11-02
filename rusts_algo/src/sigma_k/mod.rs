@@ -1,7 +1,6 @@
-
 pub mod sigma_k {
 
-    pub fn exec(k:i32) -> i32 {
+    pub fn exec(k: i32) -> i32 {
         (k * (k + 1)) / 2
     }
 

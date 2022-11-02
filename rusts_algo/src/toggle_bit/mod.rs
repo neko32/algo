@@ -1,7 +1,6 @@
-
 pub mod toggle_bit {
 
-    pub fn exec(n:i32, k:u16) -> i32 {
+    pub fn exec(n: i32, k: u16) -> i32 {
         let m = 1 << k - 1;
         let r = n ^ m;
         println!("n - {:0>8b}({}), mask - {:0>8b}({})", n, n, m, m);
@@ -16,5 +15,4 @@ pub mod toggle_bit {
         let m = 2;
         exec(n, m);
     }
-    
 }

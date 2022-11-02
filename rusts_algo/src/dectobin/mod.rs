@@ -1,8 +1,7 @@
-
 pub mod dectobin {
 
-    pub fn exec(n:i32) -> String {
-        let mut rez:String = String::new();
+    pub fn exec(n: i32) -> String {
+        let mut rez: String = String::new();
         let mut n = n;
         let mut r;
 

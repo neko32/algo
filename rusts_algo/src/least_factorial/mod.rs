@@ -1,6 +1,5 @@
-
 pub mod least_factorial {
-    pub fn exec(n:u32) -> u32 {
+    pub fn exec(n: u32) -> u32 {
         let mut x = 2_u32;
         while *factorial(Box::new(x)) < n {
             x += 1;
@@ -15,7 +14,7 @@ pub mod least_factorial {
         exec(n);
     }
 
-    fn factorial(n:Box<u32>) -> Box<u32> {
+    fn factorial(n: Box<u32>) -> Box<u32> {
         if *n == 1 {
             Box::new(1)
         } else {

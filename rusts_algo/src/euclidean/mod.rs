@@ -1,15 +1,14 @@
-
 pub mod euclidean {
 
-    pub fn exec(m:u32, n:u32) -> u32 {
+    pub fn exec(m: u32, n: u32) -> u32 {
         let mut m = m;
         let mut n = n;
-        let mut o:u32 = 0;
+        let mut o: u32 = 0;
         println!("[BEGIN] m={},n={}", m, n);
         while n != 0 {
             o = m % n;
             m = n;
-            n = o;    
+            n = o;
             println!("m={},n={}", m, n);
         }
         println!("[END] m={},n={}", m, n);

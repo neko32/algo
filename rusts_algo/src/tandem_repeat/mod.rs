@@ -1,13 +1,11 @@
-
-
 pub mod tandem_repeat {
 
-    pub fn exec(s:String) -> bool {
+    pub fn exec(s: String) -> bool {
         let len = s.len();
         if len % 2 == 1 {
             return false;
         }
-        let (a,b) = s.split_at(len / 2);
+        let (a, b) = s.split_at(len / 2);
         let ab = a.as_bytes();
         let bb = b.as_bytes();
         let slen = ab.len();

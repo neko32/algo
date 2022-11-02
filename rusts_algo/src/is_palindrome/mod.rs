@@ -1,7 +1,6 @@
-
 pub mod is_palindrome {
 
-    pub fn exec(s:&String) -> bool {
+    pub fn exec(s: &String) -> bool {
         let mut l = 0;
         let mut r = s.len() - 1;
         let sb = s.as_bytes();
@@ -12,13 +11,21 @@ pub mod is_palindrome {
             l += 1;
             r -= 1;
         }
-        true  
+        true
     }
 
     pub fn run() -> () {
         let s = "davvad".to_string();
         let a = "abcba".to_string();
         let b = "abaya".to_string();
-        println!("{}={},{}={},{}={}", &s, exec(&s), &a, exec(&a), &b, exec(&b)); 
+        println!(
+            "{}={},{}={},{}={}",
+            &s,
+            exec(&s),
+            &a,
+            exec(&a),
+            &b,
+            exec(&b)
+        );
     }
 }

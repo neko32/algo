@@ -1,11 +1,9 @@
-
-
 pub mod helon_formula {
-    pub fn exec(a:f32, b:f32, c:f32) -> f32 {
+    pub fn exec(a: f32, b: f32, c: f32) -> f32 {
         let s = (a + b + c) / 2_f32;
         let a = (s * (s - a) * (s - b) * (s - c)).sqrt();
         println!("s = {}, area = {}", s, a);
-        return a
+        return a;
     }
 
     pub fn run() {

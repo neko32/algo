@@ -1,8 +1,6 @@
-
-
 pub mod binary_search {
 
-    pub fn exec(s:&Box<Vec<i32>>, t:i32, l:usize, r:usize) -> i32 {
+    pub fn exec(s: &Box<Vec<i32>>, t: i32, l: usize, r: usize) -> i32 {
         println!("l={},r={}", l, r);
         if l > r {
             return -1;

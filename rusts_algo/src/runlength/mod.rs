@@ -1,16 +1,15 @@
-
 pub mod runlength {
 
-    pub fn exec(s:String) -> String {
-        let mut idx:usize = 0;    
+    pub fn exec(s: String) -> String {
+        let mut idx: usize = 0;
         let len = s.len();
         let sb = s.as_bytes();
-        let mut buf:String = String::new();
+        let mut buf: String = String::new();
         while idx < len {
             let mut k = idx + 1;
             let mut streak = 1;
             while k < len && sb[idx] as char == sb[k] as char && streak < 9 {
-                k += 1;    
+                k += 1;
                 streak += 1;
             }
 
@@ -21,7 +20,7 @@ pub mod runlength {
     }
 
     pub fn run() {
-        let s = "AAAAAAAAAAAA";    
+        let s = "AAAAAAAAAAAA";
         let rez = exec(s.to_string());
         println!("s={}, rez={}", s, rez);
     }

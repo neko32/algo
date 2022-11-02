@@ -1,6 +1,6 @@
 pub mod rightmost_diffbit {
 
-    pub fn exec(m:u32, n:u32) -> u32 {
+    pub fn exec(m: u32, n: u32) -> u32 {
         println!("m:{:08b}({})", m, m);
         println!("n:{:08b}({})", n, n);
         let l = m ^ n;
@@ -16,5 +16,4 @@ pub mod rightmost_diffbit {
         let n = 13;
         println!("m:{},n:{} = {}", m, n, exec(m, n));
     }
-
 }
