@@ -35,6 +35,7 @@ pub mod rightmost_samebit;
 pub mod runlength;
 pub mod shared;
 pub mod selection_sort;
+pub mod sigma_k;
 pub mod smallest_positive_product;
 pub mod string_construction;
 pub mod string_pattern;
@@ -85,6 +86,7 @@ pub mod runner {
     use rightmost_samebit::rightmost_samebit;
     use runlength::runlength;
     use selection_sort::selection_sort;
+    use sigma_k::sigma_k;
     use smallest_positive_product::smallest_positive_product;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
@@ -204,6 +206,9 @@ pub mod runner {
             Algo::SelectionSort => {
                 selection_sort::run();
             }
+            Algo::SigmaK => {
+                sigma_k::run();
+            }
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
@@ -270,6 +275,7 @@ mod test_runner {
     use crate::runlength::runlength;
     use crate::reverse_poland_calc::reverse_poland_calc;
     use crate::selection_sort::selection_sort;
+    use crate::sigma_k::sigma_k;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::shared::shared::*;
     use crate::string_construction::string_construction;
@@ -575,6 +581,14 @@ mod test_runner {
     }
 
     #[test]
+    fn sigma_k_test() {
+        let k = 7;
+        let sigma_k = sigma_k::exec(k);
+        let sum:i32 = (1..=k).sum();
+        assert_eq!(sigma_k, sum);
+    }
+
+    #[test]
     fn smallest_positive_good_case() {
         let n = 12;
         assert_eq!(smallest_positive_product::exec(n), 26);
@@ -782,6 +796,7 @@ pub enum Algo {
     RightMostSameBit,
     RunLength,
     SelectionSort,
+    SigmaK,
     SmallestPositiveProduct,
     SwapSibling,
     StringConstruction,
@@ -899,6 +914,9 @@ impl Algo {
             }
             s if s.to_lowercase() == "runlength" => {
                 Algo::RunLength
+            }
+            s if s.to_lowercase() == "sigma_k" => {
+                Algo::SigmaK
             }
             s if s.to_lowercase() == "smallest_positive_product" => {
                 Algo::SmallestPositiveProduct
