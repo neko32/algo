@@ -22,6 +22,7 @@ pub mod is_mac_addr;
 pub mod is_palindrome;
 pub mod kadane;
 pub mod lcs;
+pub mod least_data_eviction;
 pub mod least_factorial;
 pub mod max_sibling_product;
 pub mod max_with_lessdigit;
@@ -75,6 +76,7 @@ pub mod runner {
     use is_palindrome::is_palindrome;
     use kadane::kadane;
     use lcs::lcs;
+    use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
@@ -175,6 +177,9 @@ pub mod runner {
             Algo::RadixSort => {
                 radix_sort::run();
             }
+            Algo::LeastDataEviction => {
+                least_data_eviction::run();
+            }
             Algo::LeastFactorial => {
                 least_factorial::run();
             }
@@ -266,6 +271,7 @@ mod test_runner {
     use crate::is_palindrome::is_palindrome;
     use crate::kadane::kadane;
     use crate::lcs::lcs;
+    use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_with_lessdigit::max_with_lessdigit;
@@ -523,6 +529,14 @@ mod test_runner {
         let m = "abcde";
         let n = "acbef";
         assert_eq!(lcs::exec(m, n), 3);
+    }
+
+    #[test]
+    fn least_data_eviction_test() {
+        let seq = vec![12, 4, 5, 19, 20, 10, 6, 2, 1, 33, 22, 25, 16, 7, 4, 20, 15, 30, 2, 7];
+        let rez = least_data_eviction::exec(&seq);
+        assert_eq!(rez.len(), 3);
+        assert_eq!(rez, vec![25, 30, 33]);
     }
 
     #[test]
@@ -821,6 +835,7 @@ pub enum Algo {
     IsPalindrome,
     Kadane,
     LCS,
+    LeastDataEviction,
     LeastFactorial,
     MaxSiblingProduct,
     MaxWithLessDigit,
@@ -872,6 +887,7 @@ impl Algo {
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
             s if s.to_lowercase() == "lcs" => Algo::LCS,
+            s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
