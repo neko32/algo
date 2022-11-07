@@ -26,6 +26,7 @@ pub mod least_data_eviction;
 pub mod least_factorial;
 pub mod max_sibling_product;
 pub mod max_with_lessdigit;
+pub mod min_breakdown_sum;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod radix_sort;
@@ -80,6 +81,7 @@ pub mod runner {
     use least_factorial::least_factorial;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
+    use min_breakdown_sum::min_breakdown_sum;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use radix_sort::radix_sort;
@@ -189,6 +191,9 @@ pub mod runner {
             Algo::MaxWithLessDigit => {
                 max_with_lessdigit::run();
             }
+            Algo::MinBreakdownSum => {
+                min_breakdown_sum::run();
+            }
             Algo::PreOrderTraversal => {
                 preorder_traversal::run();
             }
@@ -275,6 +280,7 @@ mod test_runner {
     use crate::least_factorial::least_factorial;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_with_lessdigit::max_with_lessdigit;
+    use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::radix_sort::radix_sort;
@@ -567,6 +573,20 @@ mod test_runner {
     }
 
     #[test]
+    fn min_breakdown_sum_test1() {
+        let n:u32 = 240;
+        let rez = min_breakdown_sum::exec(n);
+        assert_eq!(rez, 4);
+    }
+
+    #[test]
+    fn min_breakdown_sum_test2() {
+        let n:u32 = 808;
+        let rez = min_breakdown_sum::exec(n);
+        assert_eq!(rez, 14);
+    }
+
+    #[test]
     fn lcs_test2() {
         let m = "pirikapirirara";
         let n = "poporinapeperuto";
@@ -839,6 +859,7 @@ pub enum Algo {
     LeastFactorial,
     MaxSiblingProduct,
     MaxWithLessDigit,
+    MinBreakdownSum,
     PreOrderTraversal,
     ProductArraySort,
     RadixSort,
@@ -891,6 +912,7 @@ impl Algo {
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
+            s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
