@@ -1,3 +1,4 @@
+pub mod add_two_int_without_carry;
 pub mod almost_increasing_seq;
 pub mod appear_twice;
 pub mod applebox;
@@ -54,6 +55,7 @@ use clap::Parser;
 pub mod runner {
 
     use super::*;
+    use add_two_int_without_carry::add_two_without_carry;
     use almost_increasing_seq::almost_increasing_seq;
     use appear_twice::appear_twice;
     use applebox::applebox;
@@ -106,6 +108,9 @@ pub mod runner {
 
     pub fn exec(algo: Algo) {
         match algo {
+            Algo::AddTwoIntWithoutCarry => {
+                add_two_without_carry::run();
+            }
             Algo::AlmostIncreasingSeq => {
                 almost_increasing_seq::run();
             }
@@ -257,6 +262,7 @@ pub mod runner {
 
 #[cfg(test)]
 mod test_runner {
+    use crate::add_two_int_without_carry::add_two_without_carry;
     use crate::almost_increasing_seq::almost_increasing_seq;
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
@@ -313,6 +319,13 @@ mod test_runner {
         array,
         collections::{BTreeSet, HashSet},
     };
+
+    #[test]
+    fn add_two_int_without_carry_test() {
+        let a = 456;
+        let b = 1734;
+        assert_eq!(add_two_without_carry::exec(a, b), 1180);
+    }
 
     #[test]
     fn almost_increasing_seq_false_case() {
@@ -595,8 +608,7 @@ mod test_runner {
     #[test]
     fn min_reward_test() {
         let scores = [8, 4, 2, 1, 3, 6, 7, 9, 5];
-        let rez = min_reward::exec(&scores);
-        assert_eq!(rez, 25);
+        assert_eq!(min_reward::exec(&scores), 25);
     }
 
     #[test]
@@ -844,6 +856,7 @@ mod test_runner {
 }
 
 pub enum Algo {
+    AddTwoIntWithoutCarry,
     AlmostIncreasingSeq,
     AppearTwice,
     Applebox,
@@ -898,6 +911,7 @@ pub enum Algo {
 impl Algo {
     pub fn from_str(algo_str: &str) -> Self {
         match algo_str {
+            s if s.to_lowercase() == "add_two_int_without_carry" => Algo::AddTwoIntWithoutCarry,
             s if s.to_lowercase() == "almost_increasing_seq" => Algo::AlmostIncreasingSeq,
             s if s.to_lowercase() == "appear_twice" => Algo::AppearTwice,
             s if s.to_lowercase() == "applebox" => Algo::Applebox,
