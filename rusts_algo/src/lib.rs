@@ -27,6 +27,7 @@ pub mod least_factorial;
 pub mod max_sibling_product;
 pub mod max_with_lessdigit;
 pub mod min_breakdown_sum;
+pub mod min_reward;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod radix_sort;
@@ -82,6 +83,7 @@ pub mod runner {
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use min_breakdown_sum::min_breakdown_sum;
+    use min_reward::min_reward;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use radix_sort::radix_sort;
@@ -194,6 +196,9 @@ pub mod runner {
             Algo::MinBreakdownSum => {
                 min_breakdown_sum::run();
             }
+            Algo::MinReward => {
+                min_reward::run();
+            }
             Algo::PreOrderTraversal => {
                 preorder_traversal::run();
             }
@@ -281,6 +286,7 @@ mod test_runner {
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::min_breakdown_sum::min_breakdown_sum;
+    use crate::min_reward::min_reward;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::radix_sort::radix_sort;
@@ -587,6 +593,13 @@ mod test_runner {
     }
 
     #[test]
+    fn min_reward_test() {
+        let scores = [8, 4, 2, 1, 3, 6, 7, 9, 5];
+        let rez = min_reward::exec(&scores);
+        assert_eq!(rez, 25);
+    }
+
+    #[test]
     fn lcs_test2() {
         let m = "pirikapirirara";
         let n = "poporinapeperuto";
@@ -860,6 +873,7 @@ pub enum Algo {
     MaxSiblingProduct,
     MaxWithLessDigit,
     MinBreakdownSum,
+    MinReward,
     PreOrderTraversal,
     ProductArraySort,
     RadixSort,
@@ -913,6 +927,7 @@ impl Algo {
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
+            s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
