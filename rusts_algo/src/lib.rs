@@ -10,6 +10,7 @@ pub mod camelcase;
 pub mod century;
 pub mod christmas_tree;
 pub mod clean_kth_bit;
+pub mod cool_num_pair;
 pub mod cyclic_chars;
 pub mod decode_reverse_poland;
 pub mod dectobin;
@@ -67,6 +68,7 @@ pub mod runner {
     use century::century;
     use christmas_tree::christmas_tree;
     use clean_kth_bit::clean_kth_bit;
+    use cool_num_pair::cool_num_pair;
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
@@ -143,6 +145,9 @@ pub mod runner {
             }
             Algo::CleanKthBit => {
                 clean_kth_bit::run();
+            }
+            Algo::CoolNumPair => {
+                cool_num_pair::run();
             }
             Algo::CyclicChars => {
                 cyclic_chars::run();
@@ -274,6 +279,7 @@ mod test_runner {
     use crate::century::century;
     use crate::christmas_tree::christmas_tree;
     use crate::clean_kth_bit::clean_kth_bit;
+    use crate::cool_num_pair::cool_num_pair;
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
@@ -450,6 +456,13 @@ mod test_runner {
         let n = 127;
         let k = 3;
         assert_eq!(clean_kth_bit::exec(n, k), 123);
+    }
+
+    #[test]
+    fn cool_num_pair() {
+        let a = [4, 5, 6, 7, 8];
+        let b = [8, 9, 10, 11, 12];
+        assert_eq!(cool_num_pair::exec(&a, &b), 2);
     }
 
     #[test]
@@ -868,6 +881,7 @@ pub enum Algo {
     CaesarCrypt,
     ChristmasTree,
     CleanKthBit,
+    CoolNumPair,
     CyclicChars,
     DecodeReversePoland,
     DecToBin,
@@ -923,6 +937,7 @@ impl Algo {
             s if s.to_lowercase() == "century" => Algo::Century,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
+            s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
             s if s.to_lowercase() == "dectobin" => Algo::DecToBin,
