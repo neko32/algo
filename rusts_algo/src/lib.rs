@@ -47,6 +47,7 @@ pub mod string_construction;
 pub mod string_pattern;
 pub mod swap_sibling;
 pub mod tandem_repeat;
+pub mod three_number_sort;
 pub mod toggle_bit;
 pub mod two_sum;
 pub mod waterarea;
@@ -104,6 +105,7 @@ pub mod runner {
     use string_pattern::string_pattern;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
+    use three_number_sort;
     use toggle_bit::toggle_bit;
     use two_sum::two_sum;
     use waterarea::waterarea;
@@ -252,6 +254,9 @@ pub mod runner {
                 swap_sibling::run();
             }
             Algo::TandemRepeat => tandem_repeat::run(),
+            Algo::ThreeNumberSort => {
+                three_number_sort::run();
+            }
             Algo::ToggleBit => {
                 toggle_bit::run();
             }
@@ -316,6 +321,7 @@ mod test_runner {
     use crate::string_pattern::string_pattern;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
+    use crate::three_number_sort;
     use crate::toggle_bit::toggle_bit;
     use crate::two_sum::two_sum;
     use crate::waterarea::waterarea;
@@ -758,6 +764,7 @@ mod test_runner {
         assert!(diagonal::exec(&a, &b));
     }
 
+
     #[test]
     fn diagonal_is_diag_no() {
         let a = Point::new(3, 5);
@@ -819,6 +826,15 @@ mod test_runner {
         let a = "ABA".to_string();
         let b = "cattac".to_string();
         assert!(!tandem_repeat::exec(a) && !tandem_repeat::exec(b));
+    }
+
+    #[test]
+    fn three_number_sort_test() {
+        let order = [0, 1, -1];
+        let mut arr = [1, 0, 0, -1, -1, 0, 1, 1];
+        let expected = [0, 0, 0, 1, 1, 1, -1, -1];
+        three_number_sort::exec(&mut arr, &order);
+        assert_eq!(arr, expected);
     }
 
     #[test]
@@ -917,6 +933,7 @@ pub enum Algo {
     StringConstruction,
     StringPattern,
     TandemRepeat,
+    ThreeNumberSort,
     ToggleBit,
     TwoSum,
     WaterArea,
@@ -972,6 +989,7 @@ impl Algo {
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
+            s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
