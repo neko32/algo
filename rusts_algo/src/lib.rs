@@ -27,9 +27,11 @@ pub mod lcs;
 pub mod least_data_eviction;
 pub mod least_factorial;
 pub mod max_sibling_product;
+pub mod max_subset_sum;
 pub mod max_with_lessdigit;
 pub mod min_breakdown_sum;
 pub mod min_reward;
+pub mod oppsite_pos_in_circle;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod radix_sort;
@@ -89,6 +91,7 @@ pub mod runner {
     use max_with_lessdigit::max_with_lessdigit;
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
+    use oppsite_pos_in_circle;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use radix_sort::radix_sort;
@@ -202,6 +205,9 @@ pub mod runner {
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
             }
+            Algo::MaxSubSetSum => {
+                max_subset_sum::run();
+            }
             Algo::MaxWithLessDigit => {
                 max_with_lessdigit::run();
             }
@@ -210,6 +216,9 @@ pub mod runner {
             }
             Algo::MinReward => {
                 min_reward::run();
+            }
+            Algo::OppositePosInCircle => {
+                oppsite_pos_in_circle::run();
             }
             Algo::PreOrderTraversal => {
                 preorder_traversal::run();
@@ -301,11 +310,13 @@ mod test_runner {
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
     use crate::max_sibling_product::max_sibling_product;
+    use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
+    use crate::oppsite_pos_in_circle;
     use crate::radix_sort::radix_sort;
     use crate::repeat_product::repeat_product;
     use crate::request_per_sec::request_per_sec;
@@ -597,6 +608,12 @@ mod test_runner {
     }
 
     #[test]
+    fn max_subset_sum_test() {
+        let a = [75, 105, 120, 75, 90, 135];
+        assert_eq!(max_subset_sum::exec(&a), 330);
+    }
+
+    #[test]
     fn max_with_lessdigit_test1() {
         let n = 1001;
         let maxv = max_with_lessdigit::exec(n);
@@ -628,6 +645,13 @@ mod test_runner {
     fn min_reward_test() {
         let scores = [8, 4, 2, 1, 3, 6, 7, 9, 5];
         assert_eq!(min_reward::exec(&scores), 25);
+    }
+
+    #[test]
+    fn opposite_num_in_circle_test() {
+        let n = 10;
+        let f = 2;
+        assert_eq!(oppsite_pos_in_circle::exec(n, f), 7);
     }
 
     #[test]
@@ -914,9 +938,11 @@ pub enum Algo {
     LeastDataEviction,
     LeastFactorial,
     MaxSiblingProduct,
+    MaxSubSetSum,
     MaxWithLessDigit,
     MinBreakdownSum,
     MinReward,
+    OppositePosInCircle,
     PreOrderTraversal,
     ProductArraySort,
     RadixSort,
@@ -971,9 +997,11 @@ impl Algo {
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
+            s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
+            s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
