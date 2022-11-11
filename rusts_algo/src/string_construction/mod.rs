@@ -1,15 +1,14 @@
-
 pub mod string_construction {
 
     use std::collections::HashMap;
 
-    pub fn exec(a:&str, b:&str) -> u32 {
+    pub fn exec(a: &str, b: &str) -> u32 {
         let alen = a.len();
         let blen = b.len();
         let ab = a.as_bytes();
         let bb = b.as_bytes();
-        let mut m:HashMap<char, u32> = HashMap::new();
-        let mut cnt:u32 = 0;
+        let mut m: HashMap<char, u32> = HashMap::new();
+        let mut cnt: u32 = 0;
         let mut remaining = blen;
         for i in 0..blen {
             let ch = bb[i] as char;
@@ -17,7 +16,7 @@ pub mod string_construction {
             *p += 1;
         }
 
-        'lp:while remaining >= alen {
+        'lp: while remaining >= alen {
             let mut completed = true;
             'inner: for i in 0..alen {
                 let ch = ab[i] as char;

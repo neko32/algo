@@ -1,6 +1,5 @@
-
 pub mod century {
-    pub fn exec(n:u32) -> u32 {
+    pub fn exec(n: u32) -> u32 {
         let a = n / 100;
         let b = n % 100;
         if b != 0 {

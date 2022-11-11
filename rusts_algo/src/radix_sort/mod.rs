@@ -1,17 +1,16 @@
-
 pub mod radix_sort {
 
-    pub fn exec(v:&mut Vec<i32>) -> () {
+    pub fn exec(v: &mut Vec<i32>) -> () {
         let mut d = 0;
         let mut maxv = *v.iter().max().unwrap();
         while maxv > 0 {
             radix(v, d);
-            d += 1; 
+            d += 1;
             maxv /= 10;
         }
     }
 
-    fn radix(v:&mut Vec<i32>, d:u32) -> () {
+    fn radix(v: &mut Vec<i32>, d: u32) -> () {
         let mut sorted = Vec::from_iter(std::iter::repeat(0).take(v.len()));
         let mut count = Vec::from_iter(std::iter::repeat(0).take(10));
         let len = v.len();

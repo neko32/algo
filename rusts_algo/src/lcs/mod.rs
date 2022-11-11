@@ -1,9 +1,8 @@
-
 pub mod lcs {
 
     use multiarray::Array2D;
 
-    pub fn exec(m:&str, n:&str) -> u32 {
+    pub fn exec(m: &str, n: &str) -> u32 {
         let mlen = m.len();
         let nlen = n.len();
         let mb = m.as_bytes();

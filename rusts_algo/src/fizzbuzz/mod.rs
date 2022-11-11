@@ -1,10 +1,9 @@
-
 pub mod fizzbuzz {
 
-    pub fn exec(n:u16) -> String {
-        let mut rez:String = String::new();
+    pub fn exec(n: u16) -> String {
+        let mut rez: String = String::new();
         for i in 1..=n {
-            let mut buf:String = String::new(); 
+            let mut buf: String = String::new();
             if i % 3 == 0 {
                 buf = "fizz".to_string();
             }

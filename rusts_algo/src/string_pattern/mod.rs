@@ -1,8 +1,7 @@
-
 pub mod string_pattern {
 
-    pub fn exec(s:&str) -> String {
-        let mut buf = String::new();    
+    pub fn exec(s: &str) -> String {
+        let mut buf = String::new();
         let sb = s.as_bytes();
         let mut idx = 0;
         let len = s.len();

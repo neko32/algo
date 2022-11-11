@@ -1,10 +1,8 @@
-
-
 pub mod kadane {
 
     use std::cmp::max;
 
-    pub fn exec(v:Vec<i32>) -> i32 {
+    pub fn exec(v: Vec<i32>) -> i32 {
         let mut grand_max_so_far = v[0];
         let mut max_so_far = v[0];
         for i in 1..v.len() {
@@ -15,7 +13,7 @@ pub mod kadane {
     }
 
     pub fn run() {
-        let v = vec![3,5,-9,1,3,-2,3,4,7,2,-9,6,3,1,-5,4];
+        let v = vec![3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4];
         println!("{}", exec(v));
     }
 }

@@ -1,11 +1,10 @@
-
 pub mod array_product_sum {
 
-    pub fn exec(a:&[i32]) -> Vec<i32> {
+    pub fn exec(a: &[i32]) -> Vec<i32> {
         let len = a.len();
-        let mut l:Vec<i32> = std::iter::repeat(1).take(len).collect();
-        let mut r:Vec<i32> = std::iter::repeat(1).take(len).collect();
-        let mut rez:Vec<i32> = std::iter::repeat(1).take(len).collect(); 
+        let mut l: Vec<i32> = std::iter::repeat(1).take(len).collect();
+        let mut r: Vec<i32> = std::iter::repeat(1).take(len).collect();
+        let mut rez: Vec<i32> = std::iter::repeat(1).take(len).collect();
 
         let mut t = 1;
         for i in 1..=len {
@@ -26,12 +25,12 @@ pub mod array_product_sum {
         for i in 0..len {
             rez[i] = l[i] * r[i];
         }
-        
+
         rez
     }
 
     pub fn run() {
-        let a = [5, 1, 4, 2];    
+        let a = [5, 1, 4, 2];
         let p = &a[..];
         let r = exec(p);
         println!("input = {:?}, output = {:?}", p, r);

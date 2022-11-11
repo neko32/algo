@@ -1,8 +1,7 @@
-
 pub mod cyclic_chars {
 
-    pub fn exec(str:&str, n:u8) -> String {
-        let mut buf:String = String::new();    
+    pub fn exec(str: &str, n: u8) -> String {
+        let mut buf: String = String::new();
         let mut iter = str.chars().cycle();
         for _ in 0..n {
             buf.push(iter.next().unwrap());

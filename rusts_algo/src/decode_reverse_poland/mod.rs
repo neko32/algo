@@ -1,8 +1,7 @@
-
 pub mod decode_reverse_poland {
 
-    pub fn exec<'a>(s:&str) -> String {
-        let mut buf:Vec<String> = Vec::new();
+    pub fn exec<'a>(s: &str) -> String {
+        let mut buf: Vec<String> = Vec::new();
         let sb = s.as_bytes();
         for c in sb {
             let ch = *c as char;

@@ -1,8 +1,6 @@
-
-
 pub mod camelcase {
 
-    pub fn exec(s:String) -> String {
+    pub fn exec(s: String) -> String {
         let mut s = s;
         unsafe {
             for (i, c) in s.as_bytes_mut().iter_mut().enumerate() {
@@ -10,7 +8,7 @@ pub mod camelcase {
                     c.make_ascii_uppercase();
                 } else {
                     c.make_ascii_lowercase();
-                }   
+                }
             }
         }
         println!("{}", s);
@@ -20,5 +18,4 @@ pub mod camelcase {
     pub fn run() {
         exec("elEpHAnT".to_string());
     }
-
 }

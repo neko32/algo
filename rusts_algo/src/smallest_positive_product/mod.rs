@@ -1,9 +1,8 @@
-
 pub mod smallest_positive_product {
 
-    pub fn exec(n:u32) -> i32 {
+    pub fn exec(n: u32) -> i32 {
         let mut mn = n;
-        let mut v:Vec<u32> = Vec::new();
+        let mut v: Vec<u32> = Vec::new();
 
         if mn == 1 {
             return 1;
@@ -26,10 +25,9 @@ pub mod smallest_positive_product {
             }
         }
 
-        v.sort_by(|a,b|{a.cmp(&b)});
-        let x:String = v.iter().map(|x|{x.to_string()}).collect();
+        v.sort_by(|a, b| a.cmp(&b));
+        let x: String = v.iter().map(|x| x.to_string()).collect();
         x.parse::<i32>().unwrap()
-
     }
 
     pub fn run() {

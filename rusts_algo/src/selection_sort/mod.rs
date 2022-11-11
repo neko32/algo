@@ -1,8 +1,6 @@
-
 pub mod selection_sort {
 
-
-    pub fn exec(v:&mut Vec<i32>) -> () {
+    pub fn exec(v: &mut Vec<i32>) -> () {
         let len = v.len();
 
         for i in 0..len - 1 {
