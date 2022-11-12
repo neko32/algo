@@ -15,14 +15,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      run: |
-        ls -al
-        cd rusts_algo
-        cargo build --verbose
-    - name: Run tests
-      run: |
-        ls -al
-        cd rusts_algo
-        cargo test --verbose
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: rust toolchain 
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - name: build
+        run: |
+          ls -al 
+          cd rusts_algo
+          cargo build --verbose
+
+      - name: lint
+        run: |
+          ls -al
+          cd rusts_algo
+          echo 'not run anything yet but do later' 
+
+      - name: Run tests
+        run: |
+          ls -al
+          cd rusts_algo
+          cargo test --verbose
+
+
