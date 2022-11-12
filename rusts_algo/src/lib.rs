@@ -38,6 +38,7 @@ pub mod radix_sort;
 pub mod repeat_product;
 pub mod request_per_sec;
 pub mod reverse_poland_calc;
+pub mod reverse_words;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod runlength;
@@ -98,6 +99,7 @@ pub mod runner {
     use repeat_product::repeat_product;
     use request_per_sec::request_per_sec;
     use reverse_poland_calc::reverse_poland_calc;
+    use reverse_words;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use runlength::runlength;
@@ -235,6 +237,9 @@ pub mod runner {
             Algo::ReversePoland => {
                 reverse_poland_calc::run();
             }
+            Algo::ReverseWords => {
+                reverse_words::run();
+            }
             Algo::RightMostDiffBit => {
                 rightmost_diffbit::run();
             }
@@ -321,6 +326,7 @@ mod test_runner {
     use crate::repeat_product::repeat_product;
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_poland_calc::reverse_poland_calc;
+    use crate::reverse_words;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::runlength::runlength;
@@ -702,6 +708,13 @@ mod test_runner {
     }
 
     #[test]
+    fn reverse_words_test() {
+        let r = "nekochan kawaii to omoimasenka? soudesu.";
+        let expected:String = "soudesu. omoimasenka? to kawaii nekochan".to_string();
+        assert_eq!(reverse_words::exec(r), expected);
+    }
+
+    #[test]
     fn runlength_test1() {
         let s = "AAAAAAAAAAAA".to_string();
         let rez = runlength::exec(s);
@@ -950,6 +963,7 @@ pub enum Algo {
     RepeatProduct,
     RequestPerSec,
     ReversePoland,
+    ReverseWords,
     RightMostDiffBit,
     RightMostSameBit,
     RunLength,
@@ -1009,6 +1023,7 @@ impl Algo {
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
+            s if s.to_lowercase() == "reverse_words" => Algo::ReverseWords,
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
