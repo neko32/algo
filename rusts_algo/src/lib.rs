@@ -46,6 +46,7 @@ pub mod selection_sort;
 pub mod shared;
 pub mod sigma_k;
 pub mod smallest_positive_product;
+pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
 pub mod swap_sibling;
@@ -106,6 +107,7 @@ pub mod runner {
     use selection_sort::selection_sort;
     use sigma_k::sigma_k;
     use smallest_positive_product::smallest_positive_product;
+    use strange_bank;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
     use swap_sibling::swap_sibling;
@@ -258,6 +260,9 @@ pub mod runner {
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
+            Algo::StrangeBank => {
+                strange_bank::run();
+            }
             Algo::StringConstruction => {
                 string_construction::run();
             }
@@ -334,6 +339,7 @@ mod test_runner {
     use crate::shared::shared::*;
     use crate::sigma_k::sigma_k;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::strange_bank;
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
     use crate::swap_sibling::swap_sibling;
@@ -749,6 +755,22 @@ mod test_runner {
     }
 
     #[test]
+    fn strange_bank_ok_test() {
+        let n = 7_u32;
+        let denoms = &[1, 5, 10];
+        let rez = strange_bank::exec(n, denoms);
+        assert_eq!(rez, 3);
+    }
+
+    #[test]
+    fn strange_bank_nochange_made_test() {
+        let n = 9_u32;
+        let denoms = &[4, 6, 10, 50];
+        let rez = strange_bank::exec(n, denoms);
+        assert_eq!(rez, -1);
+    }
+
+    #[test]
     fn string_construction_test1() {
         let a = "abc";
         let b = "abccba";
@@ -971,6 +993,7 @@ pub enum Algo {
     SigmaK,
     SmallestPositiveProduct,
     SwapSibling,
+    StrangeBank,
     StringConstruction,
     StringPattern,
     TandemRepeat,
@@ -1030,6 +1053,7 @@ impl Algo {
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
+            s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
