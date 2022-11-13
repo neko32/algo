@@ -44,6 +44,7 @@ pub mod rightmost_samebit;
 pub mod runlength;
 pub mod selection_sort;
 pub mod shared;
+pub mod shorten_path;
 pub mod sigma_k;
 pub mod smallest_positive_product;
 pub mod strange_bank;
@@ -105,6 +106,7 @@ pub mod runner {
     use rightmost_samebit::rightmost_samebit;
     use runlength::runlength;
     use selection_sort::selection_sort;
+    use shorten_path;
     use sigma_k::sigma_k;
     use smallest_positive_product::smallest_positive_product;
     use strange_bank;
@@ -254,6 +256,9 @@ pub mod runner {
             Algo::SelectionSort => {
                 selection_sort::run();
             }
+            Algo::ShortenPath => {
+                shorten_path::run();
+            }
             Algo::SigmaK => {
                 sigma_k::run();
             }
@@ -337,6 +342,7 @@ mod test_runner {
     use crate::runlength::runlength;
     use crate::selection_sort::selection_sort;
     use crate::shared::shared::*;
+    use crate::shorten_path;
     use crate::sigma_k::sigma_k;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::strange_bank;
@@ -735,6 +741,20 @@ mod test_runner {
     }
 
     #[test]
+    fn shorten_path_absolute_path_case() {
+        let path = "/foo/../test/../test/../foo//bar/./baz";
+        let expected = "/foo/bar/baz".to_string();
+        assert_eq!(shorten_path::exec(path), expected);
+    }
+
+    #[test]
+    fn shorten_path_relative_path_case() {
+        let path = "../tako/../test/../test/./baz";
+        let expected = "test/baz".to_string();
+        assert_eq!(shorten_path::exec(path), expected);
+    }
+
+    #[test]
     fn sigma_k_test() {
         let k = 7;
         let sigma_k = sigma_k::exec(k);
@@ -990,6 +1010,7 @@ pub enum Algo {
     RightMostSameBit,
     RunLength,
     SelectionSort,
+    ShortenPath,
     SigmaK,
     SmallestPositiveProduct,
     SwapSibling,
@@ -1050,6 +1071,7 @@ impl Algo {
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
+            s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
