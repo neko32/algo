@@ -10,6 +10,7 @@ pub mod camelcase;
 pub mod century;
 pub mod christmas_tree;
 pub mod clean_kth_bit;
+pub mod combination;
 pub mod cool_num_pair;
 pub mod cyclic_chars;
 pub mod decode_reverse_poland;
@@ -18,6 +19,7 @@ pub mod diagonal;
 pub mod document_build;
 pub mod euclidean;
 pub mod even_num_sum;
+pub mod factorial;
 pub mod fizzbuzz;
 pub mod helon_formula;
 pub mod is_mac_addr;
@@ -32,6 +34,7 @@ pub mod max_with_lessdigit;
 pub mod min_breakdown_sum;
 pub mod min_reward;
 pub mod oppsite_pos_in_circle;
+pub mod permutation;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod radix_sort;
@@ -74,6 +77,7 @@ pub mod runner {
     use century::century;
     use christmas_tree::christmas_tree;
     use clean_kth_bit::clean_kth_bit;
+    use combination;
     use cool_num_pair::cool_num_pair;
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
@@ -82,6 +86,7 @@ pub mod runner {
     use document_build::document_build;
     use euclidean::euclidean;
     use even_num_sum::even_num_sum;
+    use factorial;
     use fizzbuzz::fizzbuzz;
     use helon_formula::helon_formula;
     use is_mac_addr::is_mac_addr;
@@ -95,6 +100,7 @@ pub mod runner {
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
     use oppsite_pos_in_circle;
+    use permutation;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use radix_sort::radix_sort;
@@ -157,6 +163,9 @@ pub mod runner {
             Algo::CleanKthBit => {
                 clean_kth_bit::run();
             }
+            Algo::Combination => {
+                combination::run();
+            }
             Algo::CoolNumPair => {
                 cool_num_pair::run();
             }
@@ -180,6 +189,9 @@ pub mod runner {
             }
             Algo::Euclidean => {
                 euclidean::run();
+            }
+            Algo::Factorial => {
+                factorial::run();
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
@@ -225,6 +237,9 @@ pub mod runner {
             }
             Algo::OppositePosInCircle => {
                 oppsite_pos_in_circle::run();
+            }
+            Algo::Permutation => {
+                permutation::run();
             }
             Algo::PreOrderTraversal => {
                 preorder_traversal::run();
@@ -308,6 +323,7 @@ mod test_runner {
     use crate::century::century;
     use crate::christmas_tree::christmas_tree;
     use crate::clean_kth_bit::clean_kth_bit;
+    use crate::combination;
     use crate::cool_num_pair::cool_num_pair;
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
@@ -316,6 +332,7 @@ mod test_runner {
     use crate::document_build::document_build;
     use crate::euclidean::euclidean;
     use crate::even_num_sum::even_num_sum;
+    use crate::factorial;
     use crate::fizzbuzz::fizzbuzz;
     use crate::helon_formula::helon_formula;
     use crate::is_mac_addr::is_mac_addr;
@@ -329,6 +346,7 @@ mod test_runner {
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
+    use crate::permutation;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::oppsite_pos_in_circle;
@@ -494,6 +512,13 @@ mod test_runner {
     }
 
     #[test]
+    fn combination_test() {
+        let n = 8;
+        let r = 3;
+        assert_eq!(combination::exec(n, r), 56);
+    }
+
+    #[test]
     fn cool_num_pair() {
         let a = [4, 5, 6, 7, 8];
         let b = [8, 9, 10, 11, 12];
@@ -541,6 +566,12 @@ mod test_runner {
         let n = 128;
         let gcd = gcd(m, n);
         assert_eq!(euclidean::exec(m, n), gcd);
+    }
+
+    #[test]
+    fn factorial_test() {
+        let n = 10;
+        assert_eq!(factorial::exec(n), 3628800);
     }
 
     #[test]
@@ -684,6 +715,13 @@ mod test_runner {
         let mut v = vec![8762, 654, 3008, 345, 87, 65, 234, 12, 2];
         radix_sort::exec(&mut v);
         assert_eq!(vec![2, 12, 65, 87, 234, 345, 654, 3008, 8762], v);
+    }
+
+    #[test]
+    fn perm_test() {
+        let n = 8;
+        let r = 6;
+        assert_eq!(permutation::exec(n, r), 20160);
     }
 
     #[test]
@@ -977,6 +1015,7 @@ pub enum Algo {
     CaesarCrypt,
     ChristmasTree,
     CleanKthBit,
+    Combination,
     CoolNumPair,
     CyclicChars,
     DecodeReversePoland,
@@ -985,6 +1024,7 @@ pub enum Algo {
     DocumentBuild,
     EvenNumSum,
     Euclidean,
+    Factorial,
     FizzBuzz,
     HelonFormula,
     IsMacAddr,
@@ -999,6 +1039,7 @@ pub enum Algo {
     MinBreakdownSum,
     MinReward,
     OppositePosInCircle,
+    Permutation,
     PreOrderTraversal,
     ProductArraySort,
     RadixSort,
@@ -1039,6 +1080,7 @@ impl Algo {
             s if s.to_lowercase() == "century" => Algo::Century,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
+            s if s.to_lowercase() == "combination" => Algo::Combination,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
@@ -1047,6 +1089,7 @@ impl Algo {
             s if s.to_lowercase() == "document_build" => Algo::DocumentBuild,
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
+            s if s.to_lowercase() == "factorial" => Algo::Factorial,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
@@ -1061,6 +1104,7 @@ impl Algo {
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
+            s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
