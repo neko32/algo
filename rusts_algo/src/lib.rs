@@ -28,6 +28,7 @@ pub mod kadane;
 pub mod lcs;
 pub mod least_data_eviction;
 pub mod least_factorial;
+pub mod levenshtein_distance;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
@@ -95,6 +96,7 @@ pub mod runner {
     use lcs::lcs;
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
+    use levenshtein_distance;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use min_breakdown_sum::min_breakdown_sum;
@@ -220,6 +222,9 @@ pub mod runner {
             Algo::LeastFactorial => {
                 least_factorial::run();
             }
+            Algo::LevenShteinDistance => {
+                levenshtein_distance::run();
+            }
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
             }
@@ -341,6 +346,7 @@ mod test_runner {
     use crate::lcs::lcs;
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
+    use crate::levenshtein_distance;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
@@ -647,6 +653,14 @@ mod test_runner {
     fn least_factorial_test() {
         let n = 17;
         assert_eq!(least_factorial::exec(n), 24);
+    }
+
+    #[test]
+    fn levenshtein_distance_test() {
+        let s = "abc";
+        let t = "yabd";
+        let diff = levenshtein_distance::exec(s, t);
+        assert_eq!(diff, 2);
     }
 
     #[test]
@@ -1033,6 +1047,7 @@ pub enum Algo {
     LCS,
     LeastDataEviction,
     LeastFactorial,
+    LevenShteinDistance,
     MaxSiblingProduct,
     MaxSubSetSum,
     MaxWithLessDigit,
@@ -1098,6 +1113,7 @@ impl Algo {
             s if s.to_lowercase() == "lcs" => Algo::LCS,
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
+            s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
