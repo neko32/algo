@@ -1,5 +1,5 @@
 
-use multiarray::{MultiArray, Dim2, Array2D};
+use multiarray::Array2D;
 use std::cmp::min;
 
 pub fn exec(a:&str, b:&str) -> u32 {
