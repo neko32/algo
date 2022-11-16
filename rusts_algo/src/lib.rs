@@ -22,6 +22,7 @@ pub mod even_num_sum;
 pub mod factorial;
 pub mod fizzbuzz;
 pub mod helon_formula;
+pub mod inorder_traversal;
 pub mod is_mac_addr;
 pub mod is_palindrome;
 pub mod kadane;
@@ -90,6 +91,7 @@ pub mod runner {
     use factorial;
     use fizzbuzz::fizzbuzz;
     use helon_formula::helon_formula;
+    use inorder_traversal;
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
     use kadane::kadane;
@@ -200,6 +202,9 @@ pub mod runner {
             }
             Algo::HelonFormula => {
                 helon_formula::run();
+            }
+            Algo::InOrderTraversal => {
+                inorder_traversal::run();
             }
             Algo::IsPalindrome => {
                 is_palindrome::run();
@@ -340,6 +345,7 @@ mod test_runner {
     use crate::factorial;
     use crate::fizzbuzz::fizzbuzz;
     use crate::helon_formula::helon_formula;
+    use crate::inorder_traversal;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
     use crate::kadane::kadane;
@@ -596,6 +602,14 @@ mod test_runner {
         let expect = 14.6969385;
         let rez = approx_eq!(f32, expect, helon_formula::exec(a, b, c), ulps = 2);
         assert!(rez);
+    }
+
+    #[test]
+    fn inorder_trav_test() {
+        let v = vec![5, 9, 2, 10, 1, 4];
+        let r = inorder_traversal::exec(&v);
+        let expected = vec![1, 2, 4, 5, 9, 10];
+        assert_eq!(r, expected);
     }
 
     #[test]
@@ -1041,6 +1055,7 @@ pub enum Algo {
     Factorial,
     FizzBuzz,
     HelonFormula,
+    InOrderTraversal,
     IsMacAddr,
     IsPalindrome,
     Kadane,
@@ -1107,6 +1122,7 @@ impl Algo {
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
+            s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,

@@ -1,6 +1,6 @@
 pub mod preorder_traversal {
 
-    use crate::shared::{add_treenode, TreeNode};
+    use crate::shared::{build_tree, TreeNode};
 
     pub fn exec(v: Vec<i32>) -> Vec<i32> {
         let root: Box<TreeNode> = build_tree(&v);
@@ -26,18 +26,4 @@ pub mod preorder_traversal {
         }
     }
 
-    fn build_tree(v: &Vec<i32>) -> Box<TreeNode> {
-        let first = *v.first().unwrap();
-        let mut root: Box<TreeNode> = Box::new(TreeNode {
-            value: first,
-            left: None,
-            right: None,
-        });
-
-        for val in v.iter().skip(1) {
-            add_treenode(&mut root, *val);
-        }
-
-        root
-    }
 }
