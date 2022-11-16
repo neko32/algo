@@ -365,7 +365,7 @@ mod test_runner {
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::runlength::runlength;
     use crate::selection_sort::selection_sort;
-    use crate::shared::shared::*;
+    use crate::shared::*;
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
     use crate::smallest_positive_product::smallest_positive_product;

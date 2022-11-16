@@ -1,6 +1,6 @@
 pub mod preorder_traversal {
 
-    use crate::shared::shared::{add_treenode, TreeNode};
+    use crate::shared::{add_treenode, TreeNode};
 
     pub fn exec(v: Vec<i32>) -> Vec<i32> {
         let root: Box<TreeNode> = build_tree(&v);

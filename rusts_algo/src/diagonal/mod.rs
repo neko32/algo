@@ -1,6 +1,6 @@
 pub mod diagonal {
 
-    use crate::shared::shared::Point;
+    use crate::shared::Point;
 
     pub fn exec(a: &Point, b: &Point) -> bool {
         a.x + a.y == b.x + b.y || a.x - a.y == b.x - b.y
