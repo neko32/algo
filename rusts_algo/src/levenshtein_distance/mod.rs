@@ -1,16 +1,16 @@
 
-use multiarray::Array2D;
+use multiarray::{MultiArray, Dim2, Array2D};
 use std::cmp::min;
 
 pub fn exec(a:&str, b:&str) -> u32 {
     let ba = a.as_bytes();
-    let bb = a.as_bytes();
+    let bb = b.as_bytes();
     let alen = ba.len();
     let blen = bb.len();
 
     let mut dp = Array2D::new([alen + 1, blen + 1], 0_u32);
-    for i in 0..alen {
-        for j in 0..blen {
+    for i in 0..=alen {
+        for j in 0..=blen {
             dp[[i, j]] = j as u32;
         }
     }
@@ -20,12 +20,19 @@ pub fn exec(a:&str, b:&str) -> u32 {
 
     for i in 0..alen {
         for j in 0..blen {
-            if ba[i] as char != bb[j] as char {
+            if ba[i] as char == bb[j] as char {
                 dp[[i + 1, j + 1]] = dp[[i, j]];
             } else {
                 dp[[i + 1, j + 1]] = 1 + min(dp[[i, j]], dp[[i + 1, j]].min(dp[[i, j + 1]]));
             }
         }
+    }
+
+    for i in 0..=alen {
+        for j in 0..=blen {
+            print!("{} ", dp[[i, j]]);
+        }
+        println!("");
     }
 
     dp[[alen, blen]]
