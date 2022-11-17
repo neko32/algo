@@ -36,6 +36,7 @@ pub mod max_with_lessdigit;
 pub mod min_breakdown_sum;
 pub mod min_reward;
 pub mod oppsite_pos_in_circle;
+pub mod pascal_triangle;
 pub mod permutation;
 pub mod preorder_traversal;
 pub mod product_array_sort;
@@ -104,6 +105,7 @@ pub mod runner {
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
     use oppsite_pos_in_circle;
+    use pascal_triangle;
     use permutation;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
@@ -248,6 +250,9 @@ pub mod runner {
             Algo::OppositePosInCircle => {
                 oppsite_pos_in_circle::run();
             }
+            Algo::PascalTriangle => {
+                pascal_triangle::run();
+            }
             Algo::Permutation => {
                 permutation::run();
             }
@@ -358,6 +363,7 @@ mod test_runner {
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
+    use crate::pascal_triangle;
     use crate::permutation;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
@@ -746,6 +752,18 @@ mod test_runner {
     }
 
     #[test]
+    fn pascal_tr_test() {
+        let n = 5;
+        let expected = r"1
+1 1
+1 2 1
+1 3 3 1
+1 4 6 4 1";
+        let rez = pascal_triangle::exec(n);
+        assert_eq!(rez.trim(), expected);
+    }
+
+    #[test]
     fn perm_test() {
         let n = 8;
         let r = 6;
@@ -1069,6 +1087,7 @@ pub enum Algo {
     MinBreakdownSum,
     MinReward,
     OppositePosInCircle,
+    PascalTriangle,
     Permutation,
     PreOrderTraversal,
     ProductArraySort,
@@ -1136,6 +1155,7 @@ impl Algo {
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
+            s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
