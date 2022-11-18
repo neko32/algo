@@ -11,6 +11,7 @@ pub mod century;
 pub mod christmas_tree;
 pub mod clean_kth_bit;
 pub mod combination;
+pub mod construct_square;
 pub mod cool_num_pair;
 pub mod cyclic_chars;
 pub mod decode_reverse_poland;
@@ -81,6 +82,7 @@ pub mod runner {
     use christmas_tree::christmas_tree;
     use clean_kth_bit::clean_kth_bit;
     use combination;
+    use construct_square;
     use cool_num_pair::cool_num_pair;
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
@@ -171,6 +173,9 @@ pub mod runner {
             }
             Algo::Combination => {
                 combination::run();
+            }
+            Algo::ConstructSquare => {
+                construct_square::run();
             }
             Algo::CoolNumPair => {
                 cool_num_pair::run();
@@ -339,6 +344,7 @@ mod test_runner {
     use crate::christmas_tree::christmas_tree;
     use crate::clean_kth_bit::clean_kth_bit;
     use crate::combination;
+    use crate::construct_square;
     use crate::cool_num_pair::cool_num_pair;
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
@@ -534,6 +540,27 @@ mod test_runner {
         let n = 8;
         let r = 3;
         assert_eq!(combination::exec(n, r), 56);
+    }
+
+    #[test]
+    fn construct_square_simple_good_test() {
+        let s = "aba".to_string();
+        let rez = construct_square::exec(&s);
+        assert_eq!(rez, 900);
+    }
+
+    #[test]
+    fn consturst_square_bad_case_test() {
+        let s = "zzz".to_string();
+        let rez = construct_square::exec(&s);
+        assert_eq!(rez, -1);
+    }
+
+    #[test]
+    fn construct_square_bignum_good_test() {
+        let s = "aaaabbcde".to_string();
+        let rez = construct_square::exec(&s);
+        assert_eq!(rez, 999950884);
     }
 
     #[test]
@@ -1062,6 +1089,7 @@ pub enum Algo {
     ChristmasTree,
     CleanKthBit,
     Combination,
+    ConstructSquare,
     CoolNumPair,
     CyclicChars,
     DecodeReversePoland,
@@ -1130,6 +1158,7 @@ impl Algo {
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
             s if s.to_lowercase() == "combination" => Algo::Combination,
+            s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
