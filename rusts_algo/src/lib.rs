@@ -61,6 +61,7 @@ pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod three_number_sort;
 pub mod toggle_bit;
+pub mod three_sum;
 pub mod two_sum;
 pub mod waterarea;
 
@@ -129,6 +130,7 @@ pub mod runner {
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
     use three_number_sort;
+    use three_sum;
     use toggle_bit::toggle_bit;
     use two_sum::two_sum;
     use waterarea::waterarea;
@@ -319,6 +321,9 @@ pub mod runner {
             Algo::ToggleBit => {
                 toggle_bit::run();
             }
+            Algo::ThreeSum => {
+                three_sum::run();
+            }
             Algo::TwoSum => {
                 two_sum::run();
             }
@@ -393,6 +398,7 @@ mod test_runner {
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
     use crate::three_number_sort;
+    use crate::three_sum;
     use crate::toggle_bit::toggle_bit;
     use crate::two_sum::two_sum;
     use crate::waterarea::waterarea;
@@ -943,6 +949,17 @@ mod test_runner {
     }
 
     #[test]
+    fn three_sum_test() {
+        let mut a = vec![12, 3, 1, 2, -6, 5, -8, 6];
+        let target = 0;
+        let rez = three_sum::exec(&mut a, target);
+        assert_eq!(rez.len(), 3);
+        assert_eq!(rez[0], vec![-8, 2, 6]);
+        assert_eq!(rez[1], vec![-8, 3, 5]);
+        assert_eq!(rez[2], vec![-6, 1, 5]);
+    }
+
+    #[test]
     fn diagonal_is_diag_yes() {
         let a = Point::new(1, 5);
         let b = Point::new(9, 13);
@@ -1137,6 +1154,7 @@ pub enum Algo {
     StringPattern,
     TandemRepeat,
     ThreeNumberSort,
+    ThreeSum,
     ToggleBit,
     TwoSum,
     WaterArea,
@@ -1205,6 +1223,7 @@ impl Algo {
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
+            s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
