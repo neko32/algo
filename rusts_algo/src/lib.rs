@@ -62,6 +62,7 @@ pub mod tandem_repeat;
 pub mod three_number_sort;
 pub mod toggle_bit;
 pub mod three_sum;
+pub mod turn_commands;
 pub mod two_sum;
 pub mod waterarea;
 
@@ -132,6 +133,7 @@ pub mod runner {
     use three_number_sort;
     use three_sum;
     use toggle_bit::toggle_bit;
+    use turn_commands;
     use two_sum::two_sum;
     use waterarea::waterarea;
 
@@ -324,6 +326,9 @@ pub mod runner {
             Algo::ThreeSum => {
                 three_sum::run();
             }
+            Algo::TurnCommands => {
+                turn_commands::run();
+            }
             Algo::TwoSum => {
                 two_sum::run();
             }
@@ -400,6 +405,7 @@ mod test_runner {
     use crate::three_number_sort;
     use crate::three_sum;
     use crate::toggle_bit::toggle_bit;
+    use crate::turn_commands;
     use crate::two_sum::two_sum;
     use crate::waterarea::waterarea;
     use float_cmp::approx_eq;
@@ -1056,6 +1062,12 @@ mod test_runner {
     }
 
     #[test]
+    fn turn_commands_test() {
+        let cmd = "LLARL";
+        assert_eq!(turn_commands::exec(cmd), 3);
+    }
+
+    #[test]
     fn two_sum_case1() {
         let rez = two_sum::exec(vec![3, 5, -4, 8, 11, 1, -1, 6], 10);
         assert_eq!(rez, vec![-1, 11])
@@ -1156,6 +1168,7 @@ pub enum Algo {
     ThreeNumberSort,
     ThreeSum,
     ToggleBit,
+    TurnCommands,
     TwoSum,
     WaterArea,
 }
@@ -1225,6 +1238,7 @@ impl Algo {
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
             s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
+            s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
