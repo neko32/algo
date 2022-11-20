@@ -28,6 +28,7 @@ pub mod is_mac_addr;
 pub mod is_palindrome;
 pub mod kadane;
 pub mod lcs;
+pub mod largest_adjacent_product;
 pub mod least_data_eviction;
 pub mod least_factorial;
 pub mod levenshtein_distance;
@@ -104,6 +105,7 @@ pub mod runner {
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
     use kadane::kadane;
+    use largest_adjacent_product;
     use lcs::lcs;
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
@@ -233,6 +235,9 @@ pub mod runner {
             }
             Algo::Kadane => {
                 kadane::run();
+            }
+            Algo::LargestAdjacentProduct => {
+                largest_adjacent_product::run();
             }
             Algo::LCS => {
                 lcs::run();
@@ -390,6 +395,7 @@ mod test_runner {
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
     use crate::kadane::kadane;
+    use crate::largest_adjacent_product;
     use crate::lcs::lcs;
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
@@ -715,6 +721,27 @@ mod test_runner {
     fn kadane_test() {
         let v = vec![3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4];
         assert_eq!(19, kadane::exec(v));
+    }
+
+    #[test]
+    fn largest_adjacent_product_many_elem_test() {
+        let v = [3, 6, -2, -5, 7, 3];
+        assert_eq!(largest_adjacent_product::exec(&v), 21);
+    }
+
+    #[test]
+    fn largest_adjacent_product_single_elem_test() {
+        let v= [0];
+        assert_eq!(largest_adjacent_product::exec(&v), 0);
+    }
+
+    #[test]
+    fn largest_adjacent_product_no_elem_test() {
+        let v:&[i32] = &[];
+        let maybe_e = std::panic::catch_unwind(||{
+            largest_adjacent_product::exec(v);
+        });
+        assert!(maybe_e.is_err());
     }
 
     #[test]
@@ -1187,6 +1214,7 @@ pub enum Algo {
     IsMacAddr,
     IsPalindrome,
     Kadane,
+    LargestAdjacentProduct,
     LCS,
     LeastDataEviction,
     LeastFactorial,
@@ -1262,6 +1290,7 @@ impl Algo {
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
+            s if s.to_lowercase() == "largest_adjacent_product" => Algo::LargestAdjacentProduct,
             s if s.to_lowercase() == "lcs" => Algo::LCS,
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
