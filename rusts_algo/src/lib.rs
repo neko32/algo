@@ -44,6 +44,7 @@ pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod radix_sort;
 pub mod random_perm;
+pub mod ranking;
 pub mod repeat_product;
 pub mod request_per_sec;
 pub mod reverse_poland_calc;
@@ -118,6 +119,7 @@ pub mod runner {
     use product_array_sort::product_array_sort;
     use radix_sort::radix_sort;
     use random_perm;
+    use ranking;
     use repeat_product::repeat_product;
     use request_per_sec::request_per_sec;
     use reverse_poland_calc::reverse_poland_calc;
@@ -281,6 +283,9 @@ pub mod runner {
             Algo::RandomPerm => {
                 random_perm::run();
             }
+            Algo::Ranking => {
+                ranking::run();
+            }
             Algo::RepeatProduct => {
                 repeat_product::run();
             }
@@ -397,6 +402,7 @@ mod test_runner {
     use crate::oppsite_pos_in_circle;
     use crate::radix_sort::radix_sort;
     use crate::random_perm;
+    use crate::ranking;
     use crate::repeat_product::repeat_product;
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_poland_calc::reverse_poland_calc;
@@ -843,6 +849,13 @@ mod test_runner {
     }
 
     #[test]
+    fn ranking_test() {
+        let scores = vec![56, 25, 67, 88, 100, 61, 55, 67, 76, 56];
+        let expected:Vec<(i32, u32)> = vec![(56, 7), (25, 10), (67, 4), (88, 2), (100, 1), (61, 6), (55, 9), (67, 4), (76, 3), (56, 7)];
+        assert_eq!(ranking::exec(&scores), expected);
+    }
+
+    #[test]
     fn repeat_product_test() {
         let n = 16;
         assert_eq!(repeat_product::exec(n), 9);
@@ -1177,6 +1190,7 @@ pub enum Algo {
     ProductArraySort,
     RadixSort,
     RandomPerm,
+    Ranking,
     RepeatProduct,
     RequestPerSec,
     ReversePoland,
@@ -1250,6 +1264,7 @@ impl Algo {
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
+            s if s.to_lowercase() == "ranking" => Algo::Ranking,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
