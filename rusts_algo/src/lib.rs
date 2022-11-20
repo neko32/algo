@@ -36,6 +36,7 @@ pub mod max_subset_sum;
 pub mod max_with_lessdigit;
 pub mod min_breakdown_sum;
 pub mod min_reward;
+pub mod minmax_stack;
 pub mod number_grouping;
 pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
@@ -111,6 +112,7 @@ pub mod runner {
     use max_with_lessdigit::max_with_lessdigit;
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
+    use minmax_stack;
     use number_grouping;
     use oppsite_pos_in_circle;
     use pascal_triangle;
@@ -259,6 +261,9 @@ pub mod runner {
             Algo::MinBreakdownSum => {
                 min_breakdown_sum::run();
             }
+            Algo::MinMaxStack => {
+                minmax_stack::run();
+            }
             Algo::MinReward => {
                 min_reward::run();
             }
@@ -394,6 +399,7 @@ mod test_runner {
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
+    use crate::minmax_stack;
     use crate::number_grouping;
     use crate::pascal_triangle;
     use crate::permutation;
@@ -785,6 +791,14 @@ mod test_runner {
     fn min_reward_test() {
         let scores = [8, 4, 2, 1, 3, 6, 7, 9, 5];
         assert_eq!(min_reward::exec(&scores), 25);
+    }
+
+    #[test]
+    fn minmax_stack_test() {
+        let maybe_err = std::panic::catch_unwind(||{
+            minmax_stack::run();
+        });
+        assert_ne!(maybe_err.is_err(), true);
     }
 
     #[test]
@@ -1181,6 +1195,7 @@ pub enum Algo {
     MaxSubSetSum,
     MaxWithLessDigit,
     MinBreakdownSum,
+    MinMaxStack,
     MinReward,
     NumberGrouping,
     OppositePosInCircle,
@@ -1256,6 +1271,7 @@ impl Algo {
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
+            s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
