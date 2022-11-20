@@ -43,6 +43,7 @@ pub mod permutation;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod radix_sort;
+pub mod random_perm;
 pub mod repeat_product;
 pub mod request_per_sec;
 pub mod reverse_poland_calc;
@@ -116,6 +117,7 @@ pub mod runner {
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use radix_sort::radix_sort;
+    use random_perm;
     use repeat_product::repeat_product;
     use request_per_sec::request_per_sec;
     use reverse_poland_calc::reverse_poland_calc;
@@ -276,6 +278,9 @@ pub mod runner {
             Algo::ProductArraySort => {
                 product_array_sort::run();
             }
+            Algo::RandomPerm => {
+                random_perm::run();
+            }
             Algo::RepeatProduct => {
                 repeat_product::run();
             }
@@ -391,6 +396,7 @@ mod test_runner {
     use crate::product_array_sort::product_array_sort;
     use crate::oppsite_pos_in_circle;
     use crate::radix_sort::radix_sort;
+    use crate::random_perm;
     use crate::repeat_product::repeat_product;
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_poland_calc::reverse_poland_calc;
@@ -829,6 +835,14 @@ mod test_runner {
     }
 
     #[test]
+    fn rand_perm_test() {
+        let o:Vec<i32> = (0..=10).collect();
+        let mut v:Vec<i32> = (0..=10).collect();
+        random_perm::exec(&mut v);
+        assert_ne!(v, o);
+    }
+
+    #[test]
     fn repeat_product_test() {
         let n = 16;
         assert_eq!(repeat_product::exec(n), 9);
@@ -1162,6 +1176,7 @@ pub enum Algo {
     PreOrderTraversal,
     ProductArraySort,
     RadixSort,
+    RandomPerm,
     RepeatProduct,
     RequestPerSec,
     ReversePoland,
@@ -1234,6 +1249,7 @@ impl Algo {
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
+            s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
