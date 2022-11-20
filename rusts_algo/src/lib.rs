@@ -10,6 +10,8 @@ pub mod camelcase;
 pub mod century;
 pub mod christmas_tree;
 pub mod clean_kth_bit;
+pub mod combination;
+pub mod construct_square;
 pub mod cool_num_pair;
 pub mod cyclic_chars;
 pub mod decode_reverse_poland;
@@ -18,39 +20,52 @@ pub mod diagonal;
 pub mod document_build;
 pub mod euclidean;
 pub mod even_num_sum;
+pub mod factorial;
 pub mod fizzbuzz;
 pub mod helon_formula;
+pub mod inorder_traversal;
 pub mod is_mac_addr;
 pub mod is_palindrome;
 pub mod kadane;
 pub mod lcs;
 pub mod least_data_eviction;
 pub mod least_factorial;
+pub mod levenshtein_distance;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
 pub mod min_breakdown_sum;
 pub mod min_reward;
+pub mod number_grouping;
 pub mod oppsite_pos_in_circle;
+pub mod pascal_triangle;
+pub mod permutation;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod radix_sort;
+pub mod random_perm;
+pub mod ranking;
 pub mod repeat_product;
 pub mod request_per_sec;
 pub mod reverse_poland_calc;
+pub mod reverse_words;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod runlength;
 pub mod selection_sort;
 pub mod shared;
+pub mod shorten_path;
 pub mod sigma_k;
 pub mod smallest_positive_product;
+pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
 pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod three_number_sort;
 pub mod toggle_bit;
+pub mod three_sum;
+pub mod turn_commands;
 pub mod two_sum;
 pub mod waterarea;
 
@@ -71,6 +86,8 @@ pub mod runner {
     use century::century;
     use christmas_tree::christmas_tree;
     use clean_kth_bit::clean_kth_bit;
+    use combination;
+    use construct_square;
     use cool_num_pair::cool_num_pair;
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
@@ -79,37 +96,50 @@ pub mod runner {
     use document_build::document_build;
     use euclidean::euclidean;
     use even_num_sum::even_num_sum;
+    use factorial;
     use fizzbuzz::fizzbuzz;
     use helon_formula::helon_formula;
+    use inorder_traversal;
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
     use kadane::kadane;
     use lcs::lcs;
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
+    use levenshtein_distance;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
+    use number_grouping;
     use oppsite_pos_in_circle;
+    use pascal_triangle;
+    use permutation;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use radix_sort::radix_sort;
+    use random_perm;
+    use ranking;
     use repeat_product::repeat_product;
     use request_per_sec::request_per_sec;
     use reverse_poland_calc::reverse_poland_calc;
+    use reverse_words;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use runlength::runlength;
     use selection_sort::selection_sort;
+    use shorten_path;
     use sigma_k::sigma_k;
     use smallest_positive_product::smallest_positive_product;
+    use strange_bank;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
     use three_number_sort;
+    use three_sum;
     use toggle_bit::toggle_bit;
+    use turn_commands;
     use two_sum::two_sum;
     use waterarea::waterarea;
 
@@ -151,6 +181,12 @@ pub mod runner {
             Algo::CleanKthBit => {
                 clean_kth_bit::run();
             }
+            Algo::Combination => {
+                combination::run();
+            }
+            Algo::ConstructSquare => {
+                construct_square::run();
+            }
             Algo::CoolNumPair => {
                 cool_num_pair::run();
             }
@@ -175,11 +211,17 @@ pub mod runner {
             Algo::Euclidean => {
                 euclidean::run();
             }
+            Algo::Factorial => {
+                factorial::run();
+            }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
             }
             Algo::HelonFormula => {
                 helon_formula::run();
+            }
+            Algo::InOrderTraversal => {
+                inorder_traversal::run();
             }
             Algo::IsPalindrome => {
                 is_palindrome::run();
@@ -202,6 +244,9 @@ pub mod runner {
             Algo::LeastFactorial => {
                 least_factorial::run();
             }
+            Algo::LevenShteinDistance => {
+                levenshtein_distance::run();
+            }
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
             }
@@ -217,14 +262,29 @@ pub mod runner {
             Algo::MinReward => {
                 min_reward::run();
             }
+            Algo::NumberGrouping => {
+                number_grouping::run();
+            }
             Algo::OppositePosInCircle => {
                 oppsite_pos_in_circle::run();
+            }
+            Algo::PascalTriangle => {
+                pascal_triangle::run();
+            }
+            Algo::Permutation => {
+                permutation::run();
             }
             Algo::PreOrderTraversal => {
                 preorder_traversal::run();
             }
             Algo::ProductArraySort => {
                 product_array_sort::run();
+            }
+            Algo::RandomPerm => {
+                random_perm::run();
+            }
+            Algo::Ranking => {
+                ranking::run();
             }
             Algo::RepeatProduct => {
                 repeat_product::run();
@@ -234,6 +294,9 @@ pub mod runner {
             }
             Algo::ReversePoland => {
                 reverse_poland_calc::run();
+            }
+            Algo::ReverseWords => {
+                reverse_words::run();
             }
             Algo::RightMostDiffBit => {
                 rightmost_diffbit::run();
@@ -247,11 +310,17 @@ pub mod runner {
             Algo::SelectionSort => {
                 selection_sort::run();
             }
+            Algo::ShortenPath => {
+                shorten_path::run();
+            }
             Algo::SigmaK => {
                 sigma_k::run();
             }
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
+            }
+            Algo::StrangeBank => {
+                strange_bank::run();
             }
             Algo::StringConstruction => {
                 string_construction::run();
@@ -268,6 +337,12 @@ pub mod runner {
             }
             Algo::ToggleBit => {
                 toggle_bit::run();
+            }
+            Algo::ThreeSum => {
+                three_sum::run();
+            }
+            Algo::TurnCommands => {
+                turn_commands::run();
             }
             Algo::TwoSum => {
                 two_sum::run();
@@ -293,6 +368,8 @@ mod test_runner {
     use crate::century::century;
     use crate::christmas_tree::christmas_tree;
     use crate::clean_kth_bit::clean_kth_bit;
+    use crate::combination;
+    use crate::construct_square;
     use crate::cool_num_pair::cool_num_pair;
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
@@ -301,39 +378,52 @@ mod test_runner {
     use crate::document_build::document_build;
     use crate::euclidean::euclidean;
     use crate::even_num_sum::even_num_sum;
+    use crate::factorial;
     use crate::fizzbuzz::fizzbuzz;
     use crate::helon_formula::helon_formula;
+    use crate::inorder_traversal;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
     use crate::kadane::kadane;
     use crate::lcs::lcs;
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
+    use crate::levenshtein_distance;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
+    use crate::number_grouping;
+    use crate::pascal_triangle;
+    use crate::permutation;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::oppsite_pos_in_circle;
     use crate::radix_sort::radix_sort;
+    use crate::random_perm;
+    use crate::ranking;
     use crate::repeat_product::repeat_product;
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_poland_calc::reverse_poland_calc;
+    use crate::reverse_words;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::runlength::runlength;
     use crate::selection_sort::selection_sort;
-    use crate::shared::shared::*;
+    use crate::shared::*;
+    use crate::shorten_path;
     use crate::sigma_k::sigma_k;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::strange_bank;
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
     use crate::three_number_sort;
+    use crate::three_sum;
     use crate::toggle_bit::toggle_bit;
+    use crate::turn_commands;
     use crate::two_sum::two_sum;
     use crate::waterarea::waterarea;
     use float_cmp::approx_eq;
@@ -476,6 +566,34 @@ mod test_runner {
     }
 
     #[test]
+    fn combination_test() {
+        let n = 8;
+        let r = 3;
+        assert_eq!(combination::exec(n, r), 56);
+    }
+
+    #[test]
+    fn construct_square_simple_good_test() {
+        let s = "aba".to_string();
+        let rez = construct_square::exec(&s);
+        assert_eq!(rez, 900);
+    }
+
+    #[test]
+    fn consturst_square_bad_case_test() {
+        let s = "zzz".to_string();
+        let rez = construct_square::exec(&s);
+        assert_eq!(rez, -1);
+    }
+
+    #[test]
+    fn construct_square_bignum_good_test() {
+        let s = "aaaabbcde".to_string();
+        let rez = construct_square::exec(&s);
+        assert_eq!(rez, 999950884);
+    }
+
+    #[test]
     fn cool_num_pair() {
         let a = [4, 5, 6, 7, 8];
         let b = [8, 9, 10, 11, 12];
@@ -526,6 +644,12 @@ mod test_runner {
     }
 
     #[test]
+    fn factorial_test() {
+        let n = 10;
+        assert_eq!(factorial::exec(n), 3628800);
+    }
+
+    #[test]
     fn test_fizzbuzz() {
         let n = 30;
         let rez = fizzbuzz::exec(n);
@@ -541,6 +665,14 @@ mod test_runner {
         let expect = 14.6969385;
         let rez = approx_eq!(f32, expect, helon_formula::exec(a, b, c), ulps = 2);
         assert!(rez);
+    }
+
+    #[test]
+    fn inorder_trav_test() {
+        let v = vec![5, 9, 2, 10, 1, 4];
+        let r = inorder_traversal::exec(&v);
+        let expected = vec![1, 2, 4, 5, 9, 10];
+        assert_eq!(r, expected);
     }
 
     #[test]
@@ -601,6 +733,14 @@ mod test_runner {
     }
 
     #[test]
+    fn levenshtein_distance_test() {
+        let s = "abc";
+        let t = "yabd";
+        let diff = levenshtein_distance::exec(s, t);
+        assert_eq!(diff, 2);
+    }
+
+    #[test]
     fn max_sibling_product_test() {
         let s = vec![3, 6, -2, -5, 7, 3];
         let r = max_sibling_product::exec(s);
@@ -648,6 +788,12 @@ mod test_runner {
     }
 
     #[test]
+    fn number_grouping_test() {
+        let a = vec![10000, 20000, 30000, 40000, 50000, 60000, 10000, 120000, 150000, 200000, 300000, 1000000, 10000000, 100000000, 10000000];
+        assert_eq!(number_grouping::exec(&a), 28);
+    }
+
+    #[test]
     fn opposite_num_in_circle_test() {
         let n = 10;
         let f = 2;
@@ -669,10 +815,44 @@ mod test_runner {
     }
 
     #[test]
+    fn pascal_tr_test() {
+        let n = 5;
+        let expected = r"1
+1 1
+1 2 1
+1 3 3 1
+1 4 6 4 1";
+        let rez = pascal_triangle::exec(n);
+        assert_eq!(rez.trim(), expected);
+    }
+
+    #[test]
+    fn perm_test() {
+        let n = 8;
+        let r = 6;
+        assert_eq!(permutation::exec(n, r), 20160);
+    }
+
+    #[test]
     fn preorder_trav_test() {
         let v: Vec<i32> = vec![5, 9, 2, 10, 1, 4];
         let r: Vec<i32> = preorder_traversal::exec(v);
         assert_eq!(r, vec![5, 2, 1, 4, 9, 10]);
+    }
+
+    #[test]
+    fn rand_perm_test() {
+        let o:Vec<i32> = (0..=10).collect();
+        let mut v:Vec<i32> = (0..=10).collect();
+        random_perm::exec(&mut v);
+        assert_ne!(v, o);
+    }
+
+    #[test]
+    fn ranking_test() {
+        let scores = vec![56, 25, 67, 88, 100, 61, 55, 67, 76, 56];
+        let expected:Vec<(i32, u32)> = vec![(56, 7), (25, 10), (67, 4), (88, 2), (100, 1), (61, 6), (55, 9), (67, 4), (76, 3), (56, 7)];
+        assert_eq!(ranking::exec(&scores), expected);
     }
 
     #[test]
@@ -702,6 +882,13 @@ mod test_runner {
     }
 
     #[test]
+    fn reverse_words_test() {
+        let r = "nekochan kawaii to omoimasenka? soudesu.";
+        let expected:String = "soudesu. omoimasenka? to kawaii nekochan".to_string();
+        assert_eq!(reverse_words::exec(r), expected);
+    }
+
+    #[test]
     fn runlength_test1() {
         let s = "AAAAAAAAAAAA".to_string();
         let rez = runlength::exec(s);
@@ -713,6 +900,20 @@ mod test_runner {
         let s = "AABBBCDD".to_string();
         let rez = runlength::exec(s);
         assert_eq!(rez, "2A3B1C2D".to_string());
+    }
+
+    #[test]
+    fn shorten_path_absolute_path_case() {
+        let path = "/foo/../test/../test/../foo//bar/./baz";
+        let expected = "/foo/bar/baz".to_string();
+        assert_eq!(shorten_path::exec(path), expected);
+    }
+
+    #[test]
+    fn shorten_path_relative_path_case() {
+        let path = "../tako/../test/../test/./baz";
+        let expected = "test/baz".to_string();
+        assert_eq!(shorten_path::exec(path), expected);
     }
 
     #[test]
@@ -733,6 +934,22 @@ mod test_runner {
     fn smallest_positive_bad_case() {
         let n = 19;
         assert_eq!(smallest_positive_product::exec(n), -1);
+    }
+
+    #[test]
+    fn strange_bank_ok_test() {
+        let n = 7_u32;
+        let denoms = &[1, 5, 10];
+        let rez = strange_bank::exec(n, denoms);
+        assert_eq!(rez, 3);
+    }
+
+    #[test]
+    fn strange_bank_nochange_made_test() {
+        let n = 9_u32;
+        let denoms = &[4, 6, 10, 50];
+        let rez = strange_bank::exec(n, denoms);
+        assert_eq!(rez, -1);
     }
 
     #[test]
@@ -774,6 +991,17 @@ mod test_runner {
         let n = 23;
         let b = dectobin::exec(n);
         assert_eq!(b, "10111".to_string());
+    }
+
+    #[test]
+    fn three_sum_test() {
+        let mut a = vec![12, 3, 1, 2, -6, 5, -8, 6];
+        let target = 0;
+        let rez = three_sum::exec(&mut a, target);
+        assert_eq!(rez.len(), 3);
+        assert_eq!(rez[0], vec![-8, 2, 6]);
+        assert_eq!(rez[1], vec![-8, 3, 5]);
+        assert_eq!(rez[2], vec![-6, 1, 5]);
     }
 
     #[test]
@@ -873,6 +1101,12 @@ mod test_runner {
     }
 
     #[test]
+    fn turn_commands_test() {
+        let cmd = "LLARL";
+        assert_eq!(turn_commands::exec(cmd), 3);
+    }
+
+    #[test]
     fn two_sum_case1() {
         let rez = two_sum::exec(vec![3, 5, -4, 8, 11, 1, -1, 6], 10);
         assert_eq!(rez, vec![-1, 11])
@@ -922,6 +1156,8 @@ pub enum Algo {
     CaesarCrypt,
     ChristmasTree,
     CleanKthBit,
+    Combination,
+    ConstructSquare,
     CoolNumPair,
     CyclicChars,
     DecodeReversePoland,
@@ -930,38 +1166,51 @@ pub enum Algo {
     DocumentBuild,
     EvenNumSum,
     Euclidean,
+    Factorial,
     FizzBuzz,
     HelonFormula,
+    InOrderTraversal,
     IsMacAddr,
     IsPalindrome,
     Kadane,
     LCS,
     LeastDataEviction,
     LeastFactorial,
+    LevenShteinDistance,
     MaxSiblingProduct,
     MaxSubSetSum,
     MaxWithLessDigit,
     MinBreakdownSum,
     MinReward,
+    NumberGrouping,
     OppositePosInCircle,
+    PascalTriangle,
+    Permutation,
     PreOrderTraversal,
     ProductArraySort,
     RadixSort,
+    RandomPerm,
+    Ranking,
     RepeatProduct,
     RequestPerSec,
     ReversePoland,
+    ReverseWords,
     RightMostDiffBit,
     RightMostSameBit,
     RunLength,
     SelectionSort,
+    ShortenPath,
     SigmaK,
     SmallestPositiveProduct,
     SwapSibling,
+    StrangeBank,
     StringConstruction,
     StringPattern,
     TandemRepeat,
     ThreeNumberSort,
+    ThreeSum,
     ToggleBit,
+    TurnCommands,
     TwoSum,
     WaterArea,
 }
@@ -981,6 +1230,8 @@ impl Algo {
             s if s.to_lowercase() == "century" => Algo::Century,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
+            s if s.to_lowercase() == "combination" => Algo::Combination,
+            s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
@@ -989,37 +1240,50 @@ impl Algo {
             s if s.to_lowercase() == "document_build" => Algo::DocumentBuild,
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
+            s if s.to_lowercase() == "factorial" => Algo::Factorial,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
+            s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
             s if s.to_lowercase() == "lcs" => Algo::LCS,
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
+            s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
+            s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
+            s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
+            s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
+            s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
+            s if s.to_lowercase() == "ranking" => Algo::Ranking,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
+            s if s.to_lowercase() == "reverse_words" => Algo::ReverseWords,
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
+            s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
+            s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
+            s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
+            s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
