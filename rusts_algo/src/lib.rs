@@ -36,6 +36,7 @@ pub mod max_subset_sum;
 pub mod max_with_lessdigit;
 pub mod min_breakdown_sum;
 pub mod min_reward;
+pub mod number_grouping;
 pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
 pub mod permutation;
@@ -108,6 +109,7 @@ pub mod runner {
     use max_with_lessdigit::max_with_lessdigit;
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
+    use number_grouping;
     use oppsite_pos_in_circle;
     use pascal_triangle;
     use permutation;
@@ -256,6 +258,9 @@ pub mod runner {
             Algo::MinReward => {
                 min_reward::run();
             }
+            Algo::NumberGrouping => {
+                number_grouping::run();
+            }
             Algo::OppositePosInCircle => {
                 oppsite_pos_in_circle::run();
             }
@@ -379,6 +384,7 @@ mod test_runner {
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
+    use crate::number_grouping;
     use crate::pascal_triangle;
     use crate::permutation;
     use crate::preorder_traversal::preorder_traversal;
@@ -770,6 +776,12 @@ mod test_runner {
     }
 
     #[test]
+    fn number_grouping_test() {
+        let a = vec![10000, 20000, 30000, 40000, 50000, 60000, 10000, 120000, 150000, 200000, 300000, 1000000, 10000000, 100000000, 10000000];
+        assert_eq!(number_grouping::exec(&a), 28);
+    }
+
+    #[test]
     fn opposite_num_in_circle_test() {
         let n = 10;
         let f = 2;
@@ -1143,6 +1155,7 @@ pub enum Algo {
     MaxWithLessDigit,
     MinBreakdownSum,
     MinReward,
+    NumberGrouping,
     OppositePosInCircle,
     PascalTriangle,
     Permutation,
@@ -1214,6 +1227,7 @@ impl Algo {
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
+            s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
