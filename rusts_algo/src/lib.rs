@@ -55,6 +55,7 @@ pub mod reverse_words;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod runlength;
+pub mod shapearea;
 pub mod selection_sort;
 pub mod shared;
 pub mod shorten_path;
@@ -133,6 +134,7 @@ pub mod runner {
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use runlength::runlength;
+    use shapearea;
     use selection_sort::selection_sort;
     use shorten_path;
     use sigma_k::sigma_k;
@@ -322,6 +324,9 @@ pub mod runner {
             Algo::RunLength => {
                 runlength::run();
             }
+            Algo::ShapeArea => {
+                shapearea::run();
+            }
             Algo::SelectionSort => {
                 selection_sort::run();
             }
@@ -429,6 +434,7 @@ mod test_runner {
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::runlength::runlength;
     use crate::selection_sort::selection_sort;
+    use crate::shapearea;
     use crate::shared::*;
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
@@ -968,6 +974,14 @@ mod test_runner {
     }
 
     #[test]
+    fn shapearea_test() {
+        assert_eq!(shapearea::exec(1), 1);
+        assert_eq!(shapearea::exec(2), 5);
+        assert_eq!(shapearea::exec(3), 13);
+        assert_eq!(shapearea::exec(7000), 97986001);
+    }
+
+    #[test]
     fn shorten_path_absolute_path_case() {
         let path = "/foo/../test/../test/../foo//bar/./baz";
         let expected = "/foo/bar/baz".to_string();
@@ -1266,6 +1280,7 @@ pub enum Algo {
     RightMostDiffBit,
     RightMostSameBit,
     RunLength,
+    ShapeArea,
     SelectionSort,
     ShortenPath,
     SigmaK,
@@ -1343,6 +1358,7 @@ impl Algo {
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
+            s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
