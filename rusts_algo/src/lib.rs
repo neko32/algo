@@ -5,6 +5,7 @@ pub mod applebox;
 pub mod array_product_sum;
 pub mod binarysearch;
 pub mod bintodec;
+pub mod bt_from_inorder_preorder;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod century;
@@ -83,6 +84,7 @@ pub mod runner {
     use array_product_sum::array_product_sum;
     use binarysearch::binary_search;
     use bintodec::bin_to_dec;
+    use bt_from_inorder_preorder;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use century::century;
@@ -169,6 +171,9 @@ pub mod runner {
             }
             Algo::BinToDec => {
                 bin_to_dec::run();
+            }
+            Algo::BuildBTreeFromInorderPreorder => {
+                bt_from_inorder_preorder::run();
             }
             Algo::CaesarCrypt => {
                 caesar_crypt::run();
@@ -373,6 +378,7 @@ mod test_runner {
     use crate::array_product_sum::array_product_sum;
     use crate::binarysearch::binary_search;
     use crate::bintodec::bin_to_dec;
+    use crate::bt_from_inorder_preorder;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::century::century;
@@ -516,6 +522,24 @@ mod test_runner {
         let b = "01001111";
         let r = bin_to_dec::exec(b);
         assert_eq!(r, 79);
+    }
+
+    #[test]
+    fn build_btree_from_preorder_inorder_test() {
+        let preorder = [3, 9, 20, 15, 7];
+        let inorder = [9, 3, 15, 20, 7];
+        match bt_from_inorder_preorder::exec(&preorder, &inorder) {
+            Some(bn) => {
+                let mut buf:Vec<i32> = Vec::new();
+                traverse(bn, &mut buf);
+                let mut expected:Vec<i32> = Vec::new();
+                expected.extend_from_slice(&inorder);
+                assert_eq!(buf, expected);
+            },
+            None => {
+                assert!(false);
+            }
+        }
     }
 
     #[test]
@@ -1192,6 +1216,7 @@ pub enum Algo {
     ArrayProductSum,
     BinarySearch,
     BinToDec,
+    BuildBTreeFromInorderPreorder,
     CamelCase,
     Century,
     CaesarCrypt,
@@ -1268,6 +1293,7 @@ impl Algo {
             s if s.to_lowercase() == "array_product_sum" => Algo::ArrayProductSum,
             s if s.to_lowercase() == "binary_search" => Algo::BinarySearch,
             s if s.to_lowercase() == "bintodec" => Algo::BinToDec,
+            s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "century" => Algo::Century,

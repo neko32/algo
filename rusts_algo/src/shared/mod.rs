@@ -75,3 +75,14 @@ pub fn build_tree(v: &Vec<i32>) -> Box<TreeNode> {
 
     root
 }
+
+pub fn traverse(n:Box<TreeNode>, trace:&mut Vec<i32>) {
+    if n.left.is_some() {
+        traverse(n.left.unwrap(), trace);
+    }
+    println!("{}", n.value);
+    trace.push(n.value);
+    if n.right.is_some() {
+        traverse(n.right.unwrap(), trace);
+    }
+}
