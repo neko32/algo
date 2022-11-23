@@ -48,6 +48,7 @@ pub mod product_array_sort;
 pub mod radix_sort;
 pub mod random_perm;
 pub mod ranking;
+pub mod reconstruct_bst_from_pre;
 pub mod repeat_product;
 pub mod request_per_sec;
 pub mod reverse_poland_calc;
@@ -127,6 +128,7 @@ pub mod runner {
     use radix_sort::radix_sort;
     use random_perm;
     use ranking;
+    use reconstruct_bst_from_pre;
     use repeat_product::repeat_product;
     use request_per_sec::request_per_sec;
     use reverse_poland_calc::reverse_poland_calc;
@@ -303,6 +305,9 @@ pub mod runner {
             Algo::Ranking => {
                 ranking::run();
             }
+            Algo::ReconstructBSTFromPreorder => {
+                reconstruct_bst_from_pre::run();
+            }
             Algo::RepeatProduct => {
                 repeat_product::run();
             }
@@ -426,6 +431,7 @@ mod test_runner {
     use crate::radix_sort::radix_sort;
     use crate::random_perm;
     use crate::ranking;
+    use crate::reconstruct_bst_from_pre;
     use crate::repeat_product::repeat_product;
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_poland_calc::reverse_poland_calc;
@@ -927,6 +933,17 @@ mod test_runner {
     }
 
     #[test]
+    fn reconstruct_bst_from_preorder_test() {
+        let v:Vec<i32> = vec![10, 4, 2, 1, 5, 17, 19, 18];
+        let Some(rez) = reconstruct_bst_from_pre::exec(&v) else {
+            panic!("failed");
+        };
+        let mut trace:Vec<i32> = Vec::new();
+        traverse_pre(rez, &mut trace);
+        assert_eq!(v, trace);
+    }
+
+    #[test]
     fn repeat_product_test() {
         let n = 16;
         assert_eq!(repeat_product::exec(n), 9);
@@ -1273,6 +1290,7 @@ pub enum Algo {
     RadixSort,
     RandomPerm,
     Ranking,
+    ReconstructBSTFromPreorder,
     RepeatProduct,
     RequestPerSec,
     ReversePoland,
@@ -1351,6 +1369,7 @@ impl Algo {
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
             s if s.to_lowercase() == "ranking" => Algo::Ranking,
+            s if s.to_lowercase() == "reconstruct_bst_from_preorder" => Algo::ReconstructBSTFromPreorder,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
