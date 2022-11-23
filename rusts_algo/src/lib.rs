@@ -18,6 +18,7 @@ pub mod cyclic_chars;
 pub mod decode_reverse_poland;
 pub mod dectobin;
 pub mod diagonal;
+pub mod different_squares;
 pub mod document_build;
 pub mod euclidean;
 pub mod even_num_sum;
@@ -99,6 +100,7 @@ pub mod runner {
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
     use diagonal::diagonal;
+    use different_squares;
     use document_build::document_build;
     use euclidean::euclidean;
     use even_num_sum::even_num_sum;
@@ -214,6 +216,9 @@ pub mod runner {
             }
             Algo::Diagonal => {
                 diagonal::run();
+            }
+            Algo::DifferentSquares => {
+                different_squares::run();
             }
             Algo::DocumentBuild => {
                 document_build::run();
@@ -401,6 +406,7 @@ mod test_runner {
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
     use crate::diagonal::diagonal;
+    use crate::different_squares;
     use crate::document_build::document_build;
     use crate::euclidean::euclidean;
     use crate::even_num_sum::even_num_sum;
@@ -661,6 +667,18 @@ mod test_runner {
 
         let expected = "6*(1+2)-8";
         assert_eq!(decode_reverse_poland::exec(s), expected);
+    }
+
+    #[test]
+    fn different_sq_test() {
+        let v:Vec<Vec<i32>> = vec![
+            vec![1, 2, 1],
+            vec![2, 2, 2],
+            vec![2, 2, 2],
+            vec![1, 2, 3],
+            vec![2 ,2, 1],
+        ];
+        assert_eq!(different_squares::exec(v), 6);
     }
 
     #[test]
@@ -1260,6 +1278,7 @@ pub enum Algo {
     DecodeReversePoland,
     DecToBin,
     Diagonal,
+    DifferentSquares,
     DocumentBuild,
     EvenNumSum,
     Euclidean,
@@ -1339,6 +1358,7 @@ impl Algo {
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
             s if s.to_lowercase() == "dectobin" => Algo::DecToBin,
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
+            s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
             s if s.to_lowercase() == "document_build" => Algo::DocumentBuild,
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
