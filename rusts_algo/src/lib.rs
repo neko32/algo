@@ -24,6 +24,7 @@ pub mod euclidean;
 pub mod even_num_sum;
 pub mod factorial;
 pub mod fizzbuzz;
+pub mod geometric_progression;
 pub mod helon_formula;
 pub mod inorder_traversal;
 pub mod is_mac_addr;
@@ -106,6 +107,7 @@ pub mod runner {
     use even_num_sum::even_num_sum;
     use factorial;
     use fizzbuzz::fizzbuzz;
+    use geometric_progression;
     use helon_formula::helon_formula;
     use inorder_traversal;
     use is_mac_addr::is_mac_addr;
@@ -234,6 +236,9 @@ pub mod runner {
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
+            }
+            Algo::GeometricProgression => {
+                geometric_progression::run();
             }
             Algo::HelonFormula => {
                 helon_formula::run();
@@ -412,6 +417,7 @@ mod test_runner {
     use crate::even_num_sum::even_num_sum;
     use crate::factorial;
     use crate::fizzbuzz::fizzbuzz;
+    use crate::geometric_progression;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
     use crate::is_mac_addr::is_mac_addr;
@@ -721,6 +727,14 @@ mod test_runner {
         let rez = fizzbuzz::exec(n);
         let expected:String = "12fizz4buzzfizz78fizzbuzz11fizz1314fizzbuzz1617fizz19buzzfizz2223fizzbuzz26fizz2829fizzbuzz".to_string();
         assert_eq!(rez, expected);
+    }
+
+    #[test]
+    fn geometric_progression_test() {
+        assert_eq!(geometric_progression::exec(1, 2, 3), 2);
+        assert_eq!(geometric_progression::exec(3, 2, 3), 18);
+        assert_eq!(geometric_progression::exec(4, 2, 3), 54);
+        assert_eq!(geometric_progression::exec(5, 2, 3), 162);
     }
 
     #[test]
@@ -1284,6 +1298,7 @@ pub enum Algo {
     Euclidean,
     Factorial,
     FizzBuzz,
+    GeometricProgression,
     HelonFormula,
     InOrderTraversal,
     IsMacAddr,
@@ -1364,6 +1379,7 @@ impl Algo {
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
+            s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
