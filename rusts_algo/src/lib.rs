@@ -2,6 +2,7 @@ pub mod add_two_int_without_carry;
 pub mod almost_increasing_seq;
 pub mod appear_twice;
 pub mod applebox;
+pub mod arithmatic_progression;
 pub mod array_product_sum;
 pub mod binarysearch;
 pub mod bintodec;
@@ -9,6 +10,7 @@ pub mod bt_from_inorder_preorder;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod century;
+pub mod chars_to_sorted_digits;
 pub mod christmas_tree;
 pub mod clean_kth_bit;
 pub mod combination;
@@ -85,6 +87,7 @@ pub mod runner {
     use almost_increasing_seq::almost_increasing_seq;
     use appear_twice::appear_twice;
     use applebox::applebox;
+    use arithmatic_progression;
     use array_product_sum::array_product_sum;
     use binarysearch::binary_search;
     use bintodec::bin_to_dec;
@@ -92,6 +95,7 @@ pub mod runner {
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use century::century;
+    use chars_to_sorted_digits;
     use christmas_tree::christmas_tree;
     use clean_kth_bit::clean_kth_bit;
     use combination;
@@ -171,6 +175,9 @@ pub mod runner {
             Algo::Applebox => {
                 applebox::run();
             }
+            Algo::ArithmaticProgression => {
+                arithmatic_progression::run();
+            }
             Algo::ArrayProductSum => {
                 array_product_sum::run();
             }
@@ -191,6 +198,9 @@ pub mod runner {
             }
             Algo::Century => {
                 century::run();
+            }
+            Algo::CharsToSortedDigits => {
+                chars_to_sorted_digits::run();
             }
             Algo::ChristmasTree => {
                 christmas_tree::run();
@@ -395,6 +405,7 @@ mod test_runner {
     use crate::almost_increasing_seq::almost_increasing_seq;
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
+    use crate::arithmatic_progression;
     use crate::array_product_sum::array_product_sum;
     use crate::binarysearch::binary_search;
     use crate::bintodec::bin_to_dec;
@@ -402,6 +413,7 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::century::century;
+    use crate::chars_to_sorted_digits;
     use crate::christmas_tree::christmas_tree;
     use crate::clean_kth_bit::clean_kth_bit;
     use crate::combination;
@@ -509,6 +521,13 @@ mod test_runner {
     }
 
     #[test]
+    fn arithmatic_progression_test() {
+        assert_eq!(arithmatic_progression::exec(1, 5, 2), 5);
+        assert_eq!(arithmatic_progression::exec(3, 5, 2), 9);
+        assert_eq!(arithmatic_progression::exec(5, 1, 6), 25);
+    }
+
+    #[test]
     fn array_product_sum_test() {
         let n = [5, 1, 4, 2];
         let p = &n[..];
@@ -591,6 +610,12 @@ mod test_runner {
         let n = 1700;
         let nr = century::exec(n);
         assert_eq!(nr, 17);
+    }
+
+    #[test]
+    fn chars_to_sorted_digits_test() {
+        assert_eq!(chars_to_sorted_digits::exec("owoztneoer"), "012".to_string());
+        assert_eq!(chars_to_sorted_digits::exec("fviefuro"), "45".to_string());
     }
 
     #[test]
@@ -1276,6 +1301,7 @@ pub enum Algo {
     AlmostIncreasingSeq,
     AppearTwice,
     Applebox,
+    ArithmaticProgression,
     ArrayProductSum,
     BinarySearch,
     BinToDec,
@@ -1283,6 +1309,7 @@ pub enum Algo {
     CamelCase,
     Century,
     CaesarCrypt,
+    CharsToSortedDigits,
     ChristmasTree,
     CleanKthBit,
     Combination,
@@ -1357,6 +1384,7 @@ impl Algo {
             s if s.to_lowercase() == "almost_increasing_seq" => Algo::AlmostIncreasingSeq,
             s if s.to_lowercase() == "appear_twice" => Algo::AppearTwice,
             s if s.to_lowercase() == "applebox" => Algo::Applebox,
+            s if s.to_lowercase() == "arithmatic_progression" => Algo::ArithmaticProgression,
             s if s.to_lowercase() == "array_product_sum" => Algo::ArrayProductSum,
             s if s.to_lowercase() == "binary_search" => Algo::BinarySearch,
             s if s.to_lowercase() == "bintodec" => Algo::BinToDec,
@@ -1364,6 +1392,7 @@ impl Algo {
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "century" => Algo::Century,
+            s if s.to_lowercase() == "chars_to_sorted_digits" => Algo::CharsToSortedDigits,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
             s if s.to_lowercase() == "combination" => Algo::Combination,
