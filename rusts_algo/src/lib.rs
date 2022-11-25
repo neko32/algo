@@ -69,6 +69,7 @@ pub mod smallest_positive_product;
 pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
+pub mod sum_of_arithmatic_progression;
 pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod three_number_sort;
@@ -152,6 +153,7 @@ pub mod runner {
     use strange_bank;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
+    use sum_of_arithmatic_progression;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
     use three_number_sort;
@@ -373,6 +375,9 @@ pub mod runner {
             Algo::StringPattern => {
                 string_pattern::run();
             }
+            Algo::SumOfArithmaticProgression => {
+                sum_of_arithmatic_progression::run();
+            }
             Algo::SwapSibling => {
                 swap_sibling::run();
             }
@@ -472,6 +477,7 @@ mod test_runner {
     use crate::strange_bank;
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
+    use crate::sum_of_arithmatic_progression;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
     use crate::three_number_sort;
@@ -1134,6 +1140,12 @@ mod test_runner {
     }
 
     #[test]
+    fn sum_of_arithmatic_progression_test() {
+        assert_eq!(sum_of_arithmatic_progression::exec(4, 5, 4, 3), 34);
+        assert_eq!(sum_of_arithmatic_progression::exec(5, 5, 4, 3), 50);
+    }
+
+    #[test]
     fn tandem_repeat_case1() {
         let c = "CatCat".to_string();
         assert!(tandem_repeat::exec(c));
@@ -1364,10 +1376,11 @@ pub enum Algo {
     ShortenPath,
     SigmaK,
     SmallestPositiveProduct,
-    SwapSibling,
     StrangeBank,
     StringConstruction,
     StringPattern,
+    SumOfArithmaticProgression,
+    SwapSibling,
     TandemRepeat,
     ThreeNumberSort,
     ThreeSum,
@@ -1446,10 +1459,11 @@ impl Algo {
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
-            s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
+            s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
+            s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
             s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
