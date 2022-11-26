@@ -35,6 +35,7 @@ pub mod is_palindrome;
 pub mod kadane;
 pub mod lcs;
 pub mod largest_adjacent_product;
+pub mod largest_number;
 pub mod least_data_eviction;
 pub mod least_factorial;
 pub mod levenshtein_distance;
@@ -121,6 +122,7 @@ pub mod runner {
     use is_palindrome::is_palindrome;
     use kadane::kadane;
     use largest_adjacent_product;
+    use largest_number;
     use lcs::lcs;
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
@@ -274,6 +276,9 @@ pub mod runner {
             }
             Algo::LargestAdjacentProduct => {
                 largest_adjacent_product::run();
+            }
+            Algo::LargestNumber => {
+                largest_number::run();
             }
             Algo::LCS => {
                 lcs::run();
@@ -447,6 +452,7 @@ mod test_runner {
     use crate::is_palindrome::is_palindrome;
     use crate::kadane::kadane;
     use crate::largest_adjacent_product;
+    use crate::largest_number;
     use crate::lcs::lcs;
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
@@ -854,6 +860,16 @@ mod test_runner {
             largest_adjacent_product::exec(v);
         });
         assert!(maybe_e.is_err());
+    }
+
+    #[test]
+    fn largest_number_test() {
+        let expected:Vec<u64> = vec![0, 9, 99, 999, 9999, 99999, 999999,
+        9999999, 99999999, 999999999, 9999999999];
+        for i in 1..=10 {
+            let r:u64 = largest_number::exec(i);
+            assert_eq!(r, expected[i as usize]);
+        }
     }
 
     #[test]
@@ -1358,6 +1374,7 @@ pub enum Algo {
     IsPalindrome,
     Kadane,
     LargestAdjacentProduct,
+    LargestNumber,
     LCS,
     LeastDataEviction,
     LeastFactorial,
@@ -1443,6 +1460,7 @@ impl Algo {
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
             s if s.to_lowercase() == "largest_adjacent_product" => Algo::LargestAdjacentProduct,
+            s if s.to_lowercase() == "largest_number" => Algo::LargestNumber,
             s if s.to_lowercase() == "lcs" => Algo::LCS,
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
