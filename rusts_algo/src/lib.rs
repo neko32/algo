@@ -39,6 +39,7 @@ pub mod largest_number;
 pub mod least_data_eviction;
 pub mod least_factorial;
 pub mod levenshtein_distance;
+pub mod linked_list;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
@@ -127,6 +128,7 @@ pub mod runner {
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
     use levenshtein_distance;
+    use linked_list;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use min_breakdown_sum::min_breakdown_sum;
@@ -282,6 +284,9 @@ pub mod runner {
             }
             Algo::LCS => {
                 lcs::run();
+            }
+            Algo::LinkedList => {
+                linked_list::run();
             }
             Algo::RadixSort => {
                 radix_sort::run();
@@ -457,6 +462,7 @@ mod test_runner {
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
     use crate::levenshtein_distance;
+    use crate::linked_list;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
@@ -899,6 +905,13 @@ mod test_runner {
         let t = "yabd";
         let diff = levenshtein_distance::exec(s, t);
         assert_eq!(diff, 2);
+    }
+
+    #[test]
+    fn linked_list_forward_trav_test() {
+        let v = &[1, 2, 3, 4, 5];
+        let expected = vec![1, 2, 3, 4, 5];
+        assert_eq!(linked_list::exec(v), expected);
     }
 
     #[test]
@@ -1379,6 +1392,7 @@ pub enum Algo {
     LeastDataEviction,
     LeastFactorial,
     LevenShteinDistance,
+    LinkedList,
     MaxSiblingProduct,
     MaxSubSetSum,
     MaxWithLessDigit,
@@ -1465,6 +1479,7 @@ impl Algo {
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
+            s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
