@@ -25,6 +25,7 @@ pub mod document_build;
 pub mod euclidean;
 pub mod even_num_sum;
 pub mod factorial;
+pub mod file_naming;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod helon_formula;
@@ -111,6 +112,7 @@ pub mod runner {
     use euclidean::euclidean;
     use even_num_sum::even_num_sum;
     use factorial;
+    use file_naming;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
     use helon_formula::helon_formula;
@@ -245,6 +247,9 @@ pub mod runner {
             }
             Algo::Factorial => {
                 factorial::run();
+            }
+            Algo::FileNaming => {
+                file_naming::run();
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
@@ -433,6 +438,7 @@ mod test_runner {
     use crate::euclidean::euclidean;
     use crate::even_num_sum::even_num_sum;
     use crate::factorial;
+    use crate::file_naming;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
     use crate::helon_formula::helon_formula;
@@ -750,6 +756,13 @@ mod test_runner {
     fn factorial_test() {
         let n = 10;
         assert_eq!(factorial::exec(n), 3628800);
+    }
+
+    #[test]
+    fn file_naming_test() {
+        let files = vec!["doc", "doc", "image", "doc(1)", "doc"];
+        let expected = vec!["doc".to_string(), "doc(1)".to_string(), "image".to_string(), "doc(1)(1)".to_string(), "doc(2)".to_string()];
+        assert_eq!(file_naming::exec(files), expected);
     }
 
     #[test]
@@ -1336,6 +1349,7 @@ pub enum Algo {
     EvenNumSum,
     Euclidean,
     Factorial,
+    FileNaming,
     FizzBuzz,
     GeometricProgression,
     HelonFormula,
@@ -1420,6 +1434,7 @@ impl Algo {
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
+            s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
