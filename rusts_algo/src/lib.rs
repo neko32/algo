@@ -44,6 +44,7 @@ pub mod linked_list;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
+pub mod mean;
 pub mod min_breakdown_sum;
 pub mod min_reward;
 pub mod minmax_stack;
@@ -84,6 +85,7 @@ pub mod turn_commands;
 pub mod two_sum;
 pub mod variance;
 pub mod waterarea;
+pub mod z_score;
 
 use clap::Parser;
 
@@ -135,6 +137,7 @@ pub mod runner {
     use linked_list;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
+    use mean;
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
     use minmax_stack;
@@ -174,6 +177,7 @@ pub mod runner {
     use two_sum::two_sum;
     use variance;
     use waterarea::waterarea;
+    use z_score;
 
     pub fn exec(algo: Algo) {
         match algo {
@@ -318,6 +322,9 @@ pub mod runner {
             Algo::MaxWithLessDigit => {
                 max_with_lessdigit::run();
             }
+            Algo::Mean => {
+                mean::run();
+            }
             Algo::MinBreakdownSum => {
                 min_breakdown_sum::run();
             }
@@ -430,6 +437,9 @@ pub mod runner {
             Algo::WaterArea => {
                 waterarea::run();
             }
+            Algo::ZScore => {
+                z_score::run();
+            }
         }
     }
 }
@@ -482,6 +492,7 @@ mod test_runner {
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
+    use crate::mean;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
     use crate::minmax_stack;
@@ -522,6 +533,7 @@ mod test_runner {
     use crate::two_sum::two_sum;
     use crate::variance;
     use crate::waterarea::waterarea;
+    use crate::z_score;
     use float_cmp::approx_eq;
     use num::integer::gcd;
     use std::{
@@ -966,6 +978,14 @@ mod test_runner {
     }
 
     #[test]
+    fn mean_test() {
+        let v = &mut [540_f32, 280_f32, 3000_f32, 540_f32, 480_f32];
+        let v2 = &mut [100_f32, 110_f32, 150_f32, 180_f32, 300_f32, 600_f32];
+        assert!(approx_eq!(f32, mean::exec(v), 540_f32));
+        assert!(approx_eq!(f32, mean::exec(v2), 165_f32));
+    }
+
+    #[test]
     fn min_breakdown_sum_test1() {
         let n:u32 = 240;
         let rez = min_breakdown_sum::exec(n);
@@ -1385,6 +1405,15 @@ mod test_runner {
         let r = waterarea::exec(a);
         assert_eq!(r, 48);
     }
+
+    #[test]
+    fn zscore_test() {
+        let mut v = [7_f32, 8_f32, 8_f32, 7.5_f32, 9_f32];
+        let zscores = z_score::exec(&mut v);
+        let expected = [-1.5075567, -0.75377834, 0.0, 0.0, 1.5075567];
+        assert!(zscores.iter().zip(expected.iter()).map(|(z, e)|approx_eq!(f32, *z, *e)).all(|r|r));
+    }
+
 }
 
 pub enum Algo {
@@ -1434,6 +1463,7 @@ pub enum Algo {
     MaxSiblingProduct,
     MaxSubSetSum,
     MaxWithLessDigit,
+    Mean,
     MinBreakdownSum,
     MinMaxStack,
     MinReward,
@@ -1473,6 +1503,7 @@ pub enum Algo {
     TwoSum,
     Variance,
     WaterArea,
+    ZScore,
 }
 
 impl Algo {
@@ -1524,6 +1555,7 @@ impl Algo {
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
+            s if s.to_lowercase() == "mean" => Algo::Mean,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
@@ -1563,6 +1595,7 @@ impl Algo {
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "variance" => Algo::Variance,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
+            s if s.to_lowercase() == "zscore" => Algo::ZScore,
             _ => panic!("{} has not implemented yet", algo_str),
         }
     }
