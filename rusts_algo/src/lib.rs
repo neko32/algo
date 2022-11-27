@@ -4,6 +4,7 @@ pub mod appear_twice;
 pub mod applebox;
 pub mod arithmatic_progression;
 pub mod array_product_sum;
+pub mod average;
 pub mod binarysearch;
 pub mod bintodec;
 pub mod bt_from_inorder_preorder;
@@ -80,6 +81,7 @@ pub mod toggle_bit;
 pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
+pub mod variance;
 pub mod waterarea;
 
 use clap::Parser;
@@ -93,6 +95,7 @@ pub mod runner {
     use applebox::applebox;
     use arithmatic_progression;
     use array_product_sum::array_product_sum;
+    use average;
     use binarysearch::binary_search;
     use bintodec::bin_to_dec;
     use bt_from_inorder_preorder;
@@ -167,6 +170,7 @@ pub mod runner {
     use toggle_bit::toggle_bit;
     use turn_commands;
     use two_sum::two_sum;
+    use variance;
     use waterarea::waterarea;
 
     pub fn exec(algo: Algo) {
@@ -188,6 +192,9 @@ pub mod runner {
             }
             Algo::ArrayProductSum => {
                 array_product_sum::run();
+            }
+            Algo::Average => {
+                average::run();
             }
             Algo::BinarySearch => {
                 binary_search::run();
@@ -412,6 +419,9 @@ pub mod runner {
             Algo::TwoSum => {
                 two_sum::run();
             }
+            Algo::Variance => {
+                variance::run();
+            }
             Algo::WaterArea => {
                 waterarea::run();
             }
@@ -427,6 +437,7 @@ mod test_runner {
     use crate::applebox::applebox;
     use crate::arithmatic_progression;
     use crate::array_product_sum::array_product_sum;
+    use crate::average;
     use crate::binarysearch::binary_search;
     use crate::bintodec::bin_to_dec;
     use crate::bt_from_inorder_preorder;
@@ -503,6 +514,7 @@ mod test_runner {
     use crate::toggle_bit::toggle_bit;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
+    use crate::variance;
     use crate::waterarea::waterarea;
     use float_cmp::approx_eq;
     use num::integer::gcd;
@@ -557,6 +569,12 @@ mod test_runner {
         let p = &n[..];
         let r = array_product_sum::exec(p);
         assert_eq!(r, vec![8, 40, 10, 20]);
+    }
+
+    #[test]
+    fn average_test() {
+        let v = &[80_f32, 50_f32, 30_f32, 20_f32, 70_f32, 80_f32, 100_f32, 40_f32];
+        assert_eq!(average::exec(v), 58.75);
     }
 
     #[test]
@@ -1343,6 +1361,12 @@ mod test_runner {
     }
 
     #[test]
+    fn variance_test() {
+        let v = &[71_f32, 80_f32, 89_f32];
+        assert_eq!(variance::exec(v), 54_f32);
+    }
+
+    #[test]
     fn waterarea_test() {
         let a: Vec<u32> = vec![0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3];
         let r = waterarea::exec(a);
@@ -1357,6 +1381,7 @@ pub enum Algo {
     Applebox,
     ArithmaticProgression,
     ArrayProductSum,
+    Average,
     BinarySearch,
     BinToDec,
     BuildBTreeFromInorderPreorder,
@@ -1432,6 +1457,7 @@ pub enum Algo {
     ToggleBit,
     TurnCommands,
     TwoSum,
+    Variance,
     WaterArea,
 }
 
@@ -1444,6 +1470,7 @@ impl Algo {
             s if s.to_lowercase() == "applebox" => Algo::Applebox,
             s if s.to_lowercase() == "arithmatic_progression" => Algo::ArithmaticProgression,
             s if s.to_lowercase() == "array_product_sum" => Algo::ArrayProductSum,
+            s if s.to_lowercase() == "average" => Algo::Average,
             s if s.to_lowercase() == "binary_search" => Algo::BinarySearch,
             s if s.to_lowercase() == "bintodec" => Algo::BinToDec,
             s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
@@ -1519,6 +1546,7 @@ impl Algo {
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
+            s if s.to_lowercase() == "variance" => Algo::Variance,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
             _ => panic!("{} has not implemented yet", algo_str),
         }
