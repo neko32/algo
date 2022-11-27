@@ -70,6 +70,7 @@ pub mod shared;
 pub mod shorten_path;
 pub mod sigma_k;
 pub mod smallest_positive_product;
+pub mod stdev;
 pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
@@ -159,6 +160,7 @@ pub mod runner {
     use shorten_path;
     use sigma_k::sigma_k;
     use smallest_positive_product::smallest_positive_product;
+    use stdev;
     use strange_bank;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
@@ -388,6 +390,9 @@ pub mod runner {
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
+            Algo::Stdev => {
+                stdev::run();
+            }
             Algo::StrangeBank => {
                 strange_bank::run();
             }
@@ -503,6 +508,7 @@ mod test_runner {
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::stdev;
     use crate::strange_bank;
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
@@ -1156,6 +1162,13 @@ mod test_runner {
     }
 
     #[test]
+    fn stdev_test() {
+        let v = &[71_f32, 80_f32, 89_f32];
+        let stdev = stdev::exec(v);
+        assert!(float_cmp::approx_eq!(f32, stdev, 7.3484693_f32, ulps = 2));
+    }
+
+    #[test]
     fn strange_bank_ok_test() {
         let n = 7_u32;
         let denoms = &[1, 5, 10];
@@ -1446,6 +1459,7 @@ pub enum Algo {
     ShortenPath,
     SigmaK,
     SmallestPositiveProduct,
+    Stdev,
     StrangeBank,
     StringConstruction,
     StringPattern,
@@ -1534,6 +1548,7 @@ impl Algo {
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
+            s if s.to_lowercase() == "stdev" => Algo::Stdev,
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
