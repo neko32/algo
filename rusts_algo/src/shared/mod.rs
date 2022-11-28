@@ -1,6 +1,7 @@
 
 use derive_more::Display;
 use std::default::Default;
+use std::fmt::Debug;
 
 #[derive(Display, Debug)]
 #[display(fmt = "{{value:{}}}", value)]
@@ -74,4 +75,65 @@ pub fn build_tree(v: &Vec<i32>) -> Box<TreeNode> {
     }
 
     root
+}
+
+pub fn traverse_pre(n:Box<TreeNode>, trace:&mut Vec<i32>) {
+    println!("{}", n.value);
+    trace.push(n.value);
+    if n.left.is_some() {
+        traverse_pre(n.left.unwrap(), trace);
+    }
+    if n.right.is_some() {
+        traverse_pre(n.right.unwrap(), trace);
+    }
+}
+
+pub fn traverse(n:Box<TreeNode>, trace:&mut Vec<i32>) {
+    if n.left.is_some() {
+        traverse(n.left.unwrap(), trace);
+    }
+    println!("{}", n.value);
+    trace.push(n.value);
+    if n.right.is_some() {
+        traverse(n.right.unwrap(), trace);
+    }
+}
+
+#[derive(Debug, Clone)]
+enum Addr {
+    Node(Box<ListNode>),
+    Nil,
+}
+#[derive(Debug, Clone)]
+pub struct ListNode {
+    value: i32,
+    prev: Addr,
+    next: Addr,
+}
+
+impl ListNode {
+
+    pub fn new(v:i32) -> Self {
+        ListNode { value: v, prev: Addr::Nil, next: Addr::Nil }
+    }
+
+    pub fn append(&mut self, elem:i32) {
+        match self.next {
+            Addr::Node(ref mut next_node) => {
+                next_node.append(elem);
+            },
+            Addr::Nil => {
+                let new_node = Self::new(elem);
+                self.next = Addr::Node(Box::new(new_node));
+            }
+        }
+    }
+
+    pub fn trav_from(&self, buf:&mut Vec<i32>) {
+        println!("{}", self.value);
+        buf.push(self.value);
+        if let Addr::Node(next_node) = &self.next {
+            next_node.trav_from(buf);
+        }
+    }
 }
