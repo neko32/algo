@@ -48,6 +48,7 @@ pub mod mean;
 pub mod min_breakdown_sum;
 pub mod min_reward;
 pub mod minmax_stack;
+pub mod most_frequent_digit_sum;
 pub mod number_grouping;
 pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
@@ -141,6 +142,7 @@ pub mod runner {
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
     use minmax_stack;
+    use most_frequent_digit_sum;
     use number_grouping;
     use oppsite_pos_in_circle;
     use pascal_triangle;
@@ -334,6 +336,9 @@ pub mod runner {
             Algo::MinReward => {
                 min_reward::run();
             }
+            Algo::MostFrequentDigitSum => {
+                most_frequent_digit_sum::run();
+            }
             Algo::NumberGrouping => {
                 number_grouping::run();
             }
@@ -496,6 +501,7 @@ mod test_runner {
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
     use crate::minmax_stack;
+    use crate::most_frequent_digit_sum;
     use crate::number_grouping;
     use crate::pascal_triangle;
     use crate::permutation;
@@ -1014,6 +1020,15 @@ mod test_runner {
     }
 
     #[test]
+    fn most_frequent_digit_sum_test() {
+        assert_eq!(most_frequent_digit_sum::exec(88), 9);
+        assert_eq!(most_frequent_digit_sum::exec(994), 9);
+        assert_eq!(most_frequent_digit_sum::exec(239), 9);
+        assert_eq!(most_frequent_digit_sum::exec(1), 1);
+        assert_eq!(most_frequent_digit_sum::exec(99999), 18);
+    }
+
+    #[test]
     fn number_grouping_test() {
         let a = vec![10000, 20000, 30000, 40000, 50000, 60000, 10000, 120000, 150000, 200000, 300000, 1000000, 10000000, 100000000, 10000000];
         assert_eq!(number_grouping::exec(&a), 28);
@@ -1467,6 +1482,7 @@ pub enum Algo {
     MinBreakdownSum,
     MinMaxStack,
     MinReward,
+    MostFrequentDigitSum,
     NumberGrouping,
     OppositePosInCircle,
     PascalTriangle,
@@ -1559,6 +1575,7 @@ impl Algo {
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
+            s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
