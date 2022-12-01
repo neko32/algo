@@ -31,6 +31,7 @@ pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod helon_formula;
 pub mod inorder_traversal;
+pub mod is_bst;
 pub mod is_mac_addr;
 pub mod is_palindrome;
 pub mod kadane;
@@ -127,6 +128,7 @@ pub mod runner {
     use geometric_progression;
     use helon_formula::helon_formula;
     use inorder_traversal;
+    use is_bst;
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
     use kadane::kadane;
@@ -283,6 +285,9 @@ pub mod runner {
             }
             Algo::InOrderTraversal => {
                 inorder_traversal::run();
+            }
+            Algo::IsBST => {
+                is_bst::run();
             }
             Algo::IsPalindrome => {
                 is_palindrome::run();
@@ -489,6 +494,7 @@ mod test_runner {
     use crate::geometric_progression;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
+    use crate::is_bst;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
     use crate::kadane::kadane;
@@ -857,6 +863,12 @@ mod test_runner {
         let r = inorder_traversal::exec(&v);
         let expected = vec![1, 2, 4, 5, 9, 10];
         assert_eq!(r, expected);
+    }
+
+    #[test]
+    fn is_bst_test() {
+        let v = vec![5, 9, 2, 10, 1, 4];
+        assert!(is_bst::exec(&v));
     }
 
     #[test]
@@ -1478,6 +1490,7 @@ pub enum Algo {
     GeometricProgression,
     HelonFormula,
     InOrderTraversal,
+    IsBST,
     IsMacAddr,
     IsPalindrome,
     Kadane,
@@ -1572,6 +1585,7 @@ impl Algo {
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
+            s if s.to_lowercase() == "is_bst" => Algo::IsBST,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
