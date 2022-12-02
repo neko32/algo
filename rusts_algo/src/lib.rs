@@ -1304,7 +1304,6 @@ mod test_runner {
             None => (),
             Some(_) => assert!(false),
         }
-        
     }
 
     #[test]
