@@ -49,6 +49,7 @@ pub mod mean;
 pub mod min_breakdown_sum;
 pub mod min_reward;
 pub mod minmax_stack;
+pub mod mode;
 pub mod most_frequent_digit_sum;
 pub mod next_greater_element;
 pub mod number_grouping;
@@ -145,6 +146,7 @@ pub mod runner {
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
     use minmax_stack;
+    use mode;
     use most_frequent_digit_sum;
     use next_greater_element;
     use number_grouping;
@@ -343,6 +345,9 @@ pub mod runner {
             Algo::MinReward => {
                 min_reward::run();
             }
+            Algo::Mode => {
+                mode::run();
+            }
             Algo::MostFrequentDigitSum => {
                 most_frequent_digit_sum::run();
             }
@@ -512,6 +517,7 @@ mod test_runner {
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
     use crate::minmax_stack;
+    use crate::mode;
     use crate::most_frequent_digit_sum;
     use crate::next_greater_element;
     use crate::number_grouping;
@@ -1038,6 +1044,12 @@ mod test_runner {
     }
 
     #[test]
+    fn mode_test() {
+        let t = vec![3, 1, 6, 1, 5, 8, 1, 8, 10, 11];
+        assert_eq!(mode::exec(&t), 1);
+    }
+
+    #[test]
     fn most_frequent_digit_sum_test() {
         assert_eq!(most_frequent_digit_sum::exec(88), 9);
         assert_eq!(most_frequent_digit_sum::exec(994), 9);
@@ -1508,6 +1520,7 @@ pub enum Algo {
     MinBreakdownSum,
     MinMaxStack,
     MinReward,
+    Mode,
     MostFrequentDigitSum,
     NextGreaterElement,
     NumberGrouping,
@@ -1603,6 +1616,7 @@ impl Algo {
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
+            s if s.to_lowercase() == "mode" => Algo::Mode,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
