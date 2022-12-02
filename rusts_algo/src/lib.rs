@@ -79,6 +79,7 @@ pub mod stdev;
 pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
+pub mod subarray_sort;
 pub mod sum_of_arithmatic_progression;
 pub mod swap_sibling;
 pub mod tandem_repeat;
@@ -175,6 +176,7 @@ pub mod runner {
     use strange_bank;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
+    use subarray_sort;
     use sum_of_arithmatic_progression;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
@@ -429,6 +431,9 @@ pub mod runner {
             Algo::StringPattern => {
                 string_pattern::run();
             }
+            Algo::SubArraySort => {
+                subarray_sort::run();
+            }
             Algo::SumOfArithmaticProgression => {
                 sum_of_arithmatic_progression::run();
             }
@@ -547,6 +552,7 @@ mod test_runner {
     use crate::strange_bank;
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
+    use crate::subarray_sort;
     use crate::sum_of_arithmatic_progression;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
@@ -1285,6 +1291,23 @@ mod test_runner {
     }
 
     #[test]
+    fn subarray_sort_tobe_sorted_case() {
+        let a = vec![1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19];
+        assert_eq!(subarray_sort::exec(&a).unwrap(), (3, 9));
+    }
+
+
+    #[test]
+    fn subarray_already_sorted_case() {
+        let a = vec![1, 2, 4, 6, 7, 10, 11, 12, 16, 18, 19];
+        match subarray_sort::exec(&a) {
+            None => (),
+            Some(_) => assert!(false),
+        }
+        
+    }
+
+    #[test]
     fn sum_of_arithmatic_progression_test() {
         assert_eq!(sum_of_arithmatic_progression::exec(4, 5, 4, 3), 34);
         assert_eq!(sum_of_arithmatic_progression::exec(5, 5, 4, 3), 50);
@@ -1549,6 +1572,7 @@ pub enum Algo {
     StrangeBank,
     StringConstruction,
     StringPattern,
+    SubArraySort,
     SumOfArithmaticProgression,
     SwapSibling,
     TandemRepeat,
@@ -1644,6 +1668,7 @@ impl Algo {
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
+            s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
