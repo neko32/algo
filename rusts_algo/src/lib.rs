@@ -90,6 +90,7 @@ pub mod turn_commands;
 pub mod two_sum;
 pub mod variance;
 pub mod waterarea;
+pub mod xor_shift;
 pub mod z_score;
 
 use clap::Parser;
@@ -187,6 +188,7 @@ pub mod runner {
     use two_sum::two_sum;
     use variance;
     use waterarea::waterarea;
+    use xor_shift;
     use z_score;
 
     pub fn exec(algo: Algo) {
@@ -462,6 +464,9 @@ pub mod runner {
             Algo::WaterArea => {
                 waterarea::run();
             }
+            Algo::XOrShift => {
+                xor_shift::run();
+            }
             Algo::ZScore => {
                 z_score::run();
             }
@@ -563,6 +568,7 @@ mod test_runner {
     use crate::two_sum::two_sum;
     use crate::variance;
     use crate::waterarea::waterarea;
+    use crate::xor_shift;
     use crate::z_score;
     use float_cmp::approx_eq;
     use num::integer::gcd;
@@ -1481,6 +1487,13 @@ mod test_runner {
     }
 
     #[test]
+    fn xor_shift_test() {
+        let v = Vec::from_iter(std::iter::repeat_with(||xor_shift::exec(10000000)).take(5));
+        let s:std::collections::HashSet<u128> = v.into_iter().collect();
+        assert_eq!(s.len(), 1);
+    }
+
+    #[test]
     fn zscore_test() {
         let mut v = [7_f32, 8_f32, 8_f32, 7.5_f32, 9_f32];
         let zscores = z_score::exec(&mut v);
@@ -1582,6 +1595,7 @@ pub enum Algo {
     TwoSum,
     Variance,
     WaterArea,
+    XOrShift,
     ZScore,
 }
 
@@ -1679,6 +1693,7 @@ impl Algo {
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "variance" => Algo::Variance,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
+            s if s.to_lowercase() == "xor_shift" => Algo::XOrShift,
             s if s.to_lowercase() == "zscore" => Algo::ZScore,
             _ => panic!("{} has not implemented yet", algo_str),
         }
