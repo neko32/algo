@@ -100,15 +100,15 @@ pub fn traverse(n:Box<TreeNode>, trace:&mut Vec<i32>) {
 }
 
 #[derive(Debug, Clone)]
-enum Addr {
+pub enum Addr {
     Node(Box<ListNode>),
     Nil,
 }
 #[derive(Debug, Clone)]
 pub struct ListNode {
-    value: i32,
-    prev: Addr,
-    next: Addr,
+    pub value: i32,
+    pub prev: Addr,
+    pub next: Addr,
 }
 
 impl ListNode {
