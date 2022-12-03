@@ -40,6 +40,7 @@ pub mod largest_adjacent_product;
 pub mod largest_number;
 pub mod least_data_eviction;
 pub mod least_factorial;
+pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
 pub mod max_sibling_product;
@@ -140,6 +141,7 @@ pub mod runner {
     use lcs::lcs;
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
+    use length_linked_list;
     use levenshtein_distance;
     use linked_list;
     use max_sibling_product::max_sibling_product;
@@ -312,6 +314,9 @@ pub mod runner {
             }
             Algo::LCS => {
                 lcs::run();
+            }
+            Algo::LengthOfLinkedList => {
+                length_linked_list::run();
             }
             Algo::LinkedList => {
                 linked_list::run();
@@ -518,6 +523,7 @@ mod test_runner {
     use crate::lcs::lcs;
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
+    use crate::length_linked_list;
     use crate::levenshtein_distance;
     use crate::linked_list;
     use crate::max_sibling_product::max_sibling_product;
@@ -975,6 +981,12 @@ mod test_runner {
     fn least_factorial_test() {
         let n = 17;
         assert_eq!(least_factorial::exec(n), 24);
+    }
+
+    #[test]
+    fn length_linked_list_test() {
+        let v = vec![1,2,3,4,5];
+        assert_eq!(length_linked_list::exec(&v), 5);
     }
 
     #[test]
@@ -1546,6 +1558,7 @@ pub enum Algo {
     LCS,
     LeastDataEviction,
     LeastFactorial,
+    LengthOfLinkedList,
     LevenShteinDistance,
     LinkedList,
     MaxSiblingProduct,
@@ -1644,6 +1657,7 @@ impl Algo {
             s if s.to_lowercase() == "lcs" => Algo::LCS,
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
+            s if s.to_lowercase() == "length_of_linkedlist" => Algo::LengthOfLinkedList,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,

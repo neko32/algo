@@ -136,4 +136,28 @@ impl ListNode {
             next_node.trav_from(buf);
         }
     }
+
+    pub fn len(&self) -> usize {
+        let mut siz:usize = 1;
+        let mut p = self;
+        loop {
+            match &p.next {
+                Addr::Nil => break,
+                Addr::Node(n) => {
+                    siz += 1;
+                    p = n.as_ref();
+                },
+            }
+        }
+        siz
+    }
+}
+
+pub fn build_singly_linkedlist(v:&Vec<i32>) -> Box<ListNode> {
+    let (head, tail) = v.split_at(1);
+    let mut root = ListNode::new(head[0]);
+    for elem in tail {
+        root.append(*elem);
+    }
+    Box::new(root)
 }
