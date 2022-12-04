@@ -29,6 +29,7 @@ pub mod factorial;
 pub mod file_naming;
 pub mod fizzbuzz;
 pub mod geometric_progression;
+pub mod geometrical_mean;
 pub mod helon_formula;
 pub mod inorder_traversal;
 pub mod is_bst;
@@ -131,6 +132,7 @@ pub mod runner {
     use file_naming;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
+    use geometrical_mean;
     use helon_formula::helon_formula;
     use inorder_traversal;
     use is_bst;
@@ -289,6 +291,9 @@ pub mod runner {
             }
             Algo::GeometricProgression => {
                 geometric_progression::run();
+            }
+            Algo::GeometricalMean => {
+                geometrical_mean::run();
             }
             Algo::HelonFormula => {
                 helon_formula::run();
@@ -517,6 +522,7 @@ mod test_runner {
     use crate::file_naming;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
+    use crate::geometrical_mean;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
     use crate::is_bst;
@@ -875,6 +881,12 @@ mod test_runner {
         assert_eq!(geometric_progression::exec(3, 2, 3), 18);
         assert_eq!(geometric_progression::exec(4, 2, 3), 54);
         assert_eq!(geometric_progression::exec(5, 2, 3), 162);
+    }
+
+    #[test]
+    fn geometrical_mean_test() {
+        let v:Vec<f32> = vec![125_f32, 160_f32, 200_f32, 150_f32, 125_f32];
+        assert_eq!(geometrical_mean::exec(v), 1.4962779);
     }
 
     #[test]
@@ -1562,6 +1574,7 @@ pub enum Algo {
     FileNaming,
     FizzBuzz,
     GeometricProgression,
+    GeometricalMean,
     HelonFormula,
     InOrderTraversal,
     IsBST,
@@ -1662,6 +1675,7 @@ impl Algo {
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
+            s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
