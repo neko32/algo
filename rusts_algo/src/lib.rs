@@ -61,6 +61,7 @@ pub mod pascal_triangle;
 pub mod permutation;
 pub mod preorder_traversal;
 pub mod product_array_sort;
+pub mod quick_sort;
 pub mod radix_sort;
 pub mod random_perm;
 pub mod ranking;
@@ -78,6 +79,7 @@ pub mod shared;
 pub mod shorten_path;
 pub mod sigma_k;
 pub mod smallest_positive_product;
+pub mod sort_by_height;
 pub mod stdev;
 pub mod strange_bank;
 pub mod string_construction;
@@ -163,6 +165,7 @@ pub mod runner {
     use permutation;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
+    use quick_sort;
     use radix_sort::radix_sort;
     use random_perm;
     use ranking;
@@ -179,6 +182,7 @@ pub mod runner {
     use shorten_path;
     use sigma_k::sigma_k;
     use smallest_positive_product::smallest_positive_product;
+    use sort_by_height;
     use stdev;
     use strange_bank;
     use string_construction::string_construction;
@@ -391,6 +395,9 @@ pub mod runner {
             Algo::ProductArraySort => {
                 product_array_sort::run();
             }
+            Algo::QuickSort => {
+                quick_sort::run();
+            }
             Algo::RandomPerm => {
                 random_perm::run();
             }
@@ -435,6 +442,9 @@ pub mod runner {
             }
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
+            }
+            Algo::SortByHeight => {
+                sort_by_height::run();
             }
             Algo::Stdev => {
                 stdev::run();
@@ -553,6 +563,7 @@ mod test_runner {
     use crate::permutation;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
+    use crate::quick_sort;
     use crate::oppsite_pos_in_circle;
     use crate::radix_sort::radix_sort;
     use crate::random_perm;
@@ -571,6 +582,7 @@ mod test_runner {
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::sort_by_height;
     use crate::stdev;
     use crate::strange_bank;
     use crate::string_construction::string_construction;
@@ -1170,6 +1182,15 @@ mod test_runner {
     }
 
     #[test]
+    fn quick_sort_test() {
+        let mut v = vec![7, 1, 2, 5, 10, 20, 15, 13, 9, 5, 4];
+        let expected = vec![1, 2, 4, 5, 5, 7, 9, 10, 13, 15, 20];
+        let len = v.len();
+        quick_sort::exec(&mut v, 0, len - 1);
+        assert_eq!(v, expected);
+    }
+
+    #[test]
     fn rand_perm_test() {
         let o:Vec<i32> = (0..=10).collect();
         let mut v:Vec<i32> = (0..=10).collect();
@@ -1282,6 +1303,14 @@ mod test_runner {
     fn smallest_positive_bad_case() {
         let n = 19;
         assert_eq!(smallest_positive_product::exec(n), -1);
+    }
+
+    #[test]
+    fn sort_by_height_test() {
+        let mut v = vec![-1, 150, 190, 170, -1, -1, 160, 180];
+        let expected = vec![-1, 150, 160, 170, -1, -1, 180, 190];
+        sort_by_height::exec(&mut v);
+        assert_eq!(v, expected);
     }
 
     #[test]
@@ -1606,6 +1635,7 @@ pub enum Algo {
     Permutation,
     PreOrderTraversal,
     ProductArraySort,
+    QuickSort,
     RadixSort,
     RandomPerm,
     Ranking,
@@ -1622,6 +1652,7 @@ pub enum Algo {
     ShortenPath,
     SigmaK,
     SmallestPositiveProduct,
+    SortByHeight,
     Stdev,
     StrangeBank,
     StringConstruction,
@@ -1707,6 +1738,7 @@ impl Algo {
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
+            s if s.to_lowercase() == "quick_sort" => Algo::QuickSort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
             s if s.to_lowercase() == "ranking" => Algo::Ranking,
@@ -1722,6 +1754,7 @@ impl Algo {
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
+            s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
             s if s.to_lowercase() == "stdev" => Algo::Stdev,
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
