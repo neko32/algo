@@ -35,6 +35,7 @@ pub mod inorder_traversal;
 pub mod is_bst;
 pub mod is_mac_addr;
 pub mod is_palindrome;
+pub mod jump_height_in_frames;
 pub mod kadane;
 pub mod lcs;
 pub mod largest_adjacent_product;
@@ -136,6 +137,7 @@ pub mod runner {
     use geometric_progression;
     use geometrical_mean;
     use helon_formula::helon_formula;
+    use jump_height_in_frames;
     use inorder_traversal;
     use is_bst;
     use is_mac_addr::is_mac_addr;
@@ -313,6 +315,9 @@ pub mod runner {
             }
             Algo::IsMacAddr => {
                 is_mac_addr::run();
+            }
+            Algo::JumpHeightInFrames => {
+                jump_height_in_frames::run();
             }
             Algo::Kadane => {
                 kadane::run();
@@ -538,6 +543,7 @@ mod test_runner {
     use crate::is_bst;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
+    use crate::jump_height_in_frames;
     use crate::kadane::kadane;
     use crate::largest_adjacent_product;
     use crate::largest_number;
@@ -953,6 +959,12 @@ mod test_runner {
     fn is_mac_addr_bad() {
         let mac = "00-1B-63-84-45-Z6";
         assert_eq!(is_mac_addr::exec(mac), false);
+    }
+
+    #[test]
+    fn jump_height_in_frames_test() {
+        approx_eq!(f32, jump_height_in_frames::exec(0, 40, 120), 0_f32);
+        approx_eq!(f32, jump_height_in_frames::exec(20, 40, 120), 120_f32);
     }
 
     #[test]
@@ -1609,6 +1621,7 @@ pub enum Algo {
     IsBST,
     IsMacAddr,
     IsPalindrome,
+    JumpHeightInFrames,
     Kadane,
     LargestAdjacentProduct,
     LargestNumber,
@@ -1712,6 +1725,7 @@ impl Algo {
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
+            s if s.to_lowercase() == "jump_height_in_frames" => Algo::JumpHeightInFrames,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
             s if s.to_lowercase() == "largest_adjacent_product" => Algo::LargestAdjacentProduct,
             s if s.to_lowercase() == "largest_number" => Algo::LargestNumber,
