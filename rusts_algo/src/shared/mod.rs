@@ -100,15 +100,15 @@ pub fn traverse(n:Box<TreeNode>, trace:&mut Vec<i32>) {
 }
 
 #[derive(Debug, Clone)]
-enum Addr {
+pub enum Addr {
     Node(Box<ListNode>),
     Nil,
 }
 #[derive(Debug, Clone)]
 pub struct ListNode {
-    value: i32,
-    prev: Addr,
-    next: Addr,
+    pub value: i32,
+    pub prev: Addr,
+    pub next: Addr,
 }
 
 impl ListNode {
@@ -136,4 +136,28 @@ impl ListNode {
             next_node.trav_from(buf);
         }
     }
+
+    pub fn len(&self) -> usize {
+        let mut siz:usize = 1;
+        let mut p = self;
+        loop {
+            match &p.next {
+                Addr::Nil => break,
+                Addr::Node(n) => {
+                    siz += 1;
+                    p = n.as_ref();
+                },
+            }
+        }
+        siz
+    }
+}
+
+pub fn build_singly_linkedlist(v:&Vec<i32>) -> Box<ListNode> {
+    let (head, tail) = v.split_at(1);
+    let mut root = ListNode::new(head[0]);
+    for elem in tail {
+        root.append(*elem);
+    }
+    Box::new(root)
 }

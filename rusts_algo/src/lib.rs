@@ -29,31 +29,40 @@ pub mod factorial;
 pub mod file_naming;
 pub mod fizzbuzz;
 pub mod geometric_progression;
+pub mod geometrical_mean;
 pub mod helon_formula;
 pub mod inorder_traversal;
+pub mod is_bst;
 pub mod is_mac_addr;
 pub mod is_palindrome;
+pub mod jump_height_in_frames;
 pub mod kadane;
 pub mod lcs;
 pub mod largest_adjacent_product;
 pub mod largest_number;
 pub mod least_data_eviction;
 pub mod least_factorial;
+pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
 pub mod mean;
+pub mod merge_sorted_linkedlist;
 pub mod min_breakdown_sum;
 pub mod min_reward;
 pub mod minmax_stack;
+pub mod mode;
+pub mod most_frequent_digit_sum;
+pub mod next_greater_element;
 pub mod number_grouping;
 pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
 pub mod permutation;
 pub mod preorder_traversal;
 pub mod product_array_sort;
+pub mod quick_sort;
 pub mod radix_sort;
 pub mod random_perm;
 pub mod ranking;
@@ -71,20 +80,26 @@ pub mod shared;
 pub mod shorten_path;
 pub mod sigma_k;
 pub mod smallest_positive_product;
+pub mod sort_by_height;
 pub mod stdev;
 pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
+pub mod subarray_sort;
 pub mod sum_of_arithmatic_progression;
+pub mod sum_of_squared_deviation;
 pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod three_number_sort;
 pub mod toggle_bit;
+pub mod topological_sort;
+pub mod total_sum_with_n_num;
 pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
 pub mod variance;
 pub mod waterarea;
+pub mod xor_shift;
 pub mod z_score;
 
 use clap::Parser;
@@ -123,8 +138,11 @@ pub mod runner {
     use file_naming;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
+    use geometrical_mean;
     use helon_formula::helon_formula;
+    use jump_height_in_frames;
     use inorder_traversal;
+    use is_bst;
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
     use kadane::kadane;
@@ -133,20 +151,26 @@ pub mod runner {
     use lcs::lcs;
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
+    use length_linked_list;
     use levenshtein_distance;
     use linked_list;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use mean;
+    use merge_sorted_linkedlist;
     use min_breakdown_sum::min_breakdown_sum;
     use min_reward::min_reward;
     use minmax_stack;
+    use mode;
+    use most_frequent_digit_sum;
+    use next_greater_element;
     use number_grouping;
     use oppsite_pos_in_circle;
     use pascal_triangle;
     use permutation;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
+    use quick_sort;
     use radix_sort::radix_sort;
     use random_perm;
     use ranking;
@@ -163,20 +187,26 @@ pub mod runner {
     use shorten_path;
     use sigma_k::sigma_k;
     use smallest_positive_product::smallest_positive_product;
+    use sort_by_height;
     use stdev;
     use strange_bank;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
+    use subarray_sort;
     use sum_of_arithmatic_progression;
+    use sum_of_squared_deviation;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
     use three_number_sort;
     use three_sum;
     use toggle_bit::toggle_bit;
+    use topological_sort;
+    use total_sum_with_n_num;
     use turn_commands;
     use two_sum::two_sum;
     use variance;
     use waterarea::waterarea;
+    use xor_shift;
     use z_score;
 
     pub fn exec(algo: Algo) {
@@ -274,17 +304,26 @@ pub mod runner {
             Algo::GeometricProgression => {
                 geometric_progression::run();
             }
+            Algo::GeometricalMean => {
+                geometrical_mean::run();
+            }
             Algo::HelonFormula => {
                 helon_formula::run();
             }
             Algo::InOrderTraversal => {
                 inorder_traversal::run();
             }
+            Algo::IsBST => {
+                is_bst::run();
+            }
             Algo::IsPalindrome => {
                 is_palindrome::run();
             }
             Algo::IsMacAddr => {
                 is_mac_addr::run();
+            }
+            Algo::JumpHeightInFrames => {
+                jump_height_in_frames::run();
             }
             Algo::Kadane => {
                 kadane::run();
@@ -297,6 +336,9 @@ pub mod runner {
             }
             Algo::LCS => {
                 lcs::run();
+            }
+            Algo::LengthOfLinkedList => {
+                length_linked_list::run();
             }
             Algo::LinkedList => {
                 linked_list::run();
@@ -325,6 +367,9 @@ pub mod runner {
             Algo::Mean => {
                 mean::run();
             }
+            Algo::MergeSortedLinkedList => {
+                merge_sorted_linkedlist::run();
+            }
             Algo::MinBreakdownSum => {
                 min_breakdown_sum::run();
             }
@@ -333,6 +378,15 @@ pub mod runner {
             }
             Algo::MinReward => {
                 min_reward::run();
+            }
+            Algo::Mode => {
+                mode::run();
+            }
+            Algo::MostFrequentDigitSum => {
+                most_frequent_digit_sum::run();
+            }
+            Algo::NextGreaterElement => {
+                next_greater_element::run();
             }
             Algo::NumberGrouping => {
                 number_grouping::run();
@@ -351,6 +405,9 @@ pub mod runner {
             }
             Algo::ProductArraySort => {
                 product_array_sort::run();
+            }
+            Algo::QuickSort => {
+                quick_sort::run();
             }
             Algo::RandomPerm => {
                 random_perm::run();
@@ -397,6 +454,9 @@ pub mod runner {
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
+            Algo::SortByHeight => {
+                sort_by_height::run();
+            }
             Algo::Stdev => {
                 stdev::run();
             }
@@ -409,8 +469,14 @@ pub mod runner {
             Algo::StringPattern => {
                 string_pattern::run();
             }
+            Algo::SubArraySort => {
+                subarray_sort::run();
+            }
             Algo::SumOfArithmaticProgression => {
                 sum_of_arithmatic_progression::run();
+            }
+            Algo::SumOfSquaredDeviations => {
+                sum_of_squared_deviation::run();
             }
             Algo::SwapSibling => {
                 swap_sibling::run();
@@ -425,6 +491,12 @@ pub mod runner {
             Algo::ThreeSum => {
                 three_sum::run();
             }
+            Algo::TopologicalSort => {
+                topological_sort::run();
+            }
+            Algo::TotalSumWithNNums => {
+                total_sum_with_n_num::run();
+            }
             Algo::TurnCommands => {
                 turn_commands::run();
             }
@@ -436,6 +508,9 @@ pub mod runner {
             }
             Algo::WaterArea => {
                 waterarea::run();
+            }
+            Algo::XOrShift => {
+                xor_shift::run();
             }
             Algo::ZScore => {
                 z_score::run();
@@ -477,30 +552,39 @@ mod test_runner {
     use crate::file_naming;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
+    use crate::geometrical_mean;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
+    use crate::is_bst;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
+    use crate::jump_height_in_frames;
     use crate::kadane::kadane;
     use crate::largest_adjacent_product;
     use crate::largest_number;
     use crate::lcs::lcs;
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
+    use crate::length_linked_list;
     use crate::levenshtein_distance;
     use crate::linked_list;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::mean;
+    use crate::merge_sorted_linkedlist;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_reward::min_reward;
     use crate::minmax_stack;
+    use crate::mode;
+    use crate::most_frequent_digit_sum;
+    use crate::next_greater_element;
     use crate::number_grouping;
     use crate::pascal_triangle;
     use crate::permutation;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
+    use crate::quick_sort;
     use crate::oppsite_pos_in_circle;
     use crate::radix_sort::radix_sort;
     use crate::random_perm;
@@ -519,20 +603,26 @@ mod test_runner {
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::sort_by_height;
     use crate::stdev;
     use crate::strange_bank;
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
+    use crate::subarray_sort;
     use crate::sum_of_arithmatic_progression;
+    use crate::sum_of_squared_deviation;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
     use crate::three_number_sort;
     use crate::three_sum;
     use crate::toggle_bit::toggle_bit;
+    use crate::topological_sort;
+    use crate::total_sum_with_n_num;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
     use crate::variance;
     use crate::waterarea::waterarea;
+    use crate::xor_shift;
     use crate::z_score;
     use float_cmp::approx_eq;
     use num::integer::gcd;
@@ -830,6 +920,12 @@ mod test_runner {
     }
 
     #[test]
+    fn geometrical_mean_test() {
+        let v:Vec<f32> = vec![125_f32, 160_f32, 200_f32, 150_f32, 125_f32];
+        assert_eq!(geometrical_mean::exec(v), 1.4962779);
+    }
+
+    #[test]
     fn helon_formula_test() {
         let a = 5.0;
         let b = 6.0;
@@ -845,6 +941,12 @@ mod test_runner {
         let r = inorder_traversal::exec(&v);
         let expected = vec![1, 2, 4, 5, 9, 10];
         assert_eq!(r, expected);
+    }
+
+    #[test]
+    fn is_bst_test() {
+        let v = vec![5, 9, 2, 10, 1, 4];
+        assert!(is_bst::exec(&v));
     }
 
     #[test]
@@ -875,6 +977,12 @@ mod test_runner {
     fn is_mac_addr_bad() {
         let mac = "00-1B-63-84-45-Z6";
         assert_eq!(is_mac_addr::exec(mac), false);
+    }
+
+    #[test]
+    fn jump_height_in_frames_test() {
+        approx_eq!(f32, jump_height_in_frames::exec(0, 40, 120), 0_f32);
+        approx_eq!(f32, jump_height_in_frames::exec(20, 40, 120), 120_f32);
     }
 
     #[test]
@@ -936,6 +1044,12 @@ mod test_runner {
     }
 
     #[test]
+    fn length_linked_list_test() {
+        let v = vec![1,2,3,4,5];
+        assert_eq!(length_linked_list::exec(&v), 5);
+    }
+
+    #[test]
     fn levenshtein_distance_test() {
         let s = "abc";
         let t = "yabd";
@@ -986,6 +1100,15 @@ mod test_runner {
     }
 
     #[test]
+    fn merge_sorted_linkedlist_test() {
+        let mut l1 = vec![2, 6, 7, 8];
+        let mut l2 = vec![1, 3, 4, 5, 9, 10];
+        merge_sorted_linkedlist::exec(&mut l1, &mut l2);
+        let expected = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        assert_eq!(l2, expected);
+    }
+
+    #[test]
     fn min_breakdown_sum_test1() {
         let n:u32 = 240;
         let rez = min_breakdown_sum::exec(n);
@@ -1011,6 +1134,28 @@ mod test_runner {
             minmax_stack::run();
         });
         assert_ne!(maybe_err.is_err(), true);
+    }
+
+    #[test]
+    fn mode_test() {
+        let t = vec![3, 1, 6, 1, 5, 8, 1, 8, 10, 11];
+        assert_eq!(mode::exec(&t), 1);
+    }
+
+    #[test]
+    fn most_frequent_digit_sum_test() {
+        assert_eq!(most_frequent_digit_sum::exec(88), 9);
+        assert_eq!(most_frequent_digit_sum::exec(994), 9);
+        assert_eq!(most_frequent_digit_sum::exec(239), 9);
+        assert_eq!(most_frequent_digit_sum::exec(1), 1);
+        assert_eq!(most_frequent_digit_sum::exec(99999), 18);
+    }
+
+    #[test]
+    fn next_greater_element_test() {
+        let a = &[2, 5, -3, -4, 6, 7, 2];
+        let expected = vec![5, 6, 6, 6, 7, -1, 5];
+        assert_eq!(next_greater_element::exec(a), expected);
     }
 
     #[test]
@@ -1064,6 +1209,15 @@ mod test_runner {
         let v: Vec<i32> = vec![5, 9, 2, 10, 1, 4];
         let r: Vec<i32> = preorder_traversal::exec(v);
         assert_eq!(r, vec![5, 2, 1, 4, 9, 10]);
+    }
+
+    #[test]
+    fn quick_sort_test() {
+        let mut v = vec![7, 1, 2, 5, 10, 20, 15, 13, 9, 5, 4];
+        let expected = vec![1, 2, 4, 5, 5, 7, 9, 10, 13, 15, 20];
+        let len = v.len();
+        quick_sort::exec(&mut v, 0, len - 1);
+        assert_eq!(v, expected);
     }
 
     #[test]
@@ -1182,6 +1336,14 @@ mod test_runner {
     }
 
     #[test]
+    fn sort_by_height_test() {
+        let mut v = vec![-1, 150, 190, 170, -1, -1, 160, 180];
+        let expected = vec![-1, 150, 160, 170, -1, -1, 180, 190];
+        sort_by_height::exec(&mut v);
+        assert_eq!(v, expected);
+    }
+
+    #[test]
     fn stdev_test() {
         let v = &[71_f32, 80_f32, 89_f32];
         let stdev = stdev::exec(v);
@@ -1233,9 +1395,32 @@ mod test_runner {
     }
 
     #[test]
+    fn subarray_sort_tobe_sorted_case() {
+        let a = vec![1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19];
+        assert_eq!(subarray_sort::exec(&a).unwrap(), (3, 9));
+    }
+
+
+    #[test]
+    fn subarray_already_sorted_case() {
+        let a = vec![1, 2, 4, 6, 7, 10, 11, 12, 16, 18, 19];
+        match subarray_sort::exec(&a) {
+            None => (),
+            Some(_) => assert!(false),
+        }
+    }
+
+    #[test]
     fn sum_of_arithmatic_progression_test() {
         assert_eq!(sum_of_arithmatic_progression::exec(4, 5, 4, 3), 34);
         assert_eq!(sum_of_arithmatic_progression::exec(5, 5, 4, 3), 50);
+    }
+
+    #[test]
+    fn sum_of_squared_deviations_test() {
+        let v:Vec<f32> = vec![4.0, 5.0, 6.0, 7.0, 9.0, 12.0, 15.0, 16.0];
+        let r = sum_of_squared_deviation::exec(&v);
+        approx_eq!(f32, r, 147.5_f32);
     }
 
     #[test]
@@ -1260,6 +1445,14 @@ mod test_runner {
         assert_eq!(rez[0], vec![-8, 2, 6]);
         assert_eq!(rez[1], vec![-8, 3, 5]);
         assert_eq!(rez[2], vec![-6, 1, 5]);
+    }
+
+    #[test]
+    fn total_sum_with_n_num_test() {
+        let a = &[2, 3, 4, 5];
+        let target = 14;
+        let k = 4;
+        assert!(total_sum_with_n_num::exec(a, target, k));
     }
 
     #[test]
@@ -1359,6 +1552,21 @@ mod test_runner {
     }
 
     #[test]
+    fn topological_sort() {
+        let j = vec![1, 2, 3, 4];
+        let mut deps:Vec<Vec<i32>> = Vec::new();
+        deps.push(vec![1, 2]);
+        deps.push(vec![1, 3]);
+        deps.push(vec![3, 2]);
+        deps.push(vec![4, 2]);
+        deps.push(vec![4, 3]);
+        let rez = topological_sort::exec(&j, &deps);
+        assert!(rez.is_some());
+        let r = rez.unwrap();
+        assert_eq!(r, vec![4, 1, 3, 2]);
+    }
+
+    #[test]
     fn turn_commands_test() {
         let cmd = "LLARL";
         assert_eq!(turn_commands::exec(cmd), 3);
@@ -1407,6 +1615,13 @@ mod test_runner {
     }
 
     #[test]
+    fn xor_shift_test() {
+        let v = Vec::from_iter(std::iter::repeat_with(||xor_shift::exec(10000000)).take(5));
+        let s:std::collections::HashSet<u128> = v.into_iter().collect();
+        assert_eq!(s.len(), 1);
+    }
+
+    #[test]
     fn zscore_test() {
         let mut v = [7_f32, 8_f32, 8_f32, 7.5_f32, 9_f32];
         let zscores = z_score::exec(&mut v);
@@ -1448,31 +1663,40 @@ pub enum Algo {
     FileNaming,
     FizzBuzz,
     GeometricProgression,
+    GeometricalMean,
     HelonFormula,
     InOrderTraversal,
+    IsBST,
     IsMacAddr,
     IsPalindrome,
+    JumpHeightInFrames,
     Kadane,
     LargestAdjacentProduct,
     LargestNumber,
     LCS,
     LeastDataEviction,
     LeastFactorial,
+    LengthOfLinkedList,
     LevenShteinDistance,
     LinkedList,
     MaxSiblingProduct,
     MaxSubSetSum,
     MaxWithLessDigit,
     Mean,
+    MergeSortedLinkedList,
     MinBreakdownSum,
     MinMaxStack,
     MinReward,
+    Mode,
+    MostFrequentDigitSum,
+    NextGreaterElement,
     NumberGrouping,
     OppositePosInCircle,
     PascalTriangle,
     Permutation,
     PreOrderTraversal,
     ProductArraySort,
+    QuickSort,
     RadixSort,
     RandomPerm,
     Ranking,
@@ -1489,20 +1713,26 @@ pub enum Algo {
     ShortenPath,
     SigmaK,
     SmallestPositiveProduct,
+    SortByHeight,
     Stdev,
     StrangeBank,
     StringConstruction,
     StringPattern,
+    SubArraySort,
     SumOfArithmaticProgression,
+    SumOfSquaredDeviations,
     SwapSibling,
     TandemRepeat,
     ThreeNumberSort,
     ThreeSum,
     ToggleBit,
+    TopologicalSort,
+    TotalSumWithNNums,
     TurnCommands,
     TwoSum,
     Variance,
     WaterArea,
+    XOrShift,
     ZScore,
 }
 
@@ -1540,31 +1770,40 @@ impl Algo {
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
+            s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
+            s if s.to_lowercase() == "is_bst" => Algo::IsBST,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
+            s if s.to_lowercase() == "jump_height_in_frames" => Algo::JumpHeightInFrames,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
             s if s.to_lowercase() == "largest_adjacent_product" => Algo::LargestAdjacentProduct,
             s if s.to_lowercase() == "largest_number" => Algo::LargestNumber,
             s if s.to_lowercase() == "lcs" => Algo::LCS,
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
+            s if s.to_lowercase() == "length_of_linkedlist" => Algo::LengthOfLinkedList,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
             s if s.to_lowercase() == "mean" => Algo::Mean,
+            s if s.to_lowercase() == "merge_sorted_linkedlist" => Algo::MergeSortedLinkedList,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
+            s if s.to_lowercase() == "mode" => Algo::Mode,
+            s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
+            s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
+            s if s.to_lowercase() == "quick_sort" => Algo::QuickSort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
             s if s.to_lowercase() == "ranking" => Algo::Ranking,
@@ -1580,21 +1819,27 @@ impl Algo {
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
+            s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
             s if s.to_lowercase() == "stdev" => Algo::Stdev,
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
+            s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
+            s if s.to_lowercase() == "sum_of_squared_deviations" => Algo::SumOfSquaredDeviations,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
             s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
+            s if s.to_lowercase() == "topological_sort" => Algo::TopologicalSort,
+            s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "variance" => Algo::Variance,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
+            s if s.to_lowercase() == "xor_shift" => Algo::XOrShift,
             s if s.to_lowercase() == "zscore" => Algo::ZScore,
             _ => panic!("{} has not implemented yet", algo_str),
         }
