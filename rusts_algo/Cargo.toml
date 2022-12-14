@@ -12,6 +12,8 @@ clap = { version = "3.1.18", features = ["derive"] }
 float-cmp = "0.9.0"
 multiarray = "0.1.3"
 derive_more = "0.99.17"
+ndarray = "0.15.6"
 num = "0.4.0"
 num_cpus = "1.13.1"
 rand = "0.8.5"
+

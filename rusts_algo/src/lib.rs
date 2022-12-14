@@ -92,6 +92,7 @@ pub mod tandem_repeat;
 pub mod three_number_sort;
 pub mod toggle_bit;
 pub mod topological_sort;
+pub mod total_sum_with_n_num;
 pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
@@ -198,6 +199,7 @@ pub mod runner {
     use three_sum;
     use toggle_bit::toggle_bit;
     use topological_sort;
+    use total_sum_with_n_num;
     use turn_commands;
     use two_sum::two_sum;
     use variance;
@@ -487,6 +489,9 @@ pub mod runner {
             Algo::TopologicalSort => {
                 topological_sort::run();
             }
+            Algo::TotalSumWithNNums => {
+                total_sum_with_n_num::run();
+            }
             Algo::TurnCommands => {
                 turn_commands::run();
             }
@@ -606,6 +611,7 @@ mod test_runner {
     use crate::three_sum;
     use crate::toggle_bit::toggle_bit;
     use crate::topological_sort;
+    use crate::total_sum_with_n_num;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
     use crate::variance;
@@ -1429,6 +1435,14 @@ mod test_runner {
     }
 
     #[test]
+    fn total_sum_with_n_num_test() {
+        let a = &[2, 3, 4, 5];
+        let target = 14;
+        let k = 4;
+        assert!(total_sum_with_n_num::exec(a, target, k));
+    }
+
+    #[test]
     fn diagonal_is_diag_yes() {
         let a = Point::new(1, 5);
         let b = Point::new(9, 13);
@@ -1699,6 +1713,7 @@ pub enum Algo {
     ThreeSum,
     ToggleBit,
     TopologicalSort,
+    TotalSumWithNNums,
     TurnCommands,
     TwoSum,
     Variance,
@@ -1803,6 +1818,7 @@ impl Algo {
             s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
             s if s.to_lowercase() == "topological_sort" => Algo::TopologicalSort,
+            s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
