@@ -91,6 +91,7 @@ pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod three_number_sort;
 pub mod toggle_bit;
+pub mod topological_sort;
 pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
@@ -196,6 +197,7 @@ pub mod runner {
     use three_number_sort;
     use three_sum;
     use toggle_bit::toggle_bit;
+    use topological_sort;
     use turn_commands;
     use two_sum::two_sum;
     use variance;
@@ -482,6 +484,9 @@ pub mod runner {
             Algo::ThreeSum => {
                 three_sum::run();
             }
+            Algo::TopologicalSort => {
+                topological_sort::run();
+            }
             Algo::TurnCommands => {
                 turn_commands::run();
             }
@@ -600,6 +605,7 @@ mod test_runner {
     use crate::three_number_sort;
     use crate::three_sum;
     use crate::toggle_bit::toggle_bit;
+    use crate::topological_sort;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
     use crate::variance;
@@ -1519,6 +1525,21 @@ mod test_runner {
     }
 
     #[test]
+    fn topological_sort() {
+        let j = vec![1, 2, 3, 4];
+        let mut deps:Vec<Vec<i32>> = Vec::new();
+        deps.push(vec![1, 2]);
+        deps.push(vec![1, 3]);
+        deps.push(vec![3, 2]);
+        deps.push(vec![4, 2]);
+        deps.push(vec![4, 3]);
+        let rez = topological_sort::exec(&j, &deps);
+        assert!(rez.is_some());
+        let r = rez.unwrap();
+        assert_eq!(r, vec![4, 1, 3, 2]);
+    }
+
+    #[test]
     fn turn_commands_test() {
         let cmd = "LLARL";
         assert_eq!(turn_commands::exec(cmd), 3);
@@ -1677,6 +1698,7 @@ pub enum Algo {
     ThreeNumberSort,
     ThreeSum,
     ToggleBit,
+    TopologicalSort,
     TurnCommands,
     TwoSum,
     Variance,
@@ -1780,6 +1802,7 @@ impl Algo {
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
             s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
+            s if s.to_lowercase() == "topological_sort" => Algo::TopologicalSort,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
