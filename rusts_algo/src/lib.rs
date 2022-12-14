@@ -30,6 +30,7 @@ pub mod file_naming;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
+pub mod group_anagrams;
 pub mod helon_formula;
 pub mod inorder_traversal;
 pub mod is_bst;
@@ -139,6 +140,7 @@ pub mod runner {
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
     use geometrical_mean;
+    use group_anagrams;
     use helon_formula::helon_formula;
     use jump_height_in_frames;
     use inorder_traversal;
@@ -306,6 +308,9 @@ pub mod runner {
             }
             Algo::GeometricalMean => {
                 geometrical_mean::run();
+            }
+            Algo::GroupAnagrams => {
+                group_anagrams::run();
             }
             Algo::HelonFormula => {
                 helon_formula::run();
@@ -553,6 +558,7 @@ mod test_runner {
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
     use crate::geometrical_mean;
+    use crate::group_anagrams;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
     use crate::is_bst;
@@ -923,6 +929,14 @@ mod test_runner {
     fn geometrical_mean_test() {
         let v:Vec<f32> = vec![125_f32, 160_f32, 200_f32, 150_f32, 125_f32];
         assert_eq!(geometrical_mean::exec(v), 1.4962779);
+    }
+
+    #[test]
+    fn group_anagrams_test() {
+        let words = vec!["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"];
+        let expected = vec![vec!["yo", "oy"], vec!["flop", "olfp"], vec!["act", "tac", "cat"], vec!["foo"]];
+        let rez = group_anagrams::exec(&words);
+        assert!(expected.iter().all(|a|rez.contains(a)));
     }
 
     #[test]
@@ -1664,6 +1678,7 @@ pub enum Algo {
     FizzBuzz,
     GeometricProgression,
     GeometricalMean,
+    GroupAnagrams,
     HelonFormula,
     InOrderTraversal,
     IsBST,
@@ -1771,6 +1786,7 @@ impl Algo {
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
+            s if s.to_lowercase() == "group_anagrams" => Algo::GroupAnagrams,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
