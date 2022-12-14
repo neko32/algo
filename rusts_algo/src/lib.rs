@@ -87,6 +87,7 @@ pub mod string_construction;
 pub mod string_pattern;
 pub mod subarray_sort;
 pub mod sum_of_arithmatic_progression;
+pub mod sum_of_squared_deviation;
 pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod three_number_sort;
@@ -193,6 +194,7 @@ pub mod runner {
     use string_pattern::string_pattern;
     use subarray_sort;
     use sum_of_arithmatic_progression;
+    use sum_of_squared_deviation;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
     use three_number_sort;
@@ -473,6 +475,9 @@ pub mod runner {
             Algo::SumOfArithmaticProgression => {
                 sum_of_arithmatic_progression::run();
             }
+            Algo::SumOfSquaredDeviations => {
+                sum_of_squared_deviation::run();
+            }
             Algo::SwapSibling => {
                 swap_sibling::run();
             }
@@ -605,6 +610,7 @@ mod test_runner {
     use crate::string_pattern::string_pattern;
     use crate::subarray_sort;
     use crate::sum_of_arithmatic_progression;
+    use crate::sum_of_squared_deviation;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
     use crate::three_number_sort;
@@ -1411,6 +1417,13 @@ mod test_runner {
     }
 
     #[test]
+    fn sum_of_squared_deviations_test() {
+        let v:Vec<f32> = vec![4.0, 5.0, 6.0, 7.0, 9.0, 12.0, 15.0, 16.0];
+        let r = sum_of_squared_deviation::exec(&v);
+        approx_eq!(f32, r, 147.5_f32);
+    }
+
+    #[test]
     fn tandem_repeat_case1() {
         let c = "CatCat".to_string();
         assert!(tandem_repeat::exec(c));
@@ -1707,6 +1720,7 @@ pub enum Algo {
     StringPattern,
     SubArraySort,
     SumOfArithmaticProgression,
+    SumOfSquaredDeviations,
     SwapSibling,
     TandemRepeat,
     ThreeNumberSort,
@@ -1812,6 +1826,7 @@ impl Algo {
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
             s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
+            s if s.to_lowercase() == "sum_of_squared_deviations" => Algo::SumOfSquaredDeviations,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
