@@ -83,6 +83,7 @@ pub mod sigma_k;
 pub mod smallest_positive_product;
 pub mod sort_by_height;
 pub mod sorted_matrix_search;
+pub mod stack_copy_only_pop;
 pub mod stdev;
 pub mod strange_bank;
 pub mod string_construction;
@@ -166,6 +167,7 @@ pub mod runner {
     use minmax_stack;
     use mode;
     use most_frequent_digit_sum;
+    use ndarray::stack;
     use next_greater_element;
     use number_grouping;
     use oppsite_pos_in_circle;
@@ -192,6 +194,7 @@ pub mod runner {
     use smallest_positive_product::smallest_positive_product;
     use sort_by_height;
     use sorted_matrix_search;
+    use stack_copy_only_pop;
     use stdev;
     use strange_bank;
     use string_construction::string_construction;
@@ -467,6 +470,9 @@ pub mod runner {
             Algo::SortedMatrixSearch => {
                 sorted_matrix_search::run();
             }
+            Algo::StackCopyOnlyPop => {
+                stack_copy_only_pop::run();
+            }
             Algo::Stdev => {
                 stdev::run();
             }
@@ -616,6 +622,7 @@ mod test_runner {
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sort_by_height;
     use crate::sorted_matrix_search;
+    use crate::stack_copy_only_pop;
     use crate::stdev;
     use crate::strange_bank;
     use crate::string_construction::string_construction;
@@ -1391,6 +1398,15 @@ mod test_runner {
     }
 
     #[test]
+    fn stack_copy_only_pop_test() {
+        let mut v = vec![1, 2, 3, 4, 5];
+        let expected = v.clone();
+        let mut r:Vec<i32> = Vec::new();
+        stack_copy_only_pop::exec(&mut v, &mut r);
+        assert_eq!(expected, r);
+    }
+
+    #[test]
     fn stdev_test() {
         let v = &[71_f32, 80_f32, 89_f32];
         let stdev = stdev::exec(v);
@@ -1763,6 +1779,7 @@ pub enum Algo {
     SmallestPositiveProduct,
     SortByHeight,
     SortedMatrixSearch,
+    StackCopyOnlyPop,
     Stdev,
     StrangeBank,
     StringConstruction,
@@ -1871,6 +1888,7 @@ impl Algo {
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
+            s if s.to_lowercase() == "stack_copy_only_pop" => Algo::StackCopyOnlyPop,
             s if s.to_lowercase() == "stdev" => Algo::Stdev,
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
