@@ -76,6 +76,7 @@ pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod runlength;
 pub mod shapearea;
+pub mod same_bst;
 pub mod selection_sort;
 pub mod shared;
 pub mod shorten_path;
@@ -187,6 +188,7 @@ pub mod runner {
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use runlength::runlength;
+    use same_bst;
     use shapearea;
     use selection_sort::selection_sort;
     use shorten_path;
@@ -449,6 +451,9 @@ pub mod runner {
             Algo::RunLength => {
                 runlength::run();
             }
+            Algo::SameBST => {
+                same_bst::run();
+            }
             Algo::ShapeArea => {
                 shapearea::run();
             }
@@ -614,6 +619,7 @@ mod test_runner {
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::runlength::runlength;
+    use crate::same_bst;
     use crate::selection_sort::selection_sort;
     use crate::shapearea;
     use crate::shared::*;
@@ -1322,6 +1328,21 @@ mod test_runner {
     }
 
     #[test]
+    fn same_bst_true_case_test() {
+        let a = vec![10, 15, 8, 12, 94, 81, 5, 2, 11];
+        let b = vec![10, 8, 5, 15, 2, 12, 11, 94, 81];
+        assert!(same_bst::exec(&a, &b));
+    }
+
+
+    #[test]
+    fn same_bst_false_case_test() {
+        let a = vec![10, 15, 8, 12, 94, 81, 5, 2, 1];
+        let b = vec![10, 8, 5, 15, 2, 12, 11, 94, 81];
+        assert_ne!(same_bst::exec(&a, &b), true);
+    }
+
+    #[test]
     fn shapearea_test() {
         assert_eq!(shapearea::exec(1), 1);
         assert_eq!(shapearea::exec(2), 5);
@@ -1772,6 +1793,7 @@ pub enum Algo {
     RightMostDiffBit,
     RightMostSameBit,
     RunLength,
+    SameBST,
     ShapeArea,
     SelectionSort,
     ShortenPath,
@@ -1882,6 +1904,7 @@ impl Algo {
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
+            s if s.to_lowercase() == "same_bst" => Algo::SameBST,
             s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
