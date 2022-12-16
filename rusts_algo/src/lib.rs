@@ -82,6 +82,7 @@ pub mod shorten_path;
 pub mod sigma_k;
 pub mod smallest_positive_product;
 pub mod sort_by_height;
+pub mod sorted_matrix_search;
 pub mod stdev;
 pub mod strange_bank;
 pub mod string_construction;
@@ -190,6 +191,7 @@ pub mod runner {
     use sigma_k::sigma_k;
     use smallest_positive_product::smallest_positive_product;
     use sort_by_height;
+    use sorted_matrix_search;
     use stdev;
     use strange_bank;
     use string_construction::string_construction;
@@ -462,6 +464,9 @@ pub mod runner {
             Algo::SortByHeight => {
                 sort_by_height::run();
             }
+            Algo::SortedMatrixSearch => {
+                sorted_matrix_search::run();
+            }
             Algo::Stdev => {
                 stdev::run();
             }
@@ -610,6 +615,7 @@ mod test_runner {
     use crate::sigma_k::sigma_k;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sort_by_height;
+    use crate::sorted_matrix_search;
     use crate::stdev;
     use crate::strange_bank;
     use crate::string_construction::string_construction;
@@ -636,6 +642,7 @@ mod test_runner {
         array,
         collections::{BTreeSet, HashSet},
     };
+    use ndarray::{Array2, arr2};
 
     #[test]
     fn add_two_int_without_carry_test() {
@@ -1358,6 +1365,32 @@ mod test_runner {
     }
 
     #[test]
+    fn sorted_matrix_search_found_case() {
+        let matrix:Array2<u32> = arr2(&[
+            [1, 4, 7, 12, 15, 1000],
+            [2, 5, 19, 31, 32, 1001],
+            [3, 8, 24, 33, 35, 1002],
+            [40, 41, 42, 44, 45, 1003],
+            [99, 100, 103, 106, 128, 1004],
+        ]);
+        let rez = sorted_matrix_search::exec(&matrix, 44);
+        assert_eq!(rez, (3, 3));
+    }
+
+    #[test]
+    fn sorted_matrix_search_not_found_case() {
+        let matrix:Array2<u32> = arr2(&[
+            [1, 4, 7, 12, 15, 1000],
+            [2, 5, 19, 31, 32, 1001],
+            [3, 8, 24, 33, 35, 1002],
+            [40, 41, 42, 44, 45, 1003],
+            [99, 100, 103, 106, 128, 1004],
+        ]);
+        let rez = sorted_matrix_search::exec(&matrix, 43);
+        assert_eq!(rez, (-1, -1));
+    }
+
+    #[test]
     fn stdev_test() {
         let v = &[71_f32, 80_f32, 89_f32];
         let stdev = stdev::exec(v);
@@ -1729,6 +1762,7 @@ pub enum Algo {
     SigmaK,
     SmallestPositiveProduct,
     SortByHeight,
+    SortedMatrixSearch,
     Stdev,
     StrangeBank,
     StringConstruction,
@@ -1836,6 +1870,7 @@ impl Algo {
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
+            s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
             s if s.to_lowercase() == "stdev" => Algo::Stdev,
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
