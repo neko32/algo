@@ -47,6 +47,7 @@ pub mod least_factorial;
 pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
+pub mod longest_pelindromic_substring;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
@@ -161,6 +162,7 @@ pub mod runner {
     use length_linked_list;
     use levenshtein_distance;
     use linked_list;
+    use longest_pelindromic_substring;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use mean;
@@ -170,7 +172,6 @@ pub mod runner {
     use minmax_stack;
     use mode;
     use most_frequent_digit_sum;
-    use ndarray::stack;
     use next_greater_element;
     use number_grouping;
     use oppsite_pos_in_circle;
@@ -371,6 +372,9 @@ pub mod runner {
             }
             Algo::LevenShteinDistance => {
                 levenshtein_distance::run();
+            }
+            Algo::LongestPelindromicSubstring => {
+                longest_pelindromic_substring::run();
             }
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
@@ -596,6 +600,7 @@ mod test_runner {
     use crate::length_linked_list;
     use crate::levenshtein_distance;
     use crate::linked_list;
+    use crate::longest_pelindromic_substring;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
@@ -1109,6 +1114,20 @@ mod test_runner {
         let v = &[1, 2, 3, 4, 5];
         let expected = vec![1, 2, 3, 4, 5];
         assert_eq!(linked_list::exec(v), expected);
+    }
+
+    #[test]
+    fn longest_pelindromic_substring_evencase_test() {
+        let s = "abaxyzzyxf";
+        let expected = "xyzzyx";
+        assert_eq!(longest_pelindromic_substring::exec(s), expected);
+    }
+
+    #[test]
+    fn longest_pelindromic_substring_oddcase_test() {
+        let s = "ababrrbzaxoxazxn";
+        let expected = "zaxoxaz";
+        assert_eq!(longest_pelindromic_substring::exec(s), expected);
     }
 
     #[test]
@@ -1778,6 +1797,7 @@ pub enum Algo {
     LengthOfLinkedList,
     LevenShteinDistance,
     LinkedList,
+    LongestPelindromicSubstring,
     MaxSiblingProduct,
     MaxSubSetSum,
     MaxWithLessDigit,
@@ -1890,6 +1910,7 @@ impl Algo {
             s if s.to_lowercase() == "length_of_linkedlist" => Algo::LengthOfLinkedList,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
+            s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
