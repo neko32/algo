@@ -26,6 +26,7 @@ pub mod document_build;
 pub mod euclidean;
 pub mod even_num_sum;
 pub mod factorial;
+pub mod fibonacci;
 pub mod file_naming;
 pub mod fizzbuzz;
 pub mod geometric_progression;
@@ -139,6 +140,7 @@ pub mod runner {
     use euclidean::euclidean;
     use even_num_sum::even_num_sum;
     use factorial;
+    use fibonacci;
     use file_naming;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
@@ -303,6 +305,9 @@ pub mod runner {
             }
             Algo::Factorial => {
                 factorial::run();
+            }
+            Algo::Fibonacci => {
+                fibonacci::run();
             }
             Algo::FileNaming => {
                 file_naming::run();
@@ -570,6 +575,7 @@ mod test_runner {
     use crate::euclidean::euclidean;
     use crate::even_num_sum::even_num_sum;
     use crate::factorial;
+    use crate::fibonacci;
     use crate::file_naming;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
@@ -927,6 +933,13 @@ mod test_runner {
         let files = vec!["doc", "doc", "image", "doc(1)", "doc"];
         let expected = vec!["doc".to_string(), "doc(1)".to_string(), "image".to_string(), "doc(1)(1)".to_string(), "doc(2)".to_string()];
         assert_eq!(file_naming::exec(files), expected);
+    }
+
+    #[test]
+    fn fibonacci_test() {
+        let expected = vec![1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765];
+        let rez:Vec<u64> = (1..=20).into_iter().map(|x|fibonacci::exec(x)).collect();
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -1744,6 +1757,7 @@ pub enum Algo {
     EvenNumSum,
     Euclidean,
     Factorial,
+    Fibonacci,
     FileNaming,
     FizzBuzz,
     GeometricProgression,
@@ -1855,6 +1869,7 @@ impl Algo {
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
+            s if s.to_lowercase() == "fibonacci" => Algo::Fibonacci,
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
