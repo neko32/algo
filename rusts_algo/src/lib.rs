@@ -63,6 +63,7 @@ pub mod number_grouping;
 pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
 pub mod permutation;
+pub mod phone_mnemonic;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod quick_sort;
@@ -177,6 +178,7 @@ pub mod runner {
     use oppsite_pos_in_circle;
     use pascal_triangle;
     use permutation;
+    use phone_mnemonic;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use quick_sort;
@@ -420,6 +422,9 @@ pub mod runner {
             }
             Algo::Permutation => {
                 permutation::run();
+            }
+            Algo::PhoneMnemonic => {
+                phone_mnemonic::run();
             }
             Algo::PreOrderTraversal => {
                 preorder_traversal::run();
@@ -1813,6 +1818,7 @@ pub enum Algo {
     OppositePosInCircle,
     PascalTriangle,
     Permutation,
+    PhoneMnemonic,
     PreOrderTraversal,
     ProductArraySort,
     QuickSort,
@@ -1926,6 +1932,7 @@ impl Algo {
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
+            s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "quick_sort" => Algo::QuickSort,
