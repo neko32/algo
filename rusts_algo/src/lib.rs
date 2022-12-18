@@ -620,6 +620,7 @@ mod test_runner {
     use crate::number_grouping;
     use crate::pascal_triangle;
     use crate::permutation;
+    use crate::phone_mnemonic;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::quick_sort;
@@ -1273,6 +1274,26 @@ mod test_runner {
         let n = 8;
         let r = 6;
         assert_eq!(permutation::exec(n, r), 20160);
+    }
+
+    #[test]
+    fn phone_mnemonic_test() {
+        use hmap::hmap;
+        use std::collections::HashMap;
+        let table:HashMap<char, String> = hmap!(
+            '2' => "abc".to_string(),
+            '3' => "def".to_string(),
+            '4' => "ghi".to_string(),
+            '5' => "jkl".to_string(),
+            '6' => "mno".to_string(),
+            '7' => "pqrs".to_string(),
+            '8' => "tuv".to_string(),
+            '9' => "wxyz".to_string()
+        );
+        let rez_raw = phone_mnemonic::exec("1905", &table);
+        let rez:Vec<&str> = rez_raw.iter().map(|x|x.as_str()).collect();
+        let expected = vec!["1w0j", "1w0k", "1w0l", "1x0j", "1x0k", "1x0l", "1y0j", "1y0k", "1y0l", "1z0j", "1z0k", "1z0l"];
+        assert_eq!(rez, expected);
     }
 
     #[test]
