@@ -84,6 +84,7 @@ pub mod selection_sort;
 pub mod shared;
 pub mod shorten_path;
 pub mod sigma_k;
+pub mod smallest_difference;
 pub mod smallest_positive_product;
 pub mod sort_by_height;
 pub mod sorted_matrix_search;
@@ -198,6 +199,7 @@ pub mod runner {
     use selection_sort::selection_sort;
     use shorten_path;
     use sigma_k::sigma_k;
+    use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
     use sort_by_height;
     use sorted_matrix_search;
@@ -480,6 +482,9 @@ pub mod runner {
             Algo::SigmaK => {
                 sigma_k::run();
             }
+            Algo::SmallestDifference => {
+                smallest_difference::run();
+            }
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
@@ -642,6 +647,7 @@ mod test_runner {
     use crate::shared::*;
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
+    use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sort_by_height;
     use crate::sorted_matrix_search;
@@ -1431,6 +1437,14 @@ mod test_runner {
     }
 
     #[test]
+    fn smallest_difference_test() {
+        let a = [-1, 5, 10, 20, 28, 3];
+        let b = [26, 134, 135, 15, 17];
+        let rez = smallest_difference::exec(&a, &b);
+        assert_eq!(rez, (28, 26));
+    }
+
+    #[test]
     fn smallest_positive_good_case() {
         let n = 12;
         assert_eq!(smallest_positive_product::exec(n), 26);
@@ -1859,6 +1873,7 @@ pub enum Algo {
     SelectionSort,
     ShortenPath,
     SigmaK,
+    SmallestDifference,
     SmallestPositiveProduct,
     SortByHeight,
     SortedMatrixSearch,
@@ -1972,6 +1987,7 @@ impl Algo {
             s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
+            s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
