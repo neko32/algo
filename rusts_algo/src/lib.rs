@@ -65,6 +65,7 @@ pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
 pub mod permutation;
 pub mod phone_mnemonic;
+pub mod prefix_sums;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod quick_sort;
@@ -182,6 +183,7 @@ pub mod runner {
     use pascal_triangle;
     use permutation;
     use phone_mnemonic;
+    use prefix_sums;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use quick_sort;
@@ -433,6 +435,9 @@ pub mod runner {
             Algo::PhoneMnemonic => {
                 phone_mnemonic::run();
             }
+            Algo::PrefixSums => {
+                prefix_sums::run();
+            }
             Algo::PreOrderTraversal => {
                 preorder_traversal::run();
             }
@@ -632,6 +637,7 @@ mod test_runner {
     use crate::pascal_triangle;
     use crate::permutation;
     use crate::phone_mnemonic;
+    use crate::prefix_sums;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::quick_sort;
@@ -1317,6 +1323,13 @@ mod test_runner {
     }
 
     #[test]
+    fn prefix_sums_test() {
+        let v = [1, 2, 3];
+        let expected = vec![1, 3, 6];
+        assert_eq!(prefix_sums::exec(&v), expected);
+    }
+
+    #[test]
     fn preorder_trav_test() {
         let v: Vec<i32> = vec![5, 9, 2, 10, 1, 4];
         let r: Vec<i32> = preorder_traversal::exec(v);
@@ -1869,6 +1882,7 @@ pub enum Algo {
     PascalTriangle,
     Permutation,
     PhoneMnemonic,
+    PrefixSums,
     PreOrderTraversal,
     ProductArraySort,
     QuickSort,
@@ -1985,6 +1999,7 @@ impl Algo {
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
+            s if s.to_lowercase() == "prefix_sums" => Algo::PrefixSums,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "quick_sort" => Algo::QuickSort,
