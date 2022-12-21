@@ -59,6 +59,7 @@ pub mod minmax_stack;
 pub mod mode;
 pub mod most_frequent_digit_sum;
 pub mod next_greater_element;
+pub mod num_of_paths;
 pub mod number_grouping;
 pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
@@ -175,6 +176,7 @@ pub mod runner {
     use mode;
     use most_frequent_digit_sum;
     use next_greater_element;
+    use num_of_paths;
     use number_grouping;
     use oppsite_pos_in_circle;
     use pascal_triangle;
@@ -413,6 +415,9 @@ pub mod runner {
             Algo::NextGreaterElement => {
                 next_greater_element::run();
             }
+            Algo::NumOfPaths => {
+                num_of_paths::run();
+            }
             Algo::NumberGrouping => {
                 number_grouping::run();
             }
@@ -622,6 +627,7 @@ mod test_runner {
     use crate::mode;
     use crate::most_frequent_digit_sum;
     use crate::next_greater_element;
+    use crate::num_of_paths;
     use crate::number_grouping;
     use crate::pascal_triangle;
     use crate::permutation;
@@ -1234,6 +1240,14 @@ mod test_runner {
         let a = &[2, 5, -3, -4, 6, 7, 2];
         let expected = vec![5, 6, 6, 6, 7, -1, 5];
         assert_eq!(next_greater_element::exec(a), expected);
+    }
+
+    #[test]
+    fn num_of_paths_test() {
+        let w = 5;
+        let h = 4;
+        let r = num_of_paths::exec(w, h);
+        assert_eq!(r, 35);
     }
 
     #[test]
@@ -1850,6 +1864,7 @@ pub enum Algo {
     MostFrequentDigitSum,
     NextGreaterElement,
     NumberGrouping,
+    NumOfPaths,
     OppositePosInCircle,
     PascalTriangle,
     Permutation,
@@ -1964,6 +1979,7 @@ impl Algo {
             s if s.to_lowercase() == "mode" => Algo::Mode,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
+            s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
