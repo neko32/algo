@@ -11,6 +11,7 @@ pub mod bt_from_inorder_preorder;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod century;
+pub mod chars_appearing_twice;
 pub mod chars_to_sorted_digits;
 pub mod christmas_tree;
 pub mod clean_kth_bit;
@@ -130,6 +131,7 @@ pub mod runner {
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use century::century;
+    use chars_appearing_twice;
     use chars_to_sorted_digits;
     use christmas_tree::christmas_tree;
     use clean_kth_bit::clean_kth_bit;
@@ -269,6 +271,9 @@ pub mod runner {
             }
             Algo::Century => {
                 century::run();
+            }
+            Algo::CharsAppearingTwice => {
+                chars_appearing_twice::run();
             }
             Algo::CharsToSortedDigits => {
                 chars_to_sorted_digits::run();
@@ -584,6 +589,7 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::century::century;
+    use crate::chars_appearing_twice;
     use crate::chars_to_sorted_digits;
     use crate::christmas_tree::christmas_tree;
     use crate::clean_kth_bit::clean_kth_bit;
@@ -821,6 +827,33 @@ mod test_runner {
         let n = 1700;
         let nr = century::exec(n);
         assert_eq!(nr, 17);
+    }
+
+    #[test]
+    fn chars_appearing_twice_exist_case_test() {
+        let a = ['A', 'B', 'C'];
+        let b = ['B', 'C', 'D'];
+        let c = ['C', 'D', 'E'];
+        let expected:HashSet<char> = HashSet::from_iter(['B', 'D'].iter().cloned());
+        assert_eq!(chars_appearing_twice::exec(&a, &b, &c), expected);
+    }
+
+    #[test]
+    fn chars_appearing_twice_nooverlap_case_test() {
+        let a = ['A', 'B', 'C'];
+        let b = ['D', 'E', 'F'];
+        let c = ['G', 'H', 'I'];
+        let expected:HashSet<char> = HashSet::new();
+        assert_eq!(chars_appearing_twice::exec(&a, &b, &c), expected);
+    }
+
+    #[test]
+    fn chars_appearing_twice_monochar_case_test() {
+        let a = ['A', 'A', 'A'];
+        let b = ['A', 'A', 'A'];
+        let c = ['A', 'A', 'A'];
+        let expected:HashSet<char> = HashSet::new();
+        assert_eq!(chars_appearing_twice::exec(&a, &b, &c), expected);
     }
 
     #[test]
@@ -1828,6 +1861,7 @@ pub enum Algo {
     CamelCase,
     Century,
     CaesarCrypt,
+    CharsAppearingTwice,
     CharsToSortedDigits,
     ChristmasTree,
     CleanKthBit,
@@ -1945,6 +1979,7 @@ impl Algo {
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "century" => Algo::Century,
+            s if s.to_lowercase() == "chars_appearing_twice" => Algo::CharsAppearingTwice,
             s if s.to_lowercase() == "chars_to_sorted_digits" => Algo::CharsToSortedDigits,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
