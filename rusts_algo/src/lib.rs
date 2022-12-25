@@ -50,6 +50,7 @@ pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
 pub mod longest_pelindromic_substring;
+pub mod max_path_sum;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
@@ -170,6 +171,7 @@ pub mod runner {
     use levenshtein_distance;
     use linked_list;
     use longest_pelindromic_substring;
+    use max_path_sum;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use mean;
@@ -392,6 +394,9 @@ pub mod runner {
             }
             Algo::LongestPelindromicSubstring => {
                 longest_pelindromic_substring::run();
+            }
+            Algo::MaxPathSum => {
+                max_path_sum::run();
             }
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
@@ -632,6 +637,7 @@ mod test_runner {
     use crate::levenshtein_distance;
     use crate::linked_list;
     use crate::longest_pelindromic_substring;
+    use crate::max_path_sum;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
@@ -1205,6 +1211,27 @@ mod test_runner {
         let s = "ababrrbzaxoxazxn";
         let expected = "zaxoxaz";
         assert_eq!(longest_pelindromic_substring::exec(s), expected);
+    }
+
+    #[test]
+    fn max_path_sum_test() {
+        use std::collections::VecDeque;
+        let mut root = Box::new(TreeNode { value: 1, left: None, right: None});
+        let mut op1 = VecDeque::from_iter(["left"]);
+        add_node_not_balanced(&mut root, 2, &mut op1);
+        let mut op2 = VecDeque::from_iter(["left", "left"]);
+        add_node_not_balanced(&mut root, 4, &mut op2);
+        let mut op3 = VecDeque::from_iter(["left", "right"]);
+        add_node_not_balanced(&mut root, 5, &mut op3);
+        let mut op4 = VecDeque::from_iter(["right"]);
+        add_node_not_balanced(&mut root, 3, &mut op4);
+        let mut op5 = VecDeque::from_iter(["right", "left"]);
+        add_node_not_balanced(&mut root, 6, &mut op5);
+        let mut op6 = VecDeque::from_iter(["right", "right"]);
+        add_node_not_balanced(&mut root, 7, &mut op6);
+
+        let rez = max_path_sum::exec(*root);
+        assert_eq!(rez, 18);
     }
 
     #[test]
@@ -1920,6 +1947,7 @@ pub enum Algo {
     LevenShteinDistance,
     LinkedList,
     LongestPelindromicSubstring,
+    MaxPathSum,
     MaxSiblingProduct,
     MaxSubSetSum,
     MaxWithLessDigit,
@@ -2039,6 +2067,7 @@ impl Algo {
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
             s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
+            s if s.to_lowercase() == "max_path_sum" => Algo::MaxPathSum,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
