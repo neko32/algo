@@ -12,6 +12,7 @@ pub mod caesar_crypt;
 pub mod camelcase;
 pub mod century;
 pub mod chars_appearing_twice;
+pub mod chars_perm_list;
 pub mod chars_to_sorted_digits;
 pub mod christmas_tree;
 pub mod clean_kth_bit;
@@ -274,6 +275,9 @@ pub mod runner {
             }
             Algo::CharsAppearingTwice => {
                 chars_appearing_twice::run();
+            }
+            Algo::CharsPermList => {
+                chars_perm_list::run();
             }
             Algo::CharsToSortedDigits => {
                 chars_to_sorted_digits::run();
@@ -590,6 +594,7 @@ mod test_runner {
     use crate::camelcase::camelcase;
     use crate::century::century;
     use crate::chars_appearing_twice;
+    use crate::chars_perm_list;
     use crate::chars_to_sorted_digits;
     use crate::christmas_tree::christmas_tree;
     use crate::clean_kth_bit::clean_kth_bit;
@@ -854,6 +859,21 @@ mod test_runner {
         let c = ['A', 'A', 'A'];
         let expected:HashSet<char> = HashSet::new();
         assert_eq!(chars_appearing_twice::exec(&a, &b, &c), expected);
+    }
+
+    #[test]
+    fn chars_perm_list_test() {
+        let expected:HashSet<&str> = HashSet::from_iter(
+            [
+                "ABCD", "ABDC", "ACBD", "ACDB", "ADBC", "ADCB", "BACD",
+                "BADC", "BCAD", "BCDA", "BDAC", "BDCA", "CABD", "CADB",
+                "CBAD", "CBDA", "CDAB", "CDBA", "DABC", "DBAC", "DBCA",
+                "DCAB", "DCBA", "DACB"
+            ]
+        );
+        let rez = chars_perm_list::exec("ABCD");
+        let rs:HashSet<&str> = rez.iter().map(|s|s.as_str()).collect();
+        assert_eq!(rs, expected);
     }
 
     #[test]
@@ -1862,6 +1882,7 @@ pub enum Algo {
     Century,
     CaesarCrypt,
     CharsAppearingTwice,
+    CharsPermList,
     CharsToSortedDigits,
     ChristmasTree,
     CleanKthBit,
@@ -1980,6 +2001,7 @@ impl Algo {
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "century" => Algo::Century,
             s if s.to_lowercase() == "chars_appearing_twice" => Algo::CharsAppearingTwice,
+            s if s.to_lowercase() == "chars_perm_list" => Algo::CharsPermList,
             s if s.to_lowercase() == "chars_to_sorted_digits" => Algo::CharsToSortedDigits,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
