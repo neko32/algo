@@ -83,12 +83,13 @@ pub mod reverse_words;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod runlength;
-pub mod shapearea;
 pub mod same_bst;
 pub mod selection_sort;
+pub mod shapearea;
 pub mod shared;
 pub mod shorten_path;
 pub mod sigma_k;
+pub mod singly_linked_list_copy;
 pub mod smallest_difference;
 pub mod smallest_positive_product;
 pub mod sort_by_height;
@@ -208,6 +209,7 @@ pub mod runner {
     use selection_sort::selection_sort;
     use shorten_path;
     use sigma_k::sigma_k;
+    use singly_linked_list_copy;
     use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
     use sort_by_height;
@@ -506,6 +508,9 @@ pub mod runner {
             Algo::SigmaK => {
                 sigma_k::run();
             }
+            Algo::SinglyLinkedListCopy => {
+                singly_linked_list_copy::run();
+            }
             Algo::SmallestDifference => {
                 smallest_difference::run();
             }
@@ -676,6 +681,7 @@ mod test_runner {
     use crate::shared::*;
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
+    use crate::singly_linked_list_copy;
     use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sort_by_height;
@@ -1544,6 +1550,18 @@ mod test_runner {
     }
 
     #[test]
+    fn singly_linked_list_copy() {
+        let v = vec![1, 2, 3, 4, 5, 6];
+        let mut list = build_singly_linkedlist(&v);
+        let mut orig_trace:Vec<i32> = Vec::new();
+        list.trav_from(&mut orig_trace);
+        let copied = singly_linked_list_copy::exec(&mut list);
+        let mut copied_trace:Vec<i32> = Vec::new();
+        copied.trav_from(&mut copied_trace);
+        assert_eq!(orig_trace, copied_trace);
+    }
+
+    #[test]
     fn smallest_difference_test() {
         let a = [-1, 5, 10, 20, 28, 3];
         let b = [26, 134, 135, 15, 17];
@@ -1985,6 +2003,7 @@ pub enum Algo {
     SelectionSort,
     ShortenPath,
     SigmaK,
+    SinglyLinkedListCopy,
     SmallestDifference,
     SmallestPositiveProduct,
     SortByHeight,
@@ -2104,6 +2123,7 @@ impl Algo {
             s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
+            s if s.to_lowercase() == "singly_linked_list_copy" => Algo::SinglyLinkedListCopy,
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
