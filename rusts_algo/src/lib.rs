@@ -34,6 +34,7 @@ pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
 pub mod group_anagrams;
+pub mod hanoi_tower;
 pub mod helon_formula;
 pub mod inorder_traversal;
 pub mod is_bst;
@@ -159,6 +160,7 @@ pub mod runner {
     use geometric_progression;
     use geometrical_mean;
     use group_anagrams;
+    use hanoi_tower;
     use helon_formula::helon_formula;
     use jump_height_in_frames;
     use inorder_traversal;
@@ -351,6 +353,9 @@ pub mod runner {
             }
             Algo::GroupAnagrams => {
                 group_anagrams::run();
+            }
+            Algo::HanoiTower => {
+                hanoi_tower::run();
             }
             Algo::HelonFormula => {
                 helon_formula::run();
@@ -641,6 +646,7 @@ mod test_runner {
     use crate::geometric_progression;
     use crate::geometrical_mean;
     use crate::group_anagrams;
+    use crate::hanoi_tower;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
     use crate::is_bst;
@@ -1082,6 +1088,14 @@ mod test_runner {
         let expected = vec![vec!["yo", "oy"], vec!["flop", "olfp"], vec!["act", "tac", "cat"], vec!["foo"]];
         let rez = group_anagrams::exec(&words);
         assert!(expected.iter().all(|a|rez.contains(a)));
+    }
+
+    #[test]
+    fn hanoi_tower_test() {
+        let rez = hanoi_tower::exec(4);
+        let expected_raw = include_str!("../resource/hanoi_tower_test_expected.txt");
+        let expected:Vec<String> = expected_raw.split_terminator("\n").into_iter().map(|s|s.to_string()).collect();
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -2014,6 +2028,7 @@ pub enum Algo {
     GeometricProgression,
     GeometricalMean,
     GroupAnagrams,
+    HanoiTower,
     HelonFormula,
     InOrderTraversal,
     IsBST,
@@ -2138,6 +2153,7 @@ impl Algo {
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
             s if s.to_lowercase() == "group_anagrams" => Algo::GroupAnagrams,
+            s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
