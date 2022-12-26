@@ -89,6 +89,7 @@ pub mod shapearea;
 pub mod shared;
 pub mod shorten_path;
 pub mod sigma_k;
+pub mod single_stroke;
 pub mod singly_linked_list_copy;
 pub mod singly_linked_list_reverse;
 pub mod smallest_difference;
@@ -210,6 +211,7 @@ pub mod runner {
     use selection_sort::selection_sort;
     use shorten_path;
     use sigma_k::sigma_k;
+    use single_stroke;
     use singly_linked_list_copy;
     use singly_linked_list_reverse;
     use smallest_difference;
@@ -510,6 +512,9 @@ pub mod runner {
             Algo::SigmaK => {
                 sigma_k::run();
             }
+            Algo::SingleStroke => {
+                single_stroke::run();
+            }
             Algo::SinglyLinkedListCopy => {
                 singly_linked_list_copy::run();
             }
@@ -686,6 +691,7 @@ mod test_runner {
     use crate::shared::*;
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
+    use crate::single_stroke;
     use crate::singly_linked_list_copy;
     use crate::singly_linked_list_reverse;
     use crate::smallest_difference;
@@ -1556,6 +1562,30 @@ mod test_runner {
     }
 
     #[test]
+    fn single_stroke_test() {
+        let mut matrix:Array2<i32> = arr2(&[
+            [0, 1, 0, 1],
+            [1, 0, 1, 2],
+            [0, 1, 0, 1],
+            [1, 2, 1, 0],
+        ]);
+        let num_edges = 6;
+        let num_nodes = 4;
+        let expected:Vec<Vec<i32>> = vec![
+            vec![0, 1, 2, 3, 1, 3],
+            vec![0, 1, 3, 1, 2, 3],
+            vec![0, 1, 3, 2, 1, 3],
+            vec![0, 3, 1, 2, 3, 1],
+            vec![0, 3, 1, 3, 2, 1],
+            vec![0, 3, 2, 1, 3, 1]
+        ];
+        let rez = single_stroke::exec(&mut matrix, 0, num_nodes, num_edges);
+        for rec in rez {
+            assert!(expected.contains(&rec));
+        }
+    }
+
+    #[test]
     fn singly_linked_list_copy_test() {
         let v = vec![1, 2, 3, 4, 5, 6];
         let mut list = build_singly_linkedlist(&v);
@@ -2020,6 +2050,7 @@ pub enum Algo {
     SelectionSort,
     ShortenPath,
     SigmaK,
+    SingleStroke,
     SinglyLinkedListCopy,
     SinglyLinkedListReverse,
     SmallestDifference,
@@ -2141,6 +2172,7 @@ impl Algo {
             s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
+            s if s.to_lowercase() == "single_stroke" => Algo::SingleStroke,
             s if s.to_lowercase() == "singly_linked_list_copy" => Algo::SinglyLinkedListCopy,
             s if s.to_lowercase() == "singly_linked_list_reverse" => Algo::SinglyLinkedListReverse,
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
