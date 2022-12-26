@@ -11,6 +11,8 @@ pub mod bt_from_inorder_preorder;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod century;
+pub mod chars_appearing_twice;
+pub mod chars_perm_list;
 pub mod chars_to_sorted_digits;
 pub mod christmas_tree;
 pub mod clean_kth_bit;
@@ -26,10 +28,12 @@ pub mod document_build;
 pub mod euclidean;
 pub mod even_num_sum;
 pub mod factorial;
+pub mod fibonacci;
 pub mod file_naming;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
+pub mod group_anagrams;
 pub mod helon_formula;
 pub mod inorder_traversal;
 pub mod is_bst;
@@ -45,6 +49,8 @@ pub mod least_factorial;
 pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
+pub mod longest_pelindromic_substring;
+pub mod max_path_sum;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
@@ -56,10 +62,14 @@ pub mod minmax_stack;
 pub mod mode;
 pub mod most_frequent_digit_sum;
 pub mod next_greater_element;
+pub mod num_of_paths;
 pub mod number_grouping;
+pub mod obtain_increasing_seq;
 pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
 pub mod permutation;
+pub mod phone_mnemonic;
+pub mod prefix_sums;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod quick_sort;
@@ -74,13 +84,20 @@ pub mod reverse_words;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod runlength;
-pub mod shapearea;
+pub mod same_bst;
 pub mod selection_sort;
+pub mod shapearea;
 pub mod shared;
 pub mod shorten_path;
 pub mod sigma_k;
+pub mod single_stroke;
+pub mod singly_linked_list_copy;
+pub mod singly_linked_list_reverse;
+pub mod smallest_difference;
 pub mod smallest_positive_product;
 pub mod sort_by_height;
+pub mod sorted_matrix_search;
+pub mod stack_copy_only_pop;
 pub mod stdev;
 pub mod strange_bank;
 pub mod string_construction;
@@ -120,6 +137,7 @@ pub mod runner {
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use century::century;
+    use chars_appearing_twice;
     use chars_to_sorted_digits;
     use christmas_tree::christmas_tree;
     use clean_kth_bit::clean_kth_bit;
@@ -135,10 +153,12 @@ pub mod runner {
     use euclidean::euclidean;
     use even_num_sum::even_num_sum;
     use factorial;
+    use fibonacci;
     use file_naming;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
     use geometrical_mean;
+    use group_anagrams;
     use helon_formula::helon_formula;
     use jump_height_in_frames;
     use inorder_traversal;
@@ -154,6 +174,8 @@ pub mod runner {
     use length_linked_list;
     use levenshtein_distance;
     use linked_list;
+    use longest_pelindromic_substring;
+    use max_path_sum;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use mean;
@@ -164,10 +186,14 @@ pub mod runner {
     use mode;
     use most_frequent_digit_sum;
     use next_greater_element;
+    use num_of_paths;
     use number_grouping;
+    use obtain_increasing_seq;
     use oppsite_pos_in_circle;
     use pascal_triangle;
     use permutation;
+    use phone_mnemonic;
+    use prefix_sums;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use quick_sort;
@@ -182,12 +208,19 @@ pub mod runner {
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use runlength::runlength;
+    use same_bst;
     use shapearea;
     use selection_sort::selection_sort;
     use shorten_path;
     use sigma_k::sigma_k;
+    use single_stroke;
+    use singly_linked_list_copy;
+    use singly_linked_list_reverse;
+    use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
     use sort_by_height;
+    use sorted_matrix_search;
+    use stack_copy_only_pop;
     use stdev;
     use strange_bank;
     use string_construction::string_construction;
@@ -250,6 +283,12 @@ pub mod runner {
             Algo::Century => {
                 century::run();
             }
+            Algo::CharsAppearingTwice => {
+                chars_appearing_twice::run();
+            }
+            Algo::CharsPermList => {
+                chars_perm_list::run();
+            }
             Algo::CharsToSortedDigits => {
                 chars_to_sorted_digits::run();
             }
@@ -295,6 +334,9 @@ pub mod runner {
             Algo::Factorial => {
                 factorial::run();
             }
+            Algo::Fibonacci => {
+                fibonacci::run();
+            }
             Algo::FileNaming => {
                 file_naming::run();
             }
@@ -306,6 +348,9 @@ pub mod runner {
             }
             Algo::GeometricalMean => {
                 geometrical_mean::run();
+            }
+            Algo::GroupAnagrams => {
+                group_anagrams::run();
             }
             Algo::HelonFormula => {
                 helon_formula::run();
@@ -355,6 +400,12 @@ pub mod runner {
             Algo::LevenShteinDistance => {
                 levenshtein_distance::run();
             }
+            Algo::LongestPelindromicSubstring => {
+                longest_pelindromic_substring::run();
+            }
+            Algo::MaxPathSum => {
+                max_path_sum::run();
+            }
             Algo::MaxSiblingProduct => {
                 max_sibling_product::run();
             }
@@ -388,8 +439,14 @@ pub mod runner {
             Algo::NextGreaterElement => {
                 next_greater_element::run();
             }
+            Algo::NumOfPaths => {
+                num_of_paths::run();
+            }
             Algo::NumberGrouping => {
                 number_grouping::run();
+            }
+            Algo::ObtainIncreasingSeq => {
+                obtain_increasing_seq::run();
             }
             Algo::OppositePosInCircle => {
                 oppsite_pos_in_circle::run();
@@ -399,6 +456,12 @@ pub mod runner {
             }
             Algo::Permutation => {
                 permutation::run();
+            }
+            Algo::PhoneMnemonic => {
+                phone_mnemonic::run();
+            }
+            Algo::PrefixSums => {
+                prefix_sums::run();
             }
             Algo::PreOrderTraversal => {
                 preorder_traversal::run();
@@ -439,6 +502,9 @@ pub mod runner {
             Algo::RunLength => {
                 runlength::run();
             }
+            Algo::SameBST => {
+                same_bst::run();
+            }
             Algo::ShapeArea => {
                 shapearea::run();
             }
@@ -451,11 +517,29 @@ pub mod runner {
             Algo::SigmaK => {
                 sigma_k::run();
             }
+            Algo::SingleStroke => {
+                single_stroke::run();
+            }
+            Algo::SinglyLinkedListCopy => {
+                singly_linked_list_copy::run();
+            }
+            Algo::SinglyLinkedListReverse => {
+                singly_linked_list_reverse::run();
+            }
+            Algo::SmallestDifference => {
+                smallest_difference::run();
+            }
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
             Algo::SortByHeight => {
                 sort_by_height::run();
+            }
+            Algo::SortedMatrixSearch => {
+                sorted_matrix_search::run();
+            }
+            Algo::StackCopyOnlyPop => {
+                stack_copy_only_pop::run();
             }
             Algo::Stdev => {
                 stdev::run();
@@ -534,6 +618,8 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::century::century;
+    use crate::chars_appearing_twice;
+    use crate::chars_perm_list;
     use crate::chars_to_sorted_digits;
     use crate::christmas_tree::christmas_tree;
     use crate::clean_kth_bit::clean_kth_bit;
@@ -549,10 +635,12 @@ mod test_runner {
     use crate::euclidean::euclidean;
     use crate::even_num_sum::even_num_sum;
     use crate::factorial;
+    use crate::fibonacci;
     use crate::file_naming;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
     use crate::geometrical_mean;
+    use crate::group_anagrams;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
     use crate::is_bst;
@@ -568,6 +656,8 @@ mod test_runner {
     use crate::length_linked_list;
     use crate::levenshtein_distance;
     use crate::linked_list;
+    use crate::longest_pelindromic_substring;
+    use crate::max_path_sum;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
@@ -579,13 +669,17 @@ mod test_runner {
     use crate::mode;
     use crate::most_frequent_digit_sum;
     use crate::next_greater_element;
+    use crate::num_of_paths;
     use crate::number_grouping;
+    use crate::obtain_increasing_seq;
+    use crate::oppsite_pos_in_circle;
     use crate::pascal_triangle;
     use crate::permutation;
+    use crate::phone_mnemonic;
+    use crate::prefix_sums;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::quick_sort;
-    use crate::oppsite_pos_in_circle;
     use crate::radix_sort::radix_sort;
     use crate::random_perm;
     use crate::ranking;
@@ -597,13 +691,20 @@ mod test_runner {
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::runlength::runlength;
+    use crate::same_bst;
     use crate::selection_sort::selection_sort;
     use crate::shapearea;
     use crate::shared::*;
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
+    use crate::single_stroke;
+    use crate::singly_linked_list_copy;
+    use crate::singly_linked_list_reverse;
+    use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sort_by_height;
+    use crate::sorted_matrix_search;
+    use crate::stack_copy_only_pop;
     use crate::stdev;
     use crate::strange_bank;
     use crate::string_construction::string_construction;
@@ -630,6 +731,7 @@ mod test_runner {
         array,
         collections::{BTreeSet, HashSet},
     };
+    use ndarray::{Array2, arr2};
 
     #[test]
     fn add_two_int_without_carry_test() {
@@ -760,6 +862,48 @@ mod test_runner {
         let n = 1700;
         let nr = century::exec(n);
         assert_eq!(nr, 17);
+    }
+
+    #[test]
+    fn chars_appearing_twice_exist_case_test() {
+        let a = ['A', 'B', 'C'];
+        let b = ['B', 'C', 'D'];
+        let c = ['C', 'D', 'E'];
+        let expected:HashSet<char> = HashSet::from_iter(['B', 'D'].iter().cloned());
+        assert_eq!(chars_appearing_twice::exec(&a, &b, &c), expected);
+    }
+
+    #[test]
+    fn chars_appearing_twice_nooverlap_case_test() {
+        let a = ['A', 'B', 'C'];
+        let b = ['D', 'E', 'F'];
+        let c = ['G', 'H', 'I'];
+        let expected:HashSet<char> = HashSet::new();
+        assert_eq!(chars_appearing_twice::exec(&a, &b, &c), expected);
+    }
+
+    #[test]
+    fn chars_appearing_twice_monochar_case_test() {
+        let a = ['A', 'A', 'A'];
+        let b = ['A', 'A', 'A'];
+        let c = ['A', 'A', 'A'];
+        let expected:HashSet<char> = HashSet::new();
+        assert_eq!(chars_appearing_twice::exec(&a, &b, &c), expected);
+    }
+
+    #[test]
+    fn chars_perm_list_test() {
+        let expected:HashSet<&str> = HashSet::from_iter(
+            [
+                "ABCD", "ABDC", "ACBD", "ACDB", "ADBC", "ADCB", "BACD",
+                "BADC", "BCAD", "BCDA", "BDAC", "BDCA", "CABD", "CADB",
+                "CBAD", "CBDA", "CDAB", "CDBA", "DABC", "DBAC", "DBCA",
+                "DCAB", "DCBA", "DACB"
+            ]
+        );
+        let rez = chars_perm_list::exec("ABCD");
+        let rs:HashSet<&str> = rez.iter().map(|s|s.as_str()).collect();
+        assert_eq!(rs, expected);
     }
 
     #[test]
@@ -904,6 +1048,13 @@ mod test_runner {
     }
 
     #[test]
+    fn fibonacci_test() {
+        let expected = vec![1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765];
+        let rez:Vec<u64> = (1..=20).into_iter().map(|x|fibonacci::exec(x)).collect();
+        assert_eq!(rez, expected);
+    }
+
+    #[test]
     fn test_fizzbuzz() {
         let n = 30;
         let rez = fizzbuzz::exec(n);
@@ -923,6 +1074,14 @@ mod test_runner {
     fn geometrical_mean_test() {
         let v:Vec<f32> = vec![125_f32, 160_f32, 200_f32, 150_f32, 125_f32];
         assert_eq!(geometrical_mean::exec(v), 1.4962779);
+    }
+
+    #[test]
+    fn group_anagrams_test() {
+        let words = vec!["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"];
+        let expected = vec![vec!["yo", "oy"], vec!["flop", "olfp"], vec!["act", "tac", "cat"], vec!["foo"]];
+        let rez = group_anagrams::exec(&words);
+        assert!(expected.iter().all(|a|rez.contains(a)));
     }
 
     #[test]
@@ -1065,6 +1224,41 @@ mod test_runner {
     }
 
     #[test]
+    fn longest_pelindromic_substring_evencase_test() {
+        let s = "abaxyzzyxf";
+        let expected = "xyzzyx";
+        assert_eq!(longest_pelindromic_substring::exec(s), expected);
+    }
+
+    #[test]
+    fn longest_pelindromic_substring_oddcase_test() {
+        let s = "ababrrbzaxoxazxn";
+        let expected = "zaxoxaz";
+        assert_eq!(longest_pelindromic_substring::exec(s), expected);
+    }
+
+    #[test]
+    fn max_path_sum_test() {
+        use std::collections::VecDeque;
+        let mut root = Box::new(TreeNode { value: 1, left: None, right: None});
+        let mut op1 = VecDeque::from_iter(["left"]);
+        add_node_not_balanced(&mut root, 2, &mut op1);
+        let mut op2 = VecDeque::from_iter(["left", "left"]);
+        add_node_not_balanced(&mut root, 4, &mut op2);
+        let mut op3 = VecDeque::from_iter(["left", "right"]);
+        add_node_not_balanced(&mut root, 5, &mut op3);
+        let mut op4 = VecDeque::from_iter(["right"]);
+        add_node_not_balanced(&mut root, 3, &mut op4);
+        let mut op5 = VecDeque::from_iter(["right", "left"]);
+        add_node_not_balanced(&mut root, 6, &mut op5);
+        let mut op6 = VecDeque::from_iter(["right", "right"]);
+        add_node_not_balanced(&mut root, 7, &mut op6);
+
+        let rez = max_path_sum::exec(*root);
+        assert_eq!(rez, 18);
+    }
+
+    #[test]
     fn max_sibling_product_test() {
         let s = vec![3, 6, -2, -5, 7, 3];
         let r = max_sibling_product::exec(s);
@@ -1159,9 +1353,29 @@ mod test_runner {
     }
 
     #[test]
+    fn num_of_paths_test() {
+        let w = 5;
+        let h = 4;
+        let r = num_of_paths::exec(w, h);
+        assert_eq!(r, 35);
+    }
+
+    #[test]
     fn number_grouping_test() {
         let a = vec![10000, 20000, 30000, 40000, 50000, 60000, 10000, 120000, 150000, 200000, 300000, 1000000, 10000000, 100000000, 10000000];
         assert_eq!(number_grouping::exec(&a), 28);
+    }
+
+    #[test]
+    fn obtain_increasing_seq_normal_case_test() {
+        let v = [1, 1, 1];
+        assert_eq!(obtain_increasing_seq::exec(&v), 3);
+    }
+
+    #[test]
+    fn obtain_increasing_seq_already_done_case_test() {
+        let v = [1, 2, 3];
+        assert_eq!(obtain_increasing_seq::exec(&v), 0);
     }
 
     #[test]
@@ -1202,6 +1416,33 @@ mod test_runner {
         let n = 8;
         let r = 6;
         assert_eq!(permutation::exec(n, r), 20160);
+    }
+
+    #[test]
+    fn phone_mnemonic_test() {
+        use hmap::hmap;
+        use std::collections::HashMap;
+        let table:HashMap<char, String> = hmap!(
+            '2' => "abc".to_string(),
+            '3' => "def".to_string(),
+            '4' => "ghi".to_string(),
+            '5' => "jkl".to_string(),
+            '6' => "mno".to_string(),
+            '7' => "pqrs".to_string(),
+            '8' => "tuv".to_string(),
+            '9' => "wxyz".to_string()
+        );
+        let rez_raw = phone_mnemonic::exec("1905", &table);
+        let rez:Vec<&str> = rez_raw.iter().map(|x|x.as_str()).collect();
+        let expected = vec!["1w0j", "1w0k", "1w0l", "1x0j", "1x0k", "1x0l", "1y0j", "1y0k", "1y0l", "1z0j", "1z0k", "1z0l"];
+        assert_eq!(rez, expected);
+    }
+
+    #[test]
+    fn prefix_sums_test() {
+        let v = [1, 2, 3];
+        let expected = vec![1, 3, 6];
+        assert_eq!(prefix_sums::exec(&v), expected);
     }
 
     #[test]
@@ -1294,6 +1535,21 @@ mod test_runner {
     }
 
     #[test]
+    fn same_bst_true_case_test() {
+        let a = vec![10, 15, 8, 12, 94, 81, 5, 2, 11];
+        let b = vec![10, 8, 5, 15, 2, 12, 11, 94, 81];
+        assert!(same_bst::exec(&a, &b));
+    }
+
+
+    #[test]
+    fn same_bst_false_case_test() {
+        let a = vec![10, 15, 8, 12, 94, 81, 5, 2, 1];
+        let b = vec![10, 8, 5, 15, 2, 12, 11, 94, 81];
+        assert_ne!(same_bst::exec(&a, &b), true);
+    }
+
+    #[test]
     fn shapearea_test() {
         assert_eq!(shapearea::exec(1), 1);
         assert_eq!(shapearea::exec(2), 5);
@@ -1324,6 +1580,61 @@ mod test_runner {
     }
 
     #[test]
+    fn single_stroke_test() {
+        let mut matrix:Array2<i32> = arr2(&[
+            [0, 1, 0, 1],
+            [1, 0, 1, 2],
+            [0, 1, 0, 1],
+            [1, 2, 1, 0],
+        ]);
+        let num_edges = 6;
+        let num_nodes = 4;
+        let expected:Vec<Vec<i32>> = vec![
+            vec![0, 1, 2, 3, 1, 3],
+            vec![0, 1, 3, 1, 2, 3],
+            vec![0, 1, 3, 2, 1, 3],
+            vec![0, 3, 1, 2, 3, 1],
+            vec![0, 3, 1, 3, 2, 1],
+            vec![0, 3, 2, 1, 3, 1]
+        ];
+        let rez = single_stroke::exec(&mut matrix, 0, num_nodes, num_edges);
+        for rec in rez {
+            assert!(expected.contains(&rec));
+        }
+    }
+
+    #[test]
+    fn singly_linked_list_copy_test() {
+        let v = vec![1, 2, 3, 4, 5, 6];
+        let mut list = build_singly_linkedlist(&v);
+        let mut orig_trace:Vec<i32> = Vec::new();
+        list.trav_from(&mut orig_trace);
+        let copied = singly_linked_list_copy::exec(&mut list);
+        let mut copied_trace:Vec<i32> = Vec::new();
+        copied.trav_from(&mut copied_trace);
+        assert_eq!(orig_trace, copied_trace);
+    }
+
+    #[test]
+    fn singly_linked_list_reverse_test() {
+        let v = vec![1, 2, 3, 4, 5, 6];
+        let mut list = build_singly_linkedlist(&v);
+        let reversed = singly_linked_list_reverse::exec(&mut list);
+        let mut reversed_trace:Vec<i32> = Vec::new();
+        let expected:Vec<i32> = vec![6, 5, 4, 3, 2, 1];
+        reversed.trav_from(&mut reversed_trace);
+        assert_eq!(reversed_trace, expected);
+    }
+
+    #[test]
+    fn smallest_difference_test() {
+        let a = [-1, 5, 10, 20, 28, 3];
+        let b = [26, 134, 135, 15, 17];
+        let rez = smallest_difference::exec(&a, &b);
+        assert_eq!(rez, (28, 26));
+    }
+
+    #[test]
     fn smallest_positive_good_case() {
         let n = 12;
         assert_eq!(smallest_positive_product::exec(n), 26);
@@ -1341,6 +1652,41 @@ mod test_runner {
         let expected = vec![-1, 150, 160, 170, -1, -1, 180, 190];
         sort_by_height::exec(&mut v);
         assert_eq!(v, expected);
+    }
+
+    #[test]
+    fn sorted_matrix_search_found_case() {
+        let matrix:Array2<u32> = arr2(&[
+            [1, 4, 7, 12, 15, 1000],
+            [2, 5, 19, 31, 32, 1001],
+            [3, 8, 24, 33, 35, 1002],
+            [40, 41, 42, 44, 45, 1003],
+            [99, 100, 103, 106, 128, 1004],
+        ]);
+        let rez = sorted_matrix_search::exec(&matrix, 44);
+        assert_eq!(rez, (3, 3));
+    }
+
+    #[test]
+    fn sorted_matrix_search_not_found_case() {
+        let matrix:Array2<u32> = arr2(&[
+            [1, 4, 7, 12, 15, 1000],
+            [2, 5, 19, 31, 32, 1001],
+            [3, 8, 24, 33, 35, 1002],
+            [40, 41, 42, 44, 45, 1003],
+            [99, 100, 103, 106, 128, 1004],
+        ]);
+        let rez = sorted_matrix_search::exec(&matrix, 43);
+        assert_eq!(rez, (-1, -1));
+    }
+
+    #[test]
+    fn stack_copy_only_pop_test() {
+        let mut v = vec![1, 2, 3, 4, 5];
+        let expected = v.clone();
+        let mut r:Vec<i32> = Vec::new();
+        stack_copy_only_pop::exec(&mut v, &mut r);
+        assert_eq!(expected, r);
     }
 
     #[test]
@@ -1645,6 +1991,8 @@ pub enum Algo {
     CamelCase,
     Century,
     CaesarCrypt,
+    CharsAppearingTwice,
+    CharsPermList,
     CharsToSortedDigits,
     ChristmasTree,
     CleanKthBit,
@@ -1660,10 +2008,12 @@ pub enum Algo {
     EvenNumSum,
     Euclidean,
     Factorial,
+    Fibonacci,
     FileNaming,
     FizzBuzz,
     GeometricProgression,
     GeometricalMean,
+    GroupAnagrams,
     HelonFormula,
     InOrderTraversal,
     IsBST,
@@ -1679,6 +2029,8 @@ pub enum Algo {
     LengthOfLinkedList,
     LevenShteinDistance,
     LinkedList,
+    LongestPelindromicSubstring,
+    MaxPathSum,
     MaxSiblingProduct,
     MaxSubSetSum,
     MaxWithLessDigit,
@@ -1691,9 +2043,13 @@ pub enum Algo {
     MostFrequentDigitSum,
     NextGreaterElement,
     NumberGrouping,
+    NumOfPaths,
+    ObtainIncreasingSeq,
     OppositePosInCircle,
     PascalTriangle,
     Permutation,
+    PhoneMnemonic,
+    PrefixSums,
     PreOrderTraversal,
     ProductArraySort,
     QuickSort,
@@ -1708,12 +2064,19 @@ pub enum Algo {
     RightMostDiffBit,
     RightMostSameBit,
     RunLength,
+    SameBST,
     ShapeArea,
     SelectionSort,
     ShortenPath,
     SigmaK,
+    SingleStroke,
+    SinglyLinkedListCopy,
+    SinglyLinkedListReverse,
+    SmallestDifference,
     SmallestPositiveProduct,
     SortByHeight,
+    SortedMatrixSearch,
+    StackCopyOnlyPop,
     Stdev,
     StrangeBank,
     StringConstruction,
@@ -1752,6 +2115,8 @@ impl Algo {
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "century" => Algo::Century,
+            s if s.to_lowercase() == "chars_appearing_twice" => Algo::CharsAppearingTwice,
+            s if s.to_lowercase() == "chars_perm_list" => Algo::CharsPermList,
             s if s.to_lowercase() == "chars_to_sorted_digits" => Algo::CharsToSortedDigits,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
@@ -1767,10 +2132,12 @@ impl Algo {
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
+            s if s.to_lowercase() == "fibonacci" => Algo::Fibonacci,
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
+            s if s.to_lowercase() == "group_anagrams" => Algo::GroupAnagrams,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
@@ -1786,6 +2153,8 @@ impl Algo {
             s if s.to_lowercase() == "length_of_linkedlist" => Algo::LengthOfLinkedList,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
+            s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
+            s if s.to_lowercase() == "max_path_sum" => Algo::MaxPathSum,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
@@ -1797,10 +2166,14 @@ impl Algo {
             s if s.to_lowercase() == "mode" => Algo::Mode,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
+            s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
+            s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
+            s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
+            s if s.to_lowercase() == "prefix_sums" => Algo::PrefixSums,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "quick_sort" => Algo::QuickSort,
@@ -1815,11 +2188,18 @@ impl Algo {
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
+            s if s.to_lowercase() == "same_bst" => Algo::SameBST,
             s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
+            s if s.to_lowercase() == "single_stroke" => Algo::SingleStroke,
+            s if s.to_lowercase() == "singly_linked_list_copy" => Algo::SinglyLinkedListCopy,
+            s if s.to_lowercase() == "singly_linked_list_reverse" => Algo::SinglyLinkedListReverse,
+            s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
+            s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
+            s if s.to_lowercase() == "stack_copy_only_pop" => Algo::StackCopyOnlyPop,
             s if s.to_lowercase() == "stdev" => Algo::Stdev,
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
