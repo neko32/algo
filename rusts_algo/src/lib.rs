@@ -90,6 +90,7 @@ pub mod shared;
 pub mod shorten_path;
 pub mod sigma_k;
 pub mod singly_linked_list_copy;
+pub mod singly_linked_list_reverse;
 pub mod smallest_difference;
 pub mod smallest_positive_product;
 pub mod sort_by_height;
@@ -210,6 +211,7 @@ pub mod runner {
     use shorten_path;
     use sigma_k::sigma_k;
     use singly_linked_list_copy;
+    use singly_linked_list_reverse;
     use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
     use sort_by_height;
@@ -511,6 +513,9 @@ pub mod runner {
             Algo::SinglyLinkedListCopy => {
                 singly_linked_list_copy::run();
             }
+            Algo::SinglyLinkedListReverse => {
+                singly_linked_list_reverse::run();
+            }
             Algo::SmallestDifference => {
                 smallest_difference::run();
             }
@@ -682,6 +687,7 @@ mod test_runner {
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
     use crate::singly_linked_list_copy;
+    use crate::singly_linked_list_reverse;
     use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sort_by_height;
@@ -1550,7 +1556,7 @@ mod test_runner {
     }
 
     #[test]
-    fn singly_linked_list_copy() {
+    fn singly_linked_list_copy_test() {
         let v = vec![1, 2, 3, 4, 5, 6];
         let mut list = build_singly_linkedlist(&v);
         let mut orig_trace:Vec<i32> = Vec::new();
@@ -1559,6 +1565,17 @@ mod test_runner {
         let mut copied_trace:Vec<i32> = Vec::new();
         copied.trav_from(&mut copied_trace);
         assert_eq!(orig_trace, copied_trace);
+    }
+
+    #[test]
+    fn singly_linked_list_reverse_test() {
+        let v = vec![1, 2, 3, 4, 5, 6];
+        let mut list = build_singly_linkedlist(&v);
+        let reversed = singly_linked_list_reverse::exec(&mut list);
+        let mut reversed_trace:Vec<i32> = Vec::new();
+        let expected:Vec<i32> = vec![6, 5, 4, 3, 2, 1];
+        reversed.trav_from(&mut reversed_trace);
+        assert_eq!(reversed_trace, expected);
     }
 
     #[test]
@@ -2004,6 +2021,7 @@ pub enum Algo {
     ShortenPath,
     SigmaK,
     SinglyLinkedListCopy,
+    SinglyLinkedListReverse,
     SmallestDifference,
     SmallestPositiveProduct,
     SortByHeight,
@@ -2124,6 +2142,7 @@ impl Algo {
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
             s if s.to_lowercase() == "singly_linked_list_copy" => Algo::SinglyLinkedListCopy,
+            s if s.to_lowercase() == "singly_linked_list_reverse" => Algo::SinglyLinkedListReverse,
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,

@@ -2,6 +2,7 @@
 use derive_more::Display;
 use std::default::Default;
 use std::fmt::Debug;
+use std::collections::VecDeque;
 
 #[derive(Display, Debug)]
 #[display(fmt = "{{value:{}}}", value)]
@@ -27,6 +28,43 @@ impl Point {
 impl Default for Point {
     fn default() -> Self {
         Point::new(0, 0)
+    }
+}
+
+pub fn add_node_not_balanced(n: &mut Box<TreeNode>, v:i32, ops:&mut VecDeque<&str>) {
+
+    println!("{}-{:?}@{}", v, ops, n.value);
+
+    let newn = TreeNode {
+        value: v,
+        left: None,
+        right: None,
+    };
+
+    let next_ops_o = ops.pop_front();
+    if next_ops_o.is_none() {
+        return;
+    }
+    let next_ops = next_ops_o.unwrap();
+
+    if next_ops == "left" {
+        match n.left.as_mut() {
+            None => {
+                n.left = Some(Box::new(newn));
+            },
+            Some(left_node) => {
+                add_node_not_balanced(left_node, v, ops)
+            }
+        }
+    } else {
+        match n.right.as_mut() {
+            None => {
+                n.right = Some(Box::new(newn));
+            },
+            Some(right_node) => {
+                add_node_not_balanced(right_node, v, ops)
+            }
+        }
     }
 }
 
