@@ -64,6 +64,7 @@ pub mod most_frequent_digit_sum;
 pub mod next_greater_element;
 pub mod num_of_paths;
 pub mod number_grouping;
+pub mod obtain_increasing_seq;
 pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
 pub mod permutation;
@@ -187,6 +188,7 @@ pub mod runner {
     use next_greater_element;
     use num_of_paths;
     use number_grouping;
+    use obtain_increasing_seq;
     use oppsite_pos_in_circle;
     use pascal_triangle;
     use permutation;
@@ -443,6 +445,9 @@ pub mod runner {
             Algo::NumberGrouping => {
                 number_grouping::run();
             }
+            Algo::ObtainIncreasingSeq => {
+                obtain_increasing_seq::run();
+            }
             Algo::OppositePosInCircle => {
                 oppsite_pos_in_circle::run();
             }
@@ -666,6 +671,8 @@ mod test_runner {
     use crate::next_greater_element;
     use crate::num_of_paths;
     use crate::number_grouping;
+    use crate::obtain_increasing_seq;
+    use crate::oppsite_pos_in_circle;
     use crate::pascal_triangle;
     use crate::permutation;
     use crate::phone_mnemonic;
@@ -673,7 +680,6 @@ mod test_runner {
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::quick_sort;
-    use crate::oppsite_pos_in_circle;
     use crate::radix_sort::radix_sort;
     use crate::random_perm;
     use crate::ranking;
@@ -1361,6 +1367,18 @@ mod test_runner {
     }
 
     #[test]
+    fn obtain_increasing_seq_normal_case_test() {
+        let v = [1, 1, 1];
+        assert_eq!(obtain_increasing_seq::exec(&v), 3);
+    }
+
+    #[test]
+    fn obtain_increasing_seq_already_done_case_test() {
+        let v = [1, 2, 3];
+        assert_eq!(obtain_increasing_seq::exec(&v), 0);
+    }
+
+    #[test]
     fn opposite_num_in_circle_test() {
         let n = 10;
         let f = 2;
@@ -2026,6 +2044,7 @@ pub enum Algo {
     NextGreaterElement,
     NumberGrouping,
     NumOfPaths,
+    ObtainIncreasingSeq,
     OppositePosInCircle,
     PascalTriangle,
     Permutation,
@@ -2149,6 +2168,7 @@ impl Algo {
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
             s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
+            s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
