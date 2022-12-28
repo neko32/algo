@@ -17,6 +17,8 @@ pub mod chars_to_sorted_digits;
 pub mod christmas_tree;
 pub mod clean_kth_bit;
 pub mod combination;
+
+pub mod construct_min_height_bst;
 pub mod construct_square;
 pub mod cool_num_pair;
 pub mod cyclic_chars;
@@ -143,6 +145,7 @@ pub mod runner {
     use christmas_tree::christmas_tree;
     use clean_kth_bit::clean_kth_bit;
     use combination;
+    use construct_min_height_bst;
     use construct_square;
     use cool_num_pair::cool_num_pair;
     use cyclic_chars::cyclic_chars;
@@ -302,6 +305,9 @@ pub mod runner {
             }
             Algo::Combination => {
                 combination::run();
+            }
+            Algo::ConstructMinHeightBST => {
+                construct_min_height_bst::run();
             }
             Algo::ConstructSquare => {
                 construct_square::run();
@@ -629,6 +635,7 @@ mod test_runner {
     use crate::christmas_tree::christmas_tree;
     use crate::clean_kth_bit::clean_kth_bit;
     use crate::combination;
+    use crate::construct_min_height_bst;
     use crate::construct_square;
     use crate::cool_num_pair::cool_num_pair;
     use crate::cyclic_chars::cyclic_chars;
@@ -962,6 +969,16 @@ mod test_runner {
         let s = "aba".to_string();
         let rez = construct_square::exec(&s);
         assert_eq!(rez, 900);
+    }
+
+    #[test]
+    fn construct_min_height_bst_test() {
+        let v = [6, 3, 2, 1, 5, 4];
+        let rez = construct_min_height_bst::exec(&v);
+        let mut trace:Vec<i32> = Vec::new();
+        traverse_pre(Box::new(rez), &mut trace);
+        let expected = vec![3, 1, 2, 5, 4, 6];
+        assert_eq!(trace, expected);
     }
 
     #[test]
@@ -2011,6 +2028,7 @@ pub enum Algo {
     ChristmasTree,
     CleanKthBit,
     Combination,
+    ConstructMinHeightBST,
     ConstructSquare,
     CoolNumPair,
     CyclicChars,
@@ -2136,6 +2154,7 @@ impl Algo {
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
             s if s.to_lowercase() == "combination" => Algo::Combination,
+            s if s.to_lowercase() == "construct_min_height_bst" => Algo::ConstructMinHeightBST,
             s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
