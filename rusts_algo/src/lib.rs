@@ -66,6 +66,7 @@ pub mod minmax_stack;
 pub mod mode;
 pub mod most_frequent_digit_sum;
 pub mod next_greater_element;
+pub mod num_of_clans;
 pub mod num_of_paths;
 pub mod number_grouping;
 pub mod obtain_increasing_seq;
@@ -195,6 +196,7 @@ pub mod runner {
     use mode;
     use most_frequent_digit_sum;
     use next_greater_element;
+    use num_of_clans;
     use num_of_paths;
     use number_grouping;
     use obtain_increasing_seq;
@@ -461,6 +463,9 @@ pub mod runner {
             Algo::NextGreaterElement => {
                 next_greater_element::run();
             }
+            Algo::NumOfClans => {
+                num_of_clans::run();
+            }
             Algo::NumOfPaths => {
                 num_of_paths::run();
             }
@@ -698,6 +703,7 @@ mod test_runner {
     use crate::mode;
     use crate::most_frequent_digit_sum;
     use crate::next_greater_element;
+    use crate::num_of_clans;
     use crate::num_of_paths;
     use crate::number_grouping;
     use crate::obtain_increasing_seq;
@@ -1425,6 +1431,14 @@ mod test_runner {
     }
 
     #[test]
+    fn num_of_clans_test() {
+        let divisors = vec![2, 3, 4];
+        let k = 6;
+        let rez = num_of_clans::exec(divisors, k);
+        assert_eq!(rez, 5);
+    }
+
+    #[test]
     fn num_of_paths_test() {
         let w = 5;
         let h = 4;
@@ -2126,6 +2140,7 @@ pub enum Algo {
     MostFrequentDigitSum,
     NextGreaterElement,
     NumberGrouping,
+    NumOfClans,
     NumOfPaths,
     ObtainIncreasingSeq,
     OppositePosInCircle,
@@ -2254,6 +2269,7 @@ impl Algo {
             s if s.to_lowercase() == "mode" => Algo::Mode,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
+            s if s.to_lowercase() == "num_of_clans" => Algo::NumOfClans,
             s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
