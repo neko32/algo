@@ -40,6 +40,7 @@ pub mod group_by_key;
 pub mod hanoi_tower;
 pub mod helon_formula;
 pub mod inorder_traversal;
+pub mod ipv4;
 pub mod is_bst;
 pub mod is_mac_addr;
 pub mod is_palindrome;
@@ -172,6 +173,7 @@ pub mod runner {
     use helon_formula::helon_formula;
     use jump_height_in_frames;
     use inorder_traversal;
+    use ipv4;
     use is_bst;
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
@@ -381,6 +383,9 @@ pub mod runner {
             }
             Algo::InOrderTraversal => {
                 inorder_traversal::run();
+            }
+            Algo::IPv4 => {
+                ipv4::run();
             }
             Algo::IsBST => {
                 is_bst::run();
@@ -677,6 +682,7 @@ mod test_runner {
     use crate::hanoi_tower;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
+    use crate::ipv4;
     use crate::is_bst;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
@@ -1178,6 +1184,21 @@ mod test_runner {
         let r = inorder_traversal::exec(&v);
         let expected = vec![1, 2, 4, 5, 9, 10];
         assert_eq!(r, expected);
+    }
+
+    #[test]
+    fn ipv4_valid_case_test() {
+        let validones = vec!["192.168.0.1", "0.0.0.0", "255.255.255.255",
+        "129.20.38.0", "240.240.240.240", "1.2.3.4", "10.20.30.40", "99.99.99.99",
+        "127.0.0.1"];
+        assert!(validones.iter().all(|s|ipv4::exec(s)));
+    }
+
+    #[test]
+    fn ipv4_invalid_case_test() {
+        let invalidones = vec!["-1.2.3.4", "256.2.1.8", "79.79.79.790", "192.168.8", "192.168.256.8", "260.2.2.100",
+        "50", "0.0.0.256", "1000.100000.1000000000.10", "a.b.c.d", "192.01.25.33", "08.10.2.25", "0001.0004.0008.0002"];
+        assert!(invalidones.iter().all(|s|!ipv4::exec(s)));
     }
 
     #[test]
@@ -2113,6 +2134,7 @@ pub enum Algo {
     HanoiTower,
     HelonFormula,
     InOrderTraversal,
+    IPv4,
     IsBST,
     IsMacAddr,
     IsPalindrome,
@@ -2243,6 +2265,7 @@ impl Algo {
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
+            s if s.to_lowercase() == "ipv4" => Algo::IPv4,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
