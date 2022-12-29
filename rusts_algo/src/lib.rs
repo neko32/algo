@@ -27,6 +27,7 @@ pub mod diagonal;
 pub mod different_squares;
 pub mod document_build;
 pub mod euclidean;
+pub mod eval_tictactoe;
 pub mod even_num_sum;
 pub mod factorial;
 pub mod fibonacci;
@@ -35,6 +36,7 @@ pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
 pub mod group_anagrams;
+pub mod group_by_key;
 pub mod hanoi_tower;
 pub mod helon_formula;
 pub mod inorder_traversal;
@@ -155,6 +157,7 @@ pub mod runner {
     use different_squares;
     use document_build::document_build;
     use euclidean::euclidean;
+    use eval_tictactoe;
     use even_num_sum::even_num_sum;
     use factorial;
     use fibonacci;
@@ -163,6 +166,7 @@ pub mod runner {
     use geometric_progression;
     use geometrical_mean;
     use group_anagrams;
+    use group_by_key;
     use hanoi_tower;
     use helon_formula::helon_formula;
     use jump_height_in_frames;
@@ -334,6 +338,9 @@ pub mod runner {
             Algo::DocumentBuild => {
                 document_build::run();
             }
+            Algo::EvalTicTacToe => {
+                eval_tictactoe::run();
+            }
             Algo::EvenNumSum => {
                 even_num_sum::run();
             }
@@ -360,6 +367,9 @@ pub mod runner {
             }
             Algo::GroupAnagrams => {
                 group_anagrams::run();
+            }
+            Algo::GroupByKey => {
+                group_by_key::run();
             }
             Algo::HanoiTower => {
                 hanoi_tower::run();
@@ -649,6 +659,7 @@ mod test_runner {
     use crate::different_squares;
     use crate::document_build::document_build;
     use crate::euclidean::euclidean;
+    use crate::eval_tictactoe;
     use crate::even_num_sum::even_num_sum;
     use crate::factorial;
     use crate::fibonacci;
@@ -657,6 +668,7 @@ mod test_runner {
     use crate::geometric_progression;
     use crate::geometrical_mean;
     use crate::group_anagrams;
+    use crate::group_by_key;
     use crate::hanoi_tower;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
@@ -1035,6 +1047,16 @@ mod test_runner {
     }
 
     #[test]
+    fn eval_tictactoe_test() {
+        let s:Vec<&str> = vec![
+            "OXXXOXXXO", "XXXXXXOOO", "XXXOOOXXX",
+            "OOOXXXXXX", "XOXXOXXOX", "XXOXOXOXX",
+            "OXXOXXOXX", "XXOXXOXXO"
+        ];
+        assert!(s.iter().all(|s|eval_tictactoe::exec(s)));
+    }
+
+    #[test]
     fn even_num_sum_match_case() {
         let n = 1230;
         assert!(even_num_sum::exec(n));
@@ -1110,6 +1132,20 @@ mod test_runner {
         let expected = vec![vec!["yo", "oy"], vec!["flop", "olfp"], vec!["act", "tac", "cat"], vec!["foo"]];
         let rez = group_anagrams::exec(&words);
         assert!(expected.iter().all(|a|rez.contains(a)));
+    }
+
+    #[test]
+    fn group_by_key_regular_case_test() {
+        let l = vec![(1, 2), (1, 3), (3, 2), (4, 2), (4, 3)];
+        let rez = group_by_key::exec(l, 1);
+        assert_eq!(rez, vec![2, 3]);
+    }
+
+    #[test]
+    fn group_by_key_no_key_case_test() {
+        let l = vec![(1, 2), (1, 3), (3, 2), (4, 2), (4, 3)];
+        let rez = group_by_key::exec(l, 5);
+        assert_eq!(rez, vec![]);
     }
 
     #[test]
@@ -2049,6 +2085,7 @@ pub enum Algo {
     Diagonal,
     DifferentSquares,
     DocumentBuild,
+    EvalTicTacToe,
     EvenNumSum,
     Euclidean,
     Factorial,
@@ -2058,6 +2095,7 @@ pub enum Algo {
     GeometricProgression,
     GeometricalMean,
     GroupAnagrams,
+    GroupByKey,
     HanoiTower,
     HelonFormula,
     InOrderTraversal,
@@ -2176,6 +2214,7 @@ impl Algo {
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
             s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
             s if s.to_lowercase() == "document_build" => Algo::DocumentBuild,
+            s if s.to_lowercase() == "eval_tictactoe" => Algo::EvalTicTacToe,
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
@@ -2185,6 +2224,7 @@ impl Algo {
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
             s if s.to_lowercase() == "group_anagrams" => Algo::GroupAnagrams,
+            s if s.to_lowercase() == "group_by_key" => Algo::GroupByKey,
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
