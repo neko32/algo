@@ -32,6 +32,7 @@ pub mod even_num_sum;
 pub mod factorial;
 pub mod fibonacci;
 pub mod file_naming;
+pub mod find_closest_value;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
@@ -84,6 +85,7 @@ pub mod radix_sort;
 pub mod random_perm;
 pub mod ranking;
 pub mod reconstruct_bst_from_pre;
+pub mod remove_island;
 pub mod repeat_product;
 pub mod request_per_sec;
 pub mod reverse_poland_calc;
@@ -164,6 +166,7 @@ pub mod runner {
     use factorial;
     use fibonacci;
     use file_naming;
+    use find_closest_value;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
     use geometrical_mean;
@@ -215,6 +218,7 @@ pub mod runner {
     use random_perm;
     use ranking;
     use reconstruct_bst_from_pre;
+    use remove_island;
     use repeat_product::repeat_product;
     use request_per_sec::request_per_sec;
     use reverse_poland_calc::reverse_poland_calc;
@@ -359,6 +363,9 @@ pub mod runner {
             }
             Algo::FileNaming => {
                 file_naming::run();
+            }
+            Algo::FindClosestValue => {
+                find_closest_value::run();
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
@@ -515,6 +522,9 @@ pub mod runner {
             }
             Algo::ReconstructBSTFromPreorder => {
                 reconstruct_bst_from_pre::run();
+            }
+            Algo::RemoveIsland => {
+                remove_island::run();
             }
             Algo::RepeatProduct => {
                 repeat_product::run();
@@ -674,6 +684,7 @@ mod test_runner {
     use crate::factorial;
     use crate::fibonacci;
     use crate::file_naming;
+    use crate::find_closest_value;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
     use crate::geometrical_mean;
@@ -726,6 +737,7 @@ mod test_runner {
     use crate::random_perm;
     use crate::ranking;
     use crate::reconstruct_bst_from_pre;
+    use crate::remove_island;
     use crate::repeat_product::repeat_product;
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_poland_calc::reverse_poland_calc;
@@ -1107,6 +1119,18 @@ mod test_runner {
         let files = vec!["doc", "doc", "image", "doc(1)", "doc"];
         let expected = vec!["doc".to_string(), "doc(1)".to_string(), "image".to_string(), "doc(1)(1)".to_string(), "doc(2)".to_string()];
         assert_eq!(file_naming::exec(files), expected);
+    }
+
+    #[test]
+    fn find_closest_value_exact_match_test() {
+        let r = build_tree(&vec![10, 5, 2, 1, 15, 13, 14, 22]);
+        assert_eq!(find_closest_value::exec(r, 12), 13);
+    }
+
+    #[test]
+    fn find_closest_value_approx_match_test() {
+        let r = build_tree(&vec![10, 5, 2, 1, 15, 13, 14, 22]);
+        assert_eq!(find_closest_value::exec(r, 12), 13);
     }
 
     #[test]
@@ -1599,6 +1623,28 @@ mod test_runner {
         let mut trace:Vec<i32> = Vec::new();
         traverse_pre(rez, &mut trace);
         assert_eq!(v, trace);
+    }
+
+    #[test]
+    fn remove_island_test() {
+        let mut matrix = arr2(&[
+            [1, 0, 0, 0, 0, 0],
+            [0, 1, 0, 1, 1, 1],
+            [0, 0, 1, 0, 1, 0],
+            [1, 1, 0, 0, 1, 0],
+            [1, 0, 1, 1, 0, 0],
+            [1, 0, 0, 0, 0, 1],
+        ]);
+        remove_island::exec(&mut matrix);
+        let expected = arr2(&[
+            [1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 1, 1],
+            [0, 0, 0, 0, 1, 0],
+            [1, 1, 0, 0, 1, 0],
+            [1, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 1]
+        ]);
+        assert_eq!(matrix.view(), expected.view());
     }
 
     #[test]
@@ -2126,6 +2172,7 @@ pub enum Algo {
     Factorial,
     Fibonacci,
     FileNaming,
+    FindClosestValue,
     FizzBuzz,
     GeometricProgression,
     GeometricalMean,
@@ -2178,6 +2225,7 @@ pub enum Algo {
     RandomPerm,
     Ranking,
     ReconstructBSTFromPreorder,
+    RemoveIsland,
     RepeatProduct,
     RequestPerSec,
     ReversePoland,
@@ -2257,6 +2305,7 @@ impl Algo {
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
             s if s.to_lowercase() == "fibonacci" => Algo::Fibonacci,
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
+            s if s.to_lowercase() == "find_closest_value" => Algo::FindClosestValue,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
@@ -2309,6 +2358,7 @@ impl Algo {
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
             s if s.to_lowercase() == "ranking" => Algo::Ranking,
             s if s.to_lowercase() == "reconstruct_bst_from_preorder" => Algo::ReconstructBSTFromPreorder,
+            s if s.to_lowercase() == "remove_island" => Algo::RemoveIsland,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
