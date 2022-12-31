@@ -15,6 +15,7 @@ pub mod chars_appearing_twice;
 pub mod chars_perm_list;
 pub mod chars_to_sorted_digits;
 pub mod christmas_tree;
+pub mod clamp_value;
 pub mod clean_kth_bit;
 pub mod combination;
 pub mod construct_min_height_bst;
@@ -149,6 +150,7 @@ pub mod runner {
     use chars_appearing_twice;
     use chars_to_sorted_digits;
     use christmas_tree::christmas_tree;
+    use clamp_value;
     use clean_kth_bit::clean_kth_bit;
     use combination;
     use construct_min_height_bst;
@@ -312,6 +314,9 @@ pub mod runner {
             }
             Algo::ChristmasTree => {
                 christmas_tree::run();
+            }
+            Algo::ClampValue => {
+                clamp_value::run();
             }
             Algo::CleanKthBit => {
                 clean_kth_bit::run();
@@ -667,6 +672,7 @@ mod test_runner {
     use crate::chars_perm_list;
     use crate::chars_to_sorted_digits;
     use crate::christmas_tree::christmas_tree;
+    use crate::clamp_value;
     use crate::clean_kth_bit::clean_kth_bit;
     use crate::combination;
     use crate::construct_min_height_bst;
@@ -989,6 +995,13 @@ mod test_runner {
 |   ***   |
 -----------";
         assert_eq!(rezstr, expected);
+    }
+
+    #[test]
+    fn clamp_value_test() {
+        assert_eq!(clamp_value::exec(72, 10, 100), 72);
+        assert_eq!(clamp_value::exec(4, 10, 100), 10);
+        assert_eq!(clamp_value::exec(105, 10, 100), 100);
     }
 
     #[test]
@@ -2155,6 +2168,7 @@ pub enum Algo {
     CharsPermList,
     CharsToSortedDigits,
     ChristmasTree,
+    ClampValue,
     CleanKthBit,
     Combination,
     ConstructMinHeightBST,
@@ -2288,6 +2302,7 @@ impl Algo {
             s if s.to_lowercase() == "chars_perm_list" => Algo::CharsPermList,
             s if s.to_lowercase() == "chars_to_sorted_digits" => Algo::CharsToSortedDigits,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
+            s if s.to_lowercase() == "clamp_value" => Algo::ClampValue,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
             s if s.to_lowercase() == "combination" => Algo::Combination,
             s if s.to_lowercase() == "construct_min_height_bst" => Algo::ConstructMinHeightBST,
