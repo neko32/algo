@@ -39,6 +39,7 @@ pub mod geometric_progression;
 pub mod geometrical_mean;
 pub mod group_anagrams;
 pub mod group_by_key;
+pub mod guard_technique;
 pub mod hanoi_tower;
 pub mod helon_formula;
 pub mod inorder_traversal;
@@ -174,6 +175,7 @@ pub mod runner {
     use geometrical_mean;
     use group_anagrams;
     use group_by_key;
+    use guard_technique;
     use hanoi_tower;
     use helon_formula::helon_formula;
     use jump_height_in_frames;
@@ -386,6 +388,9 @@ pub mod runner {
             }
             Algo::GroupByKey => {
                 group_by_key::run();
+            }
+            Algo::GuardTechnique => {
+                guard_technique::run();
             }
             Algo::HanoiTower => {
                 hanoi_tower::run();
@@ -696,6 +701,7 @@ mod test_runner {
     use crate::geometrical_mean;
     use crate::group_anagrams;
     use crate::group_by_key;
+    use crate::guard_technique;
     use crate::hanoi_tower;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
@@ -1195,6 +1201,14 @@ mod test_runner {
         let l = vec![(1, 2), (1, 3), (3, 2), (4, 2), (4, 3)];
         let rez = group_by_key::exec(l, 5);
         assert_eq!(rez, vec![]);
+    }
+
+    #[test]
+    fn guard_technique_test() {
+        assert_eq!(guard_technique::exec(vec![3, 8, 11, 0, 9, 20, 0, 1, 8], 0), 22);
+        assert_eq!(guard_technique::exec(vec![3, 8, 11, 1, 9, 20, 0, 1, 8], 0), 52);
+        assert_eq!(guard_technique::exec(vec![3, 8, 11, 1, 9, 20, 3, 1, 8], 0), 64);
+        assert_eq!(guard_technique::exec(vec![3, 8, 11, 1, 9, 20, 3, 1, 8], 1), 22);
     }
 
     #[test]
@@ -2192,6 +2206,7 @@ pub enum Algo {
     GeometricalMean,
     GroupAnagrams,
     GroupByKey,
+    GuardTechnique,
     HanoiTower,
     HelonFormula,
     InOrderTraversal,
@@ -2326,6 +2341,7 @@ impl Algo {
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
             s if s.to_lowercase() == "group_anagrams" => Algo::GroupAnagrams,
             s if s.to_lowercase() == "group_by_key" => Algo::GroupByKey,
+            s if s.to_lowercase() == "guard_technique" => Algo::GuardTechnique,
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
