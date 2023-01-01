@@ -70,6 +70,7 @@ pub mod minmax_stack;
 pub mod mode;
 pub mod most_frequent_digit_sum;
 pub mod next_greater_element;
+pub mod node_distance_k;
 pub mod num_of_clans;
 pub mod num_of_paths;
 pub mod number_grouping;
@@ -205,6 +206,7 @@ pub mod runner {
     use mode;
     use most_frequent_digit_sum;
     use next_greater_element;
+    use node_distance_k;
     use num_of_clans;
     use num_of_paths;
     use number_grouping;
@@ -485,6 +487,9 @@ pub mod runner {
             Algo::NextGreaterElement => {
                 next_greater_element::run();
             }
+            Algo::NodeDistanceK => {
+                node_distance_k::run();
+            }
             Algo::NumOfClans => {
                 num_of_clans::run();
             }
@@ -732,6 +737,7 @@ mod test_runner {
     use crate::mode;
     use crate::most_frequent_digit_sum;
     use crate::next_greater_element;
+    use crate::node_distance_k;
     use crate::num_of_clans;
     use crate::num_of_paths;
     use crate::number_grouping;
@@ -794,8 +800,7 @@ mod test_runner {
     use float_cmp::approx_eq;
     use num::integer::gcd;
     use std::{
-        array,
-        collections::{BTreeSet, HashSet},
+        collections::{BTreeSet, HashSet, VecDeque},
     };
     use ndarray::{Array2, arr2};
 
@@ -1500,6 +1505,27 @@ mod test_runner {
         let a = &[2, 5, -3, -4, 6, 7, 2];
         let expected = vec![5, 6, 6, 6, 7, -1, 5];
         assert_eq!(next_greater_element::exec(a), expected);
+    }
+
+    #[test]
+    fn node_distance_k_test() {
+        let mut root = Box::new(TreeNode { value: 1, left: None, right: None});
+        let mut op1 = VecDeque::from_iter(["left"]);
+        add_node_not_balanced(&mut root, 2, &mut op1);
+        let mut op2 = VecDeque::from_iter(["right"]);
+        add_node_not_balanced(&mut root, 3, &mut op2);
+        let mut op3 = VecDeque::from_iter(["left", "left"]);
+        add_node_not_balanced(&mut root, 4, &mut op3);
+        let mut op4 = VecDeque::from_iter(["left", "right"]);
+        add_node_not_balanced(&mut root, 5, &mut op4);
+        let mut op5 = VecDeque::from_iter(["right", "right"]);
+        add_node_not_balanced(&mut root, 6, &mut op5);
+        let mut op6 = VecDeque::from_iter(["right", "right", "left"]);
+        add_node_not_balanced(&mut root, 7, &mut op6);
+        let mut op7 = VecDeque::from_iter(["right", "right", "right"]);
+        add_node_not_balanced(&mut root, 8, &mut op7);
+        let rez:HashSet<i32> = node_distance_k::exec(root, 3, 2).into_iter().collect();
+        assert_eq!(rez, HashSet::from_iter([2, 7, 8]));
     }
 
     #[test]
@@ -2237,6 +2263,7 @@ pub enum Algo {
     Mode,
     MostFrequentDigitSum,
     NextGreaterElement,
+    NodeDistanceK,
     NumberGrouping,
     NumOfClans,
     NumOfPaths,
@@ -2372,6 +2399,7 @@ impl Algo {
             s if s.to_lowercase() == "mode" => Algo::Mode,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
+            s if s.to_lowercase() == "node_distance_k" => Algo::NodeDistanceK,
             s if s.to_lowercase() == "num_of_clans" => Algo::NumOfClans,
             s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
