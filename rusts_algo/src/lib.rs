@@ -1,4 +1,5 @@
 pub mod add_two_int_without_carry;
+pub mod all_longest_strings;
 pub mod almost_increasing_seq;
 pub mod appear_twice;
 pub mod applebox;
@@ -137,6 +138,7 @@ pub mod runner {
 
     use super::*;
     use add_two_int_without_carry::add_two_without_carry;
+    use all_longest_strings;
     use almost_increasing_seq::almost_increasing_seq;
     use appear_twice::appear_twice;
     use applebox::applebox;
@@ -270,6 +272,9 @@ pub mod runner {
         match algo {
             Algo::AddTwoIntWithoutCarry => {
                 add_two_without_carry::run();
+            }
+            Algo::AllLongestStrings => {
+                all_longest_strings::run();
             }
             Algo::AlmostIncreasingSeq => {
                 almost_increasing_seq::run();
@@ -666,6 +671,7 @@ pub mod runner {
 #[cfg(test)]
 mod test_runner {
     use crate::add_two_int_without_carry::add_two_without_carry;
+    use crate::all_longest_strings;
     use crate::almost_increasing_seq::almost_increasing_seq;
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
@@ -809,6 +815,13 @@ mod test_runner {
         let a = 456;
         let b = 1734;
         assert_eq!(add_two_without_carry::exec(a, b), 1180);
+    }
+
+    #[test]
+    fn all_longest_strings_test() {
+        let rez = all_longest_strings::exec(&vec!["aba", "aa", "ad", "vcd", "aba"]);
+        let expected = vec!["aba".to_string(), "vcd".to_string(), "aba".to_string()];
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -2192,6 +2205,7 @@ mod test_runner {
 
 pub enum Algo {
     AddTwoIntWithoutCarry,
+    AllLongestStrings,
     AlmostIncreasingSeq,
     AppearTwice,
     Applebox,
@@ -2328,6 +2342,7 @@ impl Algo {
     pub fn from_str(algo_str: &str) -> Self {
         match algo_str {
             s if s.to_lowercase() == "add_two_int_without_carry" => Algo::AddTwoIntWithoutCarry,
+            s if s.to_lowercase() == "all_longest_strings" => Algo::AllLongestStrings,
             s if s.to_lowercase() == "almost_increasing_seq" => Algo::AlmostIncreasingSeq,
             s if s.to_lowercase() == "appear_twice" => Algo::AppearTwice,
             s if s.to_lowercase() == "applebox" => Algo::Applebox,
