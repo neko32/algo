@@ -12,6 +12,7 @@ pub mod bt_from_inorder_preorder;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod century;
+pub mod char_count;
 pub mod chars_appearing_twice;
 pub mod chars_perm_list;
 pub mod chars_to_sorted_digits;
@@ -151,6 +152,7 @@ pub mod runner {
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use century::century;
+    use char_count;
     use chars_appearing_twice;
     use chars_to_sorted_digits;
     use christmas_tree::christmas_tree;
@@ -311,6 +313,9 @@ pub mod runner {
             }
             Algo::Century => {
                 century::run();
+            }
+            Algo::CharCount => {
+                char_count::run();
             }
             Algo::CharsAppearingTwice => {
                 chars_appearing_twice::run();
@@ -684,6 +689,7 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::century::century;
+    use crate::char_count;
     use crate::chars_appearing_twice;
     use crate::chars_perm_list;
     use crate::chars_to_sorted_digits;
@@ -804,9 +810,10 @@ mod test_runner {
     use crate::xor_shift;
     use crate::z_score;
     use float_cmp::approx_eq;
+    use hashmap_macro::hashmap;
     use num::integer::gcd;
     use std::{
-        collections::{BTreeSet, HashSet, VecDeque},
+        collections::{BTreeSet, HashMap, HashSet, VecDeque},
     };
     use ndarray::{Array2, arr2};
 
@@ -946,6 +953,18 @@ mod test_runner {
         let n = 1700;
         let nr = century::exec(n);
         assert_eq!(nr, 17);
+    }
+
+    #[test]
+    fn char_count_test() {
+        let v = vec!["ABC", "ABDabd", "ZzZzZ", "MNN", "D", "ZA", "g"];
+        let expected:HashMap<char, u32> = hashmap![
+            'Z' => 4, 'A' => 3, 'B' => 2, 'D' => 2, 'b' => 1,
+            'a' => 1, 'M' => 1, 'z' => 2, 'd' => 1, 'N' => 2,
+            'C' => 1, 'g' => 1
+        ];
+        let rez = char_count::exec(v);
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -2218,6 +2237,7 @@ pub enum Algo {
     CamelCase,
     Century,
     CaesarCrypt,
+    CharCount,
     CharsAppearingTwice,
     CharsPermList,
     CharsToSortedDigits,
@@ -2355,6 +2375,7 @@ impl Algo {
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "century" => Algo::Century,
+            s if s.to_lowercase() == "char_count" => Algo::CharCount,
             s if s.to_lowercase() == "chars_appearing_twice" => Algo::CharsAppearingTwice,
             s if s.to_lowercase() == "chars_perm_list" => Algo::CharsPermList,
             s if s.to_lowercase() == "chars_to_sorted_digits" => Algo::CharsToSortedDigits,
