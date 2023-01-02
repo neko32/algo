@@ -67,6 +67,7 @@ pub mod max_with_lessdigit;
 pub mod mean;
 pub mod merge_sorted_linkedlist;
 pub mod min_breakdown_sum;
+pub mod min_passes_matrix_update;
 pub mod min_reward;
 pub mod minmax_stack;
 pub mod mode;
@@ -205,6 +206,7 @@ pub mod runner {
     use mean;
     use merge_sorted_linkedlist;
     use min_breakdown_sum::min_breakdown_sum;
+    use min_passes_matrix_update;
     use min_reward::min_reward;
     use minmax_stack;
     use mode;
@@ -446,9 +448,6 @@ pub mod runner {
             Algo::LinkedList => {
                 linked_list::run();
             }
-            Algo::RadixSort => {
-                radix_sort::run();
-            }
             Algo::LeastDataEviction => {
                 least_data_eviction::run();
             }
@@ -484,6 +483,9 @@ pub mod runner {
             }
             Algo::MinMaxStack => {
                 minmax_stack::run();
+            }
+            Algo::MinPassesMatrixUpdate => {
+                min_passes_matrix_update::run();
             }
             Algo::MinReward => {
                 min_reward::run();
@@ -547,6 +549,9 @@ pub mod runner {
             }
             Algo::ReconstructBSTFromPreorder => {
                 reconstruct_bst_from_pre::run();
+            }
+            Algo::RadixSort => {
+                radix_sort::run();
             }
             Algo::RemoveIsland => {
                 remove_island::run();
@@ -744,6 +749,7 @@ mod test_runner {
     use crate::mean;
     use crate::merge_sorted_linkedlist;
     use crate::min_breakdown_sum::min_breakdown_sum;
+    use crate::min_passes_matrix_update;
     use crate::min_reward::min_reward;
     use crate::minmax_stack;
     use crate::mode;
@@ -1501,6 +1507,16 @@ mod test_runner {
         let n:u32 = 808;
         let rez = min_breakdown_sum::exec(n);
         assert_eq!(rez, 14);
+    }
+
+    #[test]
+    fn min_passes_matrix_update_test() {
+        let mut m:Array2<i32> = arr2(&[
+            [0, -1, -3, 2, 0],
+            [1, -2, -5, -1, -3],
+            [3, 0, 0, -4, -1]
+        ]);
+        assert_eq!(min_passes_matrix_update::exec(&mut m), 3);
     }
 
     #[test]
@@ -2293,6 +2309,7 @@ pub enum Algo {
     MergeSortedLinkedList,
     MinBreakdownSum,
     MinMaxStack,
+    MinPassesMatrixUpdate,
     MinReward,
     Mode,
     MostFrequentDigitSum,
@@ -2430,6 +2447,7 @@ impl Algo {
             s if s.to_lowercase() == "mean" => Algo::Mean,
             s if s.to_lowercase() == "merge_sorted_linkedlist" => Algo::MergeSortedLinkedList,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
+            s if s.to_lowercase() == "min_passes_matrix_update" => Algo::MinPassesMatrixUpdate,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
             s if s.to_lowercase() == "mode" => Algo::Mode,
