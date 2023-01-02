@@ -1,7 +1,7 @@
 
 use std::cmp::max;
 use std::collections::VecDeque;
-use crate::shared::{TreeNode, add_node_not_balanced, traverse_pre};
+use crate::shared::{TreeNode, add_node_not_balanced};
 
 pub fn exec(root:TreeNode) -> i32 {
     let root_box = Box::new(root);

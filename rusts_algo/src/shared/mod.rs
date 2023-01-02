@@ -4,7 +4,7 @@ use std::default::Default;
 use std::fmt::Debug;
 use std::collections::VecDeque;
 
-#[derive(Display, Debug)]
+#[derive(Display, Debug, Clone)]
 #[display(fmt = "{{value:{}}}", value)]
 pub struct TreeNode {
     pub value: i32,
@@ -199,3 +199,4 @@ pub fn build_singly_linkedlist(v:&Vec<i32>) -> Box<ListNode> {
     }
     Box::new(root)
 }
+

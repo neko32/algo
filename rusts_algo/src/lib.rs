@@ -1,4 +1,5 @@
 pub mod add_two_int_without_carry;
+pub mod all_longest_strings;
 pub mod almost_increasing_seq;
 pub mod appear_twice;
 pub mod applebox;
@@ -11,12 +12,15 @@ pub mod bt_from_inorder_preorder;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod century;
+pub mod char_count;
 pub mod chars_appearing_twice;
 pub mod chars_perm_list;
 pub mod chars_to_sorted_digits;
 pub mod christmas_tree;
+pub mod clamp_value;
 pub mod clean_kth_bit;
 pub mod combination;
+pub mod construct_min_height_bst;
 pub mod construct_square;
 pub mod cool_num_pair;
 pub mod cyclic_chars;
@@ -26,16 +30,22 @@ pub mod diagonal;
 pub mod different_squares;
 pub mod document_build;
 pub mod euclidean;
+pub mod eval_tictactoe;
 pub mod even_num_sum;
 pub mod factorial;
 pub mod fibonacci;
 pub mod file_naming;
+pub mod find_closest_value;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
 pub mod group_anagrams;
+pub mod group_by_key;
+pub mod guard_technique;
+pub mod hanoi_tower;
 pub mod helon_formula;
 pub mod inorder_traversal;
+pub mod ipv4;
 pub mod is_bst;
 pub mod is_mac_addr;
 pub mod is_palindrome;
@@ -57,11 +67,14 @@ pub mod max_with_lessdigit;
 pub mod mean;
 pub mod merge_sorted_linkedlist;
 pub mod min_breakdown_sum;
+pub mod min_passes_matrix_update;
 pub mod min_reward;
 pub mod minmax_stack;
 pub mod mode;
 pub mod most_frequent_digit_sum;
 pub mod next_greater_element;
+pub mod node_distance_k;
+pub mod num_of_clans;
 pub mod num_of_paths;
 pub mod number_grouping;
 pub mod obtain_increasing_seq;
@@ -70,6 +83,7 @@ pub mod pascal_triangle;
 pub mod permutation;
 pub mod phone_mnemonic;
 pub mod prefix_sums;
+pub mod postorder_traversal;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod quick_sort;
@@ -77,6 +91,7 @@ pub mod radix_sort;
 pub mod random_perm;
 pub mod ranking;
 pub mod reconstruct_bst_from_pre;
+pub mod remove_island;
 pub mod repeat_product;
 pub mod request_per_sec;
 pub mod reverse_poland_calc;
@@ -125,6 +140,7 @@ pub mod runner {
 
     use super::*;
     use add_two_int_without_carry::add_two_without_carry;
+    use all_longest_strings;
     use almost_increasing_seq::almost_increasing_seq;
     use appear_twice::appear_twice;
     use applebox::applebox;
@@ -137,11 +153,14 @@ pub mod runner {
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use century::century;
+    use char_count;
     use chars_appearing_twice;
     use chars_to_sorted_digits;
     use christmas_tree::christmas_tree;
+    use clamp_value;
     use clean_kth_bit::clean_kth_bit;
     use combination;
+    use construct_min_height_bst;
     use construct_square;
     use cool_num_pair::cool_num_pair;
     use cyclic_chars::cyclic_chars;
@@ -151,17 +170,23 @@ pub mod runner {
     use different_squares;
     use document_build::document_build;
     use euclidean::euclidean;
+    use eval_tictactoe;
     use even_num_sum::even_num_sum;
     use factorial;
     use fibonacci;
     use file_naming;
+    use find_closest_value;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
     use geometrical_mean;
     use group_anagrams;
+    use group_by_key;
+    use guard_technique;
+    use hanoi_tower;
     use helon_formula::helon_formula;
     use jump_height_in_frames;
     use inorder_traversal;
+    use ipv4;
     use is_bst;
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
@@ -181,11 +206,14 @@ pub mod runner {
     use mean;
     use merge_sorted_linkedlist;
     use min_breakdown_sum::min_breakdown_sum;
+    use min_passes_matrix_update;
     use min_reward::min_reward;
     use minmax_stack;
     use mode;
     use most_frequent_digit_sum;
     use next_greater_element;
+    use node_distance_k;
+    use num_of_clans;
     use num_of_paths;
     use number_grouping;
     use obtain_increasing_seq;
@@ -193,6 +221,7 @@ pub mod runner {
     use pascal_triangle;
     use permutation;
     use phone_mnemonic;
+    use postorder_traversal;
     use prefix_sums;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
@@ -201,6 +230,7 @@ pub mod runner {
     use random_perm;
     use ranking;
     use reconstruct_bst_from_pre;
+    use remove_island;
     use repeat_product::repeat_product;
     use request_per_sec::request_per_sec;
     use reverse_poland_calc::reverse_poland_calc;
@@ -247,6 +277,9 @@ pub mod runner {
             Algo::AddTwoIntWithoutCarry => {
                 add_two_without_carry::run();
             }
+            Algo::AllLongestStrings => {
+                all_longest_strings::run();
+            }
             Algo::AlmostIncreasingSeq => {
                 almost_increasing_seq::run();
             }
@@ -283,6 +316,9 @@ pub mod runner {
             Algo::Century => {
                 century::run();
             }
+            Algo::CharCount => {
+                char_count::run();
+            }
             Algo::CharsAppearingTwice => {
                 chars_appearing_twice::run();
             }
@@ -295,11 +331,17 @@ pub mod runner {
             Algo::ChristmasTree => {
                 christmas_tree::run();
             }
+            Algo::ClampValue => {
+                clamp_value::run();
+            }
             Algo::CleanKthBit => {
                 clean_kth_bit::run();
             }
             Algo::Combination => {
                 combination::run();
+            }
+            Algo::ConstructMinHeightBST => {
+                construct_min_height_bst::run();
             }
             Algo::ConstructSquare => {
                 construct_square::run();
@@ -325,6 +367,9 @@ pub mod runner {
             Algo::DocumentBuild => {
                 document_build::run();
             }
+            Algo::EvalTicTacToe => {
+                eval_tictactoe::run();
+            }
             Algo::EvenNumSum => {
                 even_num_sum::run();
             }
@@ -340,6 +385,9 @@ pub mod runner {
             Algo::FileNaming => {
                 file_naming::run();
             }
+            Algo::FindClosestValue => {
+                find_closest_value::run();
+            }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
             }
@@ -352,11 +400,23 @@ pub mod runner {
             Algo::GroupAnagrams => {
                 group_anagrams::run();
             }
+            Algo::GroupByKey => {
+                group_by_key::run();
+            }
+            Algo::GuardTechnique => {
+                guard_technique::run();
+            }
+            Algo::HanoiTower => {
+                hanoi_tower::run();
+            }
             Algo::HelonFormula => {
                 helon_formula::run();
             }
             Algo::InOrderTraversal => {
                 inorder_traversal::run();
+            }
+            Algo::IPv4 => {
+                ipv4::run();
             }
             Algo::IsBST => {
                 is_bst::run();
@@ -387,9 +447,6 @@ pub mod runner {
             }
             Algo::LinkedList => {
                 linked_list::run();
-            }
-            Algo::RadixSort => {
-                radix_sort::run();
             }
             Algo::LeastDataEviction => {
                 least_data_eviction::run();
@@ -427,6 +484,9 @@ pub mod runner {
             Algo::MinMaxStack => {
                 minmax_stack::run();
             }
+            Algo::MinPassesMatrixUpdate => {
+                min_passes_matrix_update::run();
+            }
             Algo::MinReward => {
                 min_reward::run();
             }
@@ -438,6 +498,12 @@ pub mod runner {
             }
             Algo::NextGreaterElement => {
                 next_greater_element::run();
+            }
+            Algo::NodeDistanceK => {
+                node_distance_k::run();
+            }
+            Algo::NumOfClans => {
+                num_of_clans::run();
             }
             Algo::NumOfPaths => {
                 num_of_paths::run();
@@ -460,6 +526,9 @@ pub mod runner {
             Algo::PhoneMnemonic => {
                 phone_mnemonic::run();
             }
+            Algo::PostOrderTraversal => {
+                postorder_traversal::run();
+            }
             Algo::PrefixSums => {
                 prefix_sums::run();
             }
@@ -480,6 +549,12 @@ pub mod runner {
             }
             Algo::ReconstructBSTFromPreorder => {
                 reconstruct_bst_from_pre::run();
+            }
+            Algo::RadixSort => {
+                radix_sort::run();
+            }
+            Algo::RemoveIsland => {
+                remove_island::run();
             }
             Algo::RepeatProduct => {
                 repeat_product::run();
@@ -606,6 +681,7 @@ pub mod runner {
 #[cfg(test)]
 mod test_runner {
     use crate::add_two_int_without_carry::add_two_without_carry;
+    use crate::all_longest_strings;
     use crate::almost_increasing_seq::almost_increasing_seq;
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
@@ -618,12 +694,15 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::century::century;
+    use crate::char_count;
     use crate::chars_appearing_twice;
     use crate::chars_perm_list;
     use crate::chars_to_sorted_digits;
     use crate::christmas_tree::christmas_tree;
+    use crate::clamp_value;
     use crate::clean_kth_bit::clean_kth_bit;
     use crate::combination;
+    use crate::construct_min_height_bst;
     use crate::construct_square;
     use crate::cool_num_pair::cool_num_pair;
     use crate::cyclic_chars::cyclic_chars;
@@ -633,16 +712,22 @@ mod test_runner {
     use crate::different_squares;
     use crate::document_build::document_build;
     use crate::euclidean::euclidean;
+    use crate::eval_tictactoe;
     use crate::even_num_sum::even_num_sum;
     use crate::factorial;
     use crate::fibonacci;
     use crate::file_naming;
+    use crate::find_closest_value;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
     use crate::geometrical_mean;
     use crate::group_anagrams;
+    use crate::group_by_key;
+    use crate::guard_technique;
+    use crate::hanoi_tower;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
+    use crate::ipv4;
     use crate::is_bst;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
@@ -664,11 +749,14 @@ mod test_runner {
     use crate::mean;
     use crate::merge_sorted_linkedlist;
     use crate::min_breakdown_sum::min_breakdown_sum;
+    use crate::min_passes_matrix_update;
     use crate::min_reward::min_reward;
     use crate::minmax_stack;
     use crate::mode;
     use crate::most_frequent_digit_sum;
     use crate::next_greater_element;
+    use crate::node_distance_k;
+    use crate::num_of_clans;
     use crate::num_of_paths;
     use crate::number_grouping;
     use crate::obtain_increasing_seq;
@@ -676,6 +764,7 @@ mod test_runner {
     use crate::pascal_triangle;
     use crate::permutation;
     use crate::phone_mnemonic;
+    use crate::postorder_traversal;
     use crate::prefix_sums;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
@@ -684,6 +773,7 @@ mod test_runner {
     use crate::random_perm;
     use crate::ranking;
     use crate::reconstruct_bst_from_pre;
+    use crate::remove_island;
     use crate::repeat_product::repeat_product;
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_poland_calc::reverse_poland_calc;
@@ -726,10 +816,10 @@ mod test_runner {
     use crate::xor_shift;
     use crate::z_score;
     use float_cmp::approx_eq;
+    use hashmap_macro::hashmap;
     use num::integer::gcd;
     use std::{
-        array,
-        collections::{BTreeSet, HashSet},
+        collections::{BTreeSet, HashMap, HashSet, VecDeque},
     };
     use ndarray::{Array2, arr2};
 
@@ -738,6 +828,13 @@ mod test_runner {
         let a = 456;
         let b = 1734;
         assert_eq!(add_two_without_carry::exec(a, b), 1180);
+    }
+
+    #[test]
+    fn all_longest_strings_test() {
+        let rez = all_longest_strings::exec(&vec!["aba", "aa", "ad", "vcd", "aba"]);
+        let expected = vec!["aba".to_string(), "vcd".to_string(), "aba".to_string()];
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -865,6 +962,18 @@ mod test_runner {
     }
 
     #[test]
+    fn char_count_test() {
+        let v = vec!["ABC", "ABDabd", "ZzZzZ", "MNN", "D", "ZA", "g"];
+        let expected:HashMap<char, u32> = hashmap![
+            'Z' => 4, 'A' => 3, 'B' => 2, 'D' => 2, 'b' => 1,
+            'a' => 1, 'M' => 1, 'z' => 2, 'd' => 1, 'N' => 2,
+            'C' => 1, 'g' => 1
+        ];
+        let rez = char_count::exec(v);
+        assert_eq!(rez, expected);
+    }
+
+    #[test]
     fn chars_appearing_twice_exist_case_test() {
         let a = ['A', 'B', 'C'];
         let b = ['B', 'C', 'D'];
@@ -938,6 +1047,13 @@ mod test_runner {
     }
 
     #[test]
+    fn clamp_value_test() {
+        assert_eq!(clamp_value::exec(72, 10, 100), 72);
+        assert_eq!(clamp_value::exec(4, 10, 100), 10);
+        assert_eq!(clamp_value::exec(105, 10, 100), 100);
+    }
+
+    #[test]
     fn clean_kth_bit_test() {
         let n = 127;
         let k = 3;
@@ -956,6 +1072,16 @@ mod test_runner {
         let s = "aba".to_string();
         let rez = construct_square::exec(&s);
         assert_eq!(rez, 900);
+    }
+
+    #[test]
+    fn construct_min_height_bst_test() {
+        let v = [6, 3, 2, 1, 5, 4];
+        let rez = construct_min_height_bst::exec(&v);
+        let mut trace:Vec<i32> = Vec::new();
+        traverse_pre(Box::new(rez), &mut trace);
+        let expected = vec![3, 1, 2, 5, 4, 6];
+        assert_eq!(trace, expected);
     }
 
     #[test]
@@ -1007,6 +1133,16 @@ mod test_runner {
     }
 
     #[test]
+    fn eval_tictactoe_test() {
+        let s:Vec<&str> = vec![
+            "OXXXOXXXO", "XXXXXXOOO", "XXXOOOXXX",
+            "OOOXXXXXX", "XOXXOXXOX", "XXOXOXOXX",
+            "OXXOXXOXX", "XXOXXOXXO"
+        ];
+        assert!(s.iter().all(|s|eval_tictactoe::exec(s)));
+    }
+
+    #[test]
     fn even_num_sum_match_case() {
         let n = 1230;
         assert!(even_num_sum::exec(n));
@@ -1048,6 +1184,18 @@ mod test_runner {
     }
 
     #[test]
+    fn find_closest_value_exact_match_test() {
+        let r = build_tree(&vec![10, 5, 2, 1, 15, 13, 14, 22]);
+        assert_eq!(find_closest_value::exec(r, 12), 13);
+    }
+
+    #[test]
+    fn find_closest_value_approx_match_test() {
+        let r = build_tree(&vec![10, 5, 2, 1, 15, 13, 14, 22]);
+        assert_eq!(find_closest_value::exec(r, 12), 13);
+    }
+
+    #[test]
     fn fibonacci_test() {
         let expected = vec![1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765];
         let rez:Vec<u64> = (1..=20).into_iter().map(|x|fibonacci::exec(x)).collect();
@@ -1085,6 +1233,36 @@ mod test_runner {
     }
 
     #[test]
+    fn group_by_key_regular_case_test() {
+        let l = vec![(1, 2), (1, 3), (3, 2), (4, 2), (4, 3)];
+        let rez = group_by_key::exec(l, 1);
+        assert_eq!(rez, vec![2, 3]);
+    }
+
+    #[test]
+    fn group_by_key_no_key_case_test() {
+        let l = vec![(1, 2), (1, 3), (3, 2), (4, 2), (4, 3)];
+        let rez = group_by_key::exec(l, 5);
+        assert_eq!(rez, vec![]);
+    }
+
+    #[test]
+    fn guard_technique_test() {
+        assert_eq!(guard_technique::exec(vec![3, 8, 11, 0, 9, 20, 0, 1, 8], 0), 22);
+        assert_eq!(guard_technique::exec(vec![3, 8, 11, 1, 9, 20, 0, 1, 8], 0), 52);
+        assert_eq!(guard_technique::exec(vec![3, 8, 11, 1, 9, 20, 3, 1, 8], 0), 64);
+        assert_eq!(guard_technique::exec(vec![3, 8, 11, 1, 9, 20, 3, 1, 8], 1), 22);
+    }
+
+    #[test]
+    fn hanoi_tower_test() {
+        let rez = hanoi_tower::exec(4);
+        let expected_raw = include_str!("../resource/hanoi_tower_test_expected.txt");
+        let expected:Vec<String> = expected_raw.split_terminator("\n").into_iter().map(|s|s.to_string()).collect();
+        assert_eq!(rez, expected);
+    }
+
+    #[test]
     fn helon_formula_test() {
         let a = 5.0;
         let b = 6.0;
@@ -1100,6 +1278,21 @@ mod test_runner {
         let r = inorder_traversal::exec(&v);
         let expected = vec![1, 2, 4, 5, 9, 10];
         assert_eq!(r, expected);
+    }
+
+    #[test]
+    fn ipv4_valid_case_test() {
+        let validones = vec!["192.168.0.1", "0.0.0.0", "255.255.255.255",
+        "129.20.38.0", "240.240.240.240", "1.2.3.4", "10.20.30.40", "99.99.99.99",
+        "127.0.0.1"];
+        assert!(validones.iter().all(|s|ipv4::exec(s)));
+    }
+
+    #[test]
+    fn ipv4_invalid_case_test() {
+        let invalidones = vec!["-1.2.3.4", "256.2.1.8", "79.79.79.790", "192.168.8", "192.168.256.8", "260.2.2.100",
+        "50", "0.0.0.256", "1000.100000.1000000000.10", "a.b.c.d", "192.01.25.33", "08.10.2.25", "0001.0004.0008.0002"];
+        assert!(invalidones.iter().all(|s|!ipv4::exec(s)));
     }
 
     #[test]
@@ -1317,6 +1510,16 @@ mod test_runner {
     }
 
     #[test]
+    fn min_passes_matrix_update_test() {
+        let mut m:Array2<i32> = arr2(&[
+            [0, -1, -3, 2, 0],
+            [1, -2, -5, -1, -3],
+            [3, 0, 0, -4, -1]
+        ]);
+        assert_eq!(min_passes_matrix_update::exec(&mut m), 3);
+    }
+
+    #[test]
     fn min_reward_test() {
         let scores = [8, 4, 2, 1, 3, 6, 7, 9, 5];
         assert_eq!(min_reward::exec(&scores), 25);
@@ -1350,6 +1553,35 @@ mod test_runner {
         let a = &[2, 5, -3, -4, 6, 7, 2];
         let expected = vec![5, 6, 6, 6, 7, -1, 5];
         assert_eq!(next_greater_element::exec(a), expected);
+    }
+
+    #[test]
+    fn node_distance_k_test() {
+        let mut root = Box::new(TreeNode { value: 1, left: None, right: None});
+        let mut op1 = VecDeque::from_iter(["left"]);
+        add_node_not_balanced(&mut root, 2, &mut op1);
+        let mut op2 = VecDeque::from_iter(["right"]);
+        add_node_not_balanced(&mut root, 3, &mut op2);
+        let mut op3 = VecDeque::from_iter(["left", "left"]);
+        add_node_not_balanced(&mut root, 4, &mut op3);
+        let mut op4 = VecDeque::from_iter(["left", "right"]);
+        add_node_not_balanced(&mut root, 5, &mut op4);
+        let mut op5 = VecDeque::from_iter(["right", "right"]);
+        add_node_not_balanced(&mut root, 6, &mut op5);
+        let mut op6 = VecDeque::from_iter(["right", "right", "left"]);
+        add_node_not_balanced(&mut root, 7, &mut op6);
+        let mut op7 = VecDeque::from_iter(["right", "right", "right"]);
+        add_node_not_balanced(&mut root, 8, &mut op7);
+        let rez:HashSet<i32> = node_distance_k::exec(root, 3, 2).into_iter().collect();
+        assert_eq!(rez, HashSet::from_iter([2, 7, 8]));
+    }
+
+    #[test]
+    fn num_of_clans_test() {
+        let divisors = vec![2, 3, 4];
+        let k = 6;
+        let rez = num_of_clans::exec(divisors, k);
+        assert_eq!(rez, 5);
     }
 
     #[test]
@@ -1439,6 +1671,13 @@ mod test_runner {
     }
 
     #[test]
+    fn postorder_traversal_test() {
+        let rez = postorder_traversal::exec(vec![5, 9, 2, 10, 1, 4]);
+        let expected = vec![1, 4, 2, 10, 9, 5];
+        assert_eq!(rez, expected);
+    }
+
+    #[test]
     fn prefix_sums_test() {
         let v = [1, 2, 3];
         let expected = vec![1, 3, 6];
@@ -1485,6 +1724,28 @@ mod test_runner {
         let mut trace:Vec<i32> = Vec::new();
         traverse_pre(rez, &mut trace);
         assert_eq!(v, trace);
+    }
+
+    #[test]
+    fn remove_island_test() {
+        let mut matrix = arr2(&[
+            [1, 0, 0, 0, 0, 0],
+            [0, 1, 0, 1, 1, 1],
+            [0, 0, 1, 0, 1, 0],
+            [1, 1, 0, 0, 1, 0],
+            [1, 0, 1, 1, 0, 0],
+            [1, 0, 0, 0, 0, 1],
+        ]);
+        remove_island::exec(&mut matrix);
+        let expected = arr2(&[
+            [1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 1, 1],
+            [0, 0, 0, 0, 1, 0],
+            [1, 1, 0, 0, 1, 0],
+            [1, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 1]
+        ]);
+        assert_eq!(matrix.view(), expected.view());
     }
 
     #[test]
@@ -1979,6 +2240,7 @@ mod test_runner {
 
 pub enum Algo {
     AddTwoIntWithoutCarry,
+    AllLongestStrings,
     AlmostIncreasingSeq,
     AppearTwice,
     Applebox,
@@ -1991,12 +2253,15 @@ pub enum Algo {
     CamelCase,
     Century,
     CaesarCrypt,
+    CharCount,
     CharsAppearingTwice,
     CharsPermList,
     CharsToSortedDigits,
     ChristmasTree,
+    ClampValue,
     CleanKthBit,
     Combination,
+    ConstructMinHeightBST,
     ConstructSquare,
     CoolNumPair,
     CyclicChars,
@@ -2005,17 +2270,23 @@ pub enum Algo {
     Diagonal,
     DifferentSquares,
     DocumentBuild,
+    EvalTicTacToe,
     EvenNumSum,
     Euclidean,
     Factorial,
     Fibonacci,
     FileNaming,
+    FindClosestValue,
     FizzBuzz,
     GeometricProgression,
     GeometricalMean,
     GroupAnagrams,
+    GroupByKey,
+    GuardTechnique,
+    HanoiTower,
     HelonFormula,
     InOrderTraversal,
+    IPv4,
     IsBST,
     IsMacAddr,
     IsPalindrome,
@@ -2038,17 +2309,21 @@ pub enum Algo {
     MergeSortedLinkedList,
     MinBreakdownSum,
     MinMaxStack,
+    MinPassesMatrixUpdate,
     MinReward,
     Mode,
     MostFrequentDigitSum,
     NextGreaterElement,
+    NodeDistanceK,
     NumberGrouping,
+    NumOfClans,
     NumOfPaths,
     ObtainIncreasingSeq,
     OppositePosInCircle,
     PascalTriangle,
     Permutation,
     PhoneMnemonic,
+    PostOrderTraversal,
     PrefixSums,
     PreOrderTraversal,
     ProductArraySort,
@@ -2057,6 +2332,7 @@ pub enum Algo {
     RandomPerm,
     Ranking,
     ReconstructBSTFromPreorder,
+    RemoveIsland,
     RepeatProduct,
     RequestPerSec,
     ReversePoland,
@@ -2103,6 +2379,7 @@ impl Algo {
     pub fn from_str(algo_str: &str) -> Self {
         match algo_str {
             s if s.to_lowercase() == "add_two_int_without_carry" => Algo::AddTwoIntWithoutCarry,
+            s if s.to_lowercase() == "all_longest_strings" => Algo::AllLongestStrings,
             s if s.to_lowercase() == "almost_increasing_seq" => Algo::AlmostIncreasingSeq,
             s if s.to_lowercase() == "appear_twice" => Algo::AppearTwice,
             s if s.to_lowercase() == "applebox" => Algo::Applebox,
@@ -2115,12 +2392,15 @@ impl Algo {
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "century" => Algo::Century,
+            s if s.to_lowercase() == "char_count" => Algo::CharCount,
             s if s.to_lowercase() == "chars_appearing_twice" => Algo::CharsAppearingTwice,
             s if s.to_lowercase() == "chars_perm_list" => Algo::CharsPermList,
             s if s.to_lowercase() == "chars_to_sorted_digits" => Algo::CharsToSortedDigits,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
+            s if s.to_lowercase() == "clamp_value" => Algo::ClampValue,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
             s if s.to_lowercase() == "combination" => Algo::Combination,
+            s if s.to_lowercase() == "construct_min_height_bst" => Algo::ConstructMinHeightBST,
             s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
@@ -2129,17 +2409,23 @@ impl Algo {
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
             s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
             s if s.to_lowercase() == "document_build" => Algo::DocumentBuild,
+            s if s.to_lowercase() == "eval_tictactoe" => Algo::EvalTicTacToe,
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
             s if s.to_lowercase() == "fibonacci" => Algo::Fibonacci,
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
+            s if s.to_lowercase() == "find_closest_value" => Algo::FindClosestValue,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
             s if s.to_lowercase() == "group_anagrams" => Algo::GroupAnagrams,
+            s if s.to_lowercase() == "group_by_key" => Algo::GroupByKey,
+            s if s.to_lowercase() == "guard_technique" => Algo::GuardTechnique,
+            s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
+            s if s.to_lowercase() == "ipv4" => Algo::IPv4,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
@@ -2161,11 +2447,14 @@ impl Algo {
             s if s.to_lowercase() == "mean" => Algo::Mean,
             s if s.to_lowercase() == "merge_sorted_linkedlist" => Algo::MergeSortedLinkedList,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
+            s if s.to_lowercase() == "min_passes_matrix_update" => Algo::MinPassesMatrixUpdate,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
             s if s.to_lowercase() == "mode" => Algo::Mode,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
+            s if s.to_lowercase() == "node_distance_k" => Algo::NodeDistanceK,
+            s if s.to_lowercase() == "num_of_clans" => Algo::NumOfClans,
             s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
@@ -2173,6 +2462,7 @@ impl Algo {
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
+            s if s.to_lowercase() == "postorder_traversal" => Algo::PostOrderTraversal,
             s if s.to_lowercase() == "prefix_sums" => Algo::PrefixSums,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
@@ -2181,6 +2471,7 @@ impl Algo {
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
             s if s.to_lowercase() == "ranking" => Algo::Ranking,
             s if s.to_lowercase() == "reconstruct_bst_from_preorder" => Algo::ReconstructBSTFromPreorder,
+            s if s.to_lowercase() == "remove_island" => Algo::RemoveIsland,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,

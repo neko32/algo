@@ -1,0 +1,15 @@
+moved a ring 1 at A to C via B
+moved a ring 2 at A to B via C
+moved a ring 1 at C to B via A
+moved a ring 3 at A to C via B
+moved a ring 1 at B to A via C
+moved a ring 2 at B to C via A
+moved a ring 1 at A to C via B
+moved a ring 4 at A to B via C
+moved a ring 1 at C to B via A
+moved a ring 2 at C to A via B
+moved a ring 1 at B to A via C
+moved a ring 3 at C to B via A
+moved a ring 1 at A to C via B
+moved a ring 2 at A to B via C
+moved a ring 1 at C to B via A
