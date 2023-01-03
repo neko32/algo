@@ -119,6 +119,8 @@ pub mod string_construction;
 pub mod string_pattern;
 pub mod subarray_sort;
 pub mod sum_of_arithmatic_progression;
+pub mod sum_of_consecutive_integers;
+pub mod sum_of_integers;
 pub mod sum_of_squared_deviation;
 pub mod swap_sibling;
 pub mod tandem_repeat;
@@ -257,6 +259,8 @@ pub mod runner {
     use string_pattern::string_pattern;
     use subarray_sort;
     use sum_of_arithmatic_progression;
+    use sum_of_consecutive_integers;
+    use sum_of_integers;
     use sum_of_squared_deviation;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
@@ -634,6 +638,12 @@ pub mod runner {
             Algo::SumOfArithmaticProgression => {
                 sum_of_arithmatic_progression::run();
             }
+            Algo::SumOfConsective => {
+                sum_of_consecutive_integers::run();
+            }
+            Algo::SumOfIntegers => {
+                sum_of_integers::run();
+            }
             Algo::SumOfSquaredDeviations => {
                 sum_of_squared_deviation::run();
             }
@@ -801,6 +811,8 @@ mod test_runner {
     use crate::string_pattern::string_pattern;
     use crate::subarray_sort;
     use crate::sum_of_arithmatic_progression;
+    use crate::sum_of_consecutive_integers;
+    use crate::sum_of_integers;
     use crate::sum_of_squared_deviation;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
@@ -2125,6 +2137,27 @@ mod test_runner {
     }
 
     #[test]
+    fn sum_of_consecutive_test() {
+        let empty_result:Vec<Vec<i32>> = Vec::new();
+        assert_eq!(sum_of_consecutive_integers::exec(9), vec![vec![2, 3, 4], vec![4, 5]]);
+        assert_eq!(sum_of_consecutive_integers::exec(8), empty_result);
+        assert_eq!(sum_of_consecutive_integers::exec(27), vec![vec![2, 3, 4, 5, 6, 7], vec![8, 9, 10], vec![13, 14]]);
+        assert_eq!(sum_of_consecutive_integers::exec(25), vec![vec![3, 4, 5, 6, 7], vec![12, 13]]);
+        assert_eq!(sum_of_consecutive_integers::exec(19), vec![vec![9, 10]]);
+    }
+
+    #[test]
+    fn sum_of_integers_test() {
+        let mut expected:HashSet<Vec<i32>> = HashSet::new();
+        expected.insert(vec![9]);
+        expected.insert(vec![2, 3, 4]);
+        expected.insert(vec![4, 5]);
+        expected.insert(vec![2, 7]);
+        expected.insert(vec![3, 6]);
+        assert_eq!(sum_of_integers::exec(9), expected);
+    }
+
+    #[test]
     fn swap_sibling_test() {
         let mut v: Vec<i32> = (1..=6).collect();
         swap_sibling::exec(&mut v);
@@ -2359,6 +2392,8 @@ pub enum Algo {
     StringPattern,
     SubArraySort,
     SumOfArithmaticProgression,
+    SumOfConsective,
+    SumOfIntegers,
     SumOfSquaredDeviations,
     SwapSibling,
     TandemRepeat,
@@ -2497,6 +2532,8 @@ impl Algo {
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
             s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
+            s if s.to_lowercase() == "sum_of_consecutive" => Algo::SumOfConsective,
+            s if s.to_lowercase() == "sum_of_integers" => Algo::SumOfIntegers,
             s if s.to_lowercase() == "sum_of_squared_deviations" => Algo::SumOfSquaredDeviations,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
