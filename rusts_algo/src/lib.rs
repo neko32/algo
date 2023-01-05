@@ -46,6 +46,7 @@ pub mod guard_technique;
 pub mod hanoi_tower;
 pub mod helon_formula;
 pub mod inorder_traversal;
+pub mod insertion_sort;
 pub mod ipv4;
 pub mod is_bst;
 pub mod is_mac_addr;
@@ -191,6 +192,7 @@ pub mod runner {
     use helon_formula::helon_formula;
     use jump_height_in_frames;
     use inorder_traversal;
+    use insertion_sort;
     use ipv4;
     use is_bst;
     use is_mac_addr::is_mac_addr;
@@ -425,6 +427,9 @@ pub mod runner {
             }
             Algo::InOrderTraversal => {
                 inorder_traversal::run();
+            }
+            Algo::InsertionSort => {
+                insertion_sort::run();
             }
             Algo::IPv4 => {
                 ipv4::run();
@@ -748,6 +753,7 @@ mod test_runner {
     use crate::hanoi_tower;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
+    use crate::insertion_sort;
     use crate::ipv4;
     use crate::is_bst;
     use crate::is_mac_addr::is_mac_addr;
@@ -1308,6 +1314,14 @@ mod test_runner {
         let r = inorder_traversal::exec(&v);
         let expected = vec![1, 2, 4, 5, 9, 10];
         assert_eq!(r, expected);
+    }
+
+    #[test]
+    fn insertion_sort_test() {
+        let mut v = [9, 15, 2, 7, 4, -5, 9, -3, 10, 8];
+        insertion_sort::exec(&mut v);
+        let expected = [-5, -3, 2, 4, 7, 8, 9, 9, 10, 15];
+        assert_eq!(v, expected);
     }
 
     #[test]
@@ -2347,6 +2361,7 @@ pub enum Algo {
     HanoiTower,
     HelonFormula,
     InOrderTraversal,
+    InsertionSort,
     IPv4,
     IsBST,
     IsMacAddr,
@@ -2490,6 +2505,7 @@ impl Algo {
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
+            s if s.to_lowercase() == "insertion_sort" => Algo::InsertionSort,
             s if s.to_lowercase() == "ipv4" => Algo::IPv4,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
