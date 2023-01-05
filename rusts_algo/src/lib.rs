@@ -66,6 +66,7 @@ pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
 pub mod mean;
+pub mod merge_2_lists;
 pub mod merge_sorted_linkedlist;
 pub mod min_breakdown_sum;
 pub mod min_passes_matrix_update;
@@ -208,6 +209,7 @@ pub mod runner {
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use mean;
+    use merge_2_lists;
     use merge_sorted_linkedlist;
     use min_breakdown_sum::min_breakdown_sum;
     use min_passes_matrix_update;
@@ -483,6 +485,9 @@ pub mod runner {
             }
             Algo::Mean => {
                 mean::run();
+            }
+            Algo::Merge2Lists => {
+                merge_2_lists::run();
             }
             Algo::MergeSortedLinkedList => {
                 merge_sorted_linkedlist::run();
@@ -763,6 +768,7 @@ mod test_runner {
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::mean;
+    use crate::merge_2_lists;
     use crate::merge_sorted_linkedlist;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_passes_matrix_update;
@@ -1508,6 +1514,15 @@ mod test_runner {
         let v2 = &mut [100_f32, 110_f32, 150_f32, 180_f32, 300_f32, 600_f32];
         assert!(approx_eq!(f32, mean::exec(v), 540_f32));
         assert!(approx_eq!(f32, mean::exec(v2), 165_f32));
+    }
+
+    #[test]
+    fn merge_2_lists_test() {
+        let mut a = [7, 3, 10, 2, 10, 25, 9, 11];
+        let mut b = [3, 4, 19, 21, 15];
+        let c = merge_2_lists::exec(&mut a, &mut b);
+        let expected = vec![2, 3, 3, 4, 7, 9, 10, 10, 11, 15, 19, 21, 25];
+        assert_eq!(c, expected);
     }
 
     #[test]
@@ -2352,6 +2367,7 @@ pub enum Algo {
     MaxSubSetSum,
     MaxWithLessDigit,
     Mean,
+    Merge2Lists,
     MergeSortedLinkedList,
     MinBreakdownSum,
     MinMaxStack,
@@ -2494,6 +2510,7 @@ impl Algo {
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
             s if s.to_lowercase() == "mean" => Algo::Mean,
+            s if s.to_lowercase() == "merge_2_lists" => Algo::Merge2Lists,
             s if s.to_lowercase() == "merge_sorted_linkedlist" => Algo::MergeSortedLinkedList,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_passes_matrix_update" => Algo::MinPassesMatrixUpdate,
