@@ -62,6 +62,7 @@ pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
 pub mod longest_pelindromic_substring;
+pub mod lower_upper_hinge;
 pub mod max_path_sum;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
@@ -207,6 +208,7 @@ pub mod runner {
     use levenshtein_distance;
     use linked_list;
     use longest_pelindromic_substring;
+    use lower_upper_hinge;
     use max_path_sum;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
@@ -475,6 +477,9 @@ pub mod runner {
             }
             Algo::LongestPelindromicSubstring => {
                 longest_pelindromic_substring::run();
+            }
+            Algo::LowerUpperHinge => {
+                lower_upper_hinge::run();
             }
             Algo::MaxPathSum => {
                 max_path_sum::run();
@@ -769,6 +774,7 @@ mod test_runner {
     use crate::levenshtein_distance;
     use crate::linked_list;
     use crate::longest_pelindromic_substring;
+    use crate::lower_upper_hinge;
     use crate::max_path_sum;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
@@ -1472,6 +1478,16 @@ mod test_runner {
         let s = "ababrrbzaxoxazxn";
         let expected = "zaxoxaz";
         assert_eq!(longest_pelindromic_substring::exec(s), expected);
+    }
+
+    #[test]
+    fn lower_upper_hinge_test() {
+        assert_eq!(lower_upper_hinge::exec(&[12, 13, 14, 15, 17]), (13_f32, 15_f32));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2, 3]), (1_f32, 3_f32));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2, 3, 4, 5, 6, 7, 8, 9]), (3_f32, 7_f32));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2]), (1_f32, 2_f32));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2, 3, 4]), (1.5, 3.5));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2, 3, 4, 5, 6, 7, 8]), (2.5, 6.5));
     }
 
     #[test]
@@ -2377,6 +2393,7 @@ pub enum Algo {
     LevenShteinDistance,
     LinkedList,
     LongestPelindromicSubstring,
+    LowerUpperHinge,
     MaxPathSum,
     MaxSiblingProduct,
     MaxSubSetSum,
@@ -2521,6 +2538,7 @@ impl Algo {
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
             s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
+            s if s.to_lowercase() == "lower_upper_hinge" => Algo::LowerUpperHinge,
             s if s.to_lowercase() == "max_path_sum" => Algo::MaxPathSum,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
