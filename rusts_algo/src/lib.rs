@@ -9,6 +9,7 @@ pub mod average;
 pub mod binarysearch;
 pub mod bintodec;
 pub mod bt_from_inorder_preorder;
+pub mod bubble_sort;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod century;
@@ -156,6 +157,7 @@ pub mod runner {
     use binarysearch::binary_search;
     use bintodec::bin_to_dec;
     use bt_from_inorder_preorder;
+    use bubble_sort;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use century::century;
@@ -315,6 +317,9 @@ pub mod runner {
             }
             Algo::BinToDec => {
                 bin_to_dec::run();
+            }
+            Algo::BubbleSort => {
+                bubble_sort::run();
             }
             Algo::BuildBTreeFromInorderPreorder => {
                 bt_from_inorder_preorder::run();
@@ -721,6 +726,7 @@ mod test_runner {
     use crate::binarysearch::binary_search;
     use crate::bintodec::bin_to_dec;
     use crate::bt_from_inorder_preorder;
+    use crate::bubble_sort;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::century::century;
@@ -950,6 +956,14 @@ mod test_runner {
         let b = "01001111";
         let r = bin_to_dec::exec(b);
         assert_eq!(r, 79);
+    }
+
+    #[test]
+    fn bubble_sort_test() {
+        let mut v = [7, 3, 10, 9, 3, 5, 11, 12, 6];
+        let expected = [3, 3, 5, 6, 7, 9, 10 ,11, 12];
+        bubble_sort::exec(&mut v);
+        assert_eq!(v, expected);
     }
 
     #[test]
@@ -2339,6 +2353,7 @@ pub enum Algo {
     Average,
     BinarySearch,
     BinToDec,
+    BubbleSort,
     BuildBTreeFromInorderPreorder,
     CamelCase,
     Century,
@@ -2484,6 +2499,7 @@ impl Algo {
             s if s.to_lowercase() == "average" => Algo::Average,
             s if s.to_lowercase() == "binary_search" => Algo::BinarySearch,
             s if s.to_lowercase() == "bintodec" => Algo::BinToDec,
+            s if s.to_lowercase() == "bubble_sort" => Algo::BubbleSort, 
             s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
