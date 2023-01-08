@@ -22,6 +22,7 @@ pub mod clamp_value;
 pub mod classmark;
 pub mod clean_kth_bit;
 pub mod combination;
+pub mod compare_and_swap;
 pub mod construct_min_height_bst;
 pub mod construct_square;
 pub mod cool_num_pair;
@@ -169,6 +170,7 @@ pub mod runner {
     use classmark;
     use clean_kth_bit::clean_kth_bit;
     use combination;
+    use compare_and_swap;
     use construct_min_height_bst;
     use construct_square;
     use cool_num_pair::cool_num_pair;
@@ -359,6 +361,9 @@ pub mod runner {
             }
             Algo::Combination => {
                 combination::run();
+            }
+            Algo::CompareAndSwap => {
+                compare_and_swap::run();
             }
             Algo::ConstructMinHeightBST => {
                 construct_min_height_bst::run();
@@ -739,6 +744,7 @@ mod test_runner {
     use crate::classmark;
     use crate::clean_kth_bit::clean_kth_bit;
     use crate::combination;
+    use crate::compare_and_swap;
     use crate::construct_min_height_bst;
     use crate::construct_square;
     use crate::cool_num_pair::cool_num_pair;
@@ -1121,6 +1127,14 @@ mod test_runner {
         let n = 8;
         let r = 3;
         assert_eq!(combination::exec(n, r), 56);
+    }
+
+    #[test]
+    fn compare_and_swap_test() {
+        let rez = std::panic::catch_unwind(||{
+            compare_and_swap::run()
+        });
+        assert_ne!(rez.is_err(), true);
     }
 
     #[test]
@@ -2367,6 +2381,7 @@ pub enum Algo {
     Classmark,
     CleanKthBit,
     Combination,
+    CompareAndSwap,
     ConstructMinHeightBST,
     ConstructSquare,
     CoolNumPair,
@@ -2513,6 +2528,7 @@ impl Algo {
             s if s.to_lowercase() == "classmark" => Algo::Classmark,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
             s if s.to_lowercase() == "combination" => Algo::Combination,
+            s if s.to_lowercase() == "compare_and_swap" => Algo::CompareAndSwap,
             s if s.to_lowercase() == "construct_min_height_bst" => Algo::ConstructMinHeightBST,
             s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
