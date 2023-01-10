@@ -124,6 +124,7 @@ pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
 pub mod subarray_sort;
+pub mod sudoku;
 pub mod sum_of_arithmatic_progression;
 pub mod sum_of_consecutive_integers;
 pub mod sum_of_integers;
@@ -270,6 +271,7 @@ pub mod runner {
     use string_construction::string_construction;
     use string_pattern::string_pattern;
     use subarray_sort;
+    use sudoku;
     use sum_of_arithmatic_progression;
     use sum_of_consecutive_integers;
     use sum_of_integers;
@@ -665,6 +667,9 @@ pub mod runner {
             Algo::SubArraySort => {
                 subarray_sort::run();
             }
+            Algo::Sudoku => {
+                sudoku::run();
+            }
             Algo::SumOfArithmaticProgression => {
                 sum_of_arithmatic_progression::run();
             }
@@ -846,6 +851,7 @@ mod test_runner {
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
     use crate::subarray_sort;
+    use crate::sudoku;
     use crate::sum_of_arithmatic_progression;
     use crate::sum_of_consecutive_integers;
     use crate::sum_of_integers;
@@ -2251,6 +2257,34 @@ mod test_runner {
     }
 
     #[test]
+    fn sudoku_test() {
+        let mut m = arr2(&[
+            [-1, 1, 5, 9, -1, 4, -1, -1, -1],
+            [6, 8, 3, -1, -1, 2, -1, -1, 7],
+            [-1, 9, -1, -1, 3, -1, -1, -1, -1],
+            [1, -1, -1, -1, 4, -1, -1, -1, 3],
+            [9, 4, -1, -1, 6, 7, -1, 2, -1],
+            [-1, 7, 2, -1, 8, 1, 4, -1, 6],
+            [-1, 6, 1, -1, -1, 3, 2, 5, -1],
+            [-1, 3, -1, 4, 2, 6, -1, 7, 1],
+            [7, -1, -1, 8, 1, -1, -1, 6, 9]
+            ]);
+        sudoku::exec(&mut m);
+        let expected:Array2<i32> = arr2(&[
+            [2, 1, 5, 9, 7, 4, 6, 3, 8],
+            [6, 8, 3, 1, 5, 2, 9, 4, 7],
+            [4, 9, 7, 6, 3, 8, 5, 1, 2],
+            [1, 5, 6, 2, 4, 9, 7, 8, 3],
+            [9, 4, 8, 3, 6, 7, 1, 2, 5],
+            [3, 7, 2, 5, 8, 1, 4, 9, 6],
+            [8, 6, 1, 7, 9, 3, 2, 5, 4],
+            [5, 3, 9, 4, 2, 6, 8, 7, 1],
+            [7, 2, 4, 8, 1, 5, 3, 6, 9]
+        ]);
+        assert_eq!(m.view(), expected.view());
+    }
+
+    #[test]
     fn tandem_repeat_case2() {
         let a = "ABA".to_string();
         let b = "cattac".to_string();
@@ -2482,6 +2516,7 @@ pub enum Algo {
     StringConstruction,
     StringPattern,
     SubArraySort,
+    Sudoku,
     SumOfArithmaticProgression,
     SumOfConsective,
     SumOfIntegers,
@@ -2612,6 +2647,7 @@ impl Algo {
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
             s if s.to_lowercase() == "same_bst" => Algo::SameBST,
+            s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
@@ -2628,6 +2664,7 @@ impl Algo {
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
             s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
+            s if s.to_lowercase() == "sudoku" => Algo::Sudoku,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
             s if s.to_lowercase() == "sum_of_consecutive" => Algo::SumOfConsective,
             s if s.to_lowercase() == "sum_of_integers" => Algo::SumOfIntegers,
@@ -2641,7 +2678,6 @@ impl Algo {
             s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
-            s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "variance" => Algo::Variance,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
             s if s.to_lowercase() == "xor_shift" => Algo::XOrShift,
