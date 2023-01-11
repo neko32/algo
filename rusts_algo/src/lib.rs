@@ -42,6 +42,7 @@ pub mod find_closest_value;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
+pub mod least_greatest;
 pub mod group_anagrams;
 pub mod group_by_key;
 pub mod guard_technique;
@@ -209,6 +210,7 @@ pub mod runner {
     use lcs::lcs;
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
+    use least_greatest;
     use length_linked_list;
     use levenshtein_distance;
     use linked_list;
@@ -483,6 +485,9 @@ pub mod runner {
             }
             Algo::LeastFactorial => {
                 least_factorial::run();
+            }
+            Algo::LeastGreatest => {
+                least_greatest::run();
             }
             Algo::LevenShteinDistance => {
                 levenshtein_distance::run();
@@ -787,6 +792,7 @@ mod test_runner {
     use crate::lcs::lcs;
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
+    use crate::least_greatest;
     use crate::length_linked_list;
     use crate::levenshtein_distance;
     use crate::linked_list;
@@ -1477,6 +1483,15 @@ mod test_runner {
     fn least_factorial_test() {
         let n = 17;
         assert_eq!(least_factorial::exec(n), 24);
+    }
+
+    #[test]
+    fn least_greatest_test() {
+        use least_greatest::IntNum;
+        let v:Vec<IntNum> = vec![IntNum::new(8), IntNum::new(12), IntNum::new(25), IntNum::new(3), IntNum::new(50)];
+        let (least, greatest) = least_greatest::exec(&v);
+        assert_eq!(least, 3);
+        assert_eq!(greatest, 50);
     }
 
     #[test]
@@ -2451,6 +2466,7 @@ pub enum Algo {
     LargestAdjacentProduct,
     LargestNumber,
     LCS,
+    LeastGreatest,
     LeastDataEviction,
     LeastFactorial,
     LengthOfLinkedList,
@@ -2601,6 +2617,7 @@ impl Algo {
             s if s.to_lowercase() == "lcs" => Algo::LCS,
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
+            s if s.to_lowercase() == "least_greatest" => Algo::LeastGreatest,
             s if s.to_lowercase() == "length_of_linkedlist" => Algo::LengthOfLinkedList,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
