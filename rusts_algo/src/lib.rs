@@ -47,6 +47,7 @@ pub mod group_anagrams;
 pub mod group_by_key;
 pub mod guard_technique;
 pub mod hanoi_tower;
+pub mod harmonic_mean;
 pub mod helon_formula;
 pub mod inorder_traversal;
 pub mod insertion_sort;
@@ -197,6 +198,7 @@ pub mod runner {
     use guard_technique;
     use hanoi_tower;
     use helon_formula::helon_formula;
+    use harmonic_mean;
     use jump_height_in_frames;
     use inorder_traversal;
     use insertion_sort;
@@ -440,6 +442,9 @@ pub mod runner {
             }
             Algo::HelonFormula => {
                 helon_formula::run();
+            }
+            Algo::HarmonicMean => {
+                harmonic_mean::run();
             }
             Algo::InOrderTraversal => {
                 inorder_traversal::run();
@@ -778,6 +783,7 @@ mod test_runner {
     use crate::group_by_key;
     use crate::guard_technique;
     use crate::hanoi_tower;
+    use crate::harmonic_mean;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
     use crate::insertion_sort;
@@ -1342,6 +1348,12 @@ mod test_runner {
         let expected_raw = include_str!("../resource/hanoi_tower_test_expected.txt");
         let expected:Vec<String> = expected_raw.split_terminator("\n").into_iter().map(|s|s.to_string()).collect();
         assert_eq!(rez, expected);
+    }
+
+    #[test]
+    fn harmonic_mean_test() {
+        let s = vec![90_f32, 110_f32];
+        assert_eq!(harmonic_mean::exec(&s), 99_f32);
     }
 
     #[test]
@@ -2455,6 +2467,7 @@ pub enum Algo {
     GuardTechnique,
     HanoiTower,
     HelonFormula,
+    HarmonicMean,
     InOrderTraversal,
     InsertionSort,
     IPv4,
@@ -2604,6 +2617,7 @@ impl Algo {
             s if s.to_lowercase() == "guard_technique" => Algo::GuardTechnique,
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
+            s if s.to_lowercase() == "harmonic_mean" => Algo::HarmonicMean,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "insertion_sort" => Algo::InsertionSort,
             s if s.to_lowercase() == "ipv4" => Algo::IPv4,
