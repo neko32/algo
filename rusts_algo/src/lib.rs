@@ -62,6 +62,7 @@ pub mod largest_adjacent_product;
 pub mod largest_number;
 pub mod least_data_eviction;
 pub mod least_factorial;
+pub mod least_lsd;
 pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
@@ -213,6 +214,7 @@ pub mod runner {
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
     use least_greatest;
+    use least_lsd;
     use length_linked_list;
     use levenshtein_distance;
     use linked_list;
@@ -493,6 +495,9 @@ pub mod runner {
             }
             Algo::LeastGreatest => {
                 least_greatest::run();
+            }
+            Algo::LeastLSD => {
+                least_lsd::run();
             }
             Algo::LevenShteinDistance => {
                 levenshtein_distance::run();
@@ -799,6 +804,7 @@ mod test_runner {
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
     use crate::least_greatest;
+    use crate::least_lsd;
     use crate::length_linked_list;
     use crate::levenshtein_distance;
     use crate::linked_list;
@@ -1504,6 +1510,15 @@ mod test_runner {
         let (least, greatest) = least_greatest::exec(&v);
         assert_eq!(least, 3);
         assert_eq!(greatest, 50);
+    }
+
+    #[test]
+    fn least_lsd_test() {
+        assert_eq!(least_lsd::exec(872), 2);
+        assert_eq!(least_lsd::exec(1111), 1);
+        assert_eq!(least_lsd::exec(1234), 4);
+        assert_eq!(least_lsd::exec(5), 5);
+        assert_eq!(least_lsd::exec(2208893445), 5);
     }
 
     #[test]
@@ -2482,6 +2497,7 @@ pub enum Algo {
     LeastGreatest,
     LeastDataEviction,
     LeastFactorial,
+    LeastLSD,
     LengthOfLinkedList,
     LevenShteinDistance,
     LinkedList,
@@ -2632,6 +2648,7 @@ impl Algo {
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
             s if s.to_lowercase() == "least_greatest" => Algo::LeastGreatest,
+            s if s.to_lowercase() == "least_lsd" => Algo::LeastLSD,
             s if s.to_lowercase() == "length_of_linkedlist" => Algo::LengthOfLinkedList,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
