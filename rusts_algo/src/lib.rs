@@ -12,6 +12,7 @@ pub mod bt_from_inorder_preorder;
 pub mod bubble_sort;
 pub mod caesar_crypt;
 pub mod camelcase;
+pub mod capitalize;
 pub mod century;
 pub mod char_count;
 pub mod chars_appearing_twice;
@@ -165,6 +166,7 @@ pub mod runner {
     use bubble_sort;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
+    use capitalize;
     use century::century;
     use char_count;
     use chars_appearing_twice;
@@ -339,6 +341,9 @@ pub mod runner {
             }
             Algo::CamelCase => {
                 camelcase::run();
+            }
+            Algo::Capitalize => {
+                capitalize::run();
             }
             Algo::Century => {
                 century::run();
@@ -754,6 +759,7 @@ mod test_runner {
     use crate::bubble_sort;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
+    use crate::capitalize;
     use crate::century::century;
     use crate::char_count;
     use crate::chars_appearing_twice;
@@ -1025,6 +1031,13 @@ mod test_runner {
     fn camelcase_test() {
         let c = camelcase::exec("taKOcHaN".to_string());
         assert_eq!(c, "Takochan".to_string());
+    }
+
+    #[test]
+    fn capitalize_test() {
+        assert_eq!(capitalize::exec("ho ho ho"), "Ho ho ho".to_string());
+        assert_eq!(capitalize::exec("HO HO HO"), "Ho ho ho".to_string());
+        assert_eq!(capitalize::exec("hO Ho hO"), "Ho ho ho".to_string());
     }
 
     #[test]
@@ -2446,6 +2459,7 @@ pub enum Algo {
     BubbleSort,
     BuildBTreeFromInorderPreorder,
     CamelCase,
+    Capitalize,
     Century,
     CaesarCrypt,
     CharCount,
@@ -2598,6 +2612,7 @@ impl Algo {
             s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
+            s if s.to_lowercase() == "capitalize" => Algo::Capitalize,
             s if s.to_lowercase() == "century" => Algo::Century,
             s if s.to_lowercase() == "char_count" => Algo::CharCount,
             s if s.to_lowercase() == "chars_appearing_twice" => Algo::CharsAppearingTwice,
