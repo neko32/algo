@@ -121,6 +121,7 @@ pub mod singly_linked_list_reverse;
 pub mod smallest_difference;
 pub mod smallest_positive_product;
 pub mod sort_by_height;
+pub mod sort_stack;
 pub mod sorted_matrix_search;
 pub mod stack_copy_only_pop;
 pub mod stdev;
@@ -272,6 +273,7 @@ pub mod runner {
     use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
     use sort_by_height;
+    use sort_stack;
     use sorted_matrix_search;
     use stack_copy_only_pop;
     use stdev;
@@ -666,6 +668,9 @@ pub mod runner {
             Algo::SortByHeight => {
                 sort_by_height::run();
             }
+            Algo::SortStack => {
+                sort_stack::run();
+            }
             Algo::SortedMatrixSearch => {
                 sorted_matrix_search::run();
             }
@@ -868,6 +873,7 @@ mod test_runner {
     use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sort_by_height;
+    use crate::sort_stack;
     use crate::sorted_matrix_search;
     use crate::stack_copy_only_pop;
     use crate::stdev;
@@ -2074,6 +2080,14 @@ mod test_runner {
     }
 
     #[test]
+    fn sort_stack_test() {
+        let mut v:Vec<i32> = vec![9, 16, 3, 8, 5, 3, 2, 1, 13, 10, 6];
+        sort_stack::exec(&mut v);
+        let expected = vec![1, 2, 3, 3, 5, 6, 8, 9, 10, 13, 16];
+        assert_eq!(v, expected);
+    }
+
+    #[test]
     fn sorted_matrix_search_found_case() {
         let matrix:Array2<u32> = arr2(&[
             [1, 4, 7, 12, 15, 1000],
@@ -2568,6 +2582,7 @@ pub enum Algo {
     SmallestDifference,
     SmallestPositiveProduct,
     SortByHeight,
+    SortStack,
     SortedMatrixSearch,
     StackCopyOnlyPop,
     Stdev,
@@ -2720,6 +2735,7 @@ impl Algo {
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
+            s if s.to_lowercase() == "sort_stack" => Algo::SortStack,
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
             s if s.to_lowercase() == "stack_copy_only_pop" => Algo::StackCopyOnlyPop,
             s if s.to_lowercase() == "stdev" => Algo::Stdev,
