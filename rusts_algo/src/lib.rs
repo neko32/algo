@@ -9,8 +9,10 @@ pub mod average;
 pub mod binarysearch;
 pub mod bintodec;
 pub mod bt_from_inorder_preorder;
+pub mod bubble_sort;
 pub mod caesar_crypt;
 pub mod camelcase;
+pub mod capitalize;
 pub mod century;
 pub mod char_count;
 pub mod chars_appearing_twice;
@@ -18,8 +20,10 @@ pub mod chars_perm_list;
 pub mod chars_to_sorted_digits;
 pub mod christmas_tree;
 pub mod clamp_value;
+pub mod classmark;
 pub mod clean_kth_bit;
 pub mod combination;
+pub mod compare_and_swap;
 pub mod construct_min_height_bst;
 pub mod construct_square;
 pub mod cool_num_pair;
@@ -39,12 +43,15 @@ pub mod find_closest_value;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
+pub mod least_greatest;
 pub mod group_anagrams;
 pub mod group_by_key;
 pub mod guard_technique;
 pub mod hanoi_tower;
+pub mod harmonic_mean;
 pub mod helon_formula;
 pub mod inorder_traversal;
+pub mod insertion_sort;
 pub mod ipv4;
 pub mod is_bst;
 pub mod is_mac_addr;
@@ -56,15 +63,18 @@ pub mod largest_adjacent_product;
 pub mod largest_number;
 pub mod least_data_eviction;
 pub mod least_factorial;
+pub mod least_lsd;
 pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
 pub mod longest_pelindromic_substring;
+pub mod lower_upper_hinge;
 pub mod max_path_sum;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
 pub mod mean;
+pub mod merge_2_lists;
 pub mod merge_sorted_linkedlist;
 pub mod min_breakdown_sum;
 pub mod min_passes_matrix_update;
@@ -72,6 +82,7 @@ pub mod min_reward;
 pub mod minmax_stack;
 pub mod mode;
 pub mod most_frequent_digit_sum;
+pub mod n_steps;
 pub mod next_greater_element;
 pub mod node_distance_k;
 pub mod num_of_clans;
@@ -111,6 +122,7 @@ pub mod singly_linked_list_reverse;
 pub mod smallest_difference;
 pub mod smallest_positive_product;
 pub mod sort_by_height;
+pub mod sort_stack;
 pub mod sorted_matrix_search;
 pub mod stack_copy_only_pop;
 pub mod stdev;
@@ -118,7 +130,10 @@ pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
 pub mod subarray_sort;
+pub mod sudoku;
 pub mod sum_of_arithmatic_progression;
+pub mod sum_of_consecutive_integers;
+pub mod sum_of_integers;
 pub mod sum_of_squared_deviation;
 pub mod swap_sibling;
 pub mod tandem_repeat;
@@ -150,16 +165,20 @@ pub mod runner {
     use binarysearch::binary_search;
     use bintodec::bin_to_dec;
     use bt_from_inorder_preorder;
+    use bubble_sort;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
+    use capitalize;
     use century::century;
     use char_count;
     use chars_appearing_twice;
     use chars_to_sorted_digits;
     use christmas_tree::christmas_tree;
     use clamp_value;
+    use classmark;
     use clean_kth_bit::clean_kth_bit;
     use combination;
+    use compare_and_swap;
     use construct_min_height_bst;
     use construct_square;
     use cool_num_pair::cool_num_pair;
@@ -184,8 +203,10 @@ pub mod runner {
     use guard_technique;
     use hanoi_tower;
     use helon_formula::helon_formula;
+    use harmonic_mean;
     use jump_height_in_frames;
     use inorder_traversal;
+    use insertion_sort;
     use ipv4;
     use is_bst;
     use is_mac_addr::is_mac_addr;
@@ -196,14 +217,18 @@ pub mod runner {
     use lcs::lcs;
     use least_data_eviction::least_data_eviction;
     use least_factorial::least_factorial;
+    use least_greatest;
+    use least_lsd;
     use length_linked_list;
     use levenshtein_distance;
     use linked_list;
     use longest_pelindromic_substring;
+    use lower_upper_hinge;
     use max_path_sum;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
     use mean;
+    use merge_2_lists;
     use merge_sorted_linkedlist;
     use min_breakdown_sum::min_breakdown_sum;
     use min_passes_matrix_update;
@@ -211,6 +236,7 @@ pub mod runner {
     use minmax_stack;
     use mode;
     use most_frequent_digit_sum;
+    use n_steps;
     use next_greater_element;
     use node_distance_k;
     use num_of_clans;
@@ -249,6 +275,7 @@ pub mod runner {
     use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
     use sort_by_height;
+    use sort_stack;
     use sorted_matrix_search;
     use stack_copy_only_pop;
     use stdev;
@@ -256,7 +283,10 @@ pub mod runner {
     use string_construction::string_construction;
     use string_pattern::string_pattern;
     use subarray_sort;
+    use sudoku;
     use sum_of_arithmatic_progression;
+    use sum_of_consecutive_integers;
+    use sum_of_integers;
     use sum_of_squared_deviation;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
@@ -304,6 +334,9 @@ pub mod runner {
             Algo::BinToDec => {
                 bin_to_dec::run();
             }
+            Algo::BubbleSort => {
+                bubble_sort::run();
+            }
             Algo::BuildBTreeFromInorderPreorder => {
                 bt_from_inorder_preorder::run();
             }
@@ -312,6 +345,9 @@ pub mod runner {
             }
             Algo::CamelCase => {
                 camelcase::run();
+            }
+            Algo::Capitalize => {
+                capitalize::run();
             }
             Algo::Century => {
                 century::run();
@@ -334,11 +370,17 @@ pub mod runner {
             Algo::ClampValue => {
                 clamp_value::run();
             }
+            Algo::Classmark => {
+                classmark::run();
+            }
             Algo::CleanKthBit => {
                 clean_kth_bit::run();
             }
             Algo::Combination => {
                 combination::run();
+            }
+            Algo::CompareAndSwap => {
+                compare_and_swap::run();
             }
             Algo::ConstructMinHeightBST => {
                 construct_min_height_bst::run();
@@ -412,8 +454,14 @@ pub mod runner {
             Algo::HelonFormula => {
                 helon_formula::run();
             }
+            Algo::HarmonicMean => {
+                harmonic_mean::run();
+            }
             Algo::InOrderTraversal => {
                 inorder_traversal::run();
+            }
+            Algo::InsertionSort => {
+                insertion_sort::run();
             }
             Algo::IPv4 => {
                 ipv4::run();
@@ -454,11 +502,20 @@ pub mod runner {
             Algo::LeastFactorial => {
                 least_factorial::run();
             }
+            Algo::LeastGreatest => {
+                least_greatest::run();
+            }
+            Algo::LeastLSD => {
+                least_lsd::run();
+            }
             Algo::LevenShteinDistance => {
                 levenshtein_distance::run();
             }
             Algo::LongestPelindromicSubstring => {
                 longest_pelindromic_substring::run();
+            }
+            Algo::LowerUpperHinge => {
+                lower_upper_hinge::run();
             }
             Algo::MaxPathSum => {
                 max_path_sum::run();
@@ -474,6 +531,9 @@ pub mod runner {
             }
             Algo::Mean => {
                 mean::run();
+            }
+            Algo::Merge2Lists => {
+                merge_2_lists::run();
             }
             Algo::MergeSortedLinkedList => {
                 merge_sorted_linkedlist::run();
@@ -501,6 +561,9 @@ pub mod runner {
             }
             Algo::NodeDistanceK => {
                 node_distance_k::run();
+            }
+            Algo::NSteps => {
+                n_steps::run();
             }
             Algo::NumOfClans => {
                 num_of_clans::run();
@@ -610,6 +673,9 @@ pub mod runner {
             Algo::SortByHeight => {
                 sort_by_height::run();
             }
+            Algo::SortStack => {
+                sort_stack::run();
+            }
             Algo::SortedMatrixSearch => {
                 sorted_matrix_search::run();
             }
@@ -631,8 +697,17 @@ pub mod runner {
             Algo::SubArraySort => {
                 subarray_sort::run();
             }
+            Algo::Sudoku => {
+                sudoku::run();
+            }
             Algo::SumOfArithmaticProgression => {
                 sum_of_arithmatic_progression::run();
+            }
+            Algo::SumOfConsective => {
+                sum_of_consecutive_integers::run();
+            }
+            Algo::SumOfIntegers => {
+                sum_of_integers::run();
             }
             Algo::SumOfSquaredDeviations => {
                 sum_of_squared_deviation::run();
@@ -691,8 +766,10 @@ mod test_runner {
     use crate::binarysearch::binary_search;
     use crate::bintodec::bin_to_dec;
     use crate::bt_from_inorder_preorder;
+    use crate::bubble_sort;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
+    use crate::capitalize;
     use crate::century::century;
     use crate::char_count;
     use crate::chars_appearing_twice;
@@ -700,8 +777,10 @@ mod test_runner {
     use crate::chars_to_sorted_digits;
     use crate::christmas_tree::christmas_tree;
     use crate::clamp_value;
+    use crate::classmark;
     use crate::clean_kth_bit::clean_kth_bit;
     use crate::combination;
+    use crate::compare_and_swap;
     use crate::construct_min_height_bst;
     use crate::construct_square;
     use crate::cool_num_pair::cool_num_pair;
@@ -725,8 +804,10 @@ mod test_runner {
     use crate::group_by_key;
     use crate::guard_technique;
     use crate::hanoi_tower;
+    use crate::harmonic_mean;
     use crate::helon_formula::helon_formula;
     use crate::inorder_traversal;
+    use crate::insertion_sort;
     use crate::ipv4;
     use crate::is_bst;
     use crate::is_mac_addr::is_mac_addr;
@@ -738,15 +819,19 @@ mod test_runner {
     use crate::lcs::lcs;
     use crate::least_data_eviction::least_data_eviction;
     use crate::least_factorial::least_factorial;
+    use crate::least_greatest;
+    use crate::least_lsd;
     use crate::length_linked_list;
     use crate::levenshtein_distance;
     use crate::linked_list;
     use crate::longest_pelindromic_substring;
+    use crate::lower_upper_hinge;
     use crate::max_path_sum;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
     use crate::mean;
+    use crate::merge_2_lists;
     use crate::merge_sorted_linkedlist;
     use crate::min_breakdown_sum::min_breakdown_sum;
     use crate::min_passes_matrix_update;
@@ -754,6 +839,7 @@ mod test_runner {
     use crate::minmax_stack;
     use crate::mode;
     use crate::most_frequent_digit_sum;
+    use crate::n_steps;
     use crate::next_greater_element;
     use crate::node_distance_k;
     use crate::num_of_clans;
@@ -793,6 +879,7 @@ mod test_runner {
     use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sort_by_height;
+    use crate::sort_stack;
     use crate::sorted_matrix_search;
     use crate::stack_copy_only_pop;
     use crate::stdev;
@@ -800,7 +887,10 @@ mod test_runner {
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
     use crate::subarray_sort;
+    use crate::sudoku;
     use crate::sum_of_arithmatic_progression;
+    use crate::sum_of_consecutive_integers;
+    use crate::sum_of_integers;
     use crate::sum_of_squared_deviation;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
@@ -917,6 +1007,14 @@ mod test_runner {
     }
 
     #[test]
+    fn bubble_sort_test() {
+        let mut v = [7, 3, 10, 9, 3, 5, 11, 12, 6];
+        let expected = [3, 3, 5, 6, 7, 9, 10 ,11, 12];
+        bubble_sort::exec(&mut v);
+        assert_eq!(v, expected);
+    }
+
+    #[test]
     fn build_btree_from_preorder_inorder_test() {
         let preorder = [3, 9, 20, 15, 7];
         let inorder = [9, 3, 15, 20, 7];
@@ -945,6 +1043,13 @@ mod test_runner {
     fn camelcase_test() {
         let c = camelcase::exec("taKOcHaN".to_string());
         assert_eq!(c, "Takochan".to_string());
+    }
+
+    #[test]
+    fn capitalize_test() {
+        assert_eq!(capitalize::exec("ho ho ho"), "Ho ho ho".to_string());
+        assert_eq!(capitalize::exec("HO HO HO"), "Ho ho ho".to_string());
+        assert_eq!(capitalize::exec("hO Ho hO"), "Ho ho ho".to_string());
     }
 
     #[test]
@@ -1054,6 +1159,12 @@ mod test_runner {
     }
 
     #[test]
+    fn classmark_test() {
+        assert_eq!(classmark::exec(25., 35.), 42.5);
+        assert_eq!(classmark::exec(0., 10.), 5.);
+    }
+
+    #[test]
     fn clean_kth_bit_test() {
         let n = 127;
         let k = 3;
@@ -1065,6 +1176,14 @@ mod test_runner {
         let n = 8;
         let r = 3;
         assert_eq!(combination::exec(n, r), 56);
+    }
+
+    #[test]
+    fn compare_and_swap_test() {
+        let rez = std::panic::catch_unwind(||{
+            compare_and_swap::run()
+        });
+        assert_ne!(rez.is_err(), true);
     }
 
     #[test]
@@ -1263,6 +1382,12 @@ mod test_runner {
     }
 
     #[test]
+    fn harmonic_mean_test() {
+        let s = vec![90_f32, 110_f32];
+        assert_eq!(harmonic_mean::exec(&s), 99_f32);
+    }
+
+    #[test]
     fn helon_formula_test() {
         let a = 5.0;
         let b = 6.0;
@@ -1278,6 +1403,14 @@ mod test_runner {
         let r = inorder_traversal::exec(&v);
         let expected = vec![1, 2, 4, 5, 9, 10];
         assert_eq!(r, expected);
+    }
+
+    #[test]
+    fn insertion_sort_test() {
+        let mut v = [9, 15, 2, 7, 4, -5, 9, -3, 10, 8];
+        insertion_sort::exec(&mut v);
+        let expected = [-5, -3, 2, 4, 7, 8, 9, 9, 10, 15];
+        assert_eq!(v, expected);
     }
 
     #[test]
@@ -1396,6 +1529,24 @@ mod test_runner {
     }
 
     #[test]
+    fn least_greatest_test() {
+        use least_greatest::IntNum;
+        let v:Vec<IntNum> = vec![IntNum::new(8), IntNum::new(12), IntNum::new(25), IntNum::new(3), IntNum::new(50)];
+        let (least, greatest) = least_greatest::exec(&v);
+        assert_eq!(least, 3);
+        assert_eq!(greatest, 50);
+    }
+
+    #[test]
+    fn least_lsd_test() {
+        assert_eq!(least_lsd::exec(872), 2);
+        assert_eq!(least_lsd::exec(1111), 1);
+        assert_eq!(least_lsd::exec(1234), 4);
+        assert_eq!(least_lsd::exec(5), 5);
+        assert_eq!(least_lsd::exec(2208893445), 5);
+    }
+
+    #[test]
     fn length_linked_list_test() {
         let v = vec![1,2,3,4,5];
         assert_eq!(length_linked_list::exec(&v), 5);
@@ -1428,6 +1579,16 @@ mod test_runner {
         let s = "ababrrbzaxoxazxn";
         let expected = "zaxoxaz";
         assert_eq!(longest_pelindromic_substring::exec(s), expected);
+    }
+
+    #[test]
+    fn lower_upper_hinge_test() {
+        assert_eq!(lower_upper_hinge::exec(&[12, 13, 14, 15, 17]), (13_f32, 15_f32));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2, 3]), (1_f32, 3_f32));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2, 3, 4, 5, 6, 7, 8, 9]), (3_f32, 7_f32));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2]), (1_f32, 2_f32));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2, 3, 4]), (1.5, 3.5));
+        assert_eq!(lower_upper_hinge::exec(&[1, 2, 3, 4, 5, 6, 7, 8]), (2.5, 6.5));
     }
 
     #[test]
@@ -1484,6 +1645,15 @@ mod test_runner {
         let v2 = &mut [100_f32, 110_f32, 150_f32, 180_f32, 300_f32, 600_f32];
         assert!(approx_eq!(f32, mean::exec(v), 540_f32));
         assert!(approx_eq!(f32, mean::exec(v2), 165_f32));
+    }
+
+    #[test]
+    fn merge_2_lists_test() {
+        let mut a = [7, 3, 10, 2, 10, 25, 9, 11];
+        let mut b = [3, 4, 19, 21, 15];
+        let c = merge_2_lists::exec(&mut a, &mut b);
+        let expected = vec![2, 3, 3, 4, 7, 9, 10, 10, 11, 15, 19, 21, 25];
+        assert_eq!(c, expected);
     }
 
     #[test]
@@ -1546,6 +1716,11 @@ mod test_runner {
         assert_eq!(most_frequent_digit_sum::exec(239), 9);
         assert_eq!(most_frequent_digit_sum::exec(1), 1);
         assert_eq!(most_frequent_digit_sum::exec(99999), 18);
+    }
+
+    #[test]
+    fn n_steps_test() {
+        assert_eq!(n_steps::exec(4, 2), 5);
     }
 
     #[test]
@@ -1916,6 +2091,14 @@ mod test_runner {
     }
 
     #[test]
+    fn sort_stack_test() {
+        let mut v:Vec<i32> = vec![9, 16, 3, 8, 5, 3, 2, 1, 13, 10, 6];
+        sort_stack::exec(&mut v);
+        let expected = vec![1, 2, 3, 3, 5, 6, 8, 9, 10, 13, 16];
+        assert_eq!(v, expected);
+    }
+
+    #[test]
     fn sorted_matrix_search_found_case() {
         let matrix:Array2<u32> = arr2(&[
             [1, 4, 7, 12, 15, 1000],
@@ -2125,11 +2308,60 @@ mod test_runner {
     }
 
     #[test]
+    fn sum_of_consecutive_test() {
+        let empty_result:Vec<Vec<i32>> = Vec::new();
+        assert_eq!(sum_of_consecutive_integers::exec(9), vec![vec![2, 3, 4], vec![4, 5]]);
+        assert_eq!(sum_of_consecutive_integers::exec(8), empty_result);
+        assert_eq!(sum_of_consecutive_integers::exec(27), vec![vec![2, 3, 4, 5, 6, 7], vec![8, 9, 10], vec![13, 14]]);
+        assert_eq!(sum_of_consecutive_integers::exec(25), vec![vec![3, 4, 5, 6, 7], vec![12, 13]]);
+        assert_eq!(sum_of_consecutive_integers::exec(19), vec![vec![9, 10]]);
+    }
+
+    #[test]
+    fn sum_of_integers_test() {
+        let mut expected:HashSet<Vec<i32>> = HashSet::new();
+        expected.insert(vec![9]);
+        expected.insert(vec![2, 3, 4]);
+        expected.insert(vec![4, 5]);
+        expected.insert(vec![2, 7]);
+        expected.insert(vec![3, 6]);
+        assert_eq!(sum_of_integers::exec(9), expected);
+    }
+
+    #[test]
     fn swap_sibling_test() {
         let mut v: Vec<i32> = (1..=6).collect();
         swap_sibling::exec(&mut v);
         let expected: Vec<i32> = vec![2, 1, 4, 3, 6, 5];
         assert_eq!(v, expected);
+    }
+
+    #[test]
+    fn sudoku_test() {
+        let mut m = arr2(&[
+            [-1, 1, 5, 9, -1, 4, -1, -1, -1],
+            [6, 8, 3, -1, -1, 2, -1, -1, 7],
+            [-1, 9, -1, -1, 3, -1, -1, -1, -1],
+            [1, -1, -1, -1, 4, -1, -1, -1, 3],
+            [9, 4, -1, -1, 6, 7, -1, 2, -1],
+            [-1, 7, 2, -1, 8, 1, 4, -1, 6],
+            [-1, 6, 1, -1, -1, 3, 2, 5, -1],
+            [-1, 3, -1, 4, 2, 6, -1, 7, 1],
+            [7, -1, -1, 8, 1, -1, -1, 6, 9]
+            ]);
+        sudoku::exec(&mut m);
+        let expected:Array2<i32> = arr2(&[
+            [2, 1, 5, 9, 7, 4, 6, 3, 8],
+            [6, 8, 3, 1, 5, 2, 9, 4, 7],
+            [4, 9, 7, 6, 3, 8, 5, 1, 2],
+            [1, 5, 6, 2, 4, 9, 7, 8, 3],
+            [9, 4, 8, 3, 6, 7, 1, 2, 5],
+            [3, 7, 2, 5, 8, 1, 4, 9, 6],
+            [8, 6, 1, 7, 9, 3, 2, 5, 4],
+            [5, 3, 9, 4, 2, 6, 8, 7, 1],
+            [7, 2, 4, 8, 1, 5, 3, 6, 9]
+        ]);
+        assert_eq!(m.view(), expected.view());
     }
 
     #[test]
@@ -2249,8 +2481,10 @@ pub enum Algo {
     Average,
     BinarySearch,
     BinToDec,
+    BubbleSort,
     BuildBTreeFromInorderPreorder,
     CamelCase,
+    Capitalize,
     Century,
     CaesarCrypt,
     CharCount,
@@ -2259,8 +2493,10 @@ pub enum Algo {
     CharsToSortedDigits,
     ChristmasTree,
     ClampValue,
+    Classmark,
     CleanKthBit,
     Combination,
+    CompareAndSwap,
     ConstructMinHeightBST,
     ConstructSquare,
     CoolNumPair,
@@ -2285,7 +2521,9 @@ pub enum Algo {
     GuardTechnique,
     HanoiTower,
     HelonFormula,
+    HarmonicMean,
     InOrderTraversal,
+    InsertionSort,
     IPv4,
     IsBST,
     IsMacAddr,
@@ -2295,17 +2533,21 @@ pub enum Algo {
     LargestAdjacentProduct,
     LargestNumber,
     LCS,
+    LeastGreatest,
     LeastDataEviction,
     LeastFactorial,
+    LeastLSD,
     LengthOfLinkedList,
     LevenShteinDistance,
     LinkedList,
     LongestPelindromicSubstring,
+    LowerUpperHinge,
     MaxPathSum,
     MaxSiblingProduct,
     MaxSubSetSum,
     MaxWithLessDigit,
     Mean,
+    Merge2Lists,
     MergeSortedLinkedList,
     MinBreakdownSum,
     MinMaxStack,
@@ -2315,6 +2557,7 @@ pub enum Algo {
     MostFrequentDigitSum,
     NextGreaterElement,
     NodeDistanceK,
+    NSteps,
     NumberGrouping,
     NumOfClans,
     NumOfPaths,
@@ -2351,6 +2594,7 @@ pub enum Algo {
     SmallestDifference,
     SmallestPositiveProduct,
     SortByHeight,
+    SortStack,
     SortedMatrixSearch,
     StackCopyOnlyPop,
     Stdev,
@@ -2358,7 +2602,10 @@ pub enum Algo {
     StringConstruction,
     StringPattern,
     SubArraySort,
+    Sudoku,
     SumOfArithmaticProgression,
+    SumOfConsective,
+    SumOfIntegers,
     SumOfSquaredDeviations,
     SwapSibling,
     TandemRepeat,
@@ -2388,9 +2635,11 @@ impl Algo {
             s if s.to_lowercase() == "average" => Algo::Average,
             s if s.to_lowercase() == "binary_search" => Algo::BinarySearch,
             s if s.to_lowercase() == "bintodec" => Algo::BinToDec,
+            s if s.to_lowercase() == "bubble_sort" => Algo::BubbleSort, 
             s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
+            s if s.to_lowercase() == "capitalize" => Algo::Capitalize,
             s if s.to_lowercase() == "century" => Algo::Century,
             s if s.to_lowercase() == "char_count" => Algo::CharCount,
             s if s.to_lowercase() == "chars_appearing_twice" => Algo::CharsAppearingTwice,
@@ -2398,8 +2647,10 @@ impl Algo {
             s if s.to_lowercase() == "chars_to_sorted_digits" => Algo::CharsToSortedDigits,
             s if s.to_lowercase() == "christmas_tree" => Algo::ChristmasTree,
             s if s.to_lowercase() == "clamp_value" => Algo::ClampValue,
+            s if s.to_lowercase() == "classmark" => Algo::Classmark,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
             s if s.to_lowercase() == "combination" => Algo::Combination,
+            s if s.to_lowercase() == "compare_and_swap" => Algo::CompareAndSwap,
             s if s.to_lowercase() == "construct_min_height_bst" => Algo::ConstructMinHeightBST,
             s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
@@ -2424,7 +2675,9 @@ impl Algo {
             s if s.to_lowercase() == "guard_technique" => Algo::GuardTechnique,
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
+            s if s.to_lowercase() == "harmonic_mean" => Algo::HarmonicMean,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
+            s if s.to_lowercase() == "insertion_sort" => Algo::InsertionSort,
             s if s.to_lowercase() == "ipv4" => Algo::IPv4,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
@@ -2436,15 +2689,19 @@ impl Algo {
             s if s.to_lowercase() == "lcs" => Algo::LCS,
             s if s.to_lowercase() == "least_data_eviction" => Algo::LeastDataEviction,
             s if s.to_lowercase() == "least_factorial" => Algo::LeastFactorial,
+            s if s.to_lowercase() == "least_greatest" => Algo::LeastGreatest,
+            s if s.to_lowercase() == "least_lsd" => Algo::LeastLSD,
             s if s.to_lowercase() == "length_of_linkedlist" => Algo::LengthOfLinkedList,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
             s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
+            s if s.to_lowercase() == "lower_upper_hinge" => Algo::LowerUpperHinge,
             s if s.to_lowercase() == "max_path_sum" => Algo::MaxPathSum,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
             s if s.to_lowercase() == "mean" => Algo::Mean,
+            s if s.to_lowercase() == "merge_2_lists" => Algo::Merge2Lists,
             s if s.to_lowercase() == "merge_sorted_linkedlist" => Algo::MergeSortedLinkedList,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_passes_matrix_update" => Algo::MinPassesMatrixUpdate,
@@ -2452,6 +2709,7 @@ impl Algo {
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
             s if s.to_lowercase() == "mode" => Algo::Mode,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
+            s if s.to_lowercase() == "n_steps" => Algo::NSteps,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
             s if s.to_lowercase() == "node_distance_k" => Algo::NodeDistanceK,
             s if s.to_lowercase() == "num_of_clans" => Algo::NumOfClans,
@@ -2480,6 +2738,7 @@ impl Algo {
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
             s if s.to_lowercase() == "same_bst" => Algo::SameBST,
+            s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
@@ -2489,6 +2748,7 @@ impl Algo {
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
+            s if s.to_lowercase() == "sort_stack" => Algo::SortStack,
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
             s if s.to_lowercase() == "stack_copy_only_pop" => Algo::StackCopyOnlyPop,
             s if s.to_lowercase() == "stdev" => Algo::Stdev,
@@ -2496,7 +2756,10 @@ impl Algo {
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
             s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
+            s if s.to_lowercase() == "sudoku" => Algo::Sudoku,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
+            s if s.to_lowercase() == "sum_of_consecutive" => Algo::SumOfConsective,
+            s if s.to_lowercase() == "sum_of_integers" => Algo::SumOfIntegers,
             s if s.to_lowercase() == "sum_of_squared_deviations" => Algo::SumOfSquaredDeviations,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
@@ -2507,7 +2770,6 @@ impl Algo {
             s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
-            s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "variance" => Algo::Variance,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
             s if s.to_lowercase() == "xor_shift" => Algo::XOrShift,
