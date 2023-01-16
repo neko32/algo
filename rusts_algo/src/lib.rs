@@ -82,6 +82,7 @@ pub mod min_reward;
 pub mod minmax_stack;
 pub mod mode;
 pub mod most_frequent_digit_sum;
+pub mod n_steps;
 pub mod next_greater_element;
 pub mod node_distance_k;
 pub mod num_of_clans;
@@ -235,6 +236,7 @@ pub mod runner {
     use minmax_stack;
     use mode;
     use most_frequent_digit_sum;
+    use n_steps;
     use next_greater_element;
     use node_distance_k;
     use num_of_clans;
@@ -560,6 +562,9 @@ pub mod runner {
             Algo::NodeDistanceK => {
                 node_distance_k::run();
             }
+            Algo::NSteps => {
+                n_steps::run();
+            }
             Algo::NumOfClans => {
                 num_of_clans::run();
             }
@@ -834,6 +839,7 @@ mod test_runner {
     use crate::minmax_stack;
     use crate::mode;
     use crate::most_frequent_digit_sum;
+    use crate::n_steps;
     use crate::next_greater_element;
     use crate::node_distance_k;
     use crate::num_of_clans;
@@ -1713,6 +1719,11 @@ mod test_runner {
     }
 
     #[test]
+    fn n_steps_test() {
+        assert_eq!(n_steps::exec(4, 2), 5);
+    }
+
+    #[test]
     fn next_greater_element_test() {
         let a = &[2, 5, -3, -4, 6, 7, 2];
         let expected = vec![5, 6, 6, 6, 7, -1, 5];
@@ -2546,6 +2557,7 @@ pub enum Algo {
     MostFrequentDigitSum,
     NextGreaterElement,
     NodeDistanceK,
+    NSteps,
     NumberGrouping,
     NumOfClans,
     NumOfPaths,
@@ -2697,6 +2709,7 @@ impl Algo {
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
             s if s.to_lowercase() == "mode" => Algo::Mode,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
+            s if s.to_lowercase() == "n_steps" => Algo::NSteps,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
             s if s.to_lowercase() == "node_distance_k" => Algo::NodeDistanceK,
             s if s.to_lowercase() == "num_of_clans" => Algo::NumOfClans,
