@@ -144,6 +144,7 @@ pub mod total_sum_with_n_num;
 pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
+pub mod valid_starting_city;
 pub mod variance;
 pub mod waterarea;
 pub mod xor_shift;
@@ -297,6 +298,7 @@ pub mod runner {
     use total_sum_with_n_num;
     use turn_commands;
     use two_sum::two_sum;
+    use valid_starting_city;
     use variance;
     use waterarea::waterarea;
     use xor_shift;
@@ -737,6 +739,9 @@ pub mod runner {
             Algo::TwoSum => {
                 two_sum::run();
             }
+            Algo::ValidStartingCity => {
+                valid_starting_city::run();
+            }
             Algo::Variance => {
                 variance::run();
             }
@@ -901,6 +906,7 @@ mod test_runner {
     use crate::total_sum_with_n_num;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
+    use crate::valid_starting_city;
     use crate::variance;
     use crate::waterarea::waterarea;
     use crate::xor_shift;
@@ -2441,6 +2447,22 @@ mod test_runner {
     }
 
     #[test]
+    fn valid_starting_city_all_no_issue_test() {
+        let dist = vec![5, 25, 15, 10, 15];
+        let fuel = vec![1, 2, 2, 1, 0];
+        let mpg = 10;
+        assert_eq!(valid_starting_city::exec(dist, fuel, mpg), 0);
+    }
+
+    #[test]
+    fn valid_starting_city_stamble_at_middle_test() {
+        let dist = vec![5, 25, 15, 10, 15];
+        let fuel = vec![1, 2, 1, 0, 3];
+        let mpg = 10;
+        assert_eq!(valid_starting_city::exec(dist, fuel, mpg), 4);
+    }
+
+    #[test]
     fn variance_test() {
         let v = &[71_f32, 80_f32, 89_f32];
         assert_eq!(variance::exec(v), 54_f32);
@@ -2616,6 +2638,7 @@ pub enum Algo {
     TotalSumWithNNums,
     TurnCommands,
     TwoSum,
+    ValidStartingCity,
     Variance,
     WaterArea,
     XOrShift,
@@ -2770,6 +2793,7 @@ impl Algo {
             s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
+            s if s.to_lowercase() == "valid_starting_city" => Algo::ValidStartingCity,
             s if s.to_lowercase() == "variance" => Algo::Variance,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
             s if s.to_lowercase() == "xor_shift" => Algo::XOrShift,
