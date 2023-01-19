@@ -32,6 +32,7 @@ pub mod decode_reverse_poland;
 pub mod dectobin;
 pub mod diagonal;
 pub mod different_squares;
+pub mod different_value_pairs;
 pub mod document_build;
 pub mod euclidean;
 pub mod eval_tictactoe;
@@ -189,6 +190,7 @@ pub mod runner {
     use dectobin::dectobin;
     use diagonal::diagonal;
     use different_squares;
+    use different_value_pairs;
     use document_build::document_build;
     use euclidean::euclidean;
     use eval_tictactoe;
@@ -409,6 +411,9 @@ pub mod runner {
             }
             Algo::DifferentSquares => {
                 different_squares::run();
+            }
+            Algo::DifferentValuePairs => {
+                different_value_pairs::run();
             }
             Algo::DocumentBuild => {
                 document_build::run();
@@ -799,6 +804,7 @@ mod test_runner {
     use crate::dectobin::dectobin;
     use crate::diagonal::diagonal;
     use crate::different_squares;
+    use crate::different_value_pairs;
     use crate::document_build::document_build;
     use crate::euclidean::euclidean;
     use crate::eval_tictactoe;
@@ -1261,6 +1267,14 @@ mod test_runner {
             vec![2 ,2, 1],
         ];
         assert_eq!(different_squares::exec(v), 6);
+    }
+
+    #[test]
+    fn different_value_pairs_test() {
+        let a = vec![5, 28, 14, 99, 17];
+        let b = vec![5, 14, 28, 99, 16];
+        let expected = vec![vec![28, 14, 17], vec![14, 28, 16]];
+        assert_eq!(different_value_pairs::exec(a, b), expected);
     }
 
     #[test]
@@ -2542,6 +2556,7 @@ pub enum Algo {
     DecToBin,
     Diagonal,
     DifferentSquares,
+    DifferentValuePairs,
     DocumentBuild,
     EvalTicTacToe,
     EvenNumSum,
@@ -2698,6 +2713,7 @@ impl Algo {
             s if s.to_lowercase() == "dectobin" => Algo::DecToBin,
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
             s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
+            s if s.to_lowercase() == "different_value_pairs" => Algo::DifferentValuePairs,
             s if s.to_lowercase() == "document_build" => Algo::DocumentBuild,
             s if s.to_lowercase() == "eval_tictactoe" => Algo::EvalTicTacToe,
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
