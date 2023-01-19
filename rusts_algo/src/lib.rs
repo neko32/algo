@@ -145,6 +145,7 @@ pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
 pub mod valid_starting_city;
+pub mod validate_three_nodes;
 pub mod variance;
 pub mod waterarea;
 pub mod xor_shift;
@@ -299,6 +300,7 @@ pub mod runner {
     use turn_commands;
     use two_sum::two_sum;
     use valid_starting_city;
+    use validate_three_nodes;
     use variance;
     use waterarea::waterarea;
     use xor_shift;
@@ -739,6 +741,9 @@ pub mod runner {
             Algo::TwoSum => {
                 two_sum::run();
             }
+            Algo::ValidateThreeNodes => {
+                validate_three_nodes::run();
+            }
             Algo::ValidStartingCity => {
                 valid_starting_city::run();
             }
@@ -907,6 +912,7 @@ mod test_runner {
     use crate::turn_commands;
     use crate::two_sum::two_sum;
     use crate::valid_starting_city;
+    use crate::validate_three_nodes;
     use crate::variance;
     use crate::waterarea::waterarea;
     use crate::xor_shift;
@@ -2463,6 +2469,15 @@ mod test_runner {
     }
 
     #[test]
+    fn validate_three_nodes_test() {
+        let n = build_tree(&vec![5, 2, 1, 0, 4, 3, 7, 6, 8]);
+        let one = 5;
+        let two = 2;
+        let three = 3;
+        assert!(validate_three_nodes::exec(n, one, two, three));
+    }
+
+    #[test]
     fn variance_test() {
         let v = &[71_f32, 80_f32, 89_f32];
         assert_eq!(variance::exec(v), 54_f32);
@@ -2638,6 +2653,7 @@ pub enum Algo {
     TotalSumWithNNums,
     TurnCommands,
     TwoSum,
+    ValidateThreeNodes,
     ValidStartingCity,
     Variance,
     WaterArea,
@@ -2794,6 +2810,7 @@ impl Algo {
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
             s if s.to_lowercase() == "valid_starting_city" => Algo::ValidStartingCity,
+            s if s.to_lowercase() == "validate_three_nodes" => Algo::ValidateThreeNodes,
             s if s.to_lowercase() == "variance" => Algo::Variance,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
             s if s.to_lowercase() == "xor_shift" => Algo::XOrShift,
