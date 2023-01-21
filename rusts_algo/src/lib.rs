@@ -83,6 +83,7 @@ pub mod min_passes_matrix_update;
 pub mod min_reward;
 pub mod minmax_stack;
 pub mod mode;
+pub mod monotonic_array;
 pub mod most_frequent_digit_sum;
 pub mod n_steps;
 pub mod next_greater_element;
@@ -243,6 +244,7 @@ pub mod runner {
     use min_reward::min_reward;
     use minmax_stack;
     use mode;
+    use monotonic_array;
     use most_frequent_digit_sum;
     use n_steps;
     use next_greater_element;
@@ -571,6 +573,9 @@ pub mod runner {
             Algo::Mode => {
                 mode::run();
             }
+            Algo::MonotonicArray => {
+                monotonic_array::run();
+            }
             Algo::MostFrequentDigitSum => {
                 most_frequent_digit_sum::run();
             }
@@ -870,6 +875,7 @@ mod test_runner {
     use crate::min_reward::min_reward;
     use crate::minmax_stack;
     use crate::mode;
+    use crate::monotonic_array;
     use crate::most_frequent_digit_sum;
     use crate::n_steps;
     use crate::next_greater_element;
@@ -1758,6 +1764,22 @@ mod test_runner {
     fn mode_test() {
         let t = vec![3, 1, 6, 1, 5, 8, 1, 8, 10, 11];
         assert_eq!(mode::exec(&t), 1);
+    }
+
+    #[test]
+    fn monotonic_array_test() {
+        let a = [3, 7, 10, 25, 50, 100, 150];
+        let b = [100, 72, 55, 40, 32, 10, 3, 1];
+        let c = [150, 125, 72, 138, 50, 62, 22];
+        let d = [1, 1, 1, 1, 2, 3, 5, 10];
+        let e = [10, 10, 10, 7, 4, 3, 1];
+        let f = [5, 5, 5, 5, 5, 5, 5];
+        assert_eq!(monotonic_array::exec(&a), Some(true));
+        assert_eq!(monotonic_array::exec(&b), Some(true));
+        assert_eq!(monotonic_array::exec(&c), Some(false));
+        assert_eq!(monotonic_array::exec(&d), Some(true));
+        assert_eq!(monotonic_array::exec(&e), Some(true));
+        assert_eq!(monotonic_array::exec(&f), None);
     }
 
     #[test]
@@ -2659,6 +2681,7 @@ pub enum Algo {
     MinPassesMatrixUpdate,
     MinReward,
     Mode,
+    MonotonicArray,
     MostFrequentDigitSum,
     NextGreaterElement,
     NodeDistanceK,
@@ -2819,6 +2842,7 @@ impl Algo {
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
             s if s.to_lowercase() == "mode" => Algo::Mode,
+            s if s.to_lowercase() == "monotonic_array" => Algo::MonotonicArray,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "n_steps" => Algo::NSteps,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
