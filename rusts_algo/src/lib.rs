@@ -69,6 +69,7 @@ pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
 pub mod longest_pelindromic_substring;
+pub mod longest_substring_without_dupe;
 pub mod lower_upper_hinge;
 pub mod max_path_sum;
 pub mod max_sibling_product;
@@ -229,6 +230,7 @@ pub mod runner {
     use levenshtein_distance;
     use linked_list;
     use longest_pelindromic_substring;
+    use longest_substring_without_dupe;
     use lower_upper_hinge;
     use max_path_sum;
     use max_sibling_product::max_sibling_product;
@@ -526,6 +528,9 @@ pub mod runner {
             }
             Algo::LongestPelindromicSubstring => {
                 longest_pelindromic_substring::run();
+            }
+            Algo::LongestSubstringWithoutDupe => {
+                longest_substring_without_dupe::run();
             }
             Algo::LowerUpperHinge => {
                 lower_upper_hinge::run();
@@ -851,6 +856,7 @@ mod test_runner {
     use crate::levenshtein_distance;
     use crate::linked_list;
     use crate::longest_pelindromic_substring;
+    use crate::longest_substring_without_dupe;
     use crate::lower_upper_hinge;
     use crate::max_path_sum;
     use crate::max_sibling_product::max_sibling_product;
@@ -1617,6 +1623,13 @@ mod test_runner {
         let s = "ababrrbzaxoxazxn";
         let expected = "zaxoxaz";
         assert_eq!(longest_pelindromic_substring::exec(s), expected);
+    }
+
+    #[test]
+    fn longest_substring_without_dupe_test() {
+        let expected = "nemvjsza";
+        let rez = longest_substring_without_dupe::exec("akenemvjszazq");
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -2632,6 +2645,7 @@ pub enum Algo {
     LevenShteinDistance,
     LinkedList,
     LongestPelindromicSubstring,
+    LongestSubstringWithoutDupe,
     LowerUpperHinge,
     MaxPathSum,
     MaxSiblingProduct,
@@ -2791,6 +2805,7 @@ impl Algo {
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
             s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
+            s if s.to_lowercase() == "longest_substring_without_dupe" => Algo::LongestSubstringWithoutDupe,
             s if s.to_lowercase() == "lower_upper_hinge" => Algo::LowerUpperHinge,
             s if s.to_lowercase() == "max_path_sum" => Algo::MaxPathSum,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
