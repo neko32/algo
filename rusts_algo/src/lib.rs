@@ -137,6 +137,7 @@ pub mod sum_of_arithmatic_progression;
 pub mod sum_of_consecutive_integers;
 pub mod sum_of_integers;
 pub mod sum_of_squared_deviation;
+pub mod sunset_view;
 pub mod swap_sibling;
 pub mod tandem_repeat;
 pub mod three_number_sort;
@@ -294,6 +295,7 @@ pub mod runner {
     use sum_of_consecutive_integers;
     use sum_of_integers;
     use sum_of_squared_deviation;
+    use sunset_view;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
     use three_number_sort;
@@ -726,6 +728,9 @@ pub mod runner {
             Algo::SumOfSquaredDeviations => {
                 sum_of_squared_deviation::run();
             }
+            Algo::SunsetView => {
+                sunset_view::run();
+            }
             Algo::SwapSibling => {
                 swap_sibling::run();
             }
@@ -914,6 +919,7 @@ mod test_runner {
     use crate::sum_of_consecutive_integers;
     use crate::sum_of_integers;
     use crate::sum_of_squared_deviation;
+    use crate::sunset_view;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
     use crate::three_number_sort;
@@ -2259,6 +2265,19 @@ mod test_runner {
         approx_eq!(f32, r, 147.5_f32);
     }
 
+
+    #[test]
+    fn sunset_view_test() {
+        let bldgs1 = [3, 5, 4, 4, 3, 1, 3, 2];
+        let bldgs2 = [2, 4, 4, 5, 1, 2, 8, 7, 10, 4];
+        let expected1:Vec<usize> = vec![1, 3, 6, 7];
+        let expected2 = vec![0, 1, 3, 6, 8];
+        let rez1:Vec<usize> = sunset_view::exec(&bldgs1, "east").into_iter().collect();
+        let rez2:Vec<usize> = sunset_view::exec(&bldgs2, "west").into_iter().collect();
+        assert_eq!(rez1, expected1);
+        assert_eq!(rez2, expected2);
+    }
+
     #[test]
     fn tandem_repeat_case1() {
         let c = "CatCat".to_string();
@@ -2680,6 +2699,7 @@ pub enum Algo {
     SumOfConsective,
     SumOfIntegers,
     SumOfSquaredDeviations,
+    SunsetView,
     SwapSibling,
     TandemRepeat,
     ThreeNumberSort,
@@ -2838,6 +2858,7 @@ impl Algo {
             s if s.to_lowercase() == "sum_of_consecutive" => Algo::SumOfConsective,
             s if s.to_lowercase() == "sum_of_integers" => Algo::SumOfIntegers,
             s if s.to_lowercase() == "sum_of_squared_deviations" => Algo::SumOfSquaredDeviations,
+            s if s.to_lowercase() == "sunset_view" => Algo::SunsetView,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
