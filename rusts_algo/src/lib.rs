@@ -106,6 +106,7 @@ pub mod reconstruct_bst_from_pre;
 pub mod remove_island;
 pub mod repeat_product;
 pub mod request_per_sec;
+pub mod reverse_in_parenthiesis;
 pub mod reverse_poland_calc;
 pub mod reverse_words;
 pub mod rightmost_diffbit;
@@ -263,6 +264,7 @@ pub mod runner {
     use remove_island;
     use repeat_product::repeat_product;
     use request_per_sec::request_per_sec;
+    use reverse_in_parenthiesis;
     use reverse_poland_calc::reverse_poland_calc;
     use reverse_words;
     use rightmost_diffbit::rightmost_diffbit;
@@ -634,6 +636,9 @@ pub mod runner {
             Algo::RequestPerSec => {
                 request_per_sec::run();
             }
+            Algo::ReverseInParenthiesis => {
+                reverse_in_parenthiesis::run();
+            }
             Algo::ReversePoland => {
                 reverse_poland_calc::run();
             }
@@ -878,6 +883,7 @@ mod test_runner {
     use crate::remove_island;
     use crate::repeat_product::repeat_product;
     use crate::request_per_sec::request_per_sec;
+    use crate::reverse_in_parenthiesis;
     use crate::reverse_poland_calc::reverse_poland_calc;
     use crate::reverse_words;
     use crate::rightmost_diffbit::rightmost_diffbit;
@@ -1964,6 +1970,20 @@ mod test_runner {
     }
 
     #[test]
+    fn reverse_in_parenthiesis_ok_case_test() {
+        assert_eq!(reverse_in_parenthiesis::exec("(bar)").unwrap().as_str(), "rab");
+        assert_eq!(reverse_in_parenthiesis::exec("foo(bar)baz").unwrap().as_str(), "foorabbaz");
+        assert_eq!(reverse_in_parenthiesis::exec("foo(bar)baz(blim)").unwrap().as_str(), "foorabbazmilb");
+        assert_eq!(reverse_in_parenthiesis::exec("foo(bar(baz))blim").unwrap().as_str(), "foobazrabblim");
+    }
+
+    #[test]
+    fn reverse_in_parenthiesis_fail_case_test() {
+        assert!(reverse_in_parenthiesis::exec("bar)").is_err());
+        assert!(reverse_in_parenthiesis::exec("(bar").unwrap().as_str() == "(bar");
+    }
+
+    #[test]
     fn reverse_poland_test1() {
         let s = "12+3+4+";
         assert_eq!(reverse_poland_calc::exec(s), 10_f32);
@@ -2630,6 +2650,7 @@ pub enum Algo {
     RemoveIsland,
     RepeatProduct,
     RequestPerSec,
+    ReverseInParenthiesis,
     ReversePoland,
     ReverseWords,
     RightMostDiffBit,
@@ -2787,6 +2808,7 @@ impl Algo {
             s if s.to_lowercase() == "remove_island" => Algo::RemoveIsland,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
+            s if s.to_lowercase() == "reverse_in_parenthiesis" => Algo::ReverseInParenthiesis,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
             s if s.to_lowercase() == "reverse_words" => Algo::ReverseWords,
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
