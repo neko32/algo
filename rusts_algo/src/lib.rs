@@ -57,6 +57,7 @@ pub mod ipv4;
 pub mod is_bst;
 pub mod is_mac_addr;
 pub mod is_palindrome;
+pub mod is_two_array_similar;
 pub mod jump_height_in_frames;
 pub mod kadane;
 pub mod lcs;
@@ -219,6 +220,7 @@ pub mod runner {
     use is_bst;
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
+    use is_two_array_similar;
     use kadane::kadane;
     use largest_adjacent_product;
     use largest_number;
@@ -491,6 +493,9 @@ pub mod runner {
             }
             Algo::IsMacAddr => {
                 is_mac_addr::run();
+            }
+            Algo::IsTwoArraySimilar => {
+                is_two_array_similar::run();
             }
             Algo::JumpHeightInFrames => {
                 jump_height_in_frames::run();
@@ -848,6 +853,7 @@ mod test_runner {
     use crate::is_bst;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
+    use crate::is_two_array_similar;
     use crate::jump_height_in_frames;
     use crate::kadane::kadane;
     use crate::largest_adjacent_product;
@@ -1512,6 +1518,13 @@ mod test_runner {
     fn is_mac_addr_bad() {
         let mac = "00-1B-63-84-45-Z6";
         assert_eq!(is_mac_addr::exec(mac), false);
+    }
+
+    #[test]
+    fn is_two_array_similar_test() {
+        assert_eq!(is_two_array_similar::exec(&[1, 2, 3], &[2, 1, 3]), true);
+        assert_eq!(is_two_array_similar::exec(&[1, 2, 3], &[1, 2, 3]), true);
+        assert_eq!(is_two_array_similar::exec(&[1, 2, 2], &[2, 1, 1]), false);
     }
 
     #[test]
@@ -2654,6 +2667,7 @@ pub enum Algo {
     IsBST,
     IsMacAddr,
     IsPalindrome,
+    IsTwoArraySimilar,
     JumpHeightInFrames,
     Kadane,
     LargestAdjacentProduct,
@@ -2815,6 +2829,7 @@ impl Algo {
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
+            s if s.to_lowercase() == "is_two_array_similar" => Algo::IsTwoArraySimilar,
             s if s.to_lowercase() == "jump_height_in_frames" => Algo::JumpHeightInFrames,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
             s if s.to_lowercase() == "largest_adjacent_product" => Algo::LargestAdjacentProduct,
