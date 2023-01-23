@@ -66,6 +66,7 @@ pub mod largest_number;
 pub mod least_data_eviction;
 pub mod least_factorial;
 pub mod least_lsd;
+pub mod lagrange_interpolation_polynominal;
 pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
@@ -222,6 +223,7 @@ pub mod runner {
     use is_palindrome::is_palindrome;
     use is_two_array_similar;
     use kadane::kadane;
+    use lagrange_interpolation_polynominal;
     use largest_adjacent_product;
     use largest_number;
     use lcs::lcs;
@@ -502,6 +504,9 @@ pub mod runner {
             }
             Algo::Kadane => {
                 kadane::run();
+            }
+            Algo::LagrangeInterpolationPolynominal => {
+                lagrange_interpolation_polynominal::run();
             }
             Algo::LargestAdjacentProduct => {
                 largest_adjacent_product::run();
@@ -856,6 +861,7 @@ mod test_runner {
     use crate::is_two_array_similar;
     use crate::jump_height_in_frames;
     use crate::kadane::kadane;
+    use crate::lagrange_interpolation_polynominal;
     use crate::largest_adjacent_product;
     use crate::largest_number;
     use crate::lcs::lcs;
@@ -1537,6 +1543,24 @@ mod test_runner {
     fn kadane_test() {
         let v = vec![3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4];
         assert_eq!(19, kadane::exec(v));
+    }
+
+    #[test]
+    fn lagrange_interpolation_polynominal_test() {
+
+        let points = vec![FPoint::new(0.0, 0.8),
+        FPoint::new(1.0, 3.1),
+        FPoint::new(3.0, 4.5),
+        FPoint::new(6.0, 3.9),
+        FPoint::new(7.0, 2.8)];
+        let rez = lagrange_interpolation_polynominal::exec(&points, 0_f32, 7.1_f32, 0.5_f32);
+        let expected:Vec<FPoint> = vec![FPoint::new(0.0, 0.8),
+        FPoint::new(0.5, 2.1527407), FPoint::new(1.0, 3.1), FPoint::new(1.5, 3.7357361),
+        FPoint::new(2.0, 4.1396823), FPoint::new(2.5, 4.3773437), FPoint::new(3.0, 4.5),
+        FPoint::new(3.5, 4.5447054), FPoint::new(4.0, 4.534286), FPoint::new(4.5, 4.4773445),
+        FPoint::new(5.0, 4.368254), FPoint::new(5.5, 4.1871653), FPoint::new(6.0, 3.9),
+        FPoint::new(6.5, 3.458455), FPoint::new(7.0, 2.8)];
+        
     }
 
     #[test]
@@ -2670,6 +2694,7 @@ pub enum Algo {
     IsTwoArraySimilar,
     JumpHeightInFrames,
     Kadane,
+    LagrangeInterpolationPolynominal,
     LargestAdjacentProduct,
     LargestNumber,
     LCS,
@@ -2832,6 +2857,7 @@ impl Algo {
             s if s.to_lowercase() == "is_two_array_similar" => Algo::IsTwoArraySimilar,
             s if s.to_lowercase() == "jump_height_in_frames" => Algo::JumpHeightInFrames,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
+            s if s.to_lowercase() == "lagrange_interpolation_polynominal" => Algo::LagrangeInterpolationPolynominal,
             s if s.to_lowercase() == "largest_adjacent_product" => Algo::LargestAdjacentProduct,
             s if s.to_lowercase() == "largest_number" => Algo::LargestNumber,
             s if s.to_lowercase() == "lcs" => Algo::LCS,

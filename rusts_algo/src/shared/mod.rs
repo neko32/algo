@@ -31,6 +31,19 @@ impl Default for Point {
     }
 }
 
+#[derive(Debug, Display, PartialOrd, PartialEq)]
+#[display(fmt = "{{x={},y={}}}", x, y)]
+pub struct FPoint {
+    pub x:f32,
+    pub y:f32,
+}
+
+impl FPoint {
+    pub fn new(x_v:f32, y_v:f32) -> Self {
+        Self {x: x_v, y: y_v}
+    }
+}
+
 pub fn add_node_not_balanced(n: &mut Box<TreeNode>, v:i32, ops:&mut VecDeque<&str>) {
 
     println!("{}-{:?}@{}", v, ops, n.value);
