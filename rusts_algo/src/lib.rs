@@ -60,6 +60,7 @@ pub mod is_palindrome;
 pub mod is_two_array_similar;
 pub mod jump_height_in_frames;
 pub mod kadane;
+pub mod kth_element_in_tree;
 pub mod lcs;
 pub mod largest_adjacent_product;
 pub mod largest_number;
@@ -223,6 +224,7 @@ pub mod runner {
     use is_palindrome::is_palindrome;
     use is_two_array_similar;
     use kadane::kadane;
+    use kth_element_in_tree;
     use lagrange_interpolation_polynominal;
     use largest_adjacent_product;
     use largest_number;
@@ -504,6 +506,9 @@ pub mod runner {
             }
             Algo::Kadane => {
                 kadane::run();
+            }
+            Algo::KthElementInTree => {
+                kth_element_in_tree::run();
             }
             Algo::LagrangeInterpolationPolynominal => {
                 lagrange_interpolation_polynominal::run();
@@ -861,6 +866,7 @@ mod test_runner {
     use crate::is_two_array_similar;
     use crate::jump_height_in_frames;
     use crate::kadane::kadane;
+    use crate::kth_element_in_tree;
     use crate::lagrange_interpolation_polynominal;
     use crate::largest_adjacent_product;
     use crate::largest_number;
@@ -1543,6 +1549,14 @@ mod test_runner {
     fn kadane_test() {
         let v = vec![3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4];
         assert_eq!(19, kadane::exec(v));
+    }
+
+    #[test]
+    fn kth_element_in_tree_test() {
+        let v:Vec<i32> = vec![15, 5, 2, 1, 3, 5, 20, 17, 22];
+        let n = build_tree(&v);
+        let rez = kth_element_in_tree::exec(n, 3);
+        assert_eq!(rez, 17);
     }
 
     #[test]
@@ -2694,6 +2708,7 @@ pub enum Algo {
     IsTwoArraySimilar,
     JumpHeightInFrames,
     Kadane,
+    KthElementInTree,
     LagrangeInterpolationPolynominal,
     LargestAdjacentProduct,
     LargestNumber,
@@ -2857,6 +2872,7 @@ impl Algo {
             s if s.to_lowercase() == "is_two_array_similar" => Algo::IsTwoArraySimilar,
             s if s.to_lowercase() == "jump_height_in_frames" => Algo::JumpHeightInFrames,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
+            s if s.to_lowercase() == "kth_element_in_tree" => Algo::KthElementInTree,
             s if s.to_lowercase() == "lagrange_interpolation_polynominal" => Algo::LagrangeInterpolationPolynominal,
             s if s.to_lowercase() == "largest_adjacent_product" => Algo::LargestAdjacentProduct,
             s if s.to_lowercase() == "largest_number" => Algo::LargestNumber,
