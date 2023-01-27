@@ -51,6 +51,7 @@ pub mod guard_technique;
 pub mod hanoi_tower;
 pub mod harmonic_mean;
 pub mod helon_formula;
+pub mod image_stride;
 pub mod inorder_traversal;
 pub mod insertion_sort;
 pub mod ipv4;
@@ -114,6 +115,7 @@ pub mod request_per_sec;
 pub mod reverse_in_parenthiesis;
 pub mod reverse_poland_calc;
 pub mod reverse_words;
+pub mod rgb_to_bgr;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod runlength;
@@ -216,6 +218,7 @@ pub mod runner {
     use helon_formula::helon_formula;
     use harmonic_mean;
     use jump_height_in_frames;
+    use image_stride;
     use inorder_traversal;
     use insertion_sort;
     use ipv4;
@@ -278,6 +281,7 @@ pub mod runner {
     use reverse_in_parenthiesis;
     use reverse_poland_calc::reverse_poland_calc;
     use reverse_words;
+    use rgb_to_bgr;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use runlength::runlength;
@@ -480,6 +484,9 @@ pub mod runner {
             Algo::HarmonicMean => {
                 harmonic_mean::run();
             }
+            Algo::ImageStride => {
+                image_stride::run();
+            }
             Algo::InOrderTraversal => {
                 inorder_traversal::run();
             }
@@ -672,6 +679,9 @@ pub mod runner {
             Algo::ReverseWords => {
                 reverse_words::run();
             }
+            Algo::RgbToBgr => {
+                rgb_to_bgr::run();
+            }
             Algo::RightMostDiffBit => {
                 rightmost_diffbit::run();
             }
@@ -857,6 +867,7 @@ mod test_runner {
     use crate::hanoi_tower;
     use crate::harmonic_mean;
     use crate::helon_formula::helon_formula;
+    use crate::image_stride;
     use crate::inorder_traversal;
     use crate::insertion_sort;
     use crate::ipv4;
@@ -921,6 +932,7 @@ mod test_runner {
     use crate::reverse_in_parenthiesis;
     use crate::reverse_poland_calc::reverse_poland_calc;
     use crate::reverse_words;
+    use crate::rgb_to_bgr;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::runlength::runlength;
@@ -1463,6 +1475,16 @@ mod test_runner {
         let expect = 14.6969385;
         let rez = approx_eq!(f32, expect, helon_formula::exec(a, b, c), ulps = 2);
         assert!(rez);
+    }
+
+    #[test]
+    fn image_stride_test() {
+        let (w, h) = (512, 512);
+        let (x, y) = (120, 247);
+        let pix_size = 4;
+        let rez = image_stride::exec(w, h, x, y, pix_size);
+        let expected = (506336, 506339);
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -2095,6 +2117,12 @@ mod test_runner {
     }
 
     #[test]
+    fn rgb_to_bgr_test() {
+        let pix = [255, 0, 100];
+        assert_eq!(rgb_to_bgr::exec(&pix), [100, 0, 255]);
+    }
+
+    #[test]
     fn runlength_test1() {
         let s = "AAAAAAAAAAAA".to_string();
         let rez = runlength::exec(s);
@@ -2699,6 +2727,7 @@ pub enum Algo {
     HanoiTower,
     HelonFormula,
     HarmonicMean,
+    ImageStride,
     InOrderTraversal,
     InsertionSort,
     IPv4,
@@ -2763,6 +2792,7 @@ pub enum Algo {
     ReverseInParenthiesis,
     ReversePoland,
     ReverseWords,
+    RgbToBgr,
     RightMostDiffBit,
     RightMostSameBit,
     RunLength,
@@ -2863,6 +2893,7 @@ impl Algo {
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
             s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "harmonic_mean" => Algo::HarmonicMean,
+            s if s.to_lowercase() == "image_stride" => Algo::ImageStride,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "insertion_sort" => Algo::InsertionSort,
             s if s.to_lowercase() == "ipv4" => Algo::IPv4,
@@ -2927,6 +2958,7 @@ impl Algo {
             s if s.to_lowercase() == "reverse_in_parenthiesis" => Algo::ReverseInParenthiesis,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
             s if s.to_lowercase() == "reverse_words" => Algo::ReverseWords,
+            s if s.to_lowercase() == "rgb_to_bgr" => Algo::RgbToBgr,
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
