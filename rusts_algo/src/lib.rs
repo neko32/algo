@@ -116,6 +116,7 @@ pub mod reverse_in_parenthiesis;
 pub mod reverse_poland_calc;
 pub mod reverse_words;
 pub mod rgb_to_bgr;
+pub mod rgb_to_yuv;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
 pub mod runlength;
@@ -159,6 +160,7 @@ pub mod validate_three_nodes;
 pub mod variance;
 pub mod waterarea;
 pub mod xor_shift;
+pub mod yuv_to_rgb;
 pub mod z_score;
 
 use clap::Parser;
@@ -282,6 +284,7 @@ pub mod runner {
     use reverse_poland_calc::reverse_poland_calc;
     use reverse_words;
     use rgb_to_bgr;
+    use rgb_to_yuv;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
     use runlength::runlength;
@@ -324,6 +327,7 @@ pub mod runner {
     use variance;
     use waterarea::waterarea;
     use xor_shift;
+    use yuv_to_rgb;
     use z_score;
 
     pub fn exec(algo: Algo) {
@@ -682,6 +686,9 @@ pub mod runner {
             Algo::RgbToBgr => {
                 rgb_to_bgr::run();
             }
+            Algo::RgbToYuv => {
+                rgb_to_yuv::run();
+            }
             Algo::RightMostDiffBit => {
                 rightmost_diffbit::run();
             }
@@ -805,6 +812,9 @@ pub mod runner {
             }
             Algo::XOrShift => {
                 xor_shift::run();
+            }
+            Algo::YuvToRgb => {
+                yuv_to_rgb::run();
             }
             Algo::ZScore => {
                 z_score::run();
@@ -933,6 +943,7 @@ mod test_runner {
     use crate::reverse_poland_calc::reverse_poland_calc;
     use crate::reverse_words;
     use crate::rgb_to_bgr;
+    use crate::rgb_to_yuv;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
     use crate::runlength::runlength;
@@ -976,6 +987,7 @@ mod test_runner {
     use crate::variance;
     use crate::waterarea::waterarea;
     use crate::xor_shift;
+    use crate::yuv_to_rgb;
     use crate::z_score;
     use float_cmp::approx_eq;
     use hashmap_macro::hashmap;
@@ -2123,6 +2135,12 @@ mod test_runner {
     }
 
     #[test]
+    fn rgb_to_yuv_test() {
+        let (r, g, b) = (255, 192, 128);
+        assert_eq!(rgb_to_yuv::exec(r, g, b), (203.7705, -42.630363, 36.70397));
+    }
+
+    #[test]
     fn runlength_test1() {
         let s = "AAAAAAAAAAAA".to_string();
         let rez = runlength::exec(s);
@@ -2665,6 +2683,12 @@ mod test_runner {
     }
 
     #[test]
+    fn yuv_to_rgb_test() {
+        let (y, u, v) = (203.7705, -42.630363, 36.70397);
+        assert_eq!(yuv_to_rgb::exec(y, u, v), (255, 192, 128));
+    }
+
+    #[test]
     fn zscore_test() {
         let mut v = [7_f32, 8_f32, 8_f32, 7.5_f32, 9_f32];
         let zscores = z_score::exec(&mut v);
@@ -2793,6 +2817,7 @@ pub enum Algo {
     ReversePoland,
     ReverseWords,
     RgbToBgr,
+    RgbToYuv,
     RightMostDiffBit,
     RightMostSameBit,
     RunLength,
@@ -2835,6 +2860,7 @@ pub enum Algo {
     Variance,
     WaterArea,
     XOrShift,
+    YuvToRgb,
     ZScore,
 }
 
@@ -2959,6 +2985,7 @@ impl Algo {
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
             s if s.to_lowercase() == "reverse_words" => Algo::ReverseWords,
             s if s.to_lowercase() == "rgb_to_bgr" => Algo::RgbToBgr,
+            s if s.to_lowercase() == "rgb_to_yuv" => Algo::RgbToYuv,
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
@@ -3001,6 +3028,7 @@ impl Algo {
             s if s.to_lowercase() == "variance" => Algo::Variance,
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
             s if s.to_lowercase() == "xor_shift" => Algo::XOrShift,
+            s if s.to_lowercase() == "yuv_to_rgb" => Algo::YuvToRgb,
             s if s.to_lowercase() == "zscore" => Algo::ZScore,
             _ => panic!("{} has not implemented yet", algo_str),
         }
