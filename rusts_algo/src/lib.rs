@@ -26,6 +26,7 @@ pub mod combination;
 pub mod compare_and_swap;
 pub mod construct_min_height_bst;
 pub mod construct_square;
+pub mod contrast_check;
 pub mod cool_num_pair;
 pub mod cyclic_chars;
 pub mod decode_reverse_poland;
@@ -195,6 +196,7 @@ pub mod runner {
     use compare_and_swap;
     use construct_min_height_bst;
     use construct_square;
+    use contrast_check;
     use cool_num_pair::cool_num_pair;
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
@@ -415,6 +417,9 @@ pub mod runner {
             }
             Algo::ConstructSquare => {
                 construct_square::run();
+            }
+            Algo::ContrastCheck => {
+                contrast_check::run();
             }
             Algo::CoolNumPair => {
                 cool_num_pair::run();
@@ -853,6 +858,7 @@ mod test_runner {
     use crate::compare_and_swap;
     use crate::construct_min_height_bst;
     use crate::construct_square;
+    use crate::contrast_check;
     use crate::cool_num_pair::cool_num_pair;
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
@@ -1299,6 +1305,12 @@ mod test_runner {
         let s = "aaaabbcde".to_string();
         let rez = construct_square::exec(&s);
         assert_eq!(rez, 999950884);
+    }
+
+    #[test]
+    fn contrast_check_test() {
+        assert_eq!(contrast_check::exec((60, 30, 20), (180, 200, 255)), true);
+        assert_eq!(contrast_check::exec((100, 200, 220), (180, 200, 255)), false);
     }
 
     #[test]
@@ -2727,6 +2739,7 @@ pub enum Algo {
     CompareAndSwap,
     ConstructMinHeightBST,
     ConstructSquare,
+    ContrastCheck,
     CoolNumPair,
     CyclicChars,
     DecodeReversePoland,
@@ -2895,6 +2908,7 @@ impl Algo {
             s if s.to_lowercase() == "compare_and_swap" => Algo::CompareAndSwap,
             s if s.to_lowercase() == "construct_min_height_bst" => Algo::ConstructMinHeightBST,
             s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
+            s if s.to_lowercase() == "contrast_check" => Algo::ContrastCheck,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
