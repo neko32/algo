@@ -126,6 +126,7 @@ pub mod selection_sort;
 pub mod shapearea;
 pub mod shared;
 pub mod shorten_path;
+pub mod sturge_formula;
 pub mod sigma_k;
 pub mod single_stroke;
 pub mod singly_linked_list_copy;
@@ -308,6 +309,7 @@ pub mod runner {
     use strange_bank;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
+    use sturge_formula;
     use subarray_sort;
     use sudoku;
     use sum_of_arithmatic_progression;
@@ -757,6 +759,9 @@ pub mod runner {
             Algo::StringPattern => {
                 string_pattern::run();
             }
+            Algo::SturgeFormula => {
+                sturge_formula::run();
+            }
             Algo::SubArraySort => {
                 subarray_sort::run();
             }
@@ -972,6 +977,7 @@ mod test_runner {
     use crate::strange_bank;
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
+    use crate::sturge_formula;
     use crate::subarray_sort;
     use crate::sudoku;
     use crate::sum_of_arithmatic_progression;
@@ -2517,6 +2523,13 @@ mod test_runner {
     }
 
     #[test]
+    fn sturge_formula_test() {
+        let n = 9072.;
+        let k = sturge_formula::exec(n);
+        assert_eq!(k, 14);
+    }
+
+    #[test]
     fn sum_of_consecutive_test() {
         let empty_result:Vec<Vec<i32>> = Vec::new();
         assert_eq!(sum_of_consecutive_integers::exec(9), vec![vec![2, 3, 4], vec![4, 5]]);
@@ -2852,6 +2865,7 @@ pub enum Algo {
     StrangeBank,
     StringConstruction,
     StringPattern,
+    SturgeFormula,
     SubArraySort,
     Sudoku,
     SumOfArithmaticProgression,
@@ -3021,6 +3035,7 @@ impl Algo {
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
+            s if s.to_lowercase() == "sturge_formula" => Algo::SturgeFormula,
             s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
             s if s.to_lowercase() == "sudoku" => Algo::Sudoku,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
