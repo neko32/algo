@@ -10,6 +10,7 @@ pub mod binarysearch;
 pub mod bintodec;
 pub mod bt_from_inorder_preorder;
 pub mod bubble_sort;
+pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod capitalize;
@@ -182,6 +183,7 @@ pub mod runner {
     use bintodec::bin_to_dec;
     use bt_from_inorder_preorder;
     use bubble_sort;
+    use build_palindrome;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use capitalize;
@@ -371,6 +373,9 @@ pub mod runner {
             }
             Algo::BuildBTreeFromInorderPreorder => {
                 bt_from_inorder_preorder::run();
+            }
+            Algo::BuildPalindrome => {
+                build_palindrome::run();
             }
             Algo::CaesarCrypt => {
                 caesar_crypt::run();
@@ -847,6 +852,7 @@ mod test_runner {
     use crate::bintodec::bin_to_dec;
     use crate::bt_from_inorder_preorder;
     use crate::bubble_sort;
+    use crate::build_palindrome;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::capitalize;
@@ -1126,6 +1132,11 @@ mod test_runner {
                 assert!(false);
             }
         }
+    }
+
+    #[test]
+    fn build_palindrome_test() {
+        assert_eq!(build_palindrome::exec("abcdcba"), "abcdcba".to_string());
     }
 
     #[test]
@@ -2736,6 +2747,7 @@ pub enum Algo {
     BinToDec,
     BubbleSort,
     BuildBTreeFromInorderPreorder,
+    BuildPalindrome,
     CamelCase,
     Capitalize,
     Century,
@@ -2904,8 +2916,9 @@ impl Algo {
             s if s.to_lowercase() == "average" => Algo::Average,
             s if s.to_lowercase() == "binary_search" => Algo::BinarySearch,
             s if s.to_lowercase() == "bintodec" => Algo::BinToDec,
-            s if s.to_lowercase() == "bubble_sort" => Algo::BubbleSort, 
+            s if s.to_lowercase() == "bubble_sort" => Algo::BubbleSort,
             s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
+            s if s.to_lowercase() == "build_palindrome" => Algo::BuildPalindrome,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "capitalize" => Algo::Capitalize,
