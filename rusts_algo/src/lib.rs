@@ -1,6 +1,7 @@
 pub mod add_two_int_without_carry;
 pub mod all_longest_strings;
 pub mod almost_increasing_seq;
+pub mod alhpabet_subseq;
 pub mod appear_twice;
 pub mod applebox;
 pub mod arithmatic_progression;
@@ -10,6 +11,7 @@ pub mod binarysearch;
 pub mod bintodec;
 pub mod bt_from_inorder_preorder;
 pub mod bubble_sort;
+pub mod build_closure_tag;
 pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
@@ -174,6 +176,7 @@ pub mod runner {
     use add_two_int_without_carry::add_two_without_carry;
     use all_longest_strings;
     use almost_increasing_seq::almost_increasing_seq;
+    use alhpabet_subseq;
     use appear_twice::appear_twice;
     use applebox::applebox;
     use arithmatic_progression;
@@ -183,6 +186,7 @@ pub mod runner {
     use bintodec::bin_to_dec;
     use bt_from_inorder_preorder;
     use bubble_sort;
+    use build_closure_tag;
     use build_palindrome;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
@@ -347,6 +351,9 @@ pub mod runner {
             Algo::AlmostIncreasingSeq => {
                 almost_increasing_seq::run();
             }
+            Algo::AlphabetSubseq => {
+                alhpabet_subseq::run();
+            }
             Algo::AppearTwice => {
                 appear_twice::run();
             }
@@ -373,6 +380,9 @@ pub mod runner {
             }
             Algo::BuildBTreeFromInorderPreorder => {
                 bt_from_inorder_preorder::run();
+            }
+            Algo::BuildClosureTag => {
+                build_closure_tag::run();
             }
             Algo::BuildPalindrome => {
                 build_palindrome::run();
@@ -843,6 +853,7 @@ mod test_runner {
     use crate::add_two_int_without_carry::add_two_without_carry;
     use crate::all_longest_strings;
     use crate::almost_increasing_seq::almost_increasing_seq;
+    use crate::alhpabet_subseq;
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
     use crate::arithmatic_progression;
@@ -852,6 +863,7 @@ mod test_runner {
     use crate::bintodec::bin_to_dec;
     use crate::bt_from_inorder_preorder;
     use crate::bubble_sort;
+    use crate::build_closure_tag;
     use crate::build_palindrome;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
@@ -1042,6 +1054,16 @@ mod test_runner {
     }
 
     #[test]
+    fn alphabet_subseq_test() {
+        assert_eq!(alhpabet_subseq::exec("effg"), false);
+        assert_eq!(alhpabet_subseq::exec("cdce"), false);
+        assert_eq!(alhpabet_subseq::exec("ace"), true);
+        assert_eq!(alhpabet_subseq::exec("bxz"), true);
+        assert_eq!(alhpabet_subseq::exec("abcdexyz"), true);
+        assert_eq!(alhpabet_subseq::exec("abcdexmyz"), false);
+    }
+
+    #[test]
     fn appear_twice_test() {
         let expected: BTreeSet<char> = BTreeSet::from_iter(['b', 'd']);
         let rez = appear_twice::exec();
@@ -1132,6 +1154,14 @@ mod test_runner {
                 assert!(false);
             }
         }
+    }
+
+    #[test]
+    fn build_closure_tag_test() {
+        assert_eq!(build_closure_tag::exec("<button type='tako' disabled>neko desu.").unwrap(), "</button>".to_string());
+        assert_eq!(build_closure_tag::exec("<button>neko desu.").unwrap(), "</button>");
+        assert_eq!(build_closure_tag::exec("<button  >neko desu.").unwrap(), "</button>");
+        assert!(build_closure_tag::exec("button type='neko'>").is_err());
     }
 
     #[test]
@@ -2738,6 +2768,7 @@ pub enum Algo {
     AddTwoIntWithoutCarry,
     AllLongestStrings,
     AlmostIncreasingSeq,
+    AlphabetSubseq,
     AppearTwice,
     Applebox,
     ArithmaticProgression,
@@ -2747,6 +2778,7 @@ pub enum Algo {
     BinToDec,
     BubbleSort,
     BuildBTreeFromInorderPreorder,
+    BuildClosureTag,
     BuildPalindrome,
     CamelCase,
     Capitalize,
@@ -2909,6 +2941,7 @@ impl Algo {
             s if s.to_lowercase() == "add_two_int_without_carry" => Algo::AddTwoIntWithoutCarry,
             s if s.to_lowercase() == "all_longest_strings" => Algo::AllLongestStrings,
             s if s.to_lowercase() == "almost_increasing_seq" => Algo::AlmostIncreasingSeq,
+            s if s.to_lowercase() == "alphabet_subseq" => Algo::AlphabetSubseq,
             s if s.to_lowercase() == "appear_twice" => Algo::AppearTwice,
             s if s.to_lowercase() == "applebox" => Algo::Applebox,
             s if s.to_lowercase() == "arithmatic_progression" => Algo::ArithmaticProgression,
@@ -2918,6 +2951,7 @@ impl Algo {
             s if s.to_lowercase() == "bintodec" => Algo::BinToDec,
             s if s.to_lowercase() == "bubble_sort" => Algo::BubbleSort,
             s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
+            s if s.to_lowercase() == "build_closure_tag" => Algo::BuildClosureTag,
             s if s.to_lowercase() == "build_palindrome" => Algo::BuildPalindrome,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
