@@ -115,6 +115,7 @@ pub mod ranking;
 pub mod reconstruct_bst_from_pre;
 pub mod remove_island;
 pub mod repeat_product;
+pub mod replace_mid_value;
 pub mod request_per_sec;
 pub mod reverse_in_parenthiesis;
 pub mod reverse_poland_calc;
@@ -288,6 +289,7 @@ pub mod runner {
     use reconstruct_bst_from_pre;
     use remove_island;
     use repeat_product::repeat_product;
+    use replace_mid_value;
     use request_per_sec::request_per_sec;
     use reverse_in_parenthiesis;
     use reverse_poland_calc::reverse_poland_calc;
@@ -693,6 +695,9 @@ pub mod runner {
             Algo::RepeatProduct => {
                 repeat_product::run();
             }
+            Algo::ReplaceMidValue => {
+                replace_mid_value::run();
+            }
             Algo::RequestPerSec => {
                 request_per_sec::run();
             }
@@ -967,6 +972,7 @@ mod test_runner {
     use crate::reconstruct_bst_from_pre;
     use crate::remove_island;
     use crate::repeat_product::repeat_product;
+    use crate::replace_mid_value;
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_in_parenthiesis;
     use crate::reverse_poland_calc::reverse_poland_calc;
@@ -2147,6 +2153,14 @@ mod test_runner {
     }
 
     #[test]
+    fn replace_mid_value_test() {
+        assert_eq!(replace_mid_value::exec(&[7,2,2,5,10,7]), &[7, 2, 7, 10, 7]);
+        assert_eq!(replace_mid_value::exec(&[-5, -5, 10]), &[-5, -5, 10]);
+        assert_eq!(replace_mid_value::exec(&[10]), &[10]);
+        assert_eq!(replace_mid_value::exec(&[10, 20]), &[30]);
+    }
+
+    #[test]
     fn req_per_sec_test() {
         let n = 17;
         let rez = request_per_sec::exec(n);
@@ -2882,6 +2896,7 @@ pub enum Algo {
     ReconstructBSTFromPreorder,
     RemoveIsland,
     RepeatProduct,
+    ReplaceMidValue,
     RequestPerSec,
     ReverseInParenthiesis,
     ReversePoland,
@@ -3055,6 +3070,7 @@ impl Algo {
             s if s.to_lowercase() == "reconstruct_bst_from_preorder" => Algo::ReconstructBSTFromPreorder,
             s if s.to_lowercase() == "remove_island" => Algo::RemoveIsland,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
+            s if s.to_lowercase() == "replace_mid_value" => Algo::ReplaceMidValue,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_in_parenthiesis" => Algo::ReverseInParenthiesis,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
