@@ -16,6 +16,7 @@ pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod capitalize;
+pub mod code_breaker;
 pub mod century;
 pub mod char_count;
 pub mod chars_appearing_twice;
@@ -200,6 +201,7 @@ pub mod runner {
     use clamp_value;
     use classmark;
     use clean_kth_bit::clean_kth_bit;
+    use code_breaker;
     use combination;
     use compare_and_swap;
     use construct_min_height_bst;
@@ -424,6 +426,9 @@ pub mod runner {
             }
             Algo::CleanKthBit => {
                 clean_kth_bit::run();
+            }
+            Algo::CodeBreaker => {
+                code_breaker::run();
             }
             Algo::Combination => {
                 combination::run();
@@ -882,6 +887,7 @@ mod test_runner {
     use crate::clamp_value;
     use crate::classmark;
     use crate::clean_kth_bit::clean_kth_bit;
+    use crate::code_breaker;
     use crate::combination;
     use crate::compare_and_swap;
     use crate::construct_min_height_bst;
@@ -1312,6 +1318,16 @@ mod test_runner {
         let n = 127;
         let k = 3;
         assert_eq!(clean_kth_bit::exec(n, k), 123);
+    }
+
+    #[test]
+    fn code_breaker_test() {
+        let ans = "708";
+        assert_eq!(code_breaker::exec("212", ans), "___");
+        assert_eq!(code_breaker::exec("549", ans), "___");
+        assert_eq!(code_breaker::exec("756", ans), "H__");
+        assert_eq!(code_breaker::exec("780", ans), "HBB");
+        assert_eq!(code_breaker::exec("708", ans), "HHH");
     }
 
     #[test]
@@ -2806,6 +2822,7 @@ pub enum Algo {
     ClampValue,
     Classmark,
     CleanKthBit,
+    CodeBreaker,
     Combination,
     CompareAndSwap,
     ConstructMinHeightBST,
@@ -2980,6 +2997,7 @@ impl Algo {
             s if s.to_lowercase() == "clamp_value" => Algo::ClampValue,
             s if s.to_lowercase() == "classmark" => Algo::Classmark,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
+            s if s.to_lowercase() == "code_breaker" => Algo::CodeBreaker,
             s if s.to_lowercase() == "combination" => Algo::Combination,
             s if s.to_lowercase() == "compare_and_swap" => Algo::CompareAndSwap,
             s if s.to_lowercase() == "construct_min_height_bst" => Algo::ConstructMinHeightBST,
