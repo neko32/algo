@@ -109,6 +109,7 @@ pub mod prefix_sums;
 pub mod postorder_traversal;
 pub mod preorder_traversal;
 pub mod product_array_sort;
+pub mod pseudo_rand;
 pub mod quick_sort;
 pub mod radix_sort;
 pub mod random_perm;
@@ -284,6 +285,7 @@ pub mod runner {
     use prefix_sums;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
+    use pseudo_rand;
     use quick_sort;
     use radix_sort::radix_sort;
     use random_perm;
@@ -679,6 +681,9 @@ pub mod runner {
             Algo::ProductArraySort => {
                 product_array_sort::run();
             }
+            Algo::PseudoRand => {
+                pseudo_rand::run();
+            }
             Algo::QuickSort => {
                 quick_sort::run();
             }
@@ -971,6 +976,7 @@ mod test_runner {
     use crate::prefix_sums;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
+    use crate::pseudo_rand;
     use crate::quick_sort;
     use crate::radix_sort::radix_sort;
     use crate::random_perm;
@@ -1034,6 +1040,7 @@ mod test_runner {
     use float_cmp::approx_eq;
     use hashmap_macro::hashmap;
     use num::integer::gcd;
+    use predicates::prelude::*;
     use std::{
         collections::{BTreeSet, HashMap, HashSet, VecDeque},
     };
@@ -2106,6 +2113,28 @@ mod test_runner {
     }
 
     #[test]
+    fn pseudo_rand_ok_test() {
+        let a = 109;
+        let c=  1021;
+        let m = 256;
+        let x0 = 13;
+        let v:Vec<i32> = pseudo_rand::exec(a, c, m, x0, 20);
+        assert!(v.iter().all(|x|*x >= 0 && *x <= m));
+    }
+
+    #[test]
+    fn pseudo_rand_fail_test() {
+        let rez = std::panic::catch_unwind(||{
+            let a = 106;
+            let c=  1021;
+            let m = 256;
+            let x0 = 13;
+            pseudo_rand::exec(a, c, m, x0, 20);
+        });
+        assert!(rez.is_err());
+    }
+
+    #[test]
     fn quick_sort_test() {
         let mut v = vec![7, 1, 2, 5, 10, 20, 15, 13, 9, 5, 4];
         let expected = vec![1, 2, 4, 5, 5, 7, 9, 10, 13, 15, 20];
@@ -2906,6 +2935,7 @@ pub enum Algo {
     PrefixSums,
     PreOrderTraversal,
     ProductArraySort,
+    PseudoRand,
     QuickSort,
     RadixSort,
     RandomPerm,
@@ -3081,6 +3111,7 @@ impl Algo {
             s if s.to_lowercase() == "prefix_sums" => Algo::PrefixSums,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
+            s if s.to_lowercase() == "pseudo_rand" => Algo::PseudoRand,
             s if s.to_lowercase() == "quick_sort" => Algo::QuickSort,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,

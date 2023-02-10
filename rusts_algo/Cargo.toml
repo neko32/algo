@@ -17,5 +17,6 @@ derive_more = "0.99.17"
 ndarray = "0.15.6"
 num = "0.4.0"
 num_cpus = "1.13.1"
+predicates = "2.1.5"
 rand = "0.8.5"
 
