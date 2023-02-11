@@ -51,6 +51,7 @@ pub mod geometric_progression;
 pub mod geometrical_mean;
 pub mod least_greatest;
 pub mod group_anagrams;
+pub mod group_by_class_range;
 pub mod group_by_key;
 pub mod guard_technique;
 pub mod hanoi_tower;
@@ -227,6 +228,7 @@ pub mod runner {
     use geometric_progression;
     use geometrical_mean;
     use group_anagrams;
+    use group_by_class_range;
     use group_by_key;
     use guard_technique;
     use hanoi_tower;
@@ -503,6 +505,9 @@ pub mod runner {
             }
             Algo::GroupAnagrams => {
                 group_anagrams::run();
+            }
+            Algo::GroupByClassRange => {
+                group_by_class_range::run();
             }
             Algo::GroupByKey => {
                 group_by_key::run();
@@ -917,6 +922,7 @@ mod test_runner {
     use crate::geometric_progression;
     use crate::geometrical_mean;
     use crate::group_anagrams;
+    use crate::group_by_class_range;
     use crate::group_by_key;
     use crate::guard_technique;
     use crate::hanoi_tower;
@@ -1529,6 +1535,11 @@ mod test_runner {
         let expected = vec![vec!["yo", "oy"], vec!["flop", "olfp"], vec!["act", "tac", "cat"], vec!["foo"]];
         let rez = group_anagrams::exec(&words);
         assert!(expected.iter().all(|a|rez.contains(a)));
+    }
+
+    #[test]
+    fn group_by_class_range_test() {
+        assert_eq!(group_by_class_range::exec(&[20000, 239, 10001, 999999, 10000, 20566, 29999]), 11);
     }
 
     #[test]
@@ -2876,6 +2887,7 @@ pub enum Algo {
     GeometricProgression,
     GeometricalMean,
     GroupAnagrams,
+    GroupByClassRange,
     GroupByKey,
     GuardTechnique,
     HanoiTower,
@@ -3052,6 +3064,7 @@ impl Algo {
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
             s if s.to_lowercase() == "group_anagrams" => Algo::GroupAnagrams,
+            s if s.to_lowercase() == "group_by_class_range" => Algo::GroupByClassRange,
             s if s.to_lowercase() == "group_by_key" => Algo::GroupByKey,
             s if s.to_lowercase() == "guard_technique" => Algo::GuardTechnique,
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
