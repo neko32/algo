@@ -102,6 +102,7 @@ pub mod num_of_clans;
 pub mod num_of_paths;
 pub mod number_grouping;
 pub mod obtain_increasing_seq;
+pub mod octal_to_dec;
 pub mod oppsite_pos_in_circle;
 pub mod pascal_triangle;
 pub mod permutation;
@@ -279,6 +280,7 @@ pub mod runner {
     use num_of_paths;
     use number_grouping;
     use obtain_increasing_seq;
+    use octal_to_dec;
     use oppsite_pos_in_circle;
     use pascal_triangle;
     use permutation;
@@ -662,6 +664,9 @@ pub mod runner {
             Algo::ObtainIncreasingSeq => {
                 obtain_increasing_seq::run();
             }
+            Algo::OctalToDec => {
+                octal_to_dec::run();
+            }
             Algo::OppositePosInCircle => {
                 oppsite_pos_in_circle::run();
             }
@@ -974,6 +979,7 @@ mod test_runner {
     use crate::num_of_paths;
     use crate::number_grouping;
     use crate::obtain_increasing_seq;
+    use crate::octal_to_dec;
     use crate::oppsite_pos_in_circle;
     use crate::pascal_triangle;
     use crate::permutation;
@@ -2043,6 +2049,15 @@ mod test_runner {
     }
 
     #[test]
+    fn octal_to_dec_test() {
+        assert_eq!(octal_to_dec::exec(127), 87);
+        assert_eq!(octal_to_dec::exec(5351), 2793);
+        assert_eq!(octal_to_dec::exec(7), 7);
+        assert_eq!(octal_to_dec::exec(8), 8);
+        assert_eq!(octal_to_dec::exec(16), 14);
+    }
+
+    #[test]
     fn opposite_num_in_circle_test() {
         let n = 10;
         let f = 2;
@@ -2939,6 +2954,7 @@ pub enum Algo {
     NumOfClans,
     NumOfPaths,
     ObtainIncreasingSeq,
+    OctalToDec,
     OppositePosInCircle,
     PascalTriangle,
     Permutation,
@@ -3116,6 +3132,7 @@ impl Algo {
             s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
+            s if s.to_lowercase() == "octal_to_dec" => Algo::OctalToDec,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
