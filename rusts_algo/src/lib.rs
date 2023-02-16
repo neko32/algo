@@ -104,6 +104,7 @@ pub mod number_grouping;
 pub mod obtain_increasing_seq;
 pub mod octal_to_dec;
 pub mod oppsite_pos_in_circle;
+pub mod overlapping_intervals;
 pub mod pascal_triangle;
 pub mod permutation;
 pub mod phone_mnemonic;
@@ -282,6 +283,7 @@ pub mod runner {
     use obtain_increasing_seq;
     use octal_to_dec;
     use oppsite_pos_in_circle;
+    use overlapping_intervals;
     use pascal_triangle;
     use permutation;
     use phone_mnemonic;
@@ -670,6 +672,9 @@ pub mod runner {
             Algo::OppositePosInCircle => {
                 oppsite_pos_in_circle::run();
             }
+            Algo::OverlappingIntervals => {
+                overlapping_intervals::run();
+            }
             Algo::PascalTriangle => {
                 pascal_triangle::run();
             }
@@ -981,6 +986,7 @@ mod test_runner {
     use crate::obtain_increasing_seq;
     use crate::octal_to_dec;
     use crate::oppsite_pos_in_circle;
+    use crate::overlapping_intervals;
     use crate::pascal_triangle;
     use crate::permutation;
     use crate::phone_mnemonic;
@@ -2065,6 +2071,16 @@ mod test_runner {
     }
 
     #[test]
+    fn overlapping_intervals_test() {
+        use overlapping_intervals::Pair;
+        let n:Vec<Pair> = vec![Pair::new(1, 2), Pair::new(3, 5), Pair::new(4, 7),
+            Pair::new(6, 8), Pair::new(9, 10)];
+        let rez = overlapping_intervals::exec(n);
+        let expected:Vec<Pair> = vec![Pair::new(1, 2), Pair::new(3, 8), Pair::new(9, 10)];
+        assert_eq!(rez, expected);
+    }
+
+    #[test]
     fn lcs_test2() {
         let m = "pirikapirirara";
         let n = "poporinapeperuto";
@@ -2956,6 +2972,7 @@ pub enum Algo {
     ObtainIncreasingSeq,
     OctalToDec,
     OppositePosInCircle,
+    OverlappingIntervals,
     PascalTriangle,
     Permutation,
     PhoneMnemonic,
@@ -3134,6 +3151,7 @@ impl Algo {
             s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
             s if s.to_lowercase() == "octal_to_dec" => Algo::OctalToDec,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
+            s if s.to_lowercase() == "overlapping_intervals" => Algo::OverlappingIntervals,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
