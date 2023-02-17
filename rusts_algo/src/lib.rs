@@ -166,6 +166,7 @@ pub mod total_sum_with_n_num;
 pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
+pub mod valid_parentheses;
 pub mod valid_starting_city;
 pub mod validate_three_nodes;
 pub mod variance;
@@ -344,6 +345,7 @@ pub mod runner {
     use total_sum_with_n_num;
     use turn_commands;
     use two_sum::two_sum;
+    use valid_parentheses;
     use valid_starting_city;
     use validate_three_nodes;
     use variance;
@@ -856,6 +858,9 @@ pub mod runner {
             Algo::ValidateThreeNodes => {
                 validate_three_nodes::run();
             }
+            Algo::ValidParentheses => {
+                valid_parentheses::run();
+            }
             Algo::ValidStartingCity => {
                 valid_starting_city::run();
             }
@@ -1048,6 +1053,7 @@ mod test_runner {
     use crate::total_sum_with_n_num;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
+    use crate::valid_parentheses;
     use crate::valid_starting_city;
     use crate::validate_three_nodes;
     use crate::variance;
@@ -2805,6 +2811,15 @@ mod test_runner {
     }
 
     #[test]
+    fn valid_parentheses_test() {
+        assert_eq!(valid_parentheses::exec("{[[((()))]]}"), true);
+        assert_eq!(valid_parentheses::exec("{[neko]}"), true);
+        assert_eq!(valid_parentheses::exec("(([))"), false);
+        assert_eq!(valid_parentheses::exec("[[]"), false);
+        assert_eq!(valid_parentheses::exec("[]]"), false);
+    }
+
+    #[test]
     fn valid_starting_city_all_no_issue_test() {
         let dist = vec![5, 25, 15, 10, 15];
         let fuel = vec![1, 2, 2, 1, 0];
@@ -3034,6 +3049,7 @@ pub enum Algo {
     TurnCommands,
     TwoSum,
     ValidateThreeNodes,
+    ValidParentheses,
     ValidStartingCity,
     Variance,
     WaterArea,
@@ -3212,6 +3228,7 @@ impl Algo {
             s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
+            s if s.to_lowercase() == "valid_parentheses" => Algo::ValidParentheses,
             s if s.to_lowercase() == "valid_starting_city" => Algo::ValidStartingCity,
             s if s.to_lowercase() == "validate_three_nodes" => Algo::ValidateThreeNodes,
             s if s.to_lowercase() == "variance" => Algo::Variance,
