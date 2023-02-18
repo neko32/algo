@@ -35,6 +35,7 @@ pub mod cool_num_pair;
 pub mod cyclic_chars;
 pub mod decode_reverse_poland;
 pub mod dectobin;
+pub mod deg_to_rad;
 pub mod diagonal;
 pub mod different_squares;
 pub mod different_value_pairs;
@@ -114,6 +115,7 @@ pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod pseudo_rand;
 pub mod quick_sort;
+pub mod rad_to_deg;
 pub mod radix_sort;
 pub mod random_perm;
 pub mod ranking;
@@ -216,6 +218,7 @@ pub mod runner {
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
+    use deg_to_rad;
     use diagonal::diagonal;
     use different_squares;
     use different_value_pairs;
@@ -294,6 +297,7 @@ pub mod runner {
     use product_array_sort::product_array_sort;
     use pseudo_rand;
     use quick_sort;
+    use rad_to_deg;
     use radix_sort::radix_sort;
     use random_perm;
     use ranking;
@@ -466,6 +470,9 @@ pub mod runner {
             }
             Algo::DecToBin => {
                 dectobin::run();
+            }
+            Algo::DegToRad => {
+                deg_to_rad::run();
             }
             Algo::Diagonal => {
                 diagonal::run();
@@ -704,6 +711,9 @@ pub mod runner {
             Algo::QuickSort => {
                 quick_sort::run();
             }
+            Algo::RadToDeg => {
+                rad_to_deg::run();
+            }
             Algo::RandomPerm => {
                 random_perm::run();
             }
@@ -922,6 +932,7 @@ mod test_runner {
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
+    use crate::deg_to_rad;
     use crate::diagonal::diagonal;
     use crate::different_squares;
     use crate::different_value_pairs;
@@ -1001,6 +1012,7 @@ mod test_runner {
     use crate::product_array_sort::product_array_sort;
     use crate::pseudo_rand;
     use crate::quick_sort;
+    use crate::rad_to_deg;
     use crate::radix_sort::radix_sort;
     use crate::random_perm;
     use crate::ranking;
@@ -1433,6 +1445,13 @@ mod test_runner {
 
         let expected = "6*(1+2)-8";
         assert_eq!(decode_reverse_poland::exec(s), expected);
+    }
+
+    #[test]
+    fn deg_to_rad_test() {
+        assert_eq!(deg_to_rad::exec(90.), 1.5707964);
+        assert_eq!(deg_to_rad::exec(45.), 0.7853982);
+        assert_eq!(deg_to_rad::exec(37.), 0.6457718);
     }
 
     #[test]
@@ -2192,6 +2211,13 @@ mod test_runner {
     }
 
     #[test]
+    fn rad_to_deg_test() {
+        assert_eq!(rad_to_deg::exec(1.2), 68.75494);
+        assert_eq!(rad_to_deg::exec(2.42), 138.65578);
+        assert_eq!(rad_to_deg::exec(0.79), 45.263664);
+    }
+
+    #[test]
     fn rand_perm_test() {
         let o:Vec<i32> = (0..=10).collect();
         let mut v:Vec<i32> = (0..=10).collect();
@@ -2918,6 +2944,7 @@ pub enum Algo {
     CyclicChars,
     DecodeReversePoland,
     DecToBin,
+    DegToRad,
     Diagonal,
     DifferentSquares,
     DifferentValuePairs,
@@ -2998,6 +3025,7 @@ pub enum Algo {
     PseudoRand,
     QuickSort,
     RadixSort,
+    RadToDeg,
     RandomPerm,
     Ranking,
     ReconstructBSTFromPreorder,
@@ -3098,6 +3126,7 @@ impl Algo {
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
             s if s.to_lowercase() == "dectobin" => Algo::DecToBin,
+            s if s.to_lowercase() == "deg_to_rad" => Algo::DegToRad,
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
             s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
             s if s.to_lowercase() == "different_value_pairs" => Algo::DifferentValuePairs,
@@ -3177,6 +3206,7 @@ impl Algo {
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "pseudo_rand" => Algo::PseudoRand,
             s if s.to_lowercase() == "quick_sort" => Algo::QuickSort,
+            s if s.to_lowercase() == "rad_to_deg" => Algo::RadToDeg,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
             s if s.to_lowercase() == "ranking" => Algo::Ranking,
