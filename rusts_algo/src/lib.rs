@@ -12,6 +12,7 @@ pub mod bintodec;
 pub mod bt_from_inorder_preorder;
 pub mod bubble_sort;
 pub mod build_closure_tag;
+pub mod build_heap;
 pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
@@ -196,6 +197,7 @@ pub mod runner {
     use bt_from_inorder_preorder;
     use bubble_sort;
     use build_closure_tag;
+    use build_heap;
     use build_palindrome;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
@@ -401,6 +403,9 @@ pub mod runner {
             }
             Algo::BuildClosureTag => {
                 build_closure_tag::run();
+            }
+            Algo::BuildHeap => {
+                build_heap::run();
             }
             Algo::BuildPalindrome => {
                 build_palindrome::run();
@@ -909,6 +914,7 @@ mod test_runner {
     use crate::bt_from_inorder_preorder;
     use crate::bubble_sort;
     use crate::build_closure_tag;
+    use crate::build_heap;
     use crate::build_palindrome;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
@@ -1217,6 +1223,14 @@ mod test_runner {
         assert_eq!(build_closure_tag::exec("<button>neko desu.").unwrap(), "</button>");
         assert_eq!(build_closure_tag::exec("<button  >neko desu.").unwrap(), "</button>");
         assert!(build_closure_tag::exec("button type='neko'>").is_err());
+    }
+
+    #[test]
+    fn build_heap_test() {
+        let mut v = vec![15, 12, 3, 24, 31, 29, 21, 18, 25, 32];
+        build_heap::exec(&mut v);
+        let expected = vec![3, 12, 15, 18, 31, 29, 21, 24, 25, 32];
+        assert_eq!(v, expected);
     }
 
     #[test]
@@ -2921,6 +2935,7 @@ pub enum Algo {
     BubbleSort,
     BuildBTreeFromInorderPreorder,
     BuildClosureTag,
+    BuildHeap,
     BuildPalindrome,
     CamelCase,
     Capitalize,
@@ -3103,6 +3118,7 @@ impl Algo {
             s if s.to_lowercase() == "bubble_sort" => Algo::BubbleSort,
             s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
             s if s.to_lowercase() == "build_closure_tag" => Algo::BuildClosureTag,
+            s if s.to_lowercase() == "build_heap" => Algo::BuildHeap,
             s if s.to_lowercase() == "build_palindrome" => Algo::BuildPalindrome,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
