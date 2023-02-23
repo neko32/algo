@@ -150,6 +150,7 @@ pub mod sort_stack;
 pub mod sorted_matrix_search;
 pub mod stack_copy_only_pop;
 pub mod stdev;
+pub mod storage_projection_for_sdhd;
 pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
@@ -331,6 +332,7 @@ pub mod runner {
     use sorted_matrix_search;
     use stack_copy_only_pop;
     use stdev;
+    use storage_projection_for_sdhd;
     use strange_bank;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
@@ -812,6 +814,9 @@ pub mod runner {
             Algo::Stdev => {
                 stdev::run();
             }
+            Algo::StorageProjectionForSDHD => {
+                storage_projection_for_sdhd::run();
+            }
             Algo::StrangeBank => {
                 strange_bank::run();
             }
@@ -1051,6 +1056,7 @@ mod test_runner {
     use crate::sorted_matrix_search;
     use crate::stack_copy_only_pop;
     use crate::stdev;
+    use crate::storage_projection_for_sdhd;
     use crate::strange_bank;
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
@@ -2531,6 +2537,15 @@ mod test_runner {
     }
 
     #[test]
+    fn storage_projection_for_sdhd_test() {
+        let hd_num = 42;
+        let sd_num = 27;
+        let expected_total_per_h = 1110;
+        let expected_total_per_s = 264;
+        assert_eq!(storage_projection_for_sdhd::exec(sd_num, hd_num), (expected_total_per_h, expected_total_per_s));
+    }
+
+    #[test]
     fn strange_bank_ok_test() {
         let n = 7_u32;
         let denoms = &[1, 5, 10];
@@ -3071,6 +3086,7 @@ pub enum Algo {
     SortedMatrixSearch,
     StackCopyOnlyPop,
     Stdev,
+    StorageProjectionForSDHD,
     StrangeBank,
     StringConstruction,
     StringPattern,
@@ -3254,6 +3270,7 @@ impl Algo {
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
             s if s.to_lowercase() == "stack_copy_only_pop" => Algo::StackCopyOnlyPop,
             s if s.to_lowercase() == "stdev" => Algo::Stdev,
+            s if s.to_lowercase() == "storage_projection_for_sdhd" => Algo::StorageProjectionForSDHD,
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
