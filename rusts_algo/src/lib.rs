@@ -1,6 +1,7 @@
 pub mod add_two_int_without_carry;
 pub mod all_longest_strings;
 pub mod almost_increasing_seq;
+pub mod alhpabet_subseq;
 pub mod appear_twice;
 pub mod applebox;
 pub mod arithmatic_progression;
@@ -10,9 +11,13 @@ pub mod binarysearch;
 pub mod bintodec;
 pub mod bt_from_inorder_preorder;
 pub mod bubble_sort;
+pub mod build_closure_tag;
+pub mod build_heap;
+pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod capitalize;
+pub mod code_breaker;
 pub mod century;
 pub mod char_count;
 pub mod chars_appearing_twice;
@@ -31,6 +36,7 @@ pub mod cool_num_pair;
 pub mod cyclic_chars;
 pub mod decode_reverse_poland;
 pub mod dectobin;
+pub mod deg_to_rad;
 pub mod diagonal;
 pub mod different_squares;
 pub mod different_value_pairs;
@@ -47,6 +53,7 @@ pub mod geometric_progression;
 pub mod geometrical_mean;
 pub mod least_greatest;
 pub mod group_anagrams;
+pub mod group_by_class_range;
 pub mod group_by_key;
 pub mod guard_technique;
 pub mod hanoi_tower;
@@ -97,7 +104,9 @@ pub mod num_of_clans;
 pub mod num_of_paths;
 pub mod number_grouping;
 pub mod obtain_increasing_seq;
+pub mod octal_to_dec;
 pub mod oppsite_pos_in_circle;
+pub mod overlapping_intervals;
 pub mod pascal_triangle;
 pub mod permutation;
 pub mod phone_mnemonic;
@@ -105,13 +114,16 @@ pub mod prefix_sums;
 pub mod postorder_traversal;
 pub mod preorder_traversal;
 pub mod product_array_sort;
+pub mod pseudo_rand;
 pub mod quick_sort;
+pub mod rad_to_deg;
 pub mod radix_sort;
 pub mod random_perm;
 pub mod ranking;
 pub mod reconstruct_bst_from_pre;
 pub mod remove_island;
 pub mod repeat_product;
+pub mod replace_mid_value;
 pub mod request_per_sec;
 pub mod reverse_in_parenthiesis;
 pub mod reverse_poland_calc;
@@ -126,6 +138,7 @@ pub mod selection_sort;
 pub mod shapearea;
 pub mod shared;
 pub mod shorten_path;
+pub mod sturge_formula;
 pub mod sigma_k;
 pub mod single_stroke;
 pub mod singly_linked_list_copy;
@@ -137,6 +150,7 @@ pub mod sort_stack;
 pub mod sorted_matrix_search;
 pub mod stack_copy_only_pop;
 pub mod stdev;
+pub mod storage_projection_for_sdhd;
 pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
@@ -156,6 +170,7 @@ pub mod total_sum_with_n_num;
 pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
+pub mod valid_parentheses;
 pub mod valid_starting_city;
 pub mod validate_three_nodes;
 pub mod variance;
@@ -172,6 +187,7 @@ pub mod runner {
     use add_two_int_without_carry::add_two_without_carry;
     use all_longest_strings;
     use almost_increasing_seq::almost_increasing_seq;
+    use alhpabet_subseq;
     use appear_twice::appear_twice;
     use applebox::applebox;
     use arithmatic_progression;
@@ -181,6 +197,9 @@ pub mod runner {
     use bintodec::bin_to_dec;
     use bt_from_inorder_preorder;
     use bubble_sort;
+    use build_closure_tag;
+    use build_heap;
+    use build_palindrome;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use capitalize;
@@ -192,6 +211,7 @@ pub mod runner {
     use clamp_value;
     use classmark;
     use clean_kth_bit::clean_kth_bit;
+    use code_breaker;
     use combination;
     use compare_and_swap;
     use construct_min_height_bst;
@@ -201,6 +221,7 @@ pub mod runner {
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
+    use deg_to_rad;
     use diagonal::diagonal;
     use different_squares;
     use different_value_pairs;
@@ -216,6 +237,7 @@ pub mod runner {
     use geometric_progression;
     use geometrical_mean;
     use group_anagrams;
+    use group_by_class_range;
     use group_by_key;
     use guard_technique;
     use hanoi_tower;
@@ -266,7 +288,9 @@ pub mod runner {
     use num_of_paths;
     use number_grouping;
     use obtain_increasing_seq;
+    use octal_to_dec;
     use oppsite_pos_in_circle;
+    use overlapping_intervals;
     use pascal_triangle;
     use permutation;
     use phone_mnemonic;
@@ -274,13 +298,16 @@ pub mod runner {
     use prefix_sums;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
+    use pseudo_rand;
     use quick_sort;
+    use rad_to_deg;
     use radix_sort::radix_sort;
     use random_perm;
     use ranking;
     use reconstruct_bst_from_pre;
     use remove_island;
     use repeat_product::repeat_product;
+    use replace_mid_value;
     use request_per_sec::request_per_sec;
     use reverse_in_parenthiesis;
     use reverse_poland_calc::reverse_poland_calc;
@@ -305,9 +332,11 @@ pub mod runner {
     use sorted_matrix_search;
     use stack_copy_only_pop;
     use stdev;
+    use storage_projection_for_sdhd;
     use strange_bank;
     use string_construction::string_construction;
     use string_pattern::string_pattern;
+    use sturge_formula;
     use subarray_sort;
     use sudoku;
     use sum_of_arithmatic_progression;
@@ -324,6 +353,7 @@ pub mod runner {
     use total_sum_with_n_num;
     use turn_commands;
     use two_sum::two_sum;
+    use valid_parentheses;
     use valid_starting_city;
     use validate_three_nodes;
     use variance;
@@ -342,6 +372,9 @@ pub mod runner {
             }
             Algo::AlmostIncreasingSeq => {
                 almost_increasing_seq::run();
+            }
+            Algo::AlphabetSubseq => {
+                alhpabet_subseq::run();
             }
             Algo::AppearTwice => {
                 appear_twice::run();
@@ -369,6 +402,15 @@ pub mod runner {
             }
             Algo::BuildBTreeFromInorderPreorder => {
                 bt_from_inorder_preorder::run();
+            }
+            Algo::BuildClosureTag => {
+                build_closure_tag::run();
+            }
+            Algo::BuildHeap => {
+                build_heap::run();
+            }
+            Algo::BuildPalindrome => {
+                build_palindrome::run();
             }
             Algo::CaesarCrypt => {
                 caesar_crypt::run();
@@ -406,6 +448,9 @@ pub mod runner {
             Algo::CleanKthBit => {
                 clean_kth_bit::run();
             }
+            Algo::CodeBreaker => {
+                code_breaker::run();
+            }
             Algo::Combination => {
                 combination::run();
             }
@@ -432,6 +477,9 @@ pub mod runner {
             }
             Algo::DecToBin => {
                 dectobin::run();
+            }
+            Algo::DegToRad => {
+                deg_to_rad::run();
             }
             Algo::Diagonal => {
                 diagonal::run();
@@ -477,6 +525,9 @@ pub mod runner {
             }
             Algo::GroupAnagrams => {
                 group_anagrams::run();
+            }
+            Algo::GroupByClassRange => {
+                group_by_class_range::run();
             }
             Algo::GroupByKey => {
                 group_by_key::run();
@@ -631,8 +682,14 @@ pub mod runner {
             Algo::ObtainIncreasingSeq => {
                 obtain_increasing_seq::run();
             }
+            Algo::OctalToDec => {
+                octal_to_dec::run();
+            }
             Algo::OppositePosInCircle => {
                 oppsite_pos_in_circle::run();
+            }
+            Algo::OverlappingIntervals => {
+                overlapping_intervals::run();
             }
             Algo::PascalTriangle => {
                 pascal_triangle::run();
@@ -655,8 +712,14 @@ pub mod runner {
             Algo::ProductArraySort => {
                 product_array_sort::run();
             }
+            Algo::PseudoRand => {
+                pseudo_rand::run();
+            }
             Algo::QuickSort => {
                 quick_sort::run();
+            }
+            Algo::RadToDeg => {
+                rad_to_deg::run();
             }
             Algo::RandomPerm => {
                 random_perm::run();
@@ -675,6 +738,9 @@ pub mod runner {
             }
             Algo::RepeatProduct => {
                 repeat_product::run();
+            }
+            Algo::ReplaceMidValue => {
+                replace_mid_value::run();
             }
             Algo::RequestPerSec => {
                 request_per_sec::run();
@@ -748,6 +814,9 @@ pub mod runner {
             Algo::Stdev => {
                 stdev::run();
             }
+            Algo::StorageProjectionForSDHD => {
+                storage_projection_for_sdhd::run();
+            }
             Algo::StrangeBank => {
                 strange_bank::run();
             }
@@ -756,6 +825,9 @@ pub mod runner {
             }
             Algo::StringPattern => {
                 string_pattern::run();
+            }
+            Algo::SturgeFormula => {
+                sturge_formula::run();
             }
             Algo::SubArraySort => {
                 subarray_sort::run();
@@ -806,6 +878,9 @@ pub mod runner {
             Algo::ValidateThreeNodes => {
                 validate_three_nodes::run();
             }
+            Algo::ValidParentheses => {
+                valid_parentheses::run();
+            }
             Algo::ValidStartingCity => {
                 valid_starting_city::run();
             }
@@ -833,6 +908,7 @@ mod test_runner {
     use crate::add_two_int_without_carry::add_two_without_carry;
     use crate::all_longest_strings;
     use crate::almost_increasing_seq::almost_increasing_seq;
+    use crate::alhpabet_subseq;
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
     use crate::arithmatic_progression;
@@ -842,6 +918,9 @@ mod test_runner {
     use crate::bintodec::bin_to_dec;
     use crate::bt_from_inorder_preorder;
     use crate::bubble_sort;
+    use crate::build_closure_tag;
+    use crate::build_heap;
+    use crate::build_palindrome;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::capitalize;
@@ -854,6 +933,7 @@ mod test_runner {
     use crate::clamp_value;
     use crate::classmark;
     use crate::clean_kth_bit::clean_kth_bit;
+    use crate::code_breaker;
     use crate::combination;
     use crate::compare_and_swap;
     use crate::construct_min_height_bst;
@@ -863,6 +943,7 @@ mod test_runner {
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
+    use crate::deg_to_rad;
     use crate::diagonal::diagonal;
     use crate::different_squares;
     use crate::different_value_pairs;
@@ -878,6 +959,7 @@ mod test_runner {
     use crate::geometric_progression;
     use crate::geometrical_mean;
     use crate::group_anagrams;
+    use crate::group_by_class_range;
     use crate::group_by_key;
     use crate::guard_technique;
     use crate::hanoi_tower;
@@ -929,7 +1011,9 @@ mod test_runner {
     use crate::num_of_paths;
     use crate::number_grouping;
     use crate::obtain_increasing_seq;
+    use crate::octal_to_dec;
     use crate::oppsite_pos_in_circle;
+    use crate::overlapping_intervals;
     use crate::pascal_triangle;
     use crate::permutation;
     use crate::phone_mnemonic;
@@ -937,13 +1021,16 @@ mod test_runner {
     use crate::prefix_sums;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
+    use crate::pseudo_rand;
     use crate::quick_sort;
+    use crate::rad_to_deg;
     use crate::radix_sort::radix_sort;
     use crate::random_perm;
     use crate::ranking;
     use crate::reconstruct_bst_from_pre;
     use crate::remove_island;
     use crate::repeat_product::repeat_product;
+    use crate::replace_mid_value;
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_in_parenthiesis;
     use crate::reverse_poland_calc::reverse_poland_calc;
@@ -969,9 +1056,11 @@ mod test_runner {
     use crate::sorted_matrix_search;
     use crate::stack_copy_only_pop;
     use crate::stdev;
+    use crate::storage_projection_for_sdhd;
     use crate::strange_bank;
     use crate::string_construction::string_construction;
     use crate::string_pattern::string_pattern;
+    use crate::sturge_formula;
     use crate::subarray_sort;
     use crate::sudoku;
     use crate::sum_of_arithmatic_progression;
@@ -988,6 +1077,7 @@ mod test_runner {
     use crate::total_sum_with_n_num;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
+    use crate::valid_parentheses;
     use crate::valid_starting_city;
     use crate::validate_three_nodes;
     use crate::variance;
@@ -998,6 +1088,7 @@ mod test_runner {
     use float_cmp::approx_eq;
     use hashmap_macro::hashmap;
     use num::integer::gcd;
+    use predicates::prelude::*;
     use std::{
         collections::{BTreeSet, HashMap, HashSet, VecDeque},
     };
@@ -1027,6 +1118,16 @@ mod test_runner {
     fn almost_increasing_seq_true_case() {
         let s = [1, 2, 3, 4, 5, 5, 7, 6, 8];
         assert!(almost_increasing_seq::exec(&s));
+    }
+
+    #[test]
+    fn alphabet_subseq_test() {
+        assert_eq!(alhpabet_subseq::exec("effg"), false);
+        assert_eq!(alhpabet_subseq::exec("cdce"), false);
+        assert_eq!(alhpabet_subseq::exec("ace"), true);
+        assert_eq!(alhpabet_subseq::exec("bxz"), true);
+        assert_eq!(alhpabet_subseq::exec("abcdexyz"), true);
+        assert_eq!(alhpabet_subseq::exec("abcdexmyz"), false);
     }
 
     #[test]
@@ -1120,6 +1221,27 @@ mod test_runner {
                 assert!(false);
             }
         }
+    }
+
+    #[test]
+    fn build_closure_tag_test() {
+        assert_eq!(build_closure_tag::exec("<button type='tako' disabled>neko desu.").unwrap(), "</button>".to_string());
+        assert_eq!(build_closure_tag::exec("<button>neko desu.").unwrap(), "</button>");
+        assert_eq!(build_closure_tag::exec("<button  >neko desu.").unwrap(), "</button>");
+        assert!(build_closure_tag::exec("button type='neko'>").is_err());
+    }
+
+    #[test]
+    fn build_heap_test() {
+        let mut v = vec![15, 12, 3, 24, 31, 29, 21, 18, 25, 32];
+        build_heap::exec(&mut v);
+        let expected = vec![3, 12, 15, 18, 31, 29, 21, 24, 25, 32];
+        assert_eq!(v, expected);
+    }
+
+    #[test]
+    fn build_palindrome_test() {
+        assert_eq!(build_palindrome::exec("abcdcba"), "abcdcba".to_string());
     }
 
     #[test]
@@ -1262,6 +1384,16 @@ mod test_runner {
     }
 
     #[test]
+    fn code_breaker_test() {
+        let ans = "708";
+        assert_eq!(code_breaker::exec("212", ans), "___");
+        assert_eq!(code_breaker::exec("549", ans), "___");
+        assert_eq!(code_breaker::exec("756", ans), "H__");
+        assert_eq!(code_breaker::exec("780", ans), "HBB");
+        assert_eq!(code_breaker::exec("708", ans), "HHH");
+    }
+
+    #[test]
     fn combination_test() {
         let n = 8;
         let r = 3;
@@ -1333,6 +1465,13 @@ mod test_runner {
 
         let expected = "6*(1+2)-8";
         assert_eq!(decode_reverse_poland::exec(s), expected);
+    }
+
+    #[test]
+    fn deg_to_rad_test() {
+        assert_eq!(deg_to_rad::exec(90.), 1.5707964);
+        assert_eq!(deg_to_rad::exec(45.), 0.7853982);
+        assert_eq!(deg_to_rad::exec(37.), 0.6457718);
     }
 
     #[test]
@@ -1453,6 +1592,11 @@ mod test_runner {
         let expected = vec![vec!["yo", "oy"], vec!["flop", "olfp"], vec!["act", "tac", "cat"], vec!["foo"]];
         let rez = group_anagrams::exec(&words);
         assert!(expected.iter().all(|a|rez.contains(a)));
+    }
+
+    #[test]
+    fn group_by_class_range_test() {
+        assert_eq!(group_by_class_range::exec(&[20000, 239, 10001, 999999, 10000, 20566, 29999]), 11);
     }
 
     #[test]
@@ -1956,10 +2100,29 @@ mod test_runner {
     }
 
     #[test]
+    fn octal_to_dec_test() {
+        assert_eq!(octal_to_dec::exec(127), 87);
+        assert_eq!(octal_to_dec::exec(5351), 2793);
+        assert_eq!(octal_to_dec::exec(7), 7);
+        assert_eq!(octal_to_dec::exec(8), 8);
+        assert_eq!(octal_to_dec::exec(16), 14);
+    }
+
+    #[test]
     fn opposite_num_in_circle_test() {
         let n = 10;
         let f = 2;
         assert_eq!(oppsite_pos_in_circle::exec(n, f), 7);
+    }
+
+    #[test]
+    fn overlapping_intervals_test() {
+        use overlapping_intervals::Pair;
+        let n:Vec<Pair> = vec![Pair::new(1, 2), Pair::new(3, 5), Pair::new(4, 7),
+            Pair::new(6, 8), Pair::new(9, 10)];
+        let rez = overlapping_intervals::exec(n);
+        let expected:Vec<Pair> = vec![Pair::new(1, 2), Pair::new(3, 8), Pair::new(9, 10)];
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -2037,12 +2200,41 @@ mod test_runner {
     }
 
     #[test]
+    fn pseudo_rand_ok_test() {
+        let a = 109;
+        let c=  1021;
+        let m = 256;
+        let x0 = 13;
+        let v:Vec<i32> = pseudo_rand::exec(a, c, m, x0, 20);
+        assert!(v.iter().all(|x|*x >= 0 && *x <= m));
+    }
+
+    #[test]
+    fn pseudo_rand_fail_test() {
+        let rez = std::panic::catch_unwind(||{
+            let a = 106;
+            let c=  1021;
+            let m = 256;
+            let x0 = 13;
+            pseudo_rand::exec(a, c, m, x0, 20);
+        });
+        assert!(rez.is_err());
+    }
+
+    #[test]
     fn quick_sort_test() {
         let mut v = vec![7, 1, 2, 5, 10, 20, 15, 13, 9, 5, 4];
         let expected = vec![1, 2, 4, 5, 5, 7, 9, 10, 13, 15, 20];
         let len = v.len();
         quick_sort::exec(&mut v, 0, len - 1);
         assert_eq!(v, expected);
+    }
+
+    #[test]
+    fn rad_to_deg_test() {
+        assert_eq!(rad_to_deg::exec(1.2), 68.75494);
+        assert_eq!(rad_to_deg::exec(2.42), 138.65578);
+        assert_eq!(rad_to_deg::exec(0.79), 45.263664);
     }
 
     #[test]
@@ -2097,6 +2289,14 @@ mod test_runner {
     fn repeat_product_test() {
         let n = 16;
         assert_eq!(repeat_product::exec(n), 9);
+    }
+
+    #[test]
+    fn replace_mid_value_test() {
+        assert_eq!(replace_mid_value::exec(&[7,2,2,5,10,7]), &[7, 2, 7, 10, 7]);
+        assert_eq!(replace_mid_value::exec(&[-5, -5, 10]), &[-5, -5, 10]);
+        assert_eq!(replace_mid_value::exec(&[10]), &[10]);
+        assert_eq!(replace_mid_value::exec(&[10, 20]), &[30]);
     }
 
     #[test]
@@ -2337,6 +2537,15 @@ mod test_runner {
     }
 
     #[test]
+    fn storage_projection_for_sdhd_test() {
+        let hd_num = 42;
+        let sd_num = 27;
+        let expected_total_per_h = 1110;
+        let expected_total_per_s = 264;
+        assert_eq!(storage_projection_for_sdhd::exec(sd_num, hd_num), (expected_total_per_h, expected_total_per_s));
+    }
+
+    #[test]
     fn strange_bank_ok_test() {
         let n = 7_u32;
         let denoms = &[1, 5, 10];
@@ -2517,6 +2726,13 @@ mod test_runner {
     }
 
     #[test]
+    fn sturge_formula_test() {
+        let n = 9072.;
+        let k = sturge_formula::exec(n);
+        assert_eq!(k, 14);
+    }
+
+    #[test]
     fn sum_of_consecutive_test() {
         let empty_result:Vec<Vec<i32>> = Vec::new();
         assert_eq!(sum_of_consecutive_integers::exec(9), vec![vec![2, 3, 4], vec![4, 5]]);
@@ -2650,6 +2866,15 @@ mod test_runner {
     }
 
     #[test]
+    fn valid_parentheses_test() {
+        assert_eq!(valid_parentheses::exec("{[[((()))]]}"), true);
+        assert_eq!(valid_parentheses::exec("{[neko]}"), true);
+        assert_eq!(valid_parentheses::exec("(([))"), false);
+        assert_eq!(valid_parentheses::exec("[[]"), false);
+        assert_eq!(valid_parentheses::exec("[]]"), false);
+    }
+
+    #[test]
     fn valid_starting_city_all_no_issue_test() {
         let dist = vec![5, 25, 15, 10, 15];
         let fuel = vec![1, 2, 2, 1, 0];
@@ -2714,6 +2939,7 @@ pub enum Algo {
     AddTwoIntWithoutCarry,
     AllLongestStrings,
     AlmostIncreasingSeq,
+    AlphabetSubseq,
     AppearTwice,
     Applebox,
     ArithmaticProgression,
@@ -2723,6 +2949,9 @@ pub enum Algo {
     BinToDec,
     BubbleSort,
     BuildBTreeFromInorderPreorder,
+    BuildClosureTag,
+    BuildHeap,
+    BuildPalindrome,
     CamelCase,
     Capitalize,
     Century,
@@ -2735,6 +2964,7 @@ pub enum Algo {
     ClampValue,
     Classmark,
     CleanKthBit,
+    CodeBreaker,
     Combination,
     CompareAndSwap,
     ConstructMinHeightBST,
@@ -2744,6 +2974,7 @@ pub enum Algo {
     CyclicChars,
     DecodeReversePoland,
     DecToBin,
+    DegToRad,
     Diagonal,
     DifferentSquares,
     DifferentValuePairs,
@@ -2759,6 +2990,7 @@ pub enum Algo {
     GeometricProgression,
     GeometricalMean,
     GroupAnagrams,
+    GroupByClassRange,
     GroupByKey,
     GuardTechnique,
     HanoiTower,
@@ -2810,7 +3042,9 @@ pub enum Algo {
     NumOfClans,
     NumOfPaths,
     ObtainIncreasingSeq,
+    OctalToDec,
     OppositePosInCircle,
+    OverlappingIntervals,
     PascalTriangle,
     Permutation,
     PhoneMnemonic,
@@ -2818,13 +3052,16 @@ pub enum Algo {
     PrefixSums,
     PreOrderTraversal,
     ProductArraySort,
+    PseudoRand,
     QuickSort,
     RadixSort,
+    RadToDeg,
     RandomPerm,
     Ranking,
     ReconstructBSTFromPreorder,
     RemoveIsland,
     RepeatProduct,
+    ReplaceMidValue,
     RequestPerSec,
     ReverseInParenthiesis,
     ReversePoland,
@@ -2849,9 +3086,11 @@ pub enum Algo {
     SortedMatrixSearch,
     StackCopyOnlyPop,
     Stdev,
+    StorageProjectionForSDHD,
     StrangeBank,
     StringConstruction,
     StringPattern,
+    SturgeFormula,
     SubArraySort,
     Sudoku,
     SumOfArithmaticProgression,
@@ -2869,6 +3108,7 @@ pub enum Algo {
     TurnCommands,
     TwoSum,
     ValidateThreeNodes,
+    ValidParentheses,
     ValidStartingCity,
     Variance,
     WaterArea,
@@ -2883,6 +3123,7 @@ impl Algo {
             s if s.to_lowercase() == "add_two_int_without_carry" => Algo::AddTwoIntWithoutCarry,
             s if s.to_lowercase() == "all_longest_strings" => Algo::AllLongestStrings,
             s if s.to_lowercase() == "almost_increasing_seq" => Algo::AlmostIncreasingSeq,
+            s if s.to_lowercase() == "alphabet_subseq" => Algo::AlphabetSubseq,
             s if s.to_lowercase() == "appear_twice" => Algo::AppearTwice,
             s if s.to_lowercase() == "applebox" => Algo::Applebox,
             s if s.to_lowercase() == "arithmatic_progression" => Algo::ArithmaticProgression,
@@ -2890,8 +3131,11 @@ impl Algo {
             s if s.to_lowercase() == "average" => Algo::Average,
             s if s.to_lowercase() == "binary_search" => Algo::BinarySearch,
             s if s.to_lowercase() == "bintodec" => Algo::BinToDec,
-            s if s.to_lowercase() == "bubble_sort" => Algo::BubbleSort, 
+            s if s.to_lowercase() == "bubble_sort" => Algo::BubbleSort,
             s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
+            s if s.to_lowercase() == "build_closure_tag" => Algo::BuildClosureTag,
+            s if s.to_lowercase() == "build_heap" => Algo::BuildHeap,
+            s if s.to_lowercase() == "build_palindrome" => Algo::BuildPalindrome,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "capitalize" => Algo::Capitalize,
@@ -2904,6 +3148,7 @@ impl Algo {
             s if s.to_lowercase() == "clamp_value" => Algo::ClampValue,
             s if s.to_lowercase() == "classmark" => Algo::Classmark,
             s if s.to_lowercase() == "clean_kth_bit" => Algo::CleanKthBit,
+            s if s.to_lowercase() == "code_breaker" => Algo::CodeBreaker,
             s if s.to_lowercase() == "combination" => Algo::Combination,
             s if s.to_lowercase() == "compare_and_swap" => Algo::CompareAndSwap,
             s if s.to_lowercase() == "construct_min_height_bst" => Algo::ConstructMinHeightBST,
@@ -2913,6 +3158,7 @@ impl Algo {
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
             s if s.to_lowercase() == "dectobin" => Algo::DecToBin,
+            s if s.to_lowercase() == "deg_to_rad" => Algo::DegToRad,
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
             s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
             s if s.to_lowercase() == "different_value_pairs" => Algo::DifferentValuePairs,
@@ -2928,6 +3174,7 @@ impl Algo {
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
             s if s.to_lowercase() == "group_anagrams" => Algo::GroupAnagrams,
+            s if s.to_lowercase() == "group_by_class_range" => Algo::GroupByClassRange,
             s if s.to_lowercase() == "group_by_key" => Algo::GroupByKey,
             s if s.to_lowercase() == "guard_technique" => Algo::GuardTechnique,
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
@@ -2979,7 +3226,9 @@ impl Algo {
             s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
+            s if s.to_lowercase() == "octal_to_dec" => Algo::OctalToDec,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
+            s if s.to_lowercase() == "overlapping_intervals" => Algo::OverlappingIntervals,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
@@ -2987,13 +3236,16 @@ impl Algo {
             s if s.to_lowercase() == "prefix_sums" => Algo::PrefixSums,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
+            s if s.to_lowercase() == "pseudo_rand" => Algo::PseudoRand,
             s if s.to_lowercase() == "quick_sort" => Algo::QuickSort,
+            s if s.to_lowercase() == "rad_to_deg" => Algo::RadToDeg,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
             s if s.to_lowercase() == "ranking" => Algo::Ranking,
             s if s.to_lowercase() == "reconstruct_bst_from_preorder" => Algo::ReconstructBSTFromPreorder,
             s if s.to_lowercase() == "remove_island" => Algo::RemoveIsland,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
+            s if s.to_lowercase() == "replace_mid_value" => Algo::ReplaceMidValue,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_in_parenthiesis" => Algo::ReverseInParenthiesis,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
@@ -3018,9 +3270,11 @@ impl Algo {
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
             s if s.to_lowercase() == "stack_copy_only_pop" => Algo::StackCopyOnlyPop,
             s if s.to_lowercase() == "stdev" => Algo::Stdev,
+            s if s.to_lowercase() == "storage_projection_for_sdhd" => Algo::StorageProjectionForSDHD,
             s if s.to_lowercase() == "strange_bank" => Algo::StrangeBank,
             s if s.to_lowercase() == "string_construction" => Algo::StringConstruction,
             s if s.to_lowercase() == "string_pattern" => Algo::StringPattern,
+            s if s.to_lowercase() == "sturge_formula" => Algo::SturgeFormula,
             s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
             s if s.to_lowercase() == "sudoku" => Algo::Sudoku,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
@@ -3037,6 +3291,7 @@ impl Algo {
             s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
+            s if s.to_lowercase() == "valid_parentheses" => Algo::ValidParentheses,
             s if s.to_lowercase() == "valid_starting_city" => Algo::ValidStartingCity,
             s if s.to_lowercase() == "validate_three_nodes" => Algo::ValidateThreeNodes,
             s if s.to_lowercase() == "variance" => Algo::Variance,
