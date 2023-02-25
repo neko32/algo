@@ -164,6 +164,7 @@ pub mod sum_of_squared_deviation;
 pub mod sunset_view;
 pub mod swap_sibling;
 pub mod tandem_repeat;
+pub mod task_assignment;
 pub mod three_number_sort;
 pub mod toggle_bit;
 pub mod topological_sort;
@@ -348,6 +349,7 @@ pub mod runner {
     use sunset_view;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
+    use task_assignment;
     use three_number_sort;
     use three_sum;
     use toggle_bit::toggle_bit;
@@ -859,6 +861,7 @@ pub mod runner {
                 swap_sibling::run();
             }
             Algo::TandemRepeat => tandem_repeat::run(),
+            Algo::TaskAssignment => task_assignment::run(),
             Algo::ThreeNumberSort => {
                 three_number_sort::run();
             }
@@ -1076,6 +1079,7 @@ mod test_runner {
     use crate::sunset_view;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
+    use crate::task_assignment;
     use crate::three_number_sort;
     use crate::three_sum;
     use crate::toggle_bit::toggle_bit;
@@ -2654,6 +2658,21 @@ mod test_runner {
     }
 
     #[test]
+    fn task_assignment_test() {
+        let k = 3;
+        let t = vec![1, 3, 5, 3, 1, 4];
+        let expected1 = vec![(0, 2), (2, 0), (2, 4), (4, 2)];
+        let expected2 = vec![(4, 5), (5, 4), (0, 5), (5, 0)];
+        let expected3 = vec![(1, 3), (3, 1)];
+        let expected = vec![expected1, expected2, expected3];
+        let rez = task_assignment::exec(k, t);
+        for (i, r) in rez.iter().enumerate() {
+            println!("{:?} in {:?}?", r, expected[i]);
+            assert!(expected[i].contains(r));
+        }
+    }
+
+    #[test]
     fn dec_to_bin_test1() {
         let n = 23;
         let b = dectobin::exec(n);
@@ -3117,6 +3136,7 @@ pub enum Algo {
     SunsetView,
     SwapSibling,
     TandemRepeat,
+    TaskAssignment,
     ThreeNumberSort,
     ThreeSum,
     ToggleBit,
@@ -3302,6 +3322,7 @@ impl Algo {
             s if s.to_lowercase() == "sunset_view" => Algo::SunsetView,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
+            s if s.to_lowercase() == "task_assignment" => Algo::TaskAssignment,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
             s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
