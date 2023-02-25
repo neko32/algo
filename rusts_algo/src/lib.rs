@@ -145,6 +145,7 @@ pub mod singly_linked_list_copy;
 pub mod singly_linked_list_reverse;
 pub mod smallest_difference;
 pub mod smallest_positive_product;
+pub mod sprite_index;
 pub mod sort_by_height;
 pub mod sort_stack;
 pub mod sorted_matrix_search;
@@ -327,6 +328,7 @@ pub mod runner {
     use singly_linked_list_reverse;
     use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
+    use sprite_index;
     use sort_by_height;
     use sort_stack;
     use sorted_matrix_search;
@@ -799,6 +801,9 @@ pub mod runner {
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
+            Algo::SpriteIndex => {
+                sprite_index::run();
+            }
             Algo::SortByHeight => {
                 sort_by_height::run();
             }
@@ -1051,6 +1056,7 @@ mod test_runner {
     use crate::singly_linked_list_reverse;
     use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::sprite_index;
     use crate::sort_by_height;
     use crate::sort_stack;
     use crate::sorted_matrix_search;
@@ -2479,6 +2485,16 @@ mod test_runner {
     }
 
     #[test]
+    fn sprite_index_test() {
+        assert_eq!(sprite_index::exec(0, 40, 4), 0);
+        assert_eq!(sprite_index::exec(8, 40, 4), 0);
+        assert_eq!(sprite_index::exec(12, 40, 4), 1);
+        assert_eq!(sprite_index::exec(23, 40, 4), 2);
+        assert_eq!(sprite_index::exec(39, 40, 4), 3);
+        assert_eq!(sprite_index::exec(40, 40, 4), 0);
+    }
+
+    #[test]
     fn sort_by_height_test() {
         let mut v = vec![-1, 150, 190, 170, -1, -1, 160, 180];
         let expected = vec![-1, 150, 160, 170, -1, -1, 180, 190];
@@ -3081,6 +3097,7 @@ pub enum Algo {
     SinglyLinkedListReverse,
     SmallestDifference,
     SmallestPositiveProduct,
+    SpriteIndex,
     SortByHeight,
     SortStack,
     SortedMatrixSearch,
@@ -3265,6 +3282,7 @@ impl Algo {
             s if s.to_lowercase() == "singly_linked_list_reverse" => Algo::SinglyLinkedListReverse,
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
+            s if s.to_lowercase() == "sprite_index" => Algo::SpriteIndex,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
             s if s.to_lowercase() == "sort_stack" => Algo::SortStack,
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
