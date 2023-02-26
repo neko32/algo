@@ -17,6 +17,7 @@ pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod capitalize;
+pub mod celcius_to_fahrenheit;
 pub mod code_breaker;
 pub mod century;
 pub mod char_count;
@@ -45,6 +46,7 @@ pub mod euclidean;
 pub mod eval_tictactoe;
 pub mod even_num_sum;
 pub mod factorial;
+pub mod fahrenheit_to_celcius;
 pub mod fibonacci;
 pub mod file_naming;
 pub mod find_closest_value;
@@ -232,6 +234,7 @@ pub mod runner {
     use eval_tictactoe;
     use even_num_sum::even_num_sum;
     use factorial;
+    use fahrenheit_to_celcius;
     use fibonacci;
     use file_naming;
     use find_closest_value;
@@ -425,6 +428,9 @@ pub mod runner {
             Algo::Capitalize => {
                 capitalize::run();
             }
+            Algo::CelciusToFahrenheit => {
+                celcius_to_fahrenheit::run();
+            }
             Algo::Century => {
                 century::run();
             }
@@ -508,6 +514,9 @@ pub mod runner {
             }
             Algo::Factorial => {
                 factorial::run();
+            }
+            Algo::FahrenheitToCelcius => {
+                fahrenheit_to_celcius::run();
             }
             Algo::Fibonacci => {
                 fibonacci::run();
@@ -932,6 +941,7 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::capitalize;
+    use crate::celcius_to_fahrenheit;
     use crate::century::century;
     use crate::char_count;
     use crate::chars_appearing_twice;
@@ -960,6 +970,7 @@ mod test_runner {
     use crate::eval_tictactoe;
     use crate::even_num_sum::even_num_sum;
     use crate::factorial;
+    use crate::fahrenheit_to_celcius;
     use crate::fibonacci;
     use crate::file_naming;
     use crate::find_closest_value;
@@ -1275,6 +1286,14 @@ mod test_runner {
     }
 
     #[test]
+    fn celcius_to_fahrenheit_test() {
+        assert_eq!(celcius_to_fahrenheit::exec(25.), 77.);
+        assert_eq!(celcius_to_fahrenheit::exec(12.), 53.6);
+        assert_eq!(celcius_to_fahrenheit::exec(0.), 32.);
+        assert_eq!(celcius_to_fahrenheit::exec(-3.), 26.6);
+    }
+
+    #[test]
     fn century_test1() {
         let n = 1905;
         let nr = century::exec(n);
@@ -1546,6 +1565,18 @@ mod test_runner {
     fn factorial_test() {
         let n = 10;
         assert_eq!(factorial::exec(n), 3628800);
+    }
+
+    #[test]
+    fn fahrenheit_to_celcius_test() {
+        let c1 = fahrenheit_to_celcius::exec(77.).round();
+        assert_eq!(c1, 25.);
+        let c2 = fahrenheit_to_celcius::exec(53.6).round();
+        assert_eq!(c2, 12.);
+        let c3 = fahrenheit_to_celcius::exec(32.0).round();
+        assert_eq!(c3, 0.);
+        let c4 = fahrenheit_to_celcius::exec(26.6).round();
+        assert_eq!(c4, -3.);
     }
 
     #[test]
@@ -2989,6 +3020,7 @@ pub enum Algo {
     BuildPalindrome,
     CamelCase,
     Capitalize,
+    CelciusToFahrenheit,
     Century,
     CaesarCrypt,
     CharCount,
@@ -3018,6 +3050,7 @@ pub enum Algo {
     EvenNumSum,
     Euclidean,
     Factorial,
+    FahrenheitToCelcius,
     Fibonacci,
     FileNaming,
     FindClosestValue,
@@ -3176,6 +3209,7 @@ impl Algo {
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "capitalize" => Algo::Capitalize,
+            s if s.to_lowercase() == "celcius_to_fahrenheit" => Algo::CelciusToFahrenheit,
             s if s.to_lowercase() == "century" => Algo::Century,
             s if s.to_lowercase() == "char_count" => Algo::CharCount,
             s if s.to_lowercase() == "chars_appearing_twice" => Algo::CharsAppearingTwice,
@@ -3204,6 +3238,7 @@ impl Algo {
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
+            s if s.to_lowercase() == "fahrenheit_to_celcius" => Algo::FahrenheitToCelcius,
             s if s.to_lowercase() == "fibonacci" => Algo::Fibonacci,
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
             s if s.to_lowercase() == "find_closest_value" => Algo::FindClosestValue,
