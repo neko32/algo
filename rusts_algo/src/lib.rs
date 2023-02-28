@@ -174,6 +174,7 @@ pub mod total_sum_with_n_num;
 pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
+pub mod unconstructiable_number;
 pub mod valid_parentheses;
 pub mod valid_starting_city;
 pub mod validate_three_nodes;
@@ -360,6 +361,7 @@ pub mod runner {
     use total_sum_with_n_num;
     use turn_commands;
     use two_sum::two_sum;
+    use unconstructiable_number;
     use valid_parentheses;
     use valid_starting_city;
     use validate_three_nodes;
@@ -892,6 +894,9 @@ pub mod runner {
             Algo::TwoSum => {
                 two_sum::run();
             }
+            Algo::UnconstructiableNumber => {
+                unconstructiable_number::run();
+            }
             Algo::ValidateThreeNodes => {
                 validate_three_nodes::run();
             }
@@ -1098,6 +1103,7 @@ mod test_runner {
     use crate::total_sum_with_n_num;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
+    use crate::unconstructiable_number;
     use crate::valid_parentheses;
     use crate::valid_starting_city;
     use crate::validate_three_nodes;
@@ -2932,6 +2938,12 @@ mod test_runner {
     }
 
     #[test]
+    fn unconstructiable_number_test() {
+        let mut v = [5, 7, 1, 1, 2, 3, 22];
+        assert_eq!(unconstructiable_number::exec(&mut v), 20);
+    }
+
+    #[test]
     fn valid_parentheses_test() {
         assert_eq!(valid_parentheses::exec("{[[((()))]]}"), true);
         assert_eq!(valid_parentheses::exec("{[neko]}"), true);
@@ -3177,6 +3189,7 @@ pub enum Algo {
     TotalSumWithNNums,
     TurnCommands,
     TwoSum,
+    UnconstructiableNumber,
     ValidateThreeNodes,
     ValidParentheses,
     ValidStartingCity,
@@ -3365,6 +3378,7 @@ impl Algo {
             s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
+            s if s.to_lowercase() == "unconstructiable_number" => Algo::UnconstructiableNumber,
             s if s.to_lowercase() == "valid_parentheses" => Algo::ValidParentheses,
             s if s.to_lowercase() == "valid_starting_city" => Algo::ValidStartingCity,
             s if s.to_lowercase() == "validate_three_nodes" => Algo::ValidateThreeNodes,
