@@ -106,6 +106,7 @@ pub mod num_of_clans;
 pub mod num_of_paths;
 pub mod number_grouping;
 pub mod obtain_increasing_seq;
+pub mod octal_permission;
 pub mod octal_to_dec;
 pub mod oppsite_pos_in_circle;
 pub mod overlapping_intervals;
@@ -294,6 +295,7 @@ pub mod runner {
     use num_of_paths;
     use number_grouping;
     use obtain_increasing_seq;
+    use octal_permission;
     use octal_to_dec;
     use oppsite_pos_in_circle;
     use overlapping_intervals;
@@ -697,6 +699,9 @@ pub mod runner {
             Algo::ObtainIncreasingSeq => {
                 obtain_increasing_seq::run();
             }
+            Algo::OctalPermission => {
+                octal_permission::run();
+            }
             Algo::OctalToDec => {
                 octal_to_dec::run();
             }
@@ -1035,6 +1040,7 @@ mod test_runner {
     use crate::num_of_paths;
     use crate::number_grouping;
     use crate::obtain_increasing_seq;
+    use crate::octal_permission;
     use crate::octal_to_dec;
     use crate::oppsite_pos_in_circle;
     use crate::overlapping_intervals;
@@ -2147,6 +2153,17 @@ mod test_runner {
     }
 
     #[test]
+    fn octal_permission_test() {
+
+        let expected:HashMap<String, String> = hashmap!(
+            "Owner".to_string() => "rwx".to_string(),
+            "Group".to_string() => "r".to_string(),
+            "Other".to_string() => "w".to_string()
+        );
+        assert_eq!(octal_permission::exec("742"), expected);
+    }
+
+    #[test]
     fn octal_to_dec_test() {
         assert_eq!(octal_to_dec::exec(127), 87);
         assert_eq!(octal_to_dec::exec(5351), 2793);
@@ -3122,6 +3139,7 @@ pub enum Algo {
     NumOfClans,
     NumOfPaths,
     ObtainIncreasingSeq,
+    OctalPermission,
     OctalToDec,
     OppositePosInCircle,
     OverlappingIntervals,
@@ -3311,6 +3329,7 @@ impl Algo {
             s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
+            s if s.to_lowercase() == "octal_permission" => Algo::OctalPermission,
             s if s.to_lowercase() == "octal_to_dec" => Algo::OctalToDec,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "overlapping_intervals" => Algo::OverlappingIntervals,
