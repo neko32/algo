@@ -149,6 +149,7 @@ pub mod singly_linked_list_reverse;
 pub mod smallest_difference;
 pub mod smallest_positive_product;
 pub mod sprite_index;
+pub mod softmax;
 pub mod sort_by_height;
 pub mod sort_stack;
 pub mod sorted_matrix_search;
@@ -336,6 +337,7 @@ pub mod runner {
     use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
     use sprite_index;
+    use softmax;
     use sort_by_height;
     use sort_stack;
     use sorted_matrix_search;
@@ -822,6 +824,9 @@ pub mod runner {
             Algo::SpriteIndex => {
                 sprite_index::run();
             }
+            Algo::Softmax => {
+                softmax::run();
+            }
             Algo::SortByHeight => {
                 sort_by_height::run();
             }
@@ -1082,6 +1087,7 @@ mod test_runner {
     use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sprite_index;
+    use crate::softmax;
     use crate::sort_by_height;
     use crate::sort_stack;
     use crate::sorted_matrix_search;
@@ -2553,6 +2559,13 @@ mod test_runner {
     }
 
     #[test]
+    fn softmax_test() {
+        let x = vec![1.6, -2.3, 0.2, 3.4, -1.7, 0.5];
+        let expected = vec![0.13, 0.003, 0.032, 0.787, 0.005, 0.043];
+        assert_eq!(softmax::exec(x), expected);
+    }
+
+    #[test]
     fn sort_by_height_test() {
         let mut v = vec![-1, 150, 190, 170, -1, -1, 160, 180];
         let expected = vec![-1, 150, 160, 170, -1, -1, 180, 190];
@@ -3180,6 +3193,7 @@ pub enum Algo {
     SmallestDifference,
     SmallestPositiveProduct,
     SpriteIndex,
+    Softmax,
     SortByHeight,
     SortStack,
     SortedMatrixSearch,
@@ -3370,6 +3384,7 @@ impl Algo {
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sprite_index" => Algo::SpriteIndex,
+            s if s.to_lowercase() == "softmax" => Algo::Softmax,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
             s if s.to_lowercase() == "sort_stack" => Algo::SortStack,
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
