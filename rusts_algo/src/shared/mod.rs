@@ -12,6 +12,21 @@ pub struct TreeNode {
     pub right: Option<Box<TreeNode>>,
 }
 
+#[derive(Display, Debug, Clone)]
+#[display(fmt = "{{value:{}}}", value)]
+pub struct MultiChildTreeNode<T>
+where T:ToString + Debug {
+    pub value: T,
+    pub children: Option<Vec<Box<MultiChildTreeNode<T>>>>,
+}
+
+impl <T> MultiChildTreeNode<T>
+where T:ToString + Debug {
+    pub fn new(t:T) -> Self {
+        Self {value: t, children: None }
+    }
+}
+
 #[derive(Display, Debug)]
 #[display(fmt = "{{x:{},y:{}}}", x, y)]
 pub struct Point {

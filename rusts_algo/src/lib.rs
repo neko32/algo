@@ -35,12 +35,14 @@ pub mod construct_square;
 pub mod contrast_check;
 pub mod cool_num_pair;
 pub mod cyclic_chars;
+pub mod cumsum_except_last;
 pub mod decode_reverse_poland;
 pub mod dectobin;
 pub mod deg_to_rad;
 pub mod diagonal;
 pub mod different_squares;
 pub mod different_value_pairs;
+pub mod dfs;
 pub mod document_build;
 pub mod euclidean;
 pub mod eval_tictactoe;
@@ -225,10 +227,12 @@ pub mod runner {
     use construct_square;
     use contrast_check;
     use cool_num_pair::cool_num_pair;
+    use cumsum_except_last;
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
     use deg_to_rad;
+    use dfs;
     use diagonal::diagonal;
     use different_squares;
     use different_value_pairs;
@@ -485,6 +489,9 @@ pub mod runner {
             Algo::CoolNumPair => {
                 cool_num_pair::run();
             }
+            Algo::CumsumExceptLast => {
+                cumsum_except_last::run();
+            }
             Algo::CyclicChars => {
                 cyclic_chars::run();
             }
@@ -496,6 +503,9 @@ pub mod runner {
             }
             Algo::DegToRad => {
                 deg_to_rad::run();
+            }
+            Algo::DFS => {
+                dfs::run();
             }
             Algo::Diagonal => {
                 diagonal::run();
@@ -973,10 +983,12 @@ mod test_runner {
     use crate::construct_square;
     use crate::contrast_check;
     use crate::cool_num_pair::cool_num_pair;
+    use crate::cumsum_except_last;
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
     use crate::deg_to_rad;
+    use crate::dfs;
     use crate::diagonal::diagonal;
     use crate::different_squares;
     use crate::different_value_pairs;
@@ -1500,6 +1512,11 @@ mod test_runner {
     }
 
     #[test]
+    fn cumsum_except_last_test() {
+        assert_eq!(cumsum_except_last::exec(&[1,2,3,4,5]), 10);
+    }
+
+    #[test]
     fn cyclic_chars_test() {
         let n = 7;
         let s = "ABC";
@@ -1519,6 +1536,33 @@ mod test_runner {
         assert_eq!(deg_to_rad::exec(90.), 1.5707964);
         assert_eq!(deg_to_rad::exec(45.), 0.7853982);
         assert_eq!(deg_to_rad::exec(37.), 0.6457718);
+    }
+
+    #[test]
+    fn dfs_test() {
+        let node_i = MultiChildTreeNode::new("I".to_string());
+        let node_j = MultiChildTreeNode::new("J".to_string());
+        let node_k = MultiChildTreeNode::new("K".to_string());
+        let node_e = MultiChildTreeNode::new("E".to_string());
+        let mut node_g = MultiChildTreeNode::new("G".to_string());
+        let mut node_f = MultiChildTreeNode::new("F".to_string());
+        let node_h = MultiChildTreeNode::new("H".to_string());
+        let mut node_b = MultiChildTreeNode::new("B".to_string());
+        let node_c = MultiChildTreeNode::new("C".to_string());
+        let mut node_d = MultiChildTreeNode::new("D".to_string());
+        let mut node_a = MultiChildTreeNode::new("A".to_string());
+        node_f.children = Some(vec![Box::new(node_i), Box::new(node_j)]);
+        node_g.children = Some(vec![Box::new(node_k)]);
+        node_b.children = Some(vec![Box::new(node_e), Box::new(node_f)]);
+        node_d.children = Some(vec![Box::new(node_g), Box::new(node_h)]);
+        node_a.children = Some(vec![Box::new(node_b), Box::new(node_c), Box::new(node_d)]);
+
+        let mut buf:Vec<String> = Vec::new();
+        dfs::exec(&Some(Box::new(node_a)), &mut buf);
+        let expected_pre = vec!["A", "B", "E", "F", "I", "J", "C", "D", "G", "K", "H"];
+        let expected: Vec<String>  = expected_pre.into_iter().map(|s|s.to_string()).collect();
+        assert_eq!(buf, expected);
+        
     }
 
     #[test]
@@ -3080,10 +3124,12 @@ pub enum Algo {
     ConstructSquare,
     ContrastCheck,
     CoolNumPair,
+    CumsumExceptLast,
     CyclicChars,
     DecodeReversePoland,
     DecToBin,
     DegToRad,
+    DFS,
     Diagonal,
     DifferentSquares,
     DifferentValuePairs,
@@ -3271,10 +3317,12 @@ impl Algo {
             s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "contrast_check" => Algo::ContrastCheck,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
+            s if s.to_lowercase() == "cumsum_except_last" => Algo::CumsumExceptLast,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
             s if s.to_lowercase() == "dectobin" => Algo::DecToBin,
             s if s.to_lowercase() == "deg_to_rad" => Algo::DegToRad,
+            s if s.to_lowercase() == "dfs" => Algo::DFS,
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
             s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
             s if s.to_lowercase() == "different_value_pairs" => Algo::DifferentValuePairs,
