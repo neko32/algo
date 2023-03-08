@@ -117,6 +117,7 @@ pub mod permutation;
 pub mod phone_mnemonic;
 pub mod prefix_sums;
 pub mod postorder_traversal;
+pub mod powerset;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod pseudo_rand;
@@ -308,6 +309,7 @@ pub mod runner {
     use permutation;
     use phone_mnemonic;
     use postorder_traversal;
+    use powerset;
     use prefix_sums;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
@@ -735,6 +737,9 @@ pub mod runner {
             Algo::PostOrderTraversal => {
                 postorder_traversal::run();
             }
+            Algo::PowerSet => {
+                powerset::run();
+            }
             Algo::PrefixSums => {
                 prefix_sums::run();
             }
@@ -1065,6 +1070,7 @@ mod test_runner {
     use crate::permutation;
     use crate::phone_mnemonic;
     use crate::postorder_traversal;
+    use crate::powerset;
     use crate::prefix_sums;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
@@ -2300,6 +2306,15 @@ mod test_runner {
     }
 
     #[test]
+    fn powerset_test() {
+        let expected:Vec<Vec<i32>> = vec![vec![], vec![1], vec![2], vec![3], vec![1, 2], vec![1, 3], vec![2, 3], vec![1, 2, 3]];
+        let rez = powerset::exec(vec![1, 2, 3]);
+        for r in rez {
+            assert!(expected.contains(&r));
+        }
+    }
+
+    #[test]
     fn prefix_sums_test() {
         let v = [1, 2, 3];
         let expected = vec![1, 3, 6];
@@ -3206,6 +3221,7 @@ pub enum Algo {
     Permutation,
     PhoneMnemonic,
     PostOrderTraversal,
+    PowerSet,
     PrefixSums,
     PreOrderTraversal,
     ProductArraySort,
@@ -3399,6 +3415,7 @@ impl Algo {
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
             s if s.to_lowercase() == "postorder_traversal" => Algo::PostOrderTraversal,
+            s if s.to_lowercase() == "powerset" => Algo::PowerSet,
             s if s.to_lowercase() == "prefix_sums" => Algo::PrefixSums,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
