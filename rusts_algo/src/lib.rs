@@ -84,6 +84,7 @@ pub mod lagrange_interpolation_polynominal;
 pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
+pub mod loc_by_line_angle;
 pub mod longest_pelindromic_substring;
 pub mod longest_substring_without_dupe;
 pub mod lower_upper_hinge;
@@ -278,6 +279,7 @@ pub mod runner {
     use length_linked_list;
     use levenshtein_distance;
     use linked_list;
+    use loc_by_line_angle;
     use longest_pelindromic_substring;
     use longest_substring_without_dupe;
     use lower_upper_hinge;
@@ -640,6 +642,9 @@ pub mod runner {
             }
             Algo::LevenShteinDistance => {
                 levenshtein_distance::run();
+            }
+            Algo::LocByLineAngle => {
+                loc_by_line_angle::run();
             }
             Algo::LongestPelindromicSubstring => {
                 longest_pelindromic_substring::run();
@@ -1037,6 +1042,7 @@ mod test_runner {
     use crate::least_lsd;
     use crate::length_linked_list;
     use crate::levenshtein_distance;
+    use crate::loc_by_line_angle;
     use crate::linked_list;
     use crate::longest_pelindromic_substring;
     use crate::longest_substring_without_dupe;
@@ -1965,6 +1971,12 @@ mod test_runner {
         let v = &[1, 2, 3, 4, 5];
         let expected = vec![1, 2, 3, 4, 5];
         assert_eq!(linked_list::exec(v), expected);
+    }
+
+    #[test]
+    fn loc_by_line_angle_test() {
+        assert_eq!(loc_by_line_angle::exec(15., 90.), 90.);
+        assert_eq!(loc_by_line_angle::exec(15., 45.), 48.63961);
     }
 
     #[test]
@@ -3189,6 +3201,7 @@ pub enum Algo {
     LengthOfLinkedList,
     LevenShteinDistance,
     LinkedList,
+    LocByLineAngle,
     LongestPelindromicSubstring,
     LongestSubstringWithoutDupe,
     LowerUpperHinge,
@@ -3383,6 +3396,7 @@ impl Algo {
             s if s.to_lowercase() == "length_of_linkedlist" => Algo::LengthOfLinkedList,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
+            s if s.to_lowercase() == "loc_by_line_angle" => Algo::LocByLineAngle,
             s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
             s if s.to_lowercase() == "longest_substring_without_dupe" => Algo::LongestSubstringWithoutDupe,
             s if s.to_lowercase() == "lower_upper_hinge" => Algo::LowerUpperHinge,
