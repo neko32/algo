@@ -52,6 +52,7 @@ pub mod fahrenheit_to_celcius;
 pub mod fibonacci;
 pub mod file_naming;
 pub mod find_closest_value;
+pub mod find_successor;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
@@ -154,6 +155,7 @@ pub mod smallest_difference;
 pub mod smallest_positive_product;
 pub mod sprite_index;
 pub mod softmax;
+pub mod softsign;
 pub mod sort_by_height;
 pub mod sort_stack;
 pub mod sorted_matrix_search;
@@ -247,6 +249,7 @@ pub mod runner {
     use fibonacci;
     use file_naming;
     use find_closest_value;
+    use find_successor;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
     use geometrical_mean;
@@ -346,6 +349,7 @@ pub mod runner {
     use smallest_positive_product::smallest_positive_product;
     use sprite_index;
     use softmax;
+    use softsign;
     use sort_by_height;
     use sort_stack;
     use sorted_matrix_search;
@@ -546,6 +550,9 @@ pub mod runner {
             }
             Algo::FindClosestValue => {
                 find_closest_value::run();
+            }
+            Algo::FindSuccessor => {
+                find_successor::run();
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
@@ -847,6 +854,9 @@ pub mod runner {
             Algo::Softmax => {
                 softmax::run();
             }
+            Algo::Softsign => {
+                softsign::run();
+            }
             Algo::SortByHeight => {
                 sort_by_height::run();
             }
@@ -1011,6 +1021,7 @@ mod test_runner {
     use crate::fibonacci;
     use crate::file_naming;
     use crate::find_closest_value;
+    use crate::find_successor;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
     use crate::geometrical_mean;
@@ -1112,6 +1123,7 @@ mod test_runner {
     use crate::smallest_positive_product::smallest_positive_product;
     use crate::sprite_index;
     use crate::softmax;
+    use crate::softsign;
     use crate::sort_by_height;
     use crate::sort_stack;
     use crate::sorted_matrix_search;
@@ -1151,7 +1163,6 @@ mod test_runner {
     use float_cmp::approx_eq;
     use hashmap_macro::hashmap;
     use num::integer::gcd;
-    use predicates::prelude::*;
     use std::{
         collections::{BTreeSet, HashMap, HashSet, VecDeque},
     };
@@ -1670,6 +1681,13 @@ mod test_runner {
     fn find_closest_value_approx_match_test() {
         let r = build_tree(&vec![10, 5, 2, 1, 15, 13, 14, 22]);
         assert_eq!(find_closest_value::exec(r, 12), 13);
+    }
+
+    #[test]
+    fn find_successor_test() {
+        let n = build_tree(&vec![10, 5, 3, 7, 12, 2]);
+        let r = find_successor::exec(*n, 7);
+        assert!(r.is_some() && r.unwrap() == 10);
     }
 
     #[test]
@@ -2637,6 +2655,16 @@ mod test_runner {
     }
 
     #[test]
+    fn softsign_test() {
+        assert_eq!(softsign::exec(7.4), 0.8809524);
+        assert_eq!(softsign::exec(0.7), 0.41176468);
+        assert_eq!(softsign::exec(0.), 0.);
+        assert_eq!(softsign::exec(2.2), 0.6875);
+        assert_eq!(softsign::exec(-0.4), -0.2857143);
+        assert_eq!(softsign::exec(-1.9), -0.6551724);
+    }
+
+    #[test]
     fn sort_by_height_test() {
         let mut v = vec![-1, 150, 190, 170, -1, -1, 160, 180];
         let expected = vec![-1, 150, 160, 170, -1, -1, 180, 190];
@@ -3169,6 +3197,7 @@ pub enum Algo {
     Fibonacci,
     FileNaming,
     FindClosestValue,
+    FindSuccessor,
     FizzBuzz,
     GeometricProgression,
     GeometricalMean,
@@ -3269,6 +3298,7 @@ pub enum Algo {
     SmallestPositiveProduct,
     SpriteIndex,
     Softmax,
+    Softsign,
     SortByHeight,
     SortStack,
     SortedMatrixSearch,
@@ -3364,6 +3394,7 @@ impl Algo {
             s if s.to_lowercase() == "fibonacci" => Algo::Fibonacci,
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
             s if s.to_lowercase() == "find_closest_value" => Algo::FindClosestValue,
+            s if s.to_lowercase() == "find_successor" => Algo::FindSuccessor,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
@@ -3464,6 +3495,7 @@ impl Algo {
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
             s if s.to_lowercase() == "sprite_index" => Algo::SpriteIndex,
             s if s.to_lowercase() == "softmax" => Algo::Softmax,
+            s if s.to_lowercase() == "softsign" => Algo::Softsign,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
             s if s.to_lowercase() == "sort_stack" => Algo::SortStack,
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
