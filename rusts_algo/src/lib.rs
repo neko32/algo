@@ -64,6 +64,7 @@ pub mod guard_technique;
 pub mod hanoi_tower;
 pub mod harmonic_mean;
 pub mod helon_formula;
+pub mod human_and_cat_legs;
 pub mod image_stride;
 pub mod inorder_traversal;
 pub mod insertion_sort;
@@ -104,6 +105,7 @@ pub mod mode;
 pub mod monotonic_array;
 pub mod most_frequent_digit_sum;
 pub mod n_steps;
+pub mod nega_posi_inversion;
 pub mod next_greater_element;
 pub mod node_distance_k;
 pub mod num_of_clans;
@@ -258,8 +260,9 @@ pub mod runner {
     use group_by_key;
     use guard_technique;
     use hanoi_tower;
-    use helon_formula::helon_formula;
     use harmonic_mean;
+    use helon_formula::helon_formula;
+    use human_and_cat_legs;
     use jump_height_in_frames;
     use image_stride;
     use inorder_traversal;
@@ -300,6 +303,7 @@ pub mod runner {
     use monotonic_array;
     use most_frequent_digit_sum;
     use n_steps;
+    use nega_posi_inversion;
     use next_greater_element;
     use node_distance_k;
     use num_of_clans;
@@ -578,11 +582,14 @@ pub mod runner {
             Algo::HanoiTower => {
                 hanoi_tower::run();
             }
+            Algo::HarmonicMean => {
+                harmonic_mean::run();
+            }
             Algo::HelonFormula => {
                 helon_formula::run();
             }
-            Algo::HarmonicMean => {
-                harmonic_mean::run();
+            Algo::HumanAndCatlegs => {
+                human_and_cat_legs::run();
             }
             Algo::ImageStride => {
                 image_stride::run();
@@ -712,6 +719,9 @@ pub mod runner {
             }
             Algo::NSteps => {
                 n_steps::run();
+            }
+            Algo::NegaPosiInversion => {
+                nega_posi_inversion::run();
             }
             Algo::NumOfClans => {
                 num_of_clans::run();
@@ -1032,6 +1042,7 @@ mod test_runner {
     use crate::hanoi_tower;
     use crate::harmonic_mean;
     use crate::helon_formula::helon_formula;
+    use crate::human_and_cat_legs;
     use crate::image_stride;
     use crate::inorder_traversal;
     use crate::insertion_sort;
@@ -1073,6 +1084,7 @@ mod test_runner {
     use crate::monotonic_array;
     use crate::most_frequent_digit_sum;
     use crate::n_steps;
+    use crate::nega_posi_inversion;
     use crate::next_greater_element;
     use crate::node_distance_k;
     use crate::num_of_clans;
@@ -1779,6 +1791,12 @@ mod test_runner {
     }
 
     #[test]
+    fn human_and_cat_legs_test() {
+        assert_eq!(human_and_cat_legs::exec(6), vec![1, 3]);
+        assert_eq!(human_and_cat_legs::exec(2), vec![1]);
+    }
+
+    #[test]
     fn image_stride_test() {
         let (w, h) = (512, 512);
         let (x, y) = (120, 247);
@@ -1897,7 +1915,6 @@ mod test_runner {
         FPoint::new(3.5, 4.5447054), FPoint::new(4.0, 4.534286), FPoint::new(4.5, 4.4773445),
         FPoint::new(5.0, 4.368254), FPoint::new(5.5, 4.1871653), FPoint::new(6.0, 3.9),
         FPoint::new(6.5, 3.458455), FPoint::new(7.0, 2.8)];
-        
     }
 
     #[test]
@@ -2174,6 +2191,14 @@ mod test_runner {
     #[test]
     fn n_steps_test() {
         assert_eq!(n_steps::exec(4, 2), 5);
+    }
+
+    #[test]
+    fn nega_posi_inversion_test() {
+        assert_eq!(nega_posi_inversion::exec(72), 183);
+        assert_eq!(nega_posi_inversion::exec(0), 255);
+        assert_eq!(nega_posi_inversion::exec(255), 0);
+        assert_eq!(nega_posi_inversion::exec(128), 127);
     }
 
     #[test]
@@ -3206,8 +3231,9 @@ pub enum Algo {
     GroupByKey,
     GuardTechnique,
     HanoiTower,
-    HelonFormula,
     HarmonicMean,
+    HelonFormula,
+    HumanAndCatlegs,
     ImageStride,
     InOrderTraversal,
     InsertionSort,
@@ -3249,6 +3275,7 @@ pub enum Algo {
     MonotonicArray,
     MostFrequentDigitSum,
     NextGreaterElement,
+    NegaPosiInversion,
     NodeDistanceK,
     NSteps,
     NumberGrouping,
@@ -3403,8 +3430,9 @@ impl Algo {
             s if s.to_lowercase() == "group_by_key" => Algo::GroupByKey,
             s if s.to_lowercase() == "guard_technique" => Algo::GuardTechnique,
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
-            s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "harmonic_mean" => Algo::HarmonicMean,
+            s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
+            s if s.to_lowercase() == "human_cat_legs" => Algo::HumanAndCatlegs,
             s if s.to_lowercase() == "image_stride" => Algo::ImageStride,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "insertion_sort" => Algo::InsertionSort,
@@ -3446,6 +3474,7 @@ impl Algo {
             s if s.to_lowercase() == "monotonic_array" => Algo::MonotonicArray,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "n_steps" => Algo::NSteps,
+            s if s.to_lowercase() == "nega_posi_inversion" => Algo::NegaPosiInversion,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
             s if s.to_lowercase() == "node_distance_k" => Algo::NodeDistanceK,
             s if s.to_lowercase() == "num_of_clans" => Algo::NumOfClans,
