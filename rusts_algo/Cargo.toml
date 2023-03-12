@@ -19,4 +19,5 @@ num = "0.4.0"
 num_cpus = "1.13.1"
 predicates = "2.1.5"
 rand = "0.8.5"
+rust_decimal = "1.28.1"
 

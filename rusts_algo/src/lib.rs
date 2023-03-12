@@ -17,6 +17,7 @@ pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod capitalize;
+pub mod celcius_to_fahrenheit;
 pub mod code_breaker;
 pub mod century;
 pub mod char_count;
@@ -34,20 +35,24 @@ pub mod construct_square;
 pub mod contrast_check;
 pub mod cool_num_pair;
 pub mod cyclic_chars;
+pub mod cumsum_except_last;
 pub mod decode_reverse_poland;
 pub mod dectobin;
 pub mod deg_to_rad;
 pub mod diagonal;
 pub mod different_squares;
 pub mod different_value_pairs;
+pub mod dfs;
 pub mod document_build;
 pub mod euclidean;
 pub mod eval_tictactoe;
 pub mod even_num_sum;
 pub mod factorial;
+pub mod fahrenheit_to_celcius;
 pub mod fibonacci;
 pub mod file_naming;
 pub mod find_closest_value;
+pub mod find_successor;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
@@ -59,6 +64,7 @@ pub mod guard_technique;
 pub mod hanoi_tower;
 pub mod harmonic_mean;
 pub mod helon_formula;
+pub mod human_and_cat_legs;
 pub mod image_stride;
 pub mod inorder_traversal;
 pub mod insertion_sort;
@@ -80,6 +86,7 @@ pub mod lagrange_interpolation_polynominal;
 pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
+pub mod loc_by_line_angle;
 pub mod longest_pelindromic_substring;
 pub mod longest_substring_without_dupe;
 pub mod lower_upper_hinge;
@@ -98,12 +105,14 @@ pub mod mode;
 pub mod monotonic_array;
 pub mod most_frequent_digit_sum;
 pub mod n_steps;
+pub mod nega_posi_inversion;
 pub mod next_greater_element;
 pub mod node_distance_k;
 pub mod num_of_clans;
 pub mod num_of_paths;
 pub mod number_grouping;
 pub mod obtain_increasing_seq;
+pub mod octal_permission;
 pub mod octal_to_dec;
 pub mod oppsite_pos_in_circle;
 pub mod overlapping_intervals;
@@ -112,6 +121,7 @@ pub mod permutation;
 pub mod phone_mnemonic;
 pub mod prefix_sums;
 pub mod postorder_traversal;
+pub mod powerset;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod pseudo_rand;
@@ -145,6 +155,9 @@ pub mod singly_linked_list_copy;
 pub mod singly_linked_list_reverse;
 pub mod smallest_difference;
 pub mod smallest_positive_product;
+pub mod sprite_index;
+pub mod softmax;
+pub mod softsign;
 pub mod sort_by_height;
 pub mod sort_stack;
 pub mod sorted_matrix_search;
@@ -163,6 +176,7 @@ pub mod sum_of_squared_deviation;
 pub mod sunset_view;
 pub mod swap_sibling;
 pub mod tandem_repeat;
+pub mod task_assignment;
 pub mod three_number_sort;
 pub mod toggle_bit;
 pub mod topological_sort;
@@ -170,6 +184,7 @@ pub mod total_sum_with_n_num;
 pub mod three_sum;
 pub mod turn_commands;
 pub mod two_sum;
+pub mod unconstructiable_number;
 pub mod valid_parentheses;
 pub mod valid_starting_city;
 pub mod validate_three_nodes;
@@ -218,10 +233,12 @@ pub mod runner {
     use construct_square;
     use contrast_check;
     use cool_num_pair::cool_num_pair;
+    use cumsum_except_last;
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
     use dectobin::dectobin;
     use deg_to_rad;
+    use dfs;
     use diagonal::diagonal;
     use different_squares;
     use different_value_pairs;
@@ -230,9 +247,11 @@ pub mod runner {
     use eval_tictactoe;
     use even_num_sum::even_num_sum;
     use factorial;
+    use fahrenheit_to_celcius;
     use fibonacci;
     use file_naming;
     use find_closest_value;
+    use find_successor;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
     use geometrical_mean;
@@ -241,8 +260,9 @@ pub mod runner {
     use group_by_key;
     use guard_technique;
     use hanoi_tower;
-    use helon_formula::helon_formula;
     use harmonic_mean;
+    use helon_formula::helon_formula;
+    use human_and_cat_legs;
     use jump_height_in_frames;
     use image_stride;
     use inorder_traversal;
@@ -265,6 +285,7 @@ pub mod runner {
     use length_linked_list;
     use levenshtein_distance;
     use linked_list;
+    use loc_by_line_angle;
     use longest_pelindromic_substring;
     use longest_substring_without_dupe;
     use lower_upper_hinge;
@@ -282,12 +303,14 @@ pub mod runner {
     use monotonic_array;
     use most_frequent_digit_sum;
     use n_steps;
+    use nega_posi_inversion;
     use next_greater_element;
     use node_distance_k;
     use num_of_clans;
     use num_of_paths;
     use number_grouping;
     use obtain_increasing_seq;
+    use octal_permission;
     use octal_to_dec;
     use oppsite_pos_in_circle;
     use overlapping_intervals;
@@ -295,6 +318,7 @@ pub mod runner {
     use permutation;
     use phone_mnemonic;
     use postorder_traversal;
+    use powerset;
     use prefix_sums;
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
@@ -327,6 +351,9 @@ pub mod runner {
     use singly_linked_list_reverse;
     use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
+    use sprite_index;
+    use softmax;
+    use softsign;
     use sort_by_height;
     use sort_stack;
     use sorted_matrix_search;
@@ -346,6 +373,7 @@ pub mod runner {
     use sunset_view;
     use swap_sibling::swap_sibling;
     use tandem_repeat::tandem_repeat;
+    use task_assignment;
     use three_number_sort;
     use three_sum;
     use toggle_bit::toggle_bit;
@@ -353,6 +381,7 @@ pub mod runner {
     use total_sum_with_n_num;
     use turn_commands;
     use two_sum::two_sum;
+    use unconstructiable_number;
     use valid_parentheses;
     use valid_starting_city;
     use validate_three_nodes;
@@ -421,6 +450,9 @@ pub mod runner {
             Algo::Capitalize => {
                 capitalize::run();
             }
+            Algo::CelciusToFahrenheit => {
+                celcius_to_fahrenheit::run();
+            }
             Algo::Century => {
                 century::run();
             }
@@ -469,6 +501,9 @@ pub mod runner {
             Algo::CoolNumPair => {
                 cool_num_pair::run();
             }
+            Algo::CumsumExceptLast => {
+                cumsum_except_last::run();
+            }
             Algo::CyclicChars => {
                 cyclic_chars::run();
             }
@@ -480,6 +515,9 @@ pub mod runner {
             }
             Algo::DegToRad => {
                 deg_to_rad::run();
+            }
+            Algo::DFS => {
+                dfs::run();
             }
             Algo::Diagonal => {
                 diagonal::run();
@@ -505,6 +543,9 @@ pub mod runner {
             Algo::Factorial => {
                 factorial::run();
             }
+            Algo::FahrenheitToCelcius => {
+                fahrenheit_to_celcius::run();
+            }
             Algo::Fibonacci => {
                 fibonacci::run();
             }
@@ -513,6 +554,9 @@ pub mod runner {
             }
             Algo::FindClosestValue => {
                 find_closest_value::run();
+            }
+            Algo::FindSuccessor => {
+                find_successor::run();
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
@@ -538,11 +582,14 @@ pub mod runner {
             Algo::HanoiTower => {
                 hanoi_tower::run();
             }
+            Algo::HarmonicMean => {
+                harmonic_mean::run();
+            }
             Algo::HelonFormula => {
                 helon_formula::run();
             }
-            Algo::HarmonicMean => {
-                harmonic_mean::run();
+            Algo::HumanAndCatlegs => {
+                human_and_cat_legs::run();
             }
             Algo::ImageStride => {
                 image_stride::run();
@@ -610,6 +657,9 @@ pub mod runner {
             Algo::LevenShteinDistance => {
                 levenshtein_distance::run();
             }
+            Algo::LocByLineAngle => {
+                loc_by_line_angle::run();
+            }
             Algo::LongestPelindromicSubstring => {
                 longest_pelindromic_substring::run();
             }
@@ -670,6 +720,9 @@ pub mod runner {
             Algo::NSteps => {
                 n_steps::run();
             }
+            Algo::NegaPosiInversion => {
+                nega_posi_inversion::run();
+            }
             Algo::NumOfClans => {
                 num_of_clans::run();
             }
@@ -681,6 +734,9 @@ pub mod runner {
             }
             Algo::ObtainIncreasingSeq => {
                 obtain_increasing_seq::run();
+            }
+            Algo::OctalPermission => {
+                octal_permission::run();
             }
             Algo::OctalToDec => {
                 octal_to_dec::run();
@@ -702,6 +758,9 @@ pub mod runner {
             }
             Algo::PostOrderTraversal => {
                 postorder_traversal::run();
+            }
+            Algo::PowerSet => {
+                powerset::run();
             }
             Algo::PrefixSums => {
                 prefix_sums::run();
@@ -799,6 +858,15 @@ pub mod runner {
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
+            Algo::SpriteIndex => {
+                sprite_index::run();
+            }
+            Algo::Softmax => {
+                softmax::run();
+            }
+            Algo::Softsign => {
+                softsign::run();
+            }
             Algo::SortByHeight => {
                 sort_by_height::run();
             }
@@ -854,6 +922,7 @@ pub mod runner {
                 swap_sibling::run();
             }
             Algo::TandemRepeat => tandem_repeat::run(),
+            Algo::TaskAssignment => task_assignment::run(),
             Algo::ThreeNumberSort => {
                 three_number_sort::run();
             }
@@ -874,6 +943,9 @@ pub mod runner {
             }
             Algo::TwoSum => {
                 two_sum::run();
+            }
+            Algo::UnconstructiableNumber => {
+                unconstructiable_number::run();
             }
             Algo::ValidateThreeNodes => {
                 validate_three_nodes::run();
@@ -924,6 +996,7 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::capitalize;
+    use crate::celcius_to_fahrenheit;
     use crate::century::century;
     use crate::char_count;
     use crate::chars_appearing_twice;
@@ -940,10 +1013,12 @@ mod test_runner {
     use crate::construct_square;
     use crate::contrast_check;
     use crate::cool_num_pair::cool_num_pair;
+    use crate::cumsum_except_last;
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
     use crate::dectobin::dectobin;
     use crate::deg_to_rad;
+    use crate::dfs;
     use crate::diagonal::diagonal;
     use crate::different_squares;
     use crate::different_value_pairs;
@@ -952,9 +1027,11 @@ mod test_runner {
     use crate::eval_tictactoe;
     use crate::even_num_sum::even_num_sum;
     use crate::factorial;
+    use crate::fahrenheit_to_celcius;
     use crate::fibonacci;
     use crate::file_naming;
     use crate::find_closest_value;
+    use crate::find_successor;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
     use crate::geometrical_mean;
@@ -965,6 +1042,7 @@ mod test_runner {
     use crate::hanoi_tower;
     use crate::harmonic_mean;
     use crate::helon_formula::helon_formula;
+    use crate::human_and_cat_legs;
     use crate::image_stride;
     use crate::inorder_traversal;
     use crate::insertion_sort;
@@ -986,6 +1064,7 @@ mod test_runner {
     use crate::least_lsd;
     use crate::length_linked_list;
     use crate::levenshtein_distance;
+    use crate::loc_by_line_angle;
     use crate::linked_list;
     use crate::longest_pelindromic_substring;
     use crate::longest_substring_without_dupe;
@@ -1005,12 +1084,14 @@ mod test_runner {
     use crate::monotonic_array;
     use crate::most_frequent_digit_sum;
     use crate::n_steps;
+    use crate::nega_posi_inversion;
     use crate::next_greater_element;
     use crate::node_distance_k;
     use crate::num_of_clans;
     use crate::num_of_paths;
     use crate::number_grouping;
     use crate::obtain_increasing_seq;
+    use crate::octal_permission;
     use crate::octal_to_dec;
     use crate::oppsite_pos_in_circle;
     use crate::overlapping_intervals;
@@ -1018,6 +1099,7 @@ mod test_runner {
     use crate::permutation;
     use crate::phone_mnemonic;
     use crate::postorder_traversal;
+    use crate::powerset;
     use crate::prefix_sums;
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
@@ -1051,6 +1133,9 @@ mod test_runner {
     use crate::singly_linked_list_reverse;
     use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::sprite_index;
+    use crate::softmax;
+    use crate::softsign;
     use crate::sort_by_height;
     use crate::sort_stack;
     use crate::sorted_matrix_search;
@@ -1070,6 +1155,7 @@ mod test_runner {
     use crate::sunset_view;
     use crate::swap_sibling::swap_sibling;
     use crate::tandem_repeat::tandem_repeat;
+    use crate::task_assignment;
     use crate::three_number_sort;
     use crate::three_sum;
     use crate::toggle_bit::toggle_bit;
@@ -1077,6 +1163,7 @@ mod test_runner {
     use crate::total_sum_with_n_num;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
+    use crate::unconstructiable_number;
     use crate::valid_parentheses;
     use crate::valid_starting_city;
     use crate::validate_three_nodes;
@@ -1088,7 +1175,6 @@ mod test_runner {
     use float_cmp::approx_eq;
     use hashmap_macro::hashmap;
     use num::integer::gcd;
-    use predicates::prelude::*;
     use std::{
         collections::{BTreeSet, HashMap, HashSet, VecDeque},
     };
@@ -1262,6 +1348,14 @@ mod test_runner {
         assert_eq!(capitalize::exec("ho ho ho"), "Ho ho ho".to_string());
         assert_eq!(capitalize::exec("HO HO HO"), "Ho ho ho".to_string());
         assert_eq!(capitalize::exec("hO Ho hO"), "Ho ho ho".to_string());
+    }
+
+    #[test]
+    fn celcius_to_fahrenheit_test() {
+        assert_eq!(celcius_to_fahrenheit::exec(25.), 77.);
+        assert_eq!(celcius_to_fahrenheit::exec(12.), 53.6);
+        assert_eq!(celcius_to_fahrenheit::exec(0.), 32.);
+        assert_eq!(celcius_to_fahrenheit::exec(-3.), 26.6);
     }
 
     #[test]
@@ -1453,6 +1547,11 @@ mod test_runner {
     }
 
     #[test]
+    fn cumsum_except_last_test() {
+        assert_eq!(cumsum_except_last::exec(&[1,2,3,4,5]), 10);
+    }
+
+    #[test]
     fn cyclic_chars_test() {
         let n = 7;
         let s = "ABC";
@@ -1472,6 +1571,33 @@ mod test_runner {
         assert_eq!(deg_to_rad::exec(90.), 1.5707964);
         assert_eq!(deg_to_rad::exec(45.), 0.7853982);
         assert_eq!(deg_to_rad::exec(37.), 0.6457718);
+    }
+
+    #[test]
+    fn dfs_test() {
+        let node_i = MultiChildTreeNode::new("I".to_string());
+        let node_j = MultiChildTreeNode::new("J".to_string());
+        let node_k = MultiChildTreeNode::new("K".to_string());
+        let node_e = MultiChildTreeNode::new("E".to_string());
+        let mut node_g = MultiChildTreeNode::new("G".to_string());
+        let mut node_f = MultiChildTreeNode::new("F".to_string());
+        let node_h = MultiChildTreeNode::new("H".to_string());
+        let mut node_b = MultiChildTreeNode::new("B".to_string());
+        let node_c = MultiChildTreeNode::new("C".to_string());
+        let mut node_d = MultiChildTreeNode::new("D".to_string());
+        let mut node_a = MultiChildTreeNode::new("A".to_string());
+        node_f.children = Some(vec![Box::new(node_i), Box::new(node_j)]);
+        node_g.children = Some(vec![Box::new(node_k)]);
+        node_b.children = Some(vec![Box::new(node_e), Box::new(node_f)]);
+        node_d.children = Some(vec![Box::new(node_g), Box::new(node_h)]);
+        node_a.children = Some(vec![Box::new(node_b), Box::new(node_c), Box::new(node_d)]);
+
+        let mut buf:Vec<String> = Vec::new();
+        dfs::exec(&Some(Box::new(node_a)), &mut buf);
+        let expected_pre = vec!["A", "B", "E", "F", "I", "J", "C", "D", "G", "K", "H"];
+        let expected: Vec<String>  = expected_pre.into_iter().map(|s|s.to_string()).collect();
+        assert_eq!(buf, expected);
+        
     }
 
     #[test]
@@ -1539,6 +1665,18 @@ mod test_runner {
     }
 
     #[test]
+    fn fahrenheit_to_celcius_test() {
+        let c1 = fahrenheit_to_celcius::exec(77.).round();
+        assert_eq!(c1, 25.);
+        let c2 = fahrenheit_to_celcius::exec(53.6).round();
+        assert_eq!(c2, 12.);
+        let c3 = fahrenheit_to_celcius::exec(32.0).round();
+        assert_eq!(c3, 0.);
+        let c4 = fahrenheit_to_celcius::exec(26.6).round();
+        assert_eq!(c4, -3.);
+    }
+
+    #[test]
     fn file_naming_test() {
         let files = vec!["doc", "doc", "image", "doc(1)", "doc"];
         let expected = vec!["doc".to_string(), "doc(1)".to_string(), "image".to_string(), "doc(1)(1)".to_string(), "doc(2)".to_string()];
@@ -1555,6 +1693,13 @@ mod test_runner {
     fn find_closest_value_approx_match_test() {
         let r = build_tree(&vec![10, 5, 2, 1, 15, 13, 14, 22]);
         assert_eq!(find_closest_value::exec(r, 12), 13);
+    }
+
+    #[test]
+    fn find_successor_test() {
+        let n = build_tree(&vec![10, 5, 3, 7, 12, 2]);
+        let r = find_successor::exec(*n, 7);
+        assert!(r.is_some() && r.unwrap() == 10);
     }
 
     #[test]
@@ -1643,6 +1788,12 @@ mod test_runner {
         let expect = 14.6969385;
         let rez = approx_eq!(f32, expect, helon_formula::exec(a, b, c), ulps = 2);
         assert!(rez);
+    }
+
+    #[test]
+    fn human_and_cat_legs_test() {
+        assert_eq!(human_and_cat_legs::exec(6), vec![1, 3]);
+        assert_eq!(human_and_cat_legs::exec(2), vec![1]);
     }
 
     #[test]
@@ -1764,7 +1915,6 @@ mod test_runner {
         FPoint::new(3.5, 4.5447054), FPoint::new(4.0, 4.534286), FPoint::new(4.5, 4.4773445),
         FPoint::new(5.0, 4.368254), FPoint::new(5.5, 4.1871653), FPoint::new(6.0, 3.9),
         FPoint::new(6.5, 3.458455), FPoint::new(7.0, 2.8)];
-        
     }
 
     #[test]
@@ -1856,6 +2006,12 @@ mod test_runner {
         let v = &[1, 2, 3, 4, 5];
         let expected = vec![1, 2, 3, 4, 5];
         assert_eq!(linked_list::exec(v), expected);
+    }
+
+    #[test]
+    fn loc_by_line_angle_test() {
+        assert_eq!(loc_by_line_angle::exec(15., 90.), 90.);
+        assert_eq!(loc_by_line_angle::exec(15., 45.), 48.63961);
     }
 
     #[test]
@@ -2038,6 +2194,14 @@ mod test_runner {
     }
 
     #[test]
+    fn nega_posi_inversion_test() {
+        assert_eq!(nega_posi_inversion::exec(72), 183);
+        assert_eq!(nega_posi_inversion::exec(0), 255);
+        assert_eq!(nega_posi_inversion::exec(255), 0);
+        assert_eq!(nega_posi_inversion::exec(128), 127);
+    }
+
+    #[test]
     fn next_greater_element_test() {
         let a = &[2, 5, -3, -4, 6, 7, 2];
         let expected = vec![5, 6, 6, 6, 7, -1, 5];
@@ -2097,6 +2261,17 @@ mod test_runner {
     fn obtain_increasing_seq_already_done_case_test() {
         let v = [1, 2, 3];
         assert_eq!(obtain_increasing_seq::exec(&v), 0);
+    }
+
+    #[test]
+    fn octal_permission_test() {
+
+        let expected:HashMap<String, String> = hashmap!(
+            "Owner".to_string() => "rwx".to_string(),
+            "Group".to_string() => "r".to_string(),
+            "Other".to_string() => "w".to_string()
+        );
+        assert_eq!(octal_permission::exec("742"), expected);
     }
 
     #[test]
@@ -2183,6 +2358,15 @@ mod test_runner {
         let rez = postorder_traversal::exec(vec![5, 9, 2, 10, 1, 4]);
         let expected = vec![1, 4, 2, 10, 9, 5];
         assert_eq!(rez, expected);
+    }
+
+    #[test]
+    fn powerset_test() {
+        let expected:Vec<Vec<i32>> = vec![vec![], vec![1], vec![2], vec![3], vec![1, 2], vec![1, 3], vec![2, 3], vec![1, 2, 3]];
+        let rez = powerset::exec(vec![1, 2, 3]);
+        for r in rez {
+            assert!(expected.contains(&r));
+        }
     }
 
     #[test]
@@ -2479,6 +2663,33 @@ mod test_runner {
     }
 
     #[test]
+    fn sprite_index_test() {
+        assert_eq!(sprite_index::exec(0, 40, 4), 0);
+        assert_eq!(sprite_index::exec(8, 40, 4), 0);
+        assert_eq!(sprite_index::exec(12, 40, 4), 1);
+        assert_eq!(sprite_index::exec(23, 40, 4), 2);
+        assert_eq!(sprite_index::exec(39, 40, 4), 3);
+        assert_eq!(sprite_index::exec(40, 40, 4), 0);
+    }
+
+    #[test]
+    fn softmax_test() {
+        let x = vec![1.6, -2.3, 0.2, 3.4, -1.7, 0.5];
+        let expected = vec![0.13, 0.003, 0.032, 0.787, 0.005, 0.043];
+        assert_eq!(softmax::exec(x), expected);
+    }
+
+    #[test]
+    fn softsign_test() {
+        assert_eq!(softsign::exec(7.4), 0.8809524);
+        assert_eq!(softsign::exec(0.7), 0.41176468);
+        assert_eq!(softsign::exec(0.), 0.);
+        assert_eq!(softsign::exec(2.2), 0.6875);
+        assert_eq!(softsign::exec(-0.4), -0.2857143);
+        assert_eq!(softsign::exec(-1.9), -0.6551724);
+    }
+
+    #[test]
     fn sort_by_height_test() {
         let mut v = vec![-1, 150, 190, 170, -1, -1, 160, 180];
         let expected = vec![-1, 150, 160, 170, -1, -1, 180, 190];
@@ -2635,6 +2846,21 @@ mod test_runner {
     fn tandem_repeat_case1() {
         let c = "CatCat".to_string();
         assert!(tandem_repeat::exec(c));
+    }
+
+    #[test]
+    fn task_assignment_test() {
+        let k = 3;
+        let t = vec![1, 3, 5, 3, 1, 4];
+        let expected1 = vec![(0, 2), (2, 0), (2, 4), (4, 2)];
+        let expected2 = vec![(4, 5), (5, 4), (0, 5), (5, 0)];
+        let expected3 = vec![(1, 3), (3, 1)];
+        let expected = vec![expected1, expected2, expected3];
+        let rez = task_assignment::exec(k, t);
+        for (i, r) in rez.iter().enumerate() {
+            println!("{:?} in {:?}?", r, expected[i]);
+            assert!(expected[i].contains(r));
+        }
     }
 
     #[test]
@@ -2866,6 +3092,12 @@ mod test_runner {
     }
 
     #[test]
+    fn unconstructiable_number_test() {
+        let mut v = [5, 7, 1, 1, 2, 3, 22];
+        assert_eq!(unconstructiable_number::exec(&mut v), 20);
+    }
+
+    #[test]
     fn valid_parentheses_test() {
         assert_eq!(valid_parentheses::exec("{[[((()))]]}"), true);
         assert_eq!(valid_parentheses::exec("{[neko]}"), true);
@@ -2954,6 +3186,7 @@ pub enum Algo {
     BuildPalindrome,
     CamelCase,
     Capitalize,
+    CelciusToFahrenheit,
     Century,
     CaesarCrypt,
     CharCount,
@@ -2971,10 +3204,12 @@ pub enum Algo {
     ConstructSquare,
     ContrastCheck,
     CoolNumPair,
+    CumsumExceptLast,
     CyclicChars,
     DecodeReversePoland,
     DecToBin,
     DegToRad,
+    DFS,
     Diagonal,
     DifferentSquares,
     DifferentValuePairs,
@@ -2983,9 +3218,11 @@ pub enum Algo {
     EvenNumSum,
     Euclidean,
     Factorial,
+    FahrenheitToCelcius,
     Fibonacci,
     FileNaming,
     FindClosestValue,
+    FindSuccessor,
     FizzBuzz,
     GeometricProgression,
     GeometricalMean,
@@ -2994,8 +3231,9 @@ pub enum Algo {
     GroupByKey,
     GuardTechnique,
     HanoiTower,
-    HelonFormula,
     HarmonicMean,
+    HelonFormula,
+    HumanAndCatlegs,
     ImageStride,
     InOrderTraversal,
     InsertionSort,
@@ -3018,6 +3256,7 @@ pub enum Algo {
     LengthOfLinkedList,
     LevenShteinDistance,
     LinkedList,
+    LocByLineAngle,
     LongestPelindromicSubstring,
     LongestSubstringWithoutDupe,
     LowerUpperHinge,
@@ -3036,12 +3275,14 @@ pub enum Algo {
     MonotonicArray,
     MostFrequentDigitSum,
     NextGreaterElement,
+    NegaPosiInversion,
     NodeDistanceK,
     NSteps,
     NumberGrouping,
     NumOfClans,
     NumOfPaths,
     ObtainIncreasingSeq,
+    OctalPermission,
     OctalToDec,
     OppositePosInCircle,
     OverlappingIntervals,
@@ -3049,6 +3290,7 @@ pub enum Algo {
     Permutation,
     PhoneMnemonic,
     PostOrderTraversal,
+    PowerSet,
     PrefixSums,
     PreOrderTraversal,
     ProductArraySort,
@@ -3081,6 +3323,9 @@ pub enum Algo {
     SinglyLinkedListReverse,
     SmallestDifference,
     SmallestPositiveProduct,
+    SpriteIndex,
+    Softmax,
+    Softsign,
     SortByHeight,
     SortStack,
     SortedMatrixSearch,
@@ -3100,6 +3345,7 @@ pub enum Algo {
     SunsetView,
     SwapSibling,
     TandemRepeat,
+    TaskAssignment,
     ThreeNumberSort,
     ThreeSum,
     ToggleBit,
@@ -3107,6 +3353,7 @@ pub enum Algo {
     TotalSumWithNNums,
     TurnCommands,
     TwoSum,
+    UnconstructiableNumber,
     ValidateThreeNodes,
     ValidParentheses,
     ValidStartingCity,
@@ -3139,6 +3386,7 @@ impl Algo {
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "capitalize" => Algo::Capitalize,
+            s if s.to_lowercase() == "celcius_to_fahrenheit" => Algo::CelciusToFahrenheit,
             s if s.to_lowercase() == "century" => Algo::Century,
             s if s.to_lowercase() == "char_count" => Algo::CharCount,
             s if s.to_lowercase() == "chars_appearing_twice" => Algo::CharsAppearingTwice,
@@ -3155,10 +3403,12 @@ impl Algo {
             s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "contrast_check" => Algo::ContrastCheck,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
+            s if s.to_lowercase() == "cumsum_except_last" => Algo::CumsumExceptLast,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
             s if s.to_lowercase() == "dectobin" => Algo::DecToBin,
             s if s.to_lowercase() == "deg_to_rad" => Algo::DegToRad,
+            s if s.to_lowercase() == "dfs" => Algo::DFS,
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
             s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
             s if s.to_lowercase() == "different_value_pairs" => Algo::DifferentValuePairs,
@@ -3167,9 +3417,11 @@ impl Algo {
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
             s if s.to_lowercase() == "euclidean" => Algo::Euclidean,
             s if s.to_lowercase() == "factorial" => Algo::Factorial,
+            s if s.to_lowercase() == "fahrenheit_to_celcius" => Algo::FahrenheitToCelcius,
             s if s.to_lowercase() == "fibonacci" => Algo::Fibonacci,
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
             s if s.to_lowercase() == "find_closest_value" => Algo::FindClosestValue,
+            s if s.to_lowercase() == "find_successor" => Algo::FindSuccessor,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
@@ -3178,8 +3430,9 @@ impl Algo {
             s if s.to_lowercase() == "group_by_key" => Algo::GroupByKey,
             s if s.to_lowercase() == "guard_technique" => Algo::GuardTechnique,
             s if s.to_lowercase() == "hanoi_tower" => Algo::HanoiTower,
-            s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
             s if s.to_lowercase() == "harmonic_mean" => Algo::HarmonicMean,
+            s if s.to_lowercase() == "helon_formula" => Algo::HelonFormula,
+            s if s.to_lowercase() == "human_cat_legs" => Algo::HumanAndCatlegs,
             s if s.to_lowercase() == "image_stride" => Algo::ImageStride,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "insertion_sort" => Algo::InsertionSort,
@@ -3202,6 +3455,7 @@ impl Algo {
             s if s.to_lowercase() == "length_of_linkedlist" => Algo::LengthOfLinkedList,
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
+            s if s.to_lowercase() == "loc_by_line_angle" => Algo::LocByLineAngle,
             s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
             s if s.to_lowercase() == "longest_substring_without_dupe" => Algo::LongestSubstringWithoutDupe,
             s if s.to_lowercase() == "lower_upper_hinge" => Algo::LowerUpperHinge,
@@ -3220,12 +3474,14 @@ impl Algo {
             s if s.to_lowercase() == "monotonic_array" => Algo::MonotonicArray,
             s if s.to_lowercase() == "most_frequent_digit_sum" => Algo::MostFrequentDigitSum,
             s if s.to_lowercase() == "n_steps" => Algo::NSteps,
+            s if s.to_lowercase() == "nega_posi_inversion" => Algo::NegaPosiInversion,
             s if s.to_lowercase() == "next_greater_element" => Algo::NextGreaterElement,
             s if s.to_lowercase() == "node_distance_k" => Algo::NodeDistanceK,
             s if s.to_lowercase() == "num_of_clans" => Algo::NumOfClans,
             s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
+            s if s.to_lowercase() == "octal_permission" => Algo::OctalPermission,
             s if s.to_lowercase() == "octal_to_dec" => Algo::OctalToDec,
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "overlapping_intervals" => Algo::OverlappingIntervals,
@@ -3233,6 +3489,7 @@ impl Algo {
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
             s if s.to_lowercase() == "postorder_traversal" => Algo::PostOrderTraversal,
+            s if s.to_lowercase() == "powerset" => Algo::PowerSet,
             s if s.to_lowercase() == "prefix_sums" => Algo::PrefixSums,
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
@@ -3265,6 +3522,9 @@ impl Algo {
             s if s.to_lowercase() == "singly_linked_list_reverse" => Algo::SinglyLinkedListReverse,
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
+            s if s.to_lowercase() == "sprite_index" => Algo::SpriteIndex,
+            s if s.to_lowercase() == "softmax" => Algo::Softmax,
+            s if s.to_lowercase() == "softsign" => Algo::Softsign,
             s if s.to_lowercase() == "sort_by_height" => Algo::SortByHeight,
             s if s.to_lowercase() == "sort_stack" => Algo::SortStack,
             s if s.to_lowercase() == "sorted_matrix_search" => Algo::SortedMatrixSearch,
@@ -3284,6 +3544,7 @@ impl Algo {
             s if s.to_lowercase() == "sunset_view" => Algo::SunsetView,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
+            s if s.to_lowercase() == "task_assignment" => Algo::TaskAssignment,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
             s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
@@ -3291,6 +3552,7 @@ impl Algo {
             s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
+            s if s.to_lowercase() == "unconstructiable_number" => Algo::UnconstructiableNumber,
             s if s.to_lowercase() == "valid_parentheses" => Algo::ValidParentheses,
             s if s.to_lowercase() == "valid_starting_city" => Algo::ValidStartingCity,
             s if s.to_lowercase() == "validate_three_nodes" => Algo::ValidateThreeNodes,
