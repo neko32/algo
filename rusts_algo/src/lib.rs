@@ -143,6 +143,7 @@ pub mod rgb_to_bgr;
 pub mod rgb_to_yuv;
 pub mod rightmost_diffbit;
 pub mod rightmost_samebit;
+pub mod ring_buffer;
 pub mod runlength;
 pub mod same_bst;
 pub mod selection_sort;
@@ -342,6 +343,7 @@ pub mod runner {
     use rgb_to_yuv;
     use rightmost_diffbit::rightmost_diffbit;
     use rightmost_samebit::rightmost_samebit;
+    use ring_buffer;
     use runlength::runlength;
     use same_bst;
     use shapearea;
@@ -830,6 +832,9 @@ pub mod runner {
             Algo::RightMostSameBit => {
                 rightmost_samebit::run();
             }
+            Algo::RingBuffer => {
+                ring_buffer::run();
+            }
             Algo::RunLength => {
                 runlength::run();
             }
@@ -1127,6 +1132,7 @@ mod test_runner {
     use crate::rgb_to_yuv;
     use crate::rightmost_diffbit::rightmost_diffbit;
     use crate::rightmost_samebit::rightmost_samebit;
+    use crate::ring_buffer;
     use crate::runlength::runlength;
     use crate::same_bst;
     use crate::selection_sort::selection_sort;
@@ -2548,6 +2554,14 @@ mod test_runner {
     }
 
     #[test]
+    fn ring_buffer_test() {
+        let r = ring_buffer::exec(100, 7);
+        let expected:Vec<i32> = (93..100).collect();
+        assert_eq!(r.len(), 7);
+        r.into_iter().for_each(|v|assert!(expected.contains(&v)));
+    }
+
+    #[test]
     fn runlength_test1() {
         let s = "AAAAAAAAAAAA".to_string();
         let rez = runlength::exec(s);
@@ -3324,6 +3338,7 @@ pub enum Algo {
     RgbToYuv,
     RightMostDiffBit,
     RightMostSameBit,
+    RingBuffer,
     RunLength,
     SameBST,
     ShapeArea,
@@ -3524,6 +3539,7 @@ impl Algo {
             s if s.to_lowercase() == "rgb_to_yuv" => Algo::RgbToYuv,
             s if s.to_lowercase() == "rightmost_diffbit" => Algo::RightMostDiffBit,
             s if s.to_lowercase() == "rightmost_samebit" => Algo::RightMostSameBit,
+            s if s.to_lowercase() == "ring_buffer" => Algo::RingBuffer,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
             s if s.to_lowercase() == "same_bst" => Algo::SameBST,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
