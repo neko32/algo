@@ -52,6 +52,7 @@ pub mod fahrenheit_to_celcius;
 pub mod fibonacci;
 pub mod file_naming;
 pub mod find_closest_value;
+pub mod find_max_val_thread;
 pub mod find_successor;
 pub mod fizzbuzz;
 pub mod geometric_progression;
@@ -253,6 +254,7 @@ pub mod runner {
     use fibonacci;
     use file_naming;
     use find_closest_value;
+    use find_max_val_thread;
     use find_successor;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
@@ -558,6 +560,9 @@ pub mod runner {
             }
             Algo::FindClosestValue => {
                 find_closest_value::run();
+            }
+            Algo::FindMaxValThread => {
+                find_max_val_thread::run();
             }
             Algo::FindSuccessor => {
                 find_successor::run();
@@ -1041,6 +1046,7 @@ mod test_runner {
     use crate::fibonacci;
     use crate::file_naming;
     use crate::find_closest_value;
+    use crate::find_max_val_thread;
     use crate::find_successor;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
@@ -1705,6 +1711,16 @@ mod test_runner {
     fn find_closest_value_approx_match_test() {
         let r = build_tree(&vec![10, 5, 2, 1, 15, 13, 14, 22]);
         assert_eq!(find_closest_value::exec(r, 12), 13);
+    }
+
+    #[test]
+    fn find_max_val_thread_test() {
+
+        assert_eq!(find_max_val_thread::exec(&[72, 30, 1, 24, 9, 8, 132, -32, 50, 4]), 132);
+        assert_eq!(find_max_val_thread::exec(&[22]), 22);
+        assert_eq!(find_max_val_thread::exec(&[22, 72]), 72);
+        assert_eq!(find_max_val_thread::exec(&[30, 10, 20]), 30);
+        assert_eq!(find_max_val_thread::exec(&[40, 10, 50, 90, 10]), 90);
     }
 
     #[test]
@@ -3247,6 +3263,7 @@ pub enum Algo {
     Fibonacci,
     FileNaming,
     FindClosestValue,
+    FindMaxValThread,
     FindSuccessor,
     FizzBuzz,
     GeometricProgression,
@@ -3448,6 +3465,7 @@ impl Algo {
             s if s.to_lowercase() == "fibonacci" => Algo::Fibonacci,
             s if s.to_lowercase() == "file_naming" => Algo::FileNaming,
             s if s.to_lowercase() == "find_closest_value" => Algo::FindClosestValue,
+            s if s.to_lowercase() == "find_max_val_thread" => Algo::FindMaxValThread,
             s if s.to_lowercase() == "find_successor" => Algo::FindSuccessor,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
