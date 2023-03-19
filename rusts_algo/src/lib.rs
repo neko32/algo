@@ -78,6 +78,7 @@ pub mod jump_height_in_frames;
 pub mod kadane;
 pub mod knapsack;
 pub mod kth_element_in_tree;
+pub mod l_r_value_sum_combo;
 pub mod lcs;
 pub mod largest_adjacent_product;
 pub mod largest_number;
@@ -184,6 +185,7 @@ pub mod task_assignment;
 pub mod three_number_sort;
 pub mod toggle_bit;
 pub mod topological_sort;
+pub mod total_depth_sum_of_tree;
 pub mod total_sum_with_n_num;
 pub mod three_sum;
 pub mod turn_commands;
@@ -280,6 +282,7 @@ pub mod runner {
     use kadane::kadane;
     use knapsack;
     use kth_element_in_tree;
+    use l_r_value_sum_combo;
     use lagrange_interpolation_polynominal;
     use largest_adjacent_product;
     use largest_number;
@@ -386,6 +389,7 @@ pub mod runner {
     use three_sum;
     use toggle_bit::toggle_bit;
     use topological_sort;
+    use total_depth_sum_of_tree;
     use total_sum_with_n_num;
     use turn_commands;
     use two_sum::two_sum;
@@ -683,6 +687,9 @@ pub mod runner {
             Algo::LowerUpperHinge => {
                 lower_upper_hinge::run();
             }
+            Algo::LRValueSumCombo => {
+                l_r_value_sum_combo::run();
+            }
             Algo::MaxPathSum => {
                 max_path_sum::run();
             }
@@ -955,6 +962,9 @@ pub mod runner {
             Algo::TopologicalSort => {
                 topological_sort::run();
             }
+            Algo::TotalDepthSumOfTree => {
+                total_depth_sum_of_tree::run();
+            }
             Algo::TotalSumWithNNums => {
                 total_sum_with_n_num::run();
             }
@@ -1076,6 +1086,7 @@ mod test_runner {
     use crate::kadane::kadane;
     use crate::knapsack;
     use crate::kth_element_in_tree;
+    use crate::l_r_value_sum_combo;
     use crate::lagrange_interpolation_polynominal;
     use crate::largest_adjacent_product;
     use crate::largest_number;
@@ -1184,6 +1195,7 @@ mod test_runner {
     use crate::three_sum;
     use crate::toggle_bit::toggle_bit;
     use crate::topological_sort;
+    use crate::total_depth_sum_of_tree;
     use crate::total_sum_with_n_num;
     use crate::turn_commands;
     use crate::two_sum::two_sum;
@@ -1937,6 +1949,13 @@ mod test_runner {
         let n = build_tree(&v);
         let rez = kth_element_in_tree::exec(n, 3);
         assert_eq!(rez, 17);
+    }
+
+    #[test]
+    fn l_r_value_sum_combo_test() {
+        assert_eq!(l_r_value_sum_combo::exec(6, 4, 2), 2);
+        assert_eq!(l_r_value_sum_combo::exec(6, 2, 4), 2);
+        assert_eq!(l_r_value_sum_combo::exec(7, 2, 4), 1);
     }
 
     #[test]
@@ -2935,6 +2954,13 @@ mod test_runner {
     }
 
     #[test]
+    fn total_depth_sum_of_tree_test() {
+
+        let node = build_tree(&vec![50, 20, 100, 10, 30, 80, 150, 5, 15]);
+        assert_eq!(total_depth_sum_of_tree::exec(&node), 16);
+    }
+
+    #[test]
     fn total_sum_with_n_num_test() {
         let a = &[2, 3, 4, 5];
         let target = 14;
@@ -3315,6 +3341,7 @@ pub enum Algo {
     LongestPelindromicSubstring,
     LongestSubstringWithoutDupe,
     LowerUpperHinge,
+    LRValueSumCombo,
     MaxPathSum,
     MaxSiblingProduct,
     MaxSubSetSum,
@@ -3407,6 +3434,7 @@ pub enum Algo {
     ThreeSum,
     ToggleBit,
     TopologicalSort,
+    TotalDepthSumOfTree,
     TotalSumWithNNums,
     TurnCommands,
     TwoSum,
@@ -3503,6 +3531,7 @@ impl Algo {
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
             s if s.to_lowercase() == "knapsack" => Algo::Knapsack,
             s if s.to_lowercase() == "kth_element_in_tree" => Algo::KthElementInTree,
+            s if s.to_lowercase() == "l_r_value_sum_combo" => Algo::LRValueSumCombo,
             s if s.to_lowercase() == "lagrange_interpolation_polynominal" => Algo::LagrangeInterpolationPolynominal,
             s if s.to_lowercase() == "largest_adjacent_product" => Algo::LargestAdjacentProduct,
             s if s.to_lowercase() == "largest_number" => Algo::LargestNumber,
@@ -3610,6 +3639,7 @@ impl Algo {
             s if s.to_lowercase() == "three_sum" => Algo::ThreeSum,
             s if s.to_lowercase() == "toggle_bit" => Algo::ToggleBit,
             s if s.to_lowercase() == "topological_sort" => Algo::TopologicalSort,
+            s if s.to_lowercase() == "total_depth_sum_of_tree" => Algo::TotalDepthSumOfTree,
             s if s.to_lowercase() == "total_sum_with_n_nums" => Algo::TotalSumWithNNums,
             s if s.to_lowercase() == "turn_commands" => Algo::TurnCommands,
             s if s.to_lowercase() == "twosum" => Algo::TwoSum,
