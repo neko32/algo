@@ -140,6 +140,7 @@ pub mod repeat_product;
 pub mod replace_mid_value;
 pub mod request_per_sec;
 pub mod reverse_in_parenthiesis;
+pub mod reverse_stack;
 pub mod reverse_poland_calc;
 pub mod reverse_words;
 pub mod rgb_to_bgr;
@@ -199,6 +200,7 @@ pub mod waterarea;
 pub mod xor_shift;
 pub mod yuv_to_rgb;
 pub mod z_score;
+pub mod zigzag_traversal;
 
 use clap::Parser;
 
@@ -345,6 +347,7 @@ pub mod runner {
     use request_per_sec::request_per_sec;
     use reverse_in_parenthiesis;
     use reverse_poland_calc::reverse_poland_calc;
+    use reverse_stack;
     use reverse_words;
     use rgb_to_bgr;
     use rgb_to_yuv;
@@ -402,6 +405,7 @@ pub mod runner {
     use xor_shift;
     use yuv_to_rgb;
     use z_score;
+    use zigzag_traversal;
 
     pub fn exec(algo: Algo) {
         match algo {
@@ -834,6 +838,9 @@ pub mod runner {
             Algo::ReversePoland => {
                 reverse_poland_calc::run();
             }
+            Algo::ReverseStack => {
+                reverse_stack::run();
+            }
             Algo::ReverseWords => {
                 reverse_words::run();
             }
@@ -998,6 +1005,9 @@ pub mod runner {
             Algo::YuvToRgb => {
                 yuv_to_rgb::run();
             }
+            Algo::zigzagTraversal => {
+                zigzag_traversal::run();
+            }
             Algo::ZScore => {
                 z_score::run();
             }
@@ -1150,6 +1160,7 @@ mod test_runner {
     use crate::request_per_sec::request_per_sec;
     use crate::reverse_in_parenthiesis;
     use crate::reverse_poland_calc::reverse_poland_calc;
+    use crate::reverse_stack;
     use crate::reverse_words;
     use crate::rgb_to_bgr;
     use crate::rgb_to_yuv;
@@ -1208,6 +1219,7 @@ mod test_runner {
     use crate::xor_shift;
     use crate::yuv_to_rgb;
     use crate::z_score;
+    use crate::zigzag_traversal;
     use float_cmp::approx_eq;
     use hashmap_macro::hashmap;
     use num::integer::gcd;
@@ -2582,6 +2594,16 @@ mod test_runner {
     }
 
     #[test]
+    fn reverse_stack_test() {
+        let mut buf:Vec<i32> = Vec::new();
+        let mut s:Vec<i32> = Vec::from_iter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        let expected:Vec<i32> = vec![10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+        reverse_stack::exec(&mut s, &mut buf);
+        assert_eq!(buf, expected);
+        assert!(s.is_empty());
+    }
+
+    #[test]
     fn reverse_words_test() {
         let r = "nekochan kawaii to omoimasenka? soudesu.";
         let expected:String = "soudesu. omoimasenka? to kawaii nekochan".to_string();
@@ -3237,6 +3259,20 @@ mod test_runner {
     }
 
     #[test]
+    fn zigzag_traversal_test() {
+        let m:Array2<i32> = arr2(&[
+            [1, 3, 4, 10],
+            [2, 5, 9, 11],
+            [6, 8, 12, 15],
+            [7, 13, 14, 16],
+        ]);
+        let rez = zigzag_traversal::exec(&m);
+        let expected:Vec<i32> = (1..=16).collect();
+        assert_eq!(rez, expected);
+
+    }
+
+    #[test]
     fn zscore_test() {
         let mut v = [7_f32, 8_f32, 8_f32, 7.5_f32, 9_f32];
         let zscores = z_score::exec(&mut v);
@@ -3390,6 +3426,7 @@ pub enum Algo {
     RequestPerSec,
     ReverseInParenthiesis,
     ReversePoland,
+    ReverseStack,
     ReverseWords,
     RgbToBgr,
     RgbToYuv,
@@ -3446,6 +3483,7 @@ pub enum Algo {
     WaterArea,
     XOrShift,
     YuvToRgb,
+    zigzagTraversal,
     ZScore,
 }
 
@@ -3595,6 +3633,7 @@ impl Algo {
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
             s if s.to_lowercase() == "reverse_in_parenthiesis" => Algo::ReverseInParenthiesis,
             s if s.to_lowercase() == "reverse_poland" => Algo::ReversePoland,
+            s if s.to_lowercase() == "reverse_stack" => Algo::ReverseStack,
             s if s.to_lowercase() == "reverse_words" => Algo::ReverseWords,
             s if s.to_lowercase() == "rgb_to_bgr" => Algo::RgbToBgr,
             s if s.to_lowercase() == "rgb_to_yuv" => Algo::RgbToYuv,
@@ -3651,6 +3690,7 @@ impl Algo {
             s if s.to_lowercase() == "waterarea" => Algo::WaterArea,
             s if s.to_lowercase() == "xor_shift" => Algo::XOrShift,
             s if s.to_lowercase() == "yuv_to_rgb" => Algo::YuvToRgb,
+            s if s.to_lowercase() == "zigzag_traversal" => Algo::zigzagTraversal,
             s if s.to_lowercase() == "zscore" => Algo::ZScore,
             _ => panic!("{} has not implemented yet", algo_str),
         }
