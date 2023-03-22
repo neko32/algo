@@ -129,6 +129,7 @@ pub mod powerset;
 pub mod preorder_traversal;
 pub mod product_array_sort;
 pub mod pseudo_rand;
+pub mod quarter;
 pub mod quick_sort;
 pub mod rad_to_deg;
 pub mod radix_sort;
@@ -335,6 +336,7 @@ pub mod runner {
     use preorder_traversal::preorder_traversal;
     use product_array_sort::product_array_sort;
     use pseudo_rand;
+    use quarter;
     use quick_sort;
     use rad_to_deg;
     use radix_sort::radix_sort;
@@ -802,6 +804,9 @@ pub mod runner {
             Algo::PseudoRand => {
                 pseudo_rand::run();
             }
+            Algo::Quarter => {
+                quarter::run();
+            }
             Algo::QuickSort => {
                 quick_sort::run();
             }
@@ -1148,6 +1153,7 @@ mod test_runner {
     use crate::preorder_traversal::preorder_traversal;
     use crate::product_array_sort::product_array_sort;
     use crate::pseudo_rand;
+    use crate::quarter;
     use crate::quick_sort;
     use crate::rad_to_deg;
     use crate::radix_sort::radix_sort;
@@ -2482,6 +2488,15 @@ mod test_runner {
     }
 
     #[test]
+    fn quarter_test() {
+        let expected = [0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4];
+        for m in 1..=12 {
+            let r = quarter::exec(m as u8);
+            assert_eq!(r, expected[m]);
+        }
+    }
+
+    #[test]
     fn quick_sort_test() {
         let mut v = vec![7, 1, 2, 5, 10, 20, 15, 13, 9, 5, 4];
         let expected = vec![1, 2, 4, 5, 5, 7, 9, 10, 13, 15, 20];
@@ -3414,6 +3429,7 @@ pub enum Algo {
     PreOrderTraversal,
     ProductArraySort,
     PseudoRand,
+    Quarter,
     QuickSort,
     RadixSort,
     RadToDeg,
@@ -3621,6 +3637,7 @@ impl Algo {
             s if s.to_lowercase() == "preorder_traversal" => Algo::PreOrderTraversal,
             s if s.to_lowercase() == "product_array_sort" => Algo::ProductArraySort,
             s if s.to_lowercase() == "pseudo_rand" => Algo::PseudoRand,
+            s if s.to_lowercase() == "quarter" => Algo::Quarter,
             s if s.to_lowercase() == "quick_sort" => Algo::QuickSort,
             s if s.to_lowercase() == "rad_to_deg" => Algo::RadToDeg,
             s if s.to_lowercase() == "radix_sort" => Algo::RadixSort,
