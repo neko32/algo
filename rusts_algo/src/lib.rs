@@ -138,6 +138,7 @@ pub mod random_perm;
 pub mod ranking;
 pub mod reconstruct_bst_from_pre;
 pub mod remove_island;
+pub mod remove_nth_from_end;
 pub mod repeat_product;
 pub mod replace_mid_value;
 pub mod request_per_sec;
@@ -346,6 +347,7 @@ pub mod runner {
     use ranking;
     use reconstruct_bst_from_pre;
     use remove_island;
+    use remove_nth_from_end;
     use repeat_product::repeat_product;
     use replace_mid_value;
     use request_per_sec::request_per_sec;
@@ -833,6 +835,9 @@ pub mod runner {
             Algo::RemoveIsland => {
                 remove_island::run();
             }
+            Algo::RemoveNthFromEnd => {
+                remove_nth_from_end::run();
+            }
             Algo::RepeatProduct => {
                 repeat_product::run();
             }
@@ -1167,6 +1172,7 @@ mod test_runner {
     use crate::ranking;
     use crate::reconstruct_bst_from_pre;
     use crate::remove_island;
+    use crate::remove_nth_from_end;
     use crate::repeat_product::repeat_product;
     use crate::replace_mid_value;
     use crate::request_per_sec::request_per_sec;
@@ -2577,6 +2583,16 @@ mod test_runner {
     }
 
     #[test]
+    fn remove_nth_node_from_last_test() {
+        let mut n = *build_singly_linkedlist(&vec![1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        remove_nth_from_end::exec(&mut n, 4);
+        let mut v:Vec<i32> = Vec::new();
+        n.trav_from(&mut v);
+        let expected = vec![1, 2, 3, 4, 5, 7, 8, 9];
+        assert_eq!(v, expected);
+    }
+
+    #[test]
     fn repeat_product_test() {
         let n = 16;
         assert_eq!(repeat_product::exec(n), 9);
@@ -3454,6 +3470,7 @@ pub enum Algo {
     Ranking,
     ReconstructBSTFromPreorder,
     RemoveIsland,
+    RemoveNthFromEnd,
     RepeatProduct,
     ReplaceMidValue,
     RequestPerSec,
@@ -3663,6 +3680,7 @@ impl Algo {
             s if s.to_lowercase() == "ranking" => Algo::Ranking,
             s if s.to_lowercase() == "reconstruct_bst_from_preorder" => Algo::ReconstructBSTFromPreorder,
             s if s.to_lowercase() == "remove_island" => Algo::RemoveIsland,
+            s if s.to_lowercase() == "remove_nth_from_end" => Algo::RemoveNthFromEnd,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
             s if s.to_lowercase() == "replace_mid_value" => Algo::ReplaceMidValue,
             s if s.to_lowercase() == "request_per_sec" => Algo::RequestPerSec,
