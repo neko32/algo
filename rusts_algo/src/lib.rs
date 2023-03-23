@@ -68,6 +68,7 @@ pub mod helon_formula;
 pub mod human_and_cat_legs;
 pub mod image_stride;
 pub mod inorder_traversal;
+pub mod invert_btree;
 pub mod insertion_sort;
 pub mod ipv4;
 pub mod is_bst;
@@ -277,6 +278,7 @@ pub mod runner {
     use image_stride;
     use inorder_traversal;
     use insertion_sort;
+    use invert_btree;
     use ipv4;
     use is_bst;
     use is_mac_addr::is_mac_addr;
@@ -620,6 +622,9 @@ pub mod runner {
             }
             Algo::InsertionSort => {
                 insertion_sort::run();
+            }
+            Algo::InvertBTree => {
+                invert_btree::run();
             }
             Algo::IPv4 => {
                 ipv4::run();
@@ -1092,6 +1097,7 @@ mod test_runner {
     use crate::image_stride;
     use crate::inorder_traversal;
     use crate::insertion_sort;
+    use crate::invert_btree;
     use crate::ipv4;
     use crate::is_bst;
     use crate::is_mac_addr::is_mac_addr;
@@ -1883,6 +1889,16 @@ mod test_runner {
         let mut v = [9, 15, 2, 7, 4, -5, 9, -3, 10, 8];
         insertion_sort::exec(&mut v);
         let expected = [-5, -3, 2, 4, 7, 8, 9, 9, 10, 15];
+        assert_eq!(v, expected);
+    }
+
+    #[test]
+    fn invert_btree_test() {
+        let mut n = build_tree(&vec![100, 50, 10, 60, 200, 170, 300, 250, 500]);
+        invert_btree::exec(&mut n);
+        let mut v:Vec<i32> = Vec::new();
+        traverse(n, &mut v);
+        let expected:Vec<i32> = vec![500, 300, 250, 200, 170, 100, 60, 50, 10];
         assert_eq!(v, expected);
     }
 
@@ -3368,6 +3384,7 @@ pub enum Algo {
     ImageStride,
     InOrderTraversal,
     InsertionSort,
+    InvertBTree,
     IPv4,
     IsBST,
     IsMacAddr,
@@ -3575,6 +3592,7 @@ impl Algo {
             s if s.to_lowercase() == "human_cat_legs" => Algo::HumanAndCatlegs,
             s if s.to_lowercase() == "image_stride" => Algo::ImageStride,
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
+            s if s.to_lowercase() == "invert_btree" => Algo::InvertBTree,
             s if s.to_lowercase() == "insertion_sort" => Algo::InsertionSort,
             s if s.to_lowercase() == "ipv4" => Algo::IPv4,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
