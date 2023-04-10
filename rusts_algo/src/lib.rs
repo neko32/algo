@@ -5,6 +5,7 @@ pub mod alhpabet_subseq;
 pub mod appear_twice;
 pub mod applebox;
 pub mod arithmatic_progression;
+pub mod array_is_smooth;
 pub mod array_product_sum;
 pub mod average;
 pub mod binarysearch;
@@ -217,6 +218,7 @@ pub mod runner {
     use appear_twice::appear_twice;
     use applebox::applebox;
     use arithmatic_progression;
+    use array_is_smooth;
     use array_product_sum::array_product_sum;
     use average;
     use binarysearch::binary_search;
@@ -435,6 +437,9 @@ pub mod runner {
             }
             Algo::ArithmaticProgression => {
                 arithmatic_progression::run();
+            }
+            Algo::ArrayIsSmooth => {
+                array_is_smooth::run();
             }
             Algo::ArrayProductSum => {
                 array_product_sum::run();
@@ -1039,6 +1044,7 @@ mod test_runner {
     use crate::appear_twice::appear_twice;
     use crate::applebox::applebox;
     use crate::arithmatic_progression;
+    use crate::array_is_smooth;
     use crate::array_product_sum::array_product_sum;
     use crate::average;
     use crate::binarysearch::binary_search;
@@ -1301,6 +1307,20 @@ mod test_runner {
         assert_eq!(arithmatic_progression::exec(1, 5, 2), 5);
         assert_eq!(arithmatic_progression::exec(3, 5, 2), 9);
         assert_eq!(arithmatic_progression::exec(5, 1, 6), 25);
+    }
+
+    #[test]
+    fn array_is_smooth_test() {
+        assert_eq!(array_is_smooth::exec(&[7, 2, 2, 5, 10, 7]), true);
+        assert_eq!(array_is_smooth::exec(&[-5, -5, 10]), false);
+        assert_eq!(array_is_smooth::exec(&[7, 3, 7, 3, 7]), true);
+        assert_eq!(array_is_smooth::exec(&[7, 2, 2, 5, 10, 2]), false);
+        assert_eq!(array_is_smooth::exec(&[7, 3, 7, 3, 5]), false);
+        assert_eq!(array_is_smooth::exec(&[3, 9, 3]), false);
+        assert_eq!(array_is_smooth::exec(&[3, 3, 3]), true);
+        assert_eq!(array_is_smooth::exec(&[2, 4]), false);
+        assert_eq!(array_is_smooth::exec(&[4, 4]), false);
+        assert_eq!(array_is_smooth::exec(&[5]), false);
     }
 
     #[test]
@@ -3337,6 +3357,7 @@ pub enum Algo {
     AppearTwice,
     Applebox,
     ArithmaticProgression,
+    ArrayIsSmooth,
     ArrayProductSum,
     Average,
     BinarySearch,
@@ -3547,6 +3568,7 @@ impl Algo {
             s if s.to_lowercase() == "appear_twice" => Algo::AppearTwice,
             s if s.to_lowercase() == "applebox" => Algo::Applebox,
             s if s.to_lowercase() == "arithmatic_progression" => Algo::ArithmaticProgression,
+            s if s.to_lowercase() == "array_is_smooth" => Algo::ArrayIsSmooth,
             s if s.to_lowercase() == "array_product_sum" => Algo::ArrayProductSum,
             s if s.to_lowercase() == "average" => Algo::Average,
             s if s.to_lowercase() == "binary_search" => Algo::BinarySearch,
