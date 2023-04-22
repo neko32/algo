@@ -17,6 +17,7 @@ pub mod build_heap;
 pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
+pub mod can_increase_with_roundness;
 pub mod capitalize;
 pub mod celcius_to_fahrenheit;
 pub mod code_breaker;
@@ -230,6 +231,7 @@ pub mod runner {
     use build_palindrome;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
+    use can_increase_with_roundness;
     use capitalize;
     use century::century;
     use char_count;
@@ -473,6 +475,9 @@ pub mod runner {
             }
             Algo::CamelCase => {
                 camelcase::run();
+            }
+            Algo::CanIncreaseWithRoundness => {
+                can_increase_with_roundness::run();
             }
             Algo::Capitalize => {
                 capitalize::run();
@@ -1056,6 +1061,7 @@ mod test_runner {
     use crate::build_palindrome;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
+    use crate::can_increase_with_roundness;
     use crate::capitalize;
     use crate::celcius_to_fahrenheit;
     use crate::century::century;
@@ -1427,6 +1433,12 @@ mod test_runner {
     fn camelcase_test() {
         let c = camelcase::exec("taKOcHaN".to_string());
         assert_eq!(c, "Takochan".to_string());
+    }
+
+    #[test]
+    fn can_increase_with_roundness_test() {
+        assert_eq!(can_increase_with_roundness::exec(902200100), true);
+        assert_eq!(can_increase_with_roundness::exec(11100), false);
     }
 
     #[test]
@@ -3368,6 +3380,7 @@ pub enum Algo {
     BuildHeap,
     BuildPalindrome,
     CamelCase,
+    CanIncreaseWithRoundness,
     Capitalize,
     CelciusToFahrenheit,
     Century,
@@ -3580,6 +3593,7 @@ impl Algo {
             s if s.to_lowercase() == "build_palindrome" => Algo::BuildPalindrome,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
+            s if s.to_lowercase() == "can_increase_with_roundness" => Algo::CanIncreaseWithRoundness,
             s if s.to_lowercase() == "capitalize" => Algo::Capitalize,
             s if s.to_lowercase() == "celcius_to_fahrenheit" => Algo::CelciusToFahrenheit,
             s if s.to_lowercase() == "century" => Algo::Century,
