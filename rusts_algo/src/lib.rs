@@ -56,6 +56,7 @@ pub mod file_naming;
 pub mod find_closest_value;
 pub mod find_max_val_thread;
 pub mod find_successor;
+pub mod first_dupe_value;
 pub mod fizzbuzz;
 pub mod geometric_progression;
 pub mod geometrical_mean;
@@ -161,6 +162,7 @@ pub mod shared;
 pub mod shorten_path;
 pub mod sturge_formula;
 pub mod sigma_k;
+pub mod single_cycle_check;
 pub mod single_stroke;
 pub mod singly_linked_list_copy;
 pub mod singly_linked_list_reverse;
@@ -268,6 +270,7 @@ pub mod runner {
     use find_closest_value;
     use find_max_val_thread;
     use find_successor;
+    use first_dupe_value;
     use fizzbuzz::fizzbuzz;
     use geometric_progression;
     use geometrical_mean;
@@ -370,6 +373,7 @@ pub mod runner {
     use selection_sort::selection_sort;
     use shorten_path;
     use sigma_k::sigma_k;
+    use single_cycle_check;
     use single_stroke;
     use singly_linked_list_copy;
     use singly_linked_list_reverse;
@@ -592,6 +596,9 @@ pub mod runner {
             }
             Algo::FindSuccessor => {
                 find_successor::run();
+            }
+            Algo::FirstDupeValue => {
+                first_dupe_value::run();
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
@@ -902,6 +909,9 @@ pub mod runner {
             Algo::SigmaK => {
                 sigma_k::run();
             }
+            Algo::SingleCycleCheck => {
+                single_cycle_check::run();
+            }
             Algo::SingleStroke => {
                 single_stroke::run();
             }
@@ -1100,6 +1110,7 @@ mod test_runner {
     use crate::find_closest_value;
     use crate::find_max_val_thread;
     use crate::find_successor;
+    use crate::first_dupe_value;
     use crate::fizzbuzz::fizzbuzz;
     use crate::geometric_progression;
     use crate::geometrical_mean;
@@ -1204,6 +1215,7 @@ mod test_runner {
     use crate::shared::*;
     use crate::shorten_path;
     use crate::sigma_k::sigma_k;
+    use crate::single_cycle_check;
     use crate::single_stroke;
     use crate::singly_linked_list_copy;
     use crate::singly_linked_list_reverse;
@@ -1815,6 +1827,13 @@ mod test_runner {
         let expected = vec![1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765];
         let rez:Vec<u64> = (1..=20).into_iter().map(|x|fibonacci::exec(x)).collect();
         assert_eq!(rez, expected);
+    }
+
+    #[test]
+    fn first_dupe_value_test() {
+        assert_eq!(first_dupe_value::exec(&[2, 1, 5, 2, 3, 3, 4]), 2);
+        assert_eq!(first_dupe_value::exec(&[2, 1, 5, 9, 3, 7, 4]), -1);
+        assert_eq!(first_dupe_value::exec(&[10, 1, 5, 9, 3, 7, 10]), 10);
     }
 
     #[test]
@@ -2769,6 +2788,12 @@ mod test_runner {
     }
 
     #[test]
+    fn single_cycle_check_test() {
+        assert_eq!(single_cycle_check::exec(&mut [2, 3, 1, -4, -4, 2]), true);
+        assert_eq!(single_cycle_check::exec(&mut [2, 6, 1, -4, -4, 4]), false);
+    }
+
+    #[test]
     fn single_stroke_test() {
         let mut matrix:Array2<i32> = arr2(&[
             [0, 1, 0, 1],
@@ -3420,6 +3445,7 @@ pub enum Algo {
     FindClosestValue,
     FindMaxValThread,
     FindSuccessor,
+    FirstDupeValue,
     FizzBuzz,
     GeometricProgression,
     GeometricalMean,
@@ -3523,6 +3549,7 @@ pub enum Algo {
     SelectionSort,
     ShortenPath,
     SigmaK,
+    SingleCycleCheck,
     SingleStroke,
     SinglyLinkedListCopy,
     SinglyLinkedListReverse,
@@ -3632,6 +3659,7 @@ impl Algo {
             s if s.to_lowercase() == "find_closest_value" => Algo::FindClosestValue,
             s if s.to_lowercase() == "find_max_val_thread" => Algo::FindMaxValThread,
             s if s.to_lowercase() == "find_successor" => Algo::FindSuccessor,
+            s if s.to_lowercase() == "first_dupe_value" => Algo::FirstDupeValue,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
@@ -3735,6 +3763,7 @@ impl Algo {
             s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
             s if s.to_lowercase() == "sigma_k" => Algo::SigmaK,
+            s if s.to_lowercase() == "single_cycle_check" => Algo::SingleCycleCheck,
             s if s.to_lowercase() == "single_stroke" => Algo::SingleStroke,
             s if s.to_lowercase() == "singly_linked_list_copy" => Algo::SinglyLinkedListCopy,
             s if s.to_lowercase() == "singly_linked_list_reverse" => Algo::SinglyLinkedListReverse,

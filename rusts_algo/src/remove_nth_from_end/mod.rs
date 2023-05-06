@@ -9,7 +9,7 @@ pub fn exec(mut p:&mut ListNode, nth:usize) {
     if node_idx == 1 {
         match &mut p.next {
             Addr::Node(ref mut next) => p = next,
-            Nil => (),
+            Addr::Nil => (),
         }
         return;
     }
@@ -34,7 +34,7 @@ pub fn exec(mut p:&mut ListNode, nth:usize) {
         Addr::Node(ref mut next) => {
             next.as_mut()
         },
-        Nil => {
+        Addr::Nil => {
             panic!("something is wrong");
         }
     };
