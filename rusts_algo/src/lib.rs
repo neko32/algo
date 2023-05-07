@@ -36,6 +36,7 @@ pub mod construct_min_height_bst;
 pub mod construct_square;
 pub mod contrast_check;
 pub mod cool_num_pair;
+pub mod cross_entropy;
 pub mod cyclic_chars;
 pub mod cumsum_except_last;
 pub mod decode_reverse_poland;
@@ -250,6 +251,7 @@ pub mod runner {
     use construct_square;
     use contrast_check;
     use cool_num_pair::cool_num_pair;
+    use cross_entropy;
     use cumsum_except_last;
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
@@ -536,6 +538,9 @@ pub mod runner {
             }
             Algo::CoolNumPair => {
                 cool_num_pair::run();
+            }
+            Algo::CrossEntropy => {
+                cross_entropy::run();
             }
             Algo::CumsumExceptLast => {
                 cumsum_except_last::run();
@@ -1090,6 +1095,7 @@ mod test_runner {
     use crate::construct_square;
     use crate::contrast_check;
     use crate::cool_num_pair::cool_num_pair;
+    use crate::cross_entropy;
     use crate::cumsum_except_last;
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
@@ -1654,6 +1660,15 @@ mod test_runner {
         let a = [4, 5, 6, 7, 8];
         let b = [8, 9, 10, 11, 12];
         assert_eq!(cool_num_pair::exec(&a, &b), 2);
+    }
+
+    #[test]
+    fn cross_entropy_test() {
+        let d = 1e-7;
+        let y = vec![0.7, 0.1, 0.2];
+        let t = vec![1., 0., 0.];
+        let r = cross_entropy::exec(d, y, t);
+        assert_eq!(r, 1.8538713);
     }
 
     #[test]
@@ -3425,6 +3440,7 @@ pub enum Algo {
     ConstructSquare,
     ContrastCheck,
     CoolNumPair,
+    CrossEntropy,
     CumsumExceptLast,
     CyclicChars,
     DecodeReversePoland,
@@ -3639,6 +3655,7 @@ impl Algo {
             s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "contrast_check" => Algo::ContrastCheck,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
+            s if s.to_lowercase() == "cross_entropy" => Algo::CrossEntropy,
             s if s.to_lowercase() == "cumsum_except_last" => Algo::CumsumExceptLast,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
