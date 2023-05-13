@@ -126,6 +126,7 @@ pub mod octal_to_dec;
 pub mod oppsite_pos_in_circle;
 pub mod overlapping_intervals;
 pub mod pascal_triangle;
+pub mod peak_in_array;
 pub mod permutation;
 pub mod phone_mnemonic;
 pub mod prefix_sums;
@@ -182,6 +183,7 @@ pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
 pub mod subarray_sort;
+pub mod suffix_trie;
 pub mod sudoku;
 pub mod sum_of_arithmatic_progression;
 pub mod sum_of_consecutive_integers;
@@ -340,6 +342,7 @@ pub mod runner {
     use oppsite_pos_in_circle;
     use overlapping_intervals;
     use pascal_triangle;
+    use peak_in_array;
     use permutation;
     use phone_mnemonic;
     use postorder_traversal;
@@ -387,6 +390,7 @@ pub mod runner {
     use sort_by_height;
     use sort_stack;
     use sorted_matrix_search;
+    use suffix_trie;
     use stack_copy_only_pop;
     use stdev;
     use storage_projection_for_sdhd;
@@ -809,6 +813,9 @@ pub mod runner {
             Algo::PascalTriangle => {
                 pascal_triangle::run();
             }
+            Algo::PeakInArray => {
+                peak_in_array::run();
+            }
             Algo::Permutation => {
                 permutation::run();
             }
@@ -976,6 +983,9 @@ pub mod runner {
             }
             Algo::Sudoku => {
                 sudoku::run();
+            }
+            Algo::SuffixTrue => {
+                suffix_trie::run();
             }
             Algo::SumOfArithmaticProgression => {
                 sum_of_arithmatic_progression::run();
@@ -1185,6 +1195,7 @@ mod test_runner {
     use crate::oppsite_pos_in_circle;
     use crate::overlapping_intervals;
     use crate::pascal_triangle;
+    use crate::peak_in_array;
     use crate::permutation;
     use crate::phone_mnemonic;
     use crate::postorder_traversal;
@@ -1242,6 +1253,7 @@ mod test_runner {
     use crate::sturge_formula;
     use crate::subarray_sort;
     use crate::sudoku;
+    use crate::suffix_trie;
     use crate::sum_of_arithmatic_progression;
     use crate::sum_of_consecutive_integers;
     use crate::sum_of_integers;
@@ -2497,6 +2509,12 @@ mod test_runner {
     }
 
     #[test]
+    fn peak_in_array_test() {
+        let v = [1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3];
+        assert_eq!(peak_in_array::exec(&v), 6);
+    }
+
+    #[test]
     fn perm_test() {
         let n = 8;
         let r = 6;
@@ -3030,6 +3048,12 @@ mod test_runner {
     }
 
     #[test]
+    fn suffix_trie_test() {
+        let rez = suffix_trie::exec(&["neko", "nekoya", "takoya", "tako", "pokoya", "nyanko", "nek"], "neko");
+        assert_eq!(rez, vec!["neko".to_string()]);
+    }
+
+    #[test]
     fn sum_of_arithmatic_progression_test() {
         assert_eq!(sum_of_arithmatic_progression::exec(4, 5, 4, 3), 34);
         assert_eq!(sum_of_arithmatic_progression::exec(5, 5, 4, 3), 50);
@@ -3530,6 +3554,7 @@ pub enum Algo {
     OppositePosInCircle,
     OverlappingIntervals,
     PascalTriangle,
+    PeakInArray,
     Permutation,
     PhoneMnemonic,
     PostOrderTraversal,
@@ -3586,6 +3611,7 @@ pub enum Algo {
     SturgeFormula,
     SubArraySort,
     Sudoku,
+    SuffixTrue,
     SumOfArithmaticProgression,
     SumOfConsective,
     SumOfIntegers,
@@ -3745,6 +3771,7 @@ impl Algo {
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "overlapping_intervals" => Algo::OverlappingIntervals,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
+            s if s.to_lowercase() == "peak_in_array" => Algo::PeakInArray,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
             s if s.to_lowercase() == "postorder_traversal" => Algo::PostOrderTraversal,
@@ -3801,6 +3828,7 @@ impl Algo {
             s if s.to_lowercase() == "sturge_formula" => Algo::SturgeFormula,
             s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
             s if s.to_lowercase() == "sudoku" => Algo::Sudoku,
+            s if s.to_lowercase() == "suffix_trie" => Algo::SuffixTrue,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
             s if s.to_lowercase() == "sum_of_consecutive" => Algo::SumOfConsective,
             s if s.to_lowercase() == "sum_of_integers" => Algo::SumOfIntegers,
