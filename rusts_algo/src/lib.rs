@@ -46,6 +46,7 @@ pub mod diagonal;
 pub mod different_squares;
 pub mod different_value_pairs;
 pub mod dfs;
+pub mod dns_water_torture;
 pub mod document_build;
 pub mod euclidean;
 pub mod eval_tictactoe;
@@ -102,6 +103,7 @@ pub mod max_path_sum;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
+pub mod maxnum_by_del_one_digit;
 pub mod mean;
 pub mod merge_2_lists;
 pub mod merge_sorted_linkedlist;
@@ -263,6 +265,7 @@ pub mod runner {
     use diagonal::diagonal;
     use different_squares;
     use different_value_pairs;
+    use dns_water_torture;
     use document_build::document_build;
     use euclidean::euclidean;
     use eval_tictactoe;
@@ -318,6 +321,7 @@ pub mod runner {
     use max_path_sum;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
+    use maxnum_by_del_one_digit;
     use mean;
     use merge_2_lists;
     use merge_sorted_linkedlist;
@@ -573,6 +577,9 @@ pub mod runner {
             Algo::DifferentValuePairs => {
                 different_value_pairs::run();
             }
+            Algo::DNSWaterTorture => {
+                dns_water_torture::run();
+            }
             Algo::DocumentBuild => {
                 document_build::run();
             }
@@ -728,6 +735,9 @@ pub mod runner {
             }
             Algo::LRValueSumCombo => {
                 l_r_value_sum_combo::run();
+            }
+            Algo::MaxNumByDelOneDigit => {
+                maxnum_by_del_one_digit::run();
             }
             Algo::MaxPathSum => {
                 max_path_sum::run();
@@ -1115,6 +1125,7 @@ mod test_runner {
     use crate::diagonal::diagonal;
     use crate::different_squares;
     use crate::different_value_pairs;
+    use crate::dns_water_torture;
     use crate::document_build::document_build;
     use crate::euclidean::euclidean;
     use crate::eval_tictactoe;
@@ -1171,6 +1182,7 @@ mod test_runner {
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
+    use crate::maxnum_by_del_one_digit;
     use crate::mean;
     use crate::merge_2_lists;
     use crate::merge_sorted_linkedlist;
@@ -1758,6 +1770,12 @@ mod test_runner {
     }
 
     #[test]
+    #[should_panic]
+    fn dns_water_torture_test() {
+        dns_water_torture::exec("tanuki.com");
+    }
+
+    #[test]
     fn eval_tictactoe_test() {
         let s:Vec<&str> = vec![
             "OXXXOXXXO", "XXXXXXOOO", "XXXOOOXXX",
@@ -2267,6 +2285,12 @@ mod test_runner {
         let n = 597;
         let maxv = max_with_lessdigit::exec(n);
         assert_eq!(maxv, 97);
+    }
+
+    #[test]
+    fn maxnum_by_del_one_digit_test() {
+        assert_eq!(maxnum_by_del_one_digit::exec(152), 52);
+        assert_eq!(maxnum_by_del_one_digit::exec(1001), 101);
     }
 
     #[test]
@@ -3474,6 +3498,7 @@ pub enum Algo {
     Diagonal,
     DifferentSquares,
     DifferentValuePairs,
+    DNSWaterTorture,
     DocumentBuild,
     EvalTicTacToe,
     EvenNumSum,
@@ -3526,6 +3551,7 @@ pub enum Algo {
     LongestSubstringWithoutDupe,
     LowerUpperHinge,
     LRValueSumCombo,
+    MaxNumByDelOneDigit,
     MaxPathSum,
     MaxSiblingProduct,
     MaxSubSetSum,
@@ -3691,6 +3717,7 @@ impl Algo {
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
             s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
             s if s.to_lowercase() == "different_value_pairs" => Algo::DifferentValuePairs,
+            s if s.to_lowercase() == "dns_water_torture" => Algo::DNSWaterTorture,
             s if s.to_lowercase() == "document_build" => Algo::DocumentBuild,
             s if s.to_lowercase() == "eval_tictactoe" => Algo::EvalTicTacToe,
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
@@ -3747,6 +3774,7 @@ impl Algo {
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
+            s if s.to_lowercase() == "maxnum_by_del_one_digit" => Algo::MaxNumByDelOneDigit,
             s if s.to_lowercase() == "mean" => Algo::Mean,
             s if s.to_lowercase() == "merge_2_lists" => Algo::Merge2Lists,
             s if s.to_lowercase() == "merge_sorted_linkedlist" => Algo::MergeSortedLinkedList,
