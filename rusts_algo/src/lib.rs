@@ -18,6 +18,7 @@ pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod can_increase_with_roundness;
+pub mod can_make_sum_a_with_k_num;
 pub mod capitalize;
 pub mod celcius_to_fahrenheit;
 pub mod code_breaker;
@@ -172,6 +173,7 @@ pub mod singly_linked_list_copy;
 pub mod singly_linked_list_reverse;
 pub mod smallest_difference;
 pub mod smallest_positive_product;
+pub mod smallest_sum;
 pub mod sprite_index;
 pub mod softmax;
 pub mod softsign;
@@ -239,6 +241,7 @@ pub mod runner {
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use can_increase_with_roundness;
+    use can_make_sum_a_with_k_num;
     use capitalize;
     use century::century;
     use char_count;
@@ -388,6 +391,7 @@ pub mod runner {
     use singly_linked_list_reverse;
     use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
+    use smallest_sum;
     use sprite_index;
     use softmax;
     use softsign;
@@ -492,6 +496,9 @@ pub mod runner {
             }
             Algo::CanIncreaseWithRoundness => {
                 can_increase_with_roundness::run();
+            }
+            Algo::CanMakeSumAWithKNum => {
+                can_make_sum_a_with_k_num::run();
             }
             Algo::Capitalize => {
                 capitalize::run();
@@ -949,6 +956,9 @@ pub mod runner {
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
+            Algo::SmallestSum => {
+                smallest_sum::run();
+            }
             Algo::SpriteIndex => {
                 sprite_index::run();
             }
@@ -1097,6 +1107,7 @@ mod test_runner {
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::can_increase_with_roundness;
+    use crate::can_make_sum_a_with_k_num;
     use crate::capitalize;
     use crate::celcius_to_fahrenheit;
     use crate::century::century;
@@ -1250,6 +1261,7 @@ mod test_runner {
     use crate::singly_linked_list_reverse;
     use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::smallest_sum;
     use crate::sprite_index;
     use crate::softmax;
     use crate::softsign;
@@ -1481,6 +1493,11 @@ mod test_runner {
     fn can_increase_with_roundness_test() {
         assert_eq!(can_increase_with_roundness::exec(902200100), true);
         assert_eq!(can_increase_with_roundness::exec(11100), false);
+    }
+
+    #[test]
+    fn can_make_sum_a_with_k_num_test() {
+        assert_eq!(can_make_sum_a_with_k_num::exec(&[2, 3, 4, 5], 4, 14), true);
     }
 
     #[test]
@@ -2918,6 +2935,12 @@ mod test_runner {
     }
 
     #[test]
+    fn smallest_sum_test() {
+        assert_eq!(smallest_sum::exec(&[2, 4, 7]), 4);
+        assert_eq!(smallest_sum::exec(&[2, 3]), 2);
+    }
+
+    #[test]
     fn sprite_index_test() {
         assert_eq!(sprite_index::exec(0, 40, 4), 0);
         assert_eq!(sprite_index::exec(8, 40, 4), 0);
@@ -3469,6 +3492,7 @@ pub enum Algo {
     BuildPalindrome,
     CamelCase,
     CanIncreaseWithRoundness,
+    CanMakeSumAWithKNum,
     Capitalize,
     CelciusToFahrenheit,
     Century,
@@ -3622,6 +3646,7 @@ pub enum Algo {
     SinglyLinkedListReverse,
     SmallestDifference,
     SmallestPositiveProduct,
+    SmallestSum,
     SpriteIndex,
     Softmax,
     Softsign,
@@ -3689,6 +3714,7 @@ impl Algo {
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "can_increase_with_roundness" => Algo::CanIncreaseWithRoundness,
+            s if s.to_lowercase() == "can_make_sum_a_with_k_num" => Algo::CanMakeSumAWithKNum,
             s if s.to_lowercase() == "capitalize" => Algo::Capitalize,
             s if s.to_lowercase() == "celcius_to_fahrenheit" => Algo::CelciusToFahrenheit,
             s if s.to_lowercase() == "century" => Algo::Century,
@@ -3841,6 +3867,7 @@ impl Algo {
             s if s.to_lowercase() == "singly_linked_list_reverse" => Algo::SinglyLinkedListReverse,
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
+            s if s.to_lowercase() == "smallest_sum" => Algo::SmallestSum,
             s if s.to_lowercase() == "sprite_index" => Algo::SpriteIndex,
             s if s.to_lowercase() == "softmax" => Algo::Softmax,
             s if s.to_lowercase() == "softsign" => Algo::Softsign,
