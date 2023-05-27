@@ -81,6 +81,7 @@ pub mod is_bst;
 pub mod is_mac_addr;
 pub mod is_palindrome;
 pub mod is_two_array_similar;
+pub mod island_size;
 pub mod jump_height_in_frames;
 pub mod kadane;
 pub mod knapsack;
@@ -195,6 +196,7 @@ pub mod sum_of_integers;
 pub mod sum_of_squared_deviation;
 pub mod sunset_view;
 pub mod swap_sibling;
+pub mod tandem_bike;
 pub mod tandem_repeat;
 pub mod task_assignment;
 pub mod three_number_sort;
@@ -302,6 +304,7 @@ pub mod runner {
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
     use is_two_array_similar;
+    use island_size;
     use kadane::kadane;
     use knapsack;
     use kth_element_in_tree;
@@ -414,6 +417,7 @@ pub mod runner {
     use sum_of_squared_deviation;
     use sunset_view;
     use swap_sibling::swap_sibling;
+    use tandem_bike;
     use tandem_repeat::tandem_repeat;
     use task_assignment;
     use three_number_sort;
@@ -673,6 +677,9 @@ pub mod runner {
             }
             Algo::IsBST => {
                 is_bst::run();
+            }
+            Algo::IslandSize => {
+                island_size::run();
             }
             Algo::IsPalindrome => {
                 is_palindrome::run();
@@ -1025,6 +1032,9 @@ pub mod runner {
             Algo::SwapSibling => {
                 swap_sibling::run();
             }
+            Algo::TandemBike => {
+                tandem_bike::run();
+            }
             Algo::TandemRepeat => tandem_repeat::run(),
             Algo::TaskAssignment => task_assignment::run(),
             Algo::ThreeNumberSort => {
@@ -1169,6 +1179,7 @@ mod test_runner {
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
     use crate::is_two_array_similar;
+    use crate::island_size;
     use crate::jump_height_in_frames;
     use crate::kadane::kadane;
     use crate::knapsack;
@@ -1284,6 +1295,7 @@ mod test_runner {
     use crate::sum_of_squared_deviation;
     use crate::sunset_view;
     use crate::swap_sibling::swap_sibling;
+    use crate::tandem_bike;
     use crate::tandem_repeat::tandem_repeat;
     use crate::task_assignment;
     use crate::three_number_sort;
@@ -2077,6 +2089,21 @@ mod test_runner {
         assert_eq!(is_two_array_similar::exec(&[1, 2, 3], &[2, 1, 3]), true);
         assert_eq!(is_two_array_similar::exec(&[1, 2, 3], &[1, 2, 3]), true);
         assert_eq!(is_two_array_similar::exec(&[1, 2, 2], &[2, 1, 1]), false);
+    }
+
+    #[test]
+    fn island_size_test() {
+        let m = arr2(&[
+            [1, 0, 0, 1, 0],
+            [1, 0, 1, 0, 0],
+            [0, 0, 1, 0, 1],
+            [1, 0, 1, 0, 1],
+            [1, 0, 1, 1, 0]
+        ]);
+        let expected = vec![1, 2, 2, 2, 5];
+        let mut rez = island_size::exec(&m);
+        rez.sort();
+        assert_eq!(rez, expected);
     }
 
     #[test]
@@ -3127,6 +3154,12 @@ mod test_runner {
     }
 
     #[test]
+    fn tandem_bike_test() {
+        assert_eq!(tandem_bike::exec(&mut [5, 5, 3, 9, 2], &mut [1, 6, 7, 2, 1], true), 32);
+        assert_eq!(tandem_bike::exec(&mut [5, 5, 3, 9, 2], &mut [1, 6, 7, 2, 1], false), 25);
+    }
+
+    #[test]
     fn tandem_repeat_case1() {
         let c = "CatCat".to_string();
         assert!(tandem_repeat::exec(c));
@@ -3552,6 +3585,7 @@ pub enum Algo {
     InvertBTree,
     IPv4,
     IsBST,
+    IslandSize,
     IsMacAddr,
     IsPalindrome,
     IsTwoArraySimilar,
@@ -3669,6 +3703,7 @@ pub enum Algo {
     SumOfSquaredDeviations,
     SunsetView,
     SwapSibling,
+    TandemBike,
     TandemRepeat,
     TaskAssignment,
     ThreeNumberSort,
@@ -3776,6 +3811,7 @@ impl Algo {
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
             s if s.to_lowercase() == "is_two_array_similar" => Algo::IsTwoArraySimilar,
+            s if s.to_lowercase() == "island_size" => Algo::IslandSize,
             s if s.to_lowercase() == "jump_height_in_frames" => Algo::JumpHeightInFrames,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
             s if s.to_lowercase() == "knapsack" => Algo::Knapsack,
@@ -3890,6 +3926,7 @@ impl Algo {
             s if s.to_lowercase() == "sum_of_squared_deviations" => Algo::SumOfSquaredDeviations,
             s if s.to_lowercase() == "sunset_view" => Algo::SunsetView,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
+            s if s.to_lowercase() == "tandem_bike" => Algo::TandemBike,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
             s if s.to_lowercase() == "task_assignment" => Algo::TaskAssignment,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
