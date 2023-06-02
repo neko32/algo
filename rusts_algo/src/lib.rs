@@ -131,6 +131,7 @@ pub mod octal_permission;
 pub mod octal_to_dec;
 pub mod oppsite_pos_in_circle;
 pub mod overlapping_intervals;
+pub mod partial_sum_count;
 pub mod pascal_triangle;
 pub mod peak_in_array;
 pub mod permutation;
@@ -356,6 +357,7 @@ pub mod runner {
     use oppsite_pos_in_circle;
     use overlapping_intervals;
     use pascal_triangle;
+    use partial_sum_count;
     use peak_in_array;
     use permutation;
     use phone_mnemonic;
@@ -844,6 +846,9 @@ pub mod runner {
             Algo::OverlappingIntervals => {
                 overlapping_intervals::run();
             }
+            Algo::PartialSumCount => {
+                partial_sum_count::run();
+            }
             Algo::PascalTriangle => {
                 pascal_triangle::run();
             }
@@ -1240,6 +1245,7 @@ mod test_runner {
     use crate::octal_to_dec;
     use crate::oppsite_pos_in_circle;
     use crate::overlapping_intervals;
+    use crate::partial_sum_count;
     use crate::pascal_triangle;
     use crate::peak_in_array;
     use crate::permutation;
@@ -2590,6 +2596,12 @@ mod test_runner {
     }
 
     #[test]
+    fn partial_sum_count_test() {
+        let s = partial_sum_count::exec(&[1, 2, 1, 3, 2], 4);
+        assert_eq!(s, 5);
+    }
+
+    #[test]
     fn pascal_tr_test() {
         let n = 5;
         let expected = r"1
@@ -3665,6 +3677,7 @@ pub enum Algo {
     OppositePosInCircle,
     OverlappingIntervals,
     PascalTriangle,
+    PartialSumCount,
     PeakInArray,
     Permutation,
     PhoneMnemonic,
@@ -3890,6 +3903,7 @@ impl Algo {
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "overlapping_intervals" => Algo::OverlappingIntervals,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
+            s if s.to_lowercase() == "partial_sum_count" => Algo::PartialSumCount,
             s if s.to_lowercase() == "peak_in_array" => Algo::PeakInArray,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
