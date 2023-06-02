@@ -101,6 +101,8 @@ pub mod loc_by_line_angle;
 pub mod longest_pelindromic_substring;
 pub mod longest_substring_without_dupe;
 pub mod lower_upper_hinge;
+pub mod l0_norm;
+pub mod l1_norm;
 pub mod max_path_sum;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
@@ -324,6 +326,8 @@ pub mod runner {
     use longest_pelindromic_substring;
     use longest_substring_without_dupe;
     use lower_upper_hinge;
+    use l0_norm;
+    use l1_norm;
     use max_path_sum;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
@@ -746,6 +750,12 @@ pub mod runner {
             }
             Algo::LowerUpperHinge => {
                 lower_upper_hinge::run();
+            }
+            Algo::L0Norm => {
+                l0_norm::run();
+            }
+            Algo::L1Norm => {
+                l1_norm::run();
             }
             Algo::LRValueSumCombo => {
                 l_r_value_sum_combo::run();
@@ -1200,6 +1210,8 @@ mod test_runner {
     use crate::longest_pelindromic_substring;
     use crate::longest_substring_without_dupe;
     use crate::lower_upper_hinge;
+    use crate::l0_norm;
+    use crate::l1_norm;
     use crate::max_path_sum;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
@@ -2281,6 +2293,19 @@ mod test_runner {
         assert_eq!(lower_upper_hinge::exec(&[1, 2]), (1_f32, 2_f32));
         assert_eq!(lower_upper_hinge::exec(&[1, 2, 3, 4]), (1.5, 3.5));
         assert_eq!(lower_upper_hinge::exec(&[1, 2, 3, 4, 5, 6, 7, 8]), (2.5, 6.5));
+    }
+
+    #[test]
+    fn l0_norm_test() {
+        assert_eq!(l0_norm::exec(&[3, -1, -2, 0, 0, 4]), 4);
+        assert_eq!(l0_norm::exec(&[3, -1, -2, 3, 1, 4]), 6);
+        assert_eq!(l0_norm::exec(&[0, 0, 0]), 0);
+    }
+
+    #[test]
+    fn l1_norm_test() {
+        let v = [1.2, 0.8, -0.5, 0., 2., -1.5];
+        assert_eq!(l1_norm::exec(&v), 6.0);
     }
 
     #[test]
@@ -3609,6 +3634,8 @@ pub enum Algo {
     LongestSubstringWithoutDupe,
     LowerUpperHinge,
     LRValueSumCombo,
+    L0Norm,
+    L1Norm,
     MaxNumByDelOneDigit,
     MaxPathSum,
     MaxSiblingProduct,
@@ -3832,6 +3859,8 @@ impl Algo {
             s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
             s if s.to_lowercase() == "longest_substring_without_dupe" => Algo::LongestSubstringWithoutDupe,
             s if s.to_lowercase() == "lower_upper_hinge" => Algo::LowerUpperHinge,
+            s if s.to_lowercase() == "l0_norm" => Algo::L0Norm,
+            s if s.to_lowercase() == "l1_norm" => Algo::L1Norm,
             s if s.to_lowercase() == "max_path_sum" => Algo::MaxPathSum,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
