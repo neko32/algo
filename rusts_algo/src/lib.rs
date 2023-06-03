@@ -114,6 +114,7 @@ pub mod merge_sorted_linkedlist;
 pub mod min_breakdown_sum;
 pub mod min_passes_matrix_update;
 pub mod min_reward;
+pub mod minesweeper;
 pub mod minimum_waiting_game;
 pub mod minmax_stack;
 pub mod mode;
@@ -339,6 +340,7 @@ pub mod runner {
     use min_breakdown_sum::min_breakdown_sum;
     use min_passes_matrix_update;
     use min_reward::min_reward;
+    use minesweeper;
     use minimum_waiting_game;
     use minmax_stack;
     use mode;
@@ -789,6 +791,9 @@ pub mod runner {
             Algo::MinBreakdownSum => {
                 min_breakdown_sum::run();
             }
+            Algo::Minesweeper => {
+                minesweeper::run();
+            }
             Algo::MinimumWaitingGame => {
                 minimum_waiting_game::run();
             }
@@ -1229,6 +1234,7 @@ mod test_runner {
     use crate::min_passes_matrix_update;
     use crate::min_reward::min_reward;
     use crate::minimum_waiting_game;
+    use crate::minesweeper;
     use crate::minmax_stack;
     use crate::mode;
     use crate::monotonic_array;
@@ -2428,6 +2434,24 @@ mod test_runner {
     fn minimum_waiting_game_test() {
         let v = &[5, 1, 4];
         assert_eq!(minimum_waiting_game::exec(v), 5);
+    }
+
+    #[test]
+    fn minesweeper_test() {
+        let m:Array2<bool> = arr2(&[
+            [true, false, false],
+            [false, true, false],
+            [false, false, false]
+        ]);
+        let rez:Array2<i32> = minesweeper::exec(&m);
+        let rezv = rez.view();
+        let expected:Array2<i32> = arr2(&[
+            [1, 2, 1],
+            [2, 1, 1],
+            [1, 1, 1],
+        ]);
+        let ev = expected.view();
+        assert_eq!(rezv, ev);
     }
 
     #[test]
@@ -3657,6 +3681,7 @@ pub enum Algo {
     Merge2Lists,
     MergeSortedLinkedList,
     MinBreakdownSum,
+    Minesweeper,
     MinimumWaitingGame,
     MinMaxStack,
     MinPassesMatrixUpdate,
@@ -3885,6 +3910,7 @@ impl Algo {
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_passes_matrix_update" => Algo::MinPassesMatrixUpdate,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
+            s if s.to_lowercase() == "minesweeper" => Algo::Minesweeper,
             s if s.to_lowercase() == "minimum_waiting_game" => Algo::MinimumWaitingGame,
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
             s if s.to_lowercase() == "mode" => Algo::Mode,
