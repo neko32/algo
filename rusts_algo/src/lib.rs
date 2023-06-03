@@ -136,6 +136,7 @@ pub mod partial_sum_count;
 pub mod pascal_triangle;
 pub mod peak_in_array;
 pub mod permutation;
+pub mod permutation_matrix;
 pub mod phone_mnemonic;
 pub mod prefix_sums;
 pub mod postorder_traversal;
@@ -362,6 +363,7 @@ pub mod runner {
     use partial_sum_count;
     use peak_in_array;
     use permutation;
+    use permutation_matrix;
     use phone_mnemonic;
     use postorder_traversal;
     use powerset;
@@ -863,6 +865,9 @@ pub mod runner {
             Algo::Permutation => {
                 permutation::run();
             }
+            Algo::PermutationMatrix => {
+                permutation_matrix::run();
+            }
             Algo::PhoneMnemonic => {
                 phone_mnemonic::run();
             }
@@ -1255,6 +1260,7 @@ mod test_runner {
     use crate::pascal_triangle;
     use crate::peak_in_array;
     use crate::permutation;
+    use crate::permutation_matrix;
     use crate::phone_mnemonic;
     use crate::postorder_traversal;
     use crate::powerset;
@@ -2651,6 +2657,21 @@ mod test_runner {
     }
 
     #[test]
+    fn permutation_matrix_test() {
+        let siz = 5;
+        let m:Array2<i32> = permutation_matrix::exec(siz);
+        for i in 0..siz {
+            let mut cnt = 0;
+            for j in 0..siz {
+                if m[[i, j]] == 1 {
+                    cnt += 1;
+                }
+            }
+            assert_eq!(cnt, 1);
+        }
+    }
+
+    #[test]
     fn phone_mnemonic_test() {
         use hmap::hmap;
         use std::collections::HashMap;
@@ -3705,6 +3726,7 @@ pub enum Algo {
     PartialSumCount,
     PeakInArray,
     Permutation,
+    PermutationMatrix,
     PhoneMnemonic,
     PostOrderTraversal,
     PowerSet,
@@ -3932,6 +3954,7 @@ impl Algo {
             s if s.to_lowercase() == "partial_sum_count" => Algo::PartialSumCount,
             s if s.to_lowercase() == "peak_in_array" => Algo::PeakInArray,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
+            s if s.to_lowercase() == "permutation_matrix" => Algo::PermutationMatrix,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
             s if s.to_lowercase() == "postorder_traversal" => Algo::PostOrderTraversal,
             s if s.to_lowercase() == "powerset" => Algo::PowerSet,
