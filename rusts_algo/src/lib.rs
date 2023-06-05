@@ -14,10 +14,12 @@ pub mod bt_from_inorder_preorder;
 pub mod bubble_sort;
 pub mod build_closure_tag;
 pub mod build_heap;
+pub mod build_ip_addr;
 pub mod build_palindrome;
 pub mod caesar_crypt;
 pub mod camelcase;
 pub mod can_increase_with_roundness;
+pub mod can_make_sum_a_with_k_num;
 pub mod capitalize;
 pub mod celcius_to_fahrenheit;
 pub mod code_breaker;
@@ -36,6 +38,7 @@ pub mod construct_min_height_bst;
 pub mod construct_square;
 pub mod contrast_check;
 pub mod cool_num_pair;
+pub mod cross_entropy;
 pub mod cyclic_chars;
 pub mod cumsum_except_last;
 pub mod decode_reverse_poland;
@@ -45,6 +48,7 @@ pub mod diagonal;
 pub mod different_squares;
 pub mod different_value_pairs;
 pub mod dfs;
+pub mod dns_water_torture;
 pub mod document_build;
 pub mod euclidean;
 pub mod eval_tictactoe;
@@ -78,6 +82,7 @@ pub mod is_bst;
 pub mod is_mac_addr;
 pub mod is_palindrome;
 pub mod is_two_array_similar;
+pub mod island_size;
 pub mod jump_height_in_frames;
 pub mod kadane;
 pub mod knapsack;
@@ -97,16 +102,20 @@ pub mod loc_by_line_angle;
 pub mod longest_pelindromic_substring;
 pub mod longest_substring_without_dupe;
 pub mod lower_upper_hinge;
+pub mod l0_norm;
+pub mod l1_norm;
 pub mod max_path_sum;
 pub mod max_sibling_product;
 pub mod max_subset_sum;
 pub mod max_with_lessdigit;
+pub mod maxnum_by_del_one_digit;
 pub mod mean;
 pub mod merge_2_lists;
 pub mod merge_sorted_linkedlist;
 pub mod min_breakdown_sum;
 pub mod min_passes_matrix_update;
 pub mod min_reward;
+pub mod minesweeper;
 pub mod minimum_waiting_game;
 pub mod minmax_stack;
 pub mod mode;
@@ -124,8 +133,11 @@ pub mod octal_permission;
 pub mod octal_to_dec;
 pub mod oppsite_pos_in_circle;
 pub mod overlapping_intervals;
+pub mod partial_sum_count;
 pub mod pascal_triangle;
+pub mod peak_in_array;
 pub mod permutation;
+pub mod permutation_matrix;
 pub mod phone_mnemonic;
 pub mod prefix_sums;
 pub mod postorder_traversal;
@@ -168,6 +180,7 @@ pub mod singly_linked_list_copy;
 pub mod singly_linked_list_reverse;
 pub mod smallest_difference;
 pub mod smallest_positive_product;
+pub mod smallest_sum;
 pub mod sprite_index;
 pub mod softmax;
 pub mod softsign;
@@ -181,6 +194,7 @@ pub mod strange_bank;
 pub mod string_construction;
 pub mod string_pattern;
 pub mod subarray_sort;
+pub mod suffix_trie;
 pub mod sudoku;
 pub mod sum_of_arithmatic_progression;
 pub mod sum_of_consecutive_integers;
@@ -188,6 +202,7 @@ pub mod sum_of_integers;
 pub mod sum_of_squared_deviation;
 pub mod sunset_view;
 pub mod swap_sibling;
+pub mod tandem_bike;
 pub mod tandem_repeat;
 pub mod task_assignment;
 pub mod three_number_sort;
@@ -230,10 +245,12 @@ pub mod runner {
     use bubble_sort;
     use build_closure_tag;
     use build_heap;
+    use build_ip_addr;
     use build_palindrome;
     use caesar_crypt::caesar_crypt;
     use camelcase::camelcase;
     use can_increase_with_roundness;
+    use can_make_sum_a_with_k_num;
     use capitalize;
     use century::century;
     use char_count;
@@ -250,6 +267,7 @@ pub mod runner {
     use construct_square;
     use contrast_check;
     use cool_num_pair::cool_num_pair;
+    use cross_entropy;
     use cumsum_except_last;
     use cyclic_chars::cyclic_chars;
     use decode_reverse_poland::decode_reverse_poland;
@@ -259,6 +277,7 @@ pub mod runner {
     use diagonal::diagonal;
     use different_squares;
     use different_value_pairs;
+    use dns_water_torture;
     use document_build::document_build;
     use euclidean::euclidean;
     use eval_tictactoe;
@@ -292,6 +311,7 @@ pub mod runner {
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
     use is_two_array_similar;
+    use island_size;
     use kadane::kadane;
     use knapsack;
     use kth_element_in_tree;
@@ -311,15 +331,19 @@ pub mod runner {
     use longest_pelindromic_substring;
     use longest_substring_without_dupe;
     use lower_upper_hinge;
+    use l0_norm;
+    use l1_norm;
     use max_path_sum;
     use max_sibling_product::max_sibling_product;
     use max_with_lessdigit::max_with_lessdigit;
+    use maxnum_by_del_one_digit;
     use mean;
     use merge_2_lists;
     use merge_sorted_linkedlist;
     use min_breakdown_sum::min_breakdown_sum;
     use min_passes_matrix_update;
     use min_reward::min_reward;
+    use minesweeper;
     use minimum_waiting_game;
     use minmax_stack;
     use mode;
@@ -338,7 +362,10 @@ pub mod runner {
     use oppsite_pos_in_circle;
     use overlapping_intervals;
     use pascal_triangle;
+    use partial_sum_count;
+    use peak_in_array;
     use permutation;
+    use permutation_matrix;
     use phone_mnemonic;
     use postorder_traversal;
     use powerset;
@@ -379,12 +406,14 @@ pub mod runner {
     use singly_linked_list_reverse;
     use smallest_difference;
     use smallest_positive_product::smallest_positive_product;
+    use smallest_sum;
     use sprite_index;
     use softmax;
     use softsign;
     use sort_by_height;
     use sort_stack;
     use sorted_matrix_search;
+    use suffix_trie;
     use stack_copy_only_pop;
     use stdev;
     use storage_projection_for_sdhd;
@@ -400,6 +429,7 @@ pub mod runner {
     use sum_of_squared_deviation;
     use sunset_view;
     use swap_sibling::swap_sibling;
+    use tandem_bike;
     use tandem_repeat::tandem_repeat;
     use task_assignment;
     use three_number_sort;
@@ -471,6 +501,9 @@ pub mod runner {
             Algo::BuildHeap => {
                 build_heap::run();
             }
+            Algo::BuildIPAddr => {
+                build_ip_addr::run();
+            }
             Algo::BuildPalindrome => {
                 build_palindrome::run();
             }
@@ -482,6 +515,9 @@ pub mod runner {
             }
             Algo::CanIncreaseWithRoundness => {
                 can_increase_with_roundness::run();
+            }
+            Algo::CanMakeSumAWithKNum => {
+                can_make_sum_a_with_k_num::run();
             }
             Algo::Capitalize => {
                 capitalize::run();
@@ -537,6 +573,9 @@ pub mod runner {
             Algo::CoolNumPair => {
                 cool_num_pair::run();
             }
+            Algo::CrossEntropy => {
+                cross_entropy::run();
+            }
             Algo::CumsumExceptLast => {
                 cumsum_except_last::run();
             }
@@ -563,6 +602,9 @@ pub mod runner {
             }
             Algo::DifferentValuePairs => {
                 different_value_pairs::run();
+            }
+            Algo::DNSWaterTorture => {
+                dns_water_torture::run();
             }
             Algo::DocumentBuild => {
                 document_build::run();
@@ -651,6 +693,9 @@ pub mod runner {
             Algo::IsBST => {
                 is_bst::run();
             }
+            Algo::IslandSize => {
+                island_size::run();
+            }
             Algo::IsPalindrome => {
                 is_palindrome::run();
             }
@@ -717,8 +762,17 @@ pub mod runner {
             Algo::LowerUpperHinge => {
                 lower_upper_hinge::run();
             }
+            Algo::L0Norm => {
+                l0_norm::run();
+            }
+            Algo::L1Norm => {
+                l1_norm::run();
+            }
             Algo::LRValueSumCombo => {
                 l_r_value_sum_combo::run();
+            }
+            Algo::MaxNumByDelOneDigit => {
+                maxnum_by_del_one_digit::run();
             }
             Algo::MaxPathSum => {
                 max_path_sum::run();
@@ -743,6 +797,9 @@ pub mod runner {
             }
             Algo::MinBreakdownSum => {
                 min_breakdown_sum::run();
+            }
+            Algo::Minesweeper => {
+                minesweeper::run();
             }
             Algo::MinimumWaitingGame => {
                 minimum_waiting_game::run();
@@ -801,11 +858,20 @@ pub mod runner {
             Algo::OverlappingIntervals => {
                 overlapping_intervals::run();
             }
+            Algo::PartialSumCount => {
+                partial_sum_count::run();
+            }
             Algo::PascalTriangle => {
                 pascal_triangle::run();
             }
+            Algo::PeakInArray => {
+                peak_in_array::run();
+            }
             Algo::Permutation => {
                 permutation::run();
+            }
+            Algo::PermutationMatrix => {
+                permutation_matrix::run();
             }
             Algo::PhoneMnemonic => {
                 phone_mnemonic::run();
@@ -927,6 +993,9 @@ pub mod runner {
             Algo::SmallestPositiveProduct => {
                 smallest_positive_product::run();
             }
+            Algo::SmallestSum => {
+                smallest_sum::run();
+            }
             Algo::SpriteIndex => {
                 sprite_index::run();
             }
@@ -972,6 +1041,9 @@ pub mod runner {
             Algo::Sudoku => {
                 sudoku::run();
             }
+            Algo::SuffixTrue => {
+                suffix_trie::run();
+            }
             Algo::SumOfArithmaticProgression => {
                 sum_of_arithmatic_progression::run();
             }
@@ -989,6 +1061,9 @@ pub mod runner {
             }
             Algo::SwapSibling => {
                 swap_sibling::run();
+            }
+            Algo::TandemBike => {
+                tandem_bike::run();
             }
             Algo::TandemRepeat => tandem_repeat::run(),
             Algo::TaskAssignment => task_assignment::run(),
@@ -1068,10 +1143,12 @@ mod test_runner {
     use crate::bubble_sort;
     use crate::build_closure_tag;
     use crate::build_heap;
+    use crate::build_ip_addr;
     use crate::build_palindrome;
     use crate::caesar_crypt::caesar_crypt;
     use crate::camelcase::camelcase;
     use crate::can_increase_with_roundness;
+    use crate::can_make_sum_a_with_k_num;
     use crate::capitalize;
     use crate::celcius_to_fahrenheit;
     use crate::century::century;
@@ -1090,6 +1167,7 @@ mod test_runner {
     use crate::construct_square;
     use crate::contrast_check;
     use crate::cool_num_pair::cool_num_pair;
+    use crate::cross_entropy;
     use crate::cumsum_except_last;
     use crate::cyclic_chars::cyclic_chars;
     use crate::decode_reverse_poland::decode_reverse_poland;
@@ -1099,6 +1177,7 @@ mod test_runner {
     use crate::diagonal::diagonal;
     use crate::different_squares;
     use crate::different_value_pairs;
+    use crate::dns_water_torture;
     use crate::document_build::document_build;
     use crate::euclidean::euclidean;
     use crate::eval_tictactoe;
@@ -1131,6 +1210,7 @@ mod test_runner {
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
     use crate::is_two_array_similar;
+    use crate::island_size;
     use crate::jump_height_in_frames;
     use crate::kadane::kadane;
     use crate::knapsack;
@@ -1151,10 +1231,13 @@ mod test_runner {
     use crate::longest_pelindromic_substring;
     use crate::longest_substring_without_dupe;
     use crate::lower_upper_hinge;
+    use crate::l0_norm;
+    use crate::l1_norm;
     use crate::max_path_sum;
     use crate::max_sibling_product::max_sibling_product;
     use crate::max_subset_sum;
     use crate::max_with_lessdigit::max_with_lessdigit;
+    use crate::maxnum_by_del_one_digit;
     use crate::mean;
     use crate::merge_2_lists;
     use crate::merge_sorted_linkedlist;
@@ -1162,6 +1245,7 @@ mod test_runner {
     use crate::min_passes_matrix_update;
     use crate::min_reward::min_reward;
     use crate::minimum_waiting_game;
+    use crate::minesweeper;
     use crate::minmax_stack;
     use crate::mode;
     use crate::monotonic_array;
@@ -1178,8 +1262,11 @@ mod test_runner {
     use crate::octal_to_dec;
     use crate::oppsite_pos_in_circle;
     use crate::overlapping_intervals;
+    use crate::partial_sum_count;
     use crate::pascal_triangle;
+    use crate::peak_in_array;
     use crate::permutation;
+    use crate::permutation_matrix;
     use crate::phone_mnemonic;
     use crate::postorder_traversal;
     use crate::powerset;
@@ -1221,6 +1308,7 @@ mod test_runner {
     use crate::singly_linked_list_reverse;
     use crate::smallest_difference;
     use crate::smallest_positive_product::smallest_positive_product;
+    use crate::smallest_sum;
     use crate::sprite_index;
     use crate::softmax;
     use crate::softsign;
@@ -1236,12 +1324,14 @@ mod test_runner {
     use crate::sturge_formula;
     use crate::subarray_sort;
     use crate::sudoku;
+    use crate::suffix_trie;
     use crate::sum_of_arithmatic_progression;
     use crate::sum_of_consecutive_integers;
     use crate::sum_of_integers;
     use crate::sum_of_squared_deviation;
     use crate::sunset_view;
     use crate::swap_sibling::swap_sibling;
+    use crate::tandem_bike;
     use crate::tandem_repeat::tandem_repeat;
     use crate::task_assignment;
     use crate::three_number_sort;
@@ -1430,6 +1520,13 @@ mod test_runner {
     }
 
     #[test]
+    fn build_ip_addr_test() {
+        let expected:HashSet<&str> = HashSet::from_iter(["1.9.216.80", "1.92.16.80", "1.92.168.0", "19.2.16.80", "19.2.168.0", "19.21.6.80", "19.21.68.0", "19.216.8.0", "192.1.6.80", "192.1.68.0", "192.16.8.0"]);
+        let rez = build_ip_addr::exec("1921680").unwrap();
+        rez.iter().all(|x|expected.contains(x.as_str()));
+    }
+
+    #[test]
     fn build_palindrome_test() {
         assert_eq!(build_palindrome::exec("abcdcba"), "abcdcba".to_string());
     }
@@ -1451,6 +1548,11 @@ mod test_runner {
     fn can_increase_with_roundness_test() {
         assert_eq!(can_increase_with_roundness::exec(902200100), true);
         assert_eq!(can_increase_with_roundness::exec(11100), false);
+    }
+
+    #[test]
+    fn can_make_sum_a_with_k_num_test() {
+        assert_eq!(can_make_sum_a_with_k_num::exec(&[2, 3, 4, 5], 4, 14), true);
     }
 
     #[test]
@@ -1657,6 +1759,15 @@ mod test_runner {
     }
 
     #[test]
+    fn cross_entropy_test() {
+        let d = 1e-7;
+        let y = vec![0.7, 0.1, 0.2];
+        let t = vec![1., 0., 0.];
+        let r = cross_entropy::exec(d, y, t);
+        assert_eq!(r, 1.8538713);
+    }
+
+    #[test]
     fn cumsum_except_last_test() {
         assert_eq!(cumsum_except_last::exec(&[1,2,3,4,5]), 10);
     }
@@ -1728,6 +1839,12 @@ mod test_runner {
         let b = vec![5, 14, 28, 99, 16];
         let expected = vec![vec![28, 14, 17], vec![14, 28, 16]];
         assert_eq!(different_value_pairs::exec(a, b), expected);
+    }
+
+    #[test]
+    #[should_panic]
+    fn dns_water_torture_test() {
+        dns_water_torture::exec("tanuki.com");
     }
 
     #[test]
@@ -2018,6 +2135,21 @@ mod test_runner {
     }
 
     #[test]
+    fn island_size_test() {
+        let m = arr2(&[
+            [1, 0, 0, 1, 0],
+            [1, 0, 1, 0, 0],
+            [0, 0, 1, 0, 1],
+            [1, 0, 1, 0, 1],
+            [1, 0, 1, 1, 0]
+        ]);
+        let expected = vec![1, 2, 2, 2, 5];
+        let mut rez = island_size::exec(&m);
+        rez.sort();
+        assert_eq!(rez, expected);
+    }
+
+    #[test]
     fn jump_height_in_frames_test() {
         approx_eq!(f32, jump_height_in_frames::exec(0, 40, 120), 0_f32);
         approx_eq!(f32, jump_height_in_frames::exec(20, 40, 120), 120_f32);
@@ -2195,6 +2327,19 @@ mod test_runner {
     }
 
     #[test]
+    fn l0_norm_test() {
+        assert_eq!(l0_norm::exec(&[3, -1, -2, 0, 0, 4]), 4);
+        assert_eq!(l0_norm::exec(&[3, -1, -2, 3, 1, 4]), 6);
+        assert_eq!(l0_norm::exec(&[0, 0, 0]), 0);
+    }
+
+    #[test]
+    fn l1_norm_test() {
+        let v = [1.2, 0.8, -0.5, 0., 2., -1.5];
+        assert_eq!(l1_norm::exec(&v), 6.0);
+    }
+
+    #[test]
     fn max_path_sum_test() {
         use std::collections::VecDeque;
         let mut root = Box::new(TreeNode { value: 1, left: None, right: None});
@@ -2240,6 +2385,12 @@ mod test_runner {
         let n = 597;
         let maxv = max_with_lessdigit::exec(n);
         assert_eq!(maxv, 97);
+    }
+
+    #[test]
+    fn maxnum_by_del_one_digit_test() {
+        assert_eq!(maxnum_by_del_one_digit::exec(152), 52);
+        assert_eq!(maxnum_by_del_one_digit::exec(1001), 101);
     }
 
     #[test]
@@ -2302,6 +2453,24 @@ mod test_runner {
     fn minimum_waiting_game_test() {
         let v = &[5, 1, 4];
         assert_eq!(minimum_waiting_game::exec(v), 5);
+    }
+
+    #[test]
+    fn minesweeper_test() {
+        let m:Array2<bool> = arr2(&[
+            [true, false, false],
+            [false, true, false],
+            [false, false, false]
+        ]);
+        let rez:Array2<i32> = minesweeper::exec(&m);
+        let rezv = rez.view();
+        let expected:Array2<i32> = arr2(&[
+            [1, 2, 1],
+            [2, 1, 1],
+            [1, 1, 1],
+        ]);
+        let ev = expected.view();
+        assert_eq!(rezv, ev);
     }
 
     #[test]
@@ -2470,6 +2639,12 @@ mod test_runner {
     }
 
     #[test]
+    fn partial_sum_count_test() {
+        let s = partial_sum_count::exec(&[1, 2, 1, 3, 2], 4);
+        assert_eq!(s, 5);
+    }
+
+    #[test]
     fn pascal_tr_test() {
         let n = 5;
         let expected = r"1
@@ -2482,10 +2657,31 @@ mod test_runner {
     }
 
     #[test]
+    fn peak_in_array_test() {
+        let v = [1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3];
+        assert_eq!(peak_in_array::exec(&v), 6);
+    }
+
+    #[test]
     fn perm_test() {
         let n = 8;
         let r = 6;
         assert_eq!(permutation::exec(n, r), 20160);
+    }
+
+    #[test]
+    fn permutation_matrix_test() {
+        let siz = 5;
+        let m:Array2<i32> = permutation_matrix::exec(siz);
+        for i in 0..siz {
+            let mut cnt = 0;
+            for j in 0..siz {
+                if m[[i, j]] == 1 {
+                    cnt += 1;
+                }
+            }
+            assert_eq!(cnt, 1);
+        }
     }
 
     #[test]
@@ -2861,6 +3057,12 @@ mod test_runner {
     }
 
     #[test]
+    fn smallest_sum_test() {
+        assert_eq!(smallest_sum::exec(&[2, 4, 7]), 4);
+        assert_eq!(smallest_sum::exec(&[2, 3]), 2);
+    }
+
+    #[test]
     fn sprite_index_test() {
         assert_eq!(sprite_index::exec(0, 40, 4), 0);
         assert_eq!(sprite_index::exec(8, 40, 4), 0);
@@ -3015,6 +3217,12 @@ mod test_runner {
     }
 
     #[test]
+    fn suffix_trie_test() {
+        let rez = suffix_trie::exec(&["neko", "nekoya", "takoya", "tako", "pokoya", "nyanko", "nek"], "neko");
+        assert_eq!(rez, vec!["neko".to_string()]);
+    }
+
+    #[test]
     fn sum_of_arithmatic_progression_test() {
         assert_eq!(sum_of_arithmatic_progression::exec(4, 5, 4, 3), 34);
         assert_eq!(sum_of_arithmatic_progression::exec(5, 5, 4, 3), 50);
@@ -3038,6 +3246,12 @@ mod test_runner {
         let rez2:Vec<usize> = sunset_view::exec(&bldgs2, "west").into_iter().collect();
         assert_eq!(rez1, expected1);
         assert_eq!(rez2, expected2);
+    }
+
+    #[test]
+    fn tandem_bike_test() {
+        assert_eq!(tandem_bike::exec(&mut [5, 5, 3, 9, 2], &mut [1, 6, 7, 2, 1], true), 32);
+        assert_eq!(tandem_bike::exec(&mut [5, 5, 3, 9, 2], &mut [1, 6, 7, 2, 1], false), 25);
     }
 
     #[test]
@@ -3403,9 +3617,11 @@ pub enum Algo {
     BuildBTreeFromInorderPreorder,
     BuildClosureTag,
     BuildHeap,
+    BuildIPAddr,
     BuildPalindrome,
     CamelCase,
     CanIncreaseWithRoundness,
+    CanMakeSumAWithKNum,
     Capitalize,
     CelciusToFahrenheit,
     Century,
@@ -3425,6 +3641,7 @@ pub enum Algo {
     ConstructSquare,
     ContrastCheck,
     CoolNumPair,
+    CrossEntropy,
     CumsumExceptLast,
     CyclicChars,
     DecodeReversePoland,
@@ -3434,6 +3651,7 @@ pub enum Algo {
     Diagonal,
     DifferentSquares,
     DifferentValuePairs,
+    DNSWaterTorture,
     DocumentBuild,
     EvalTicTacToe,
     EvenNumSum,
@@ -3463,6 +3681,7 @@ pub enum Algo {
     InvertBTree,
     IPv4,
     IsBST,
+    IslandSize,
     IsMacAddr,
     IsPalindrome,
     IsTwoArraySimilar,
@@ -3486,6 +3705,9 @@ pub enum Algo {
     LongestSubstringWithoutDupe,
     LowerUpperHinge,
     LRValueSumCombo,
+    L0Norm,
+    L1Norm,
+    MaxNumByDelOneDigit,
     MaxPathSum,
     MaxSiblingProduct,
     MaxSubSetSum,
@@ -3494,6 +3716,7 @@ pub enum Algo {
     Merge2Lists,
     MergeSortedLinkedList,
     MinBreakdownSum,
+    Minesweeper,
     MinimumWaitingGame,
     MinMaxStack,
     MinPassesMatrixUpdate,
@@ -3514,7 +3737,10 @@ pub enum Algo {
     OppositePosInCircle,
     OverlappingIntervals,
     PascalTriangle,
+    PartialSumCount,
+    PeakInArray,
     Permutation,
+    PermutationMatrix,
     PhoneMnemonic,
     PostOrderTraversal,
     PowerSet,
@@ -3555,6 +3781,7 @@ pub enum Algo {
     SinglyLinkedListReverse,
     SmallestDifference,
     SmallestPositiveProduct,
+    SmallestSum,
     SpriteIndex,
     Softmax,
     Softsign,
@@ -3570,12 +3797,14 @@ pub enum Algo {
     SturgeFormula,
     SubArraySort,
     Sudoku,
+    SuffixTrue,
     SumOfArithmaticProgression,
     SumOfConsective,
     SumOfIntegers,
     SumOfSquaredDeviations,
     SunsetView,
     SwapSibling,
+    TandemBike,
     TandemRepeat,
     TaskAssignment,
     ThreeNumberSort,
@@ -3617,10 +3846,12 @@ impl Algo {
             s if s.to_lowercase() == "build_bt_from_preorder_inorder" => Algo::BuildBTreeFromInorderPreorder,
             s if s.to_lowercase() == "build_closure_tag" => Algo::BuildClosureTag,
             s if s.to_lowercase() == "build_heap" => Algo::BuildHeap,
+            s if s.to_lowercase() == "build_ip_addr" => Algo::BuildIPAddr,
             s if s.to_lowercase() == "build_palindrome" => Algo::BuildPalindrome,
             s if s.to_lowercase() == "caesar_crypt" => Algo::CaesarCrypt,
             s if s.to_lowercase() == "camelcase" => Algo::CamelCase,
             s if s.to_lowercase() == "can_increase_with_roundness" => Algo::CanIncreaseWithRoundness,
+            s if s.to_lowercase() == "can_make_sum_a_with_k_num" => Algo::CanMakeSumAWithKNum,
             s if s.to_lowercase() == "capitalize" => Algo::Capitalize,
             s if s.to_lowercase() == "celcius_to_fahrenheit" => Algo::CelciusToFahrenheit,
             s if s.to_lowercase() == "century" => Algo::Century,
@@ -3639,6 +3870,7 @@ impl Algo {
             s if s.to_lowercase() == "construct_square" => Algo::ConstructSquare,
             s if s.to_lowercase() == "contrast_check" => Algo::ContrastCheck,
             s if s.to_lowercase() == "cool_num_pair" => Algo::CoolNumPair,
+            s if s.to_lowercase() == "cross_entropy" => Algo::CrossEntropy,
             s if s.to_lowercase() == "cumsum_except_last" => Algo::CumsumExceptLast,
             s if s.to_lowercase() == "cyclic_chars" => Algo::CyclicChars,
             s if s.to_lowercase() == "decode_reverse_poland" => Algo::DecodeReversePoland,
@@ -3648,6 +3880,7 @@ impl Algo {
             s if s.to_lowercase() == "diagonal" => Algo::Diagonal,
             s if s.to_lowercase() == "different_squares" => Algo::DifferentSquares,
             s if s.to_lowercase() == "different_value_pairs" => Algo::DifferentValuePairs,
+            s if s.to_lowercase() == "dns_water_torture" => Algo::DNSWaterTorture,
             s if s.to_lowercase() == "document_build" => Algo::DocumentBuild,
             s if s.to_lowercase() == "eval_tictactoe" => Algo::EvalTicTacToe,
             s if s.to_lowercase() == "even_num_sum" => Algo::EvenNumSum,
@@ -3680,6 +3913,7 @@ impl Algo {
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
             s if s.to_lowercase() == "is_two_array_similar" => Algo::IsTwoArraySimilar,
+            s if s.to_lowercase() == "island_size" => Algo::IslandSize,
             s if s.to_lowercase() == "jump_height_in_frames" => Algo::JumpHeightInFrames,
             s if s.to_lowercase() == "kadane" => Algo::Kadane,
             s if s.to_lowercase() == "knapsack" => Algo::Knapsack,
@@ -3700,16 +3934,20 @@ impl Algo {
             s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
             s if s.to_lowercase() == "longest_substring_without_dupe" => Algo::LongestSubstringWithoutDupe,
             s if s.to_lowercase() == "lower_upper_hinge" => Algo::LowerUpperHinge,
+            s if s.to_lowercase() == "l0_norm" => Algo::L0Norm,
+            s if s.to_lowercase() == "l1_norm" => Algo::L1Norm,
             s if s.to_lowercase() == "max_path_sum" => Algo::MaxPathSum,
             s if s.to_lowercase() == "max_sibling_product" => Algo::MaxSiblingProduct,
             s if s.to_lowercase() == "max_subset_sum" => Algo::MaxSubSetSum,
             s if s.to_lowercase() == "max_with_lessdigit" => Algo::MaxWithLessDigit,
+            s if s.to_lowercase() == "maxnum_by_del_one_digit" => Algo::MaxNumByDelOneDigit,
             s if s.to_lowercase() == "mean" => Algo::Mean,
             s if s.to_lowercase() == "merge_2_lists" => Algo::Merge2Lists,
             s if s.to_lowercase() == "merge_sorted_linkedlist" => Algo::MergeSortedLinkedList,
             s if s.to_lowercase() == "min_breakdown_sum" => Algo::MinBreakdownSum,
             s if s.to_lowercase() == "min_passes_matrix_update" => Algo::MinPassesMatrixUpdate,
             s if s.to_lowercase() == "min_reward" => Algo::MinReward,
+            s if s.to_lowercase() == "minesweeper" => Algo::Minesweeper,
             s if s.to_lowercase() == "minimum_waiting_game" => Algo::MinimumWaitingGame,
             s if s.to_lowercase() == "minmax_stack" => Algo::MinMaxStack,
             s if s.to_lowercase() == "mode" => Algo::Mode,
@@ -3728,7 +3966,10 @@ impl Algo {
             s if s.to_lowercase() == "opposite_loc_in_circle" => Algo::OppositePosInCircle,
             s if s.to_lowercase() == "overlapping_intervals" => Algo::OverlappingIntervals,
             s if s.to_lowercase() == "pascal_triangle" => Algo::PascalTriangle,
+            s if s.to_lowercase() == "partial_sum_count" => Algo::PartialSumCount,
+            s if s.to_lowercase() == "peak_in_array" => Algo::PeakInArray,
             s if s.to_lowercase() == "permutation" => Algo::Permutation,
+            s if s.to_lowercase() == "permutation_matrix" => Algo::PermutationMatrix,
             s if s.to_lowercase() == "phone_mnemonic" => Algo::PhoneMnemonic,
             s if s.to_lowercase() == "postorder_traversal" => Algo::PostOrderTraversal,
             s if s.to_lowercase() == "powerset" => Algo::PowerSet,
@@ -3769,6 +4010,7 @@ impl Algo {
             s if s.to_lowercase() == "singly_linked_list_reverse" => Algo::SinglyLinkedListReverse,
             s if s.to_lowercase() == "smallest_difference" => Algo::SmallestDifference,
             s if s.to_lowercase() == "smallest_positive_product" => Algo::SmallestPositiveProduct,
+            s if s.to_lowercase() == "smallest_sum" => Algo::SmallestSum,
             s if s.to_lowercase() == "sprite_index" => Algo::SpriteIndex,
             s if s.to_lowercase() == "softmax" => Algo::Softmax,
             s if s.to_lowercase() == "softsign" => Algo::Softsign,
@@ -3784,12 +4026,14 @@ impl Algo {
             s if s.to_lowercase() == "sturge_formula" => Algo::SturgeFormula,
             s if s.to_lowercase() == "subarray_sort" => Algo::SubArraySort,
             s if s.to_lowercase() == "sudoku" => Algo::Sudoku,
+            s if s.to_lowercase() == "suffix_trie" => Algo::SuffixTrue,
             s if s.to_lowercase() == "sum_of_arithmatic_progression" => Algo::SumOfArithmaticProgression,
             s if s.to_lowercase() == "sum_of_consecutive" => Algo::SumOfConsective,
             s if s.to_lowercase() == "sum_of_integers" => Algo::SumOfIntegers,
             s if s.to_lowercase() == "sum_of_squared_deviations" => Algo::SumOfSquaredDeviations,
             s if s.to_lowercase() == "sunset_view" => Algo::SunsetView,
             s if s.to_lowercase() == "swap_sibling" => Algo::SwapSibling,
+            s if s.to_lowercase() == "tandem_bike" => Algo::TandemBike,
             s if s.to_lowercase() == "tandemrepeat" => Algo::TandemRepeat,
             s if s.to_lowercase() == "task_assignment" => Algo::TaskAssignment,
             s if s.to_lowercase() == "three_number_sort" => Algo::ThreeNumberSort,
