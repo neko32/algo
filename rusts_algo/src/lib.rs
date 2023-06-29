@@ -59,6 +59,8 @@ pub mod find_max_val_thread;
 pub mod find_successor;
 pub mod first_dupe_value;
 pub mod fizzbuzz;
+pub mod fsm_mealy;
+pub mod fsm_moor;
 pub mod geometric_progression;
 pub mod geometrical_mean;
 pub mod least_greatest;
@@ -274,6 +276,7 @@ pub mod runner {
     use find_successor;
     use first_dupe_value;
     use fizzbuzz::fizzbuzz;
+    use fsm_mealy;
     use geometric_progression;
     use geometrical_mean;
     use group_anagrams;
@@ -607,6 +610,12 @@ pub mod runner {
             }
             Algo::FizzBuzz => {
                 fizzbuzz::run();
+            }
+            Algo::FSMMealy => {
+                fsm_mealy::run();
+            }
+            Algo::FSMMoor => {
+                fsm_moor::run();
             }
             Algo::GeometricProgression => {
                 geometric_progression::run();
@@ -1118,6 +1127,8 @@ mod test_runner {
     use crate::find_successor;
     use crate::first_dupe_value;
     use crate::fizzbuzz::fizzbuzz;
+    use crate::fsm_mealy;
+    use crate::fsm_moor;
     use crate::geometric_progression;
     use crate::geometrical_mean;
     use crate::group_anagrams;
@@ -1856,6 +1867,37 @@ mod test_runner {
         let rez = fizzbuzz::exec(n);
         let expected:String = "12fizz4buzzfizz78fizzbuzz11fizz1314fizzbuzz1617fizz19buzzfizz2223fizzbuzz26fizz2829fizzbuzz".to_string();
         assert_eq!(rez, expected);
+    }
+
+    #[test]
+    fn fsm_mealy_test() {
+        let init = "stop";
+        let a = fsm_mealy::exec(init, "start").unwrap();
+        assert_eq!(a, "running");
+        let b = fsm_mealy::exec(a, "pause").unwrap();
+        assert_eq!(b, "pause");
+        let c = fsm_mealy::exec(b, "start").unwrap();
+        assert_eq!(c, "running");
+        let d = fsm_mealy::exec(c, "stop").unwrap();
+        assert_eq!(d, "stop");
+        let e = fsm_mealy::exec(d, "stop");
+        match e {
+            Ok(_) => panic!("not expected"),
+            Err(e) => assert_eq!(e.downcast::<&str>().unwrap(), "not supported transition"),
+        }
+    }
+
+    #[test]
+    fn fsm_moor_test() {
+        let init = "start";
+        let a = fsm_moor::exec(init).unwrap();
+        assert_eq!(a, "in_game");
+        let b = fsm_moor::exec(a).unwrap();
+        assert_eq!(b, "end");
+        match fsm_moor::exec(b) {
+            Ok(_) => panic!("not expected"),
+            Err(e) => assert_eq!(e.downcast::<&str>().unwrap(), "no transition"),
+        }
     }
 
     #[test]
@@ -3462,6 +3504,8 @@ pub enum Algo {
     FindSuccessor,
     FirstDupeValue,
     FizzBuzz,
+    FSMMealy,
+    FSMMoor,
     GeometricProgression,
     GeometricalMean,
     GroupAnagrams,
@@ -3677,6 +3721,8 @@ impl Algo {
             s if s.to_lowercase() == "find_successor" => Algo::FindSuccessor,
             s if s.to_lowercase() == "first_dupe_value" => Algo::FirstDupeValue,
             s if s.to_lowercase() == "fizzbuzz" => Algo::FizzBuzz,
+            s if s.to_lowercase() == "fsm_mealy" => Algo::FSMMealy,
+            s if s.to_lowercase() == "fsm_moor" => Algo::FSMMoor,
             s if s.to_lowercase() == "geometric_progression" => Algo::GeometricProgression,
             s if s.to_lowercase() == "geometrical_mean" => Algo::GeometricalMean,
             s if s.to_lowercase() == "group_anagrams" => Algo::GroupAnagrams,
