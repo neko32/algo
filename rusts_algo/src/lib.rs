@@ -82,6 +82,7 @@ pub mod invert_btree;
 pub mod insertion_sort;
 pub mod ipv4;
 pub mod is_bst;
+pub mod is_divisor;
 pub mod is_mac_addr;
 pub mod is_palindrome;
 pub mod is_two_array_similar;
@@ -313,6 +314,7 @@ pub mod runner {
     use invert_btree;
     use ipv4;
     use is_bst;
+    use is_divisor;
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
     use is_two_array_similar;
@@ -706,6 +708,9 @@ pub mod runner {
             }
             Algo::IsBST => {
                 is_bst::run();
+            }
+            Algo::IsDivisor => {
+                is_divisor::run();
             }
             Algo::IslandSize => {
                 island_size::run();
@@ -1224,6 +1229,7 @@ mod test_runner {
     use crate::invert_btree;
     use crate::ipv4;
     use crate::is_bst;
+    use crate::is_divisor;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
     use crate::is_two_array_similar;
@@ -2151,6 +2157,14 @@ mod test_runner {
     fn is_bst_test() {
         let v = vec![5, 9, 2, 10, 1, 4];
         assert!(is_bst::exec(&v));
+    }
+
+    #[test]
+    fn is_divisor_test() {
+        assert_eq!(is_divisor::exec(10, 2), true);
+        assert_eq!(is_divisor::exec(10, 7), false);
+        assert_eq!(is_divisor::exec(1250, 5), true);
+        assert_eq!(is_divisor::exec(793, 3), false);
     }
 
     #[test]
@@ -3740,6 +3754,7 @@ pub enum Algo {
     InvertBTree,
     IPv4,
     IsBST,
+    IsDivisor,
     IslandSize,
     IsMacAddr,
     IsPalindrome,
@@ -3972,6 +3987,7 @@ impl Algo {
             s if s.to_lowercase() == "insertion_sort" => Algo::InsertionSort,
             s if s.to_lowercase() == "ipv4" => Algo::IPv4,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
+            s if s.to_lowercase() == "is_divisor" => Algo::IsDivisor,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
             s if s.to_lowercase() == "is_two_array_similar" => Algo::IsTwoArraySimilar,
