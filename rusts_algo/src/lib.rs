@@ -103,6 +103,7 @@ pub mod length_linked_list;
 pub mod levenshtein_distance;
 pub mod linked_list;
 pub mod loc_by_line_angle;
+pub mod longest_common_prefix;
 pub mod longest_pelindromic_substring;
 pub mod longest_substring_without_dupe;
 pub mod lower_upper_hinge;
@@ -336,6 +337,7 @@ pub mod runner {
     use levenshtein_distance;
     use linked_list;
     use loc_by_line_angle;
+    use longest_common_prefix;
     use longest_pelindromic_substring;
     use longest_substring_without_dupe;
     use lower_upper_hinge;
@@ -773,6 +775,9 @@ pub mod runner {
             }
             Algo::LocByLineAngle => {
                 loc_by_line_angle::run();
+            }
+            Algo::LongestCommonPrefix => {
+                longest_common_prefix::run();
             }
             Algo::LongestPelindromicSubstring => {
                 longest_pelindromic_substring::run();
@@ -1256,6 +1261,7 @@ mod test_runner {
     use crate::levenshtein_distance;
     use crate::loc_by_line_angle;
     use crate::linked_list;
+    use crate::longest_common_prefix;
     use crate::longest_pelindromic_substring;
     use crate::longest_substring_without_dupe;
     use crate::lower_upper_hinge;
@@ -2369,6 +2375,15 @@ mod test_runner {
     fn loc_by_line_angle_test() {
         assert_eq!(loc_by_line_angle::exec(15., 90.), 90.);
         assert_eq!(loc_by_line_angle::exec(15., 45.), 48.63961);
+    }
+
+    #[test]
+    fn longest_common_prefix_test() {
+        let a = longest_common_prefix::exec(&Vec::from_iter(["flower", "flow", "flight"]));
+        assert_eq!(a, "fl".to_string());
+        let b = longest_common_prefix::exec(&Vec::from_iter(["dog", "racecar", "car"]));
+        assert_eq!(b, String::new());
+
     }
 
     #[test]
@@ -3789,6 +3804,7 @@ pub enum Algo {
     LevenShteinDistance,
     LinkedList,
     LocByLineAngle,
+    LongestCommonPrefix,
     LongestPelindromicSubstring,
     LongestSubstringWithoutDupe,
     LowerUpperHinge,
@@ -4024,6 +4040,7 @@ impl Algo {
             s if s.to_lowercase() == "levenshtein_distance" => Algo::LevenShteinDistance,
             s if s.to_lowercase() == "linked_list" => Algo::LinkedList,
             s if s.to_lowercase() == "loc_by_line_angle" => Algo::LocByLineAngle,
+            s if s.to_lowercase() == "longest_common_prefix" => Algo::LongestCommonPrefix,
             s if s.to_lowercase() == "longest_pelindromic_substring" => Algo::LongestPelindromicSubstring,
             s if s.to_lowercase() == "longest_substring_without_dupe" => Algo::LongestSubstringWithoutDupe,
             s if s.to_lowercase() == "lower_upper_hinge" => Algo::LowerUpperHinge,
