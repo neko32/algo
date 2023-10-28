@@ -157,6 +157,7 @@ pub mod radix_sort;
 pub mod random_perm;
 pub mod ranking;
 pub mod reconstruct_bst_from_pre;
+pub mod remove_element_from_array;
 pub mod remove_island;
 pub mod remove_nth_from_end;
 pub mod repeat_product;
@@ -390,6 +391,7 @@ pub mod runner {
     use random_perm;
     use ranking;
     use reconstruct_bst_from_pre;
+    use remove_element_from_array;
     use remove_island;
     use remove_nth_from_end;
     use repeat_product::repeat_product;
@@ -941,6 +943,9 @@ pub mod runner {
             Algo::RadixSort => {
                 radix_sort::run();
             }
+            Algo::RemoveElementFromArray => {
+                remove_element_from_array::run();
+            }
             Algo::RemoveIsland => {
                 remove_island::run();
             }
@@ -1315,6 +1320,7 @@ mod test_runner {
     use crate::random_perm;
     use crate::ranking;
     use crate::reconstruct_bst_from_pre;
+    use crate::remove_element_from_array;
     use crate::remove_island;
     use crate::remove_nth_from_end;
     use crate::repeat_product::repeat_product;
@@ -2899,6 +2905,16 @@ mod test_runner {
     }
 
     #[test]
+    fn remove_element_from_array_test() {
+        let mut a = vec![3, 2, 2, 3];
+        let al = remove_element_from_array::exec(&mut a, 3);
+        assert!(remove_element_from_array::verify(&a, al, 3));
+        let mut b = vec![0, 1, 2, 2, 3, 0, 4, 2];
+        let bl = remove_element_from_array::exec(&mut b, 2);
+        assert!(remove_element_from_array::verify(&b, bl, 2));
+    }
+
+    #[test]
     fn remove_island_test() {
         let mut matrix = arr2(&[
             [1, 0, 0, 0, 0, 0],
@@ -3859,6 +3875,7 @@ pub enum Algo {
     RandomPerm,
     Ranking,
     ReconstructBSTFromPreorder,
+    RemoveElementFromArray,
     RemoveIsland,
     RemoveNthFromEnd,
     RepeatProduct,
@@ -4094,6 +4111,7 @@ impl Algo {
             s if s.to_lowercase() == "random_perm" => Algo::RandomPerm,
             s if s.to_lowercase() == "ranking" => Algo::Ranking,
             s if s.to_lowercase() == "reconstruct_bst_from_preorder" => Algo::ReconstructBSTFromPreorder,
+            s if s.to_lowercase() == "remove_element_from_array" => Algo::RemoveElementFromArray,
             s if s.to_lowercase() == "remove_island" => Algo::RemoveIsland,
             s if s.to_lowercase() == "remove_nth_from_end" => Algo::RemoveNthFromEnd,
             s if s.to_lowercase() == "repeatproduct" => Algo::RepeatProduct,
