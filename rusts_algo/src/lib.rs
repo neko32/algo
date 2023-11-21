@@ -132,6 +132,7 @@ pub mod next_greater_element;
 pub mod node_distance_k;
 pub mod num_of_clans;
 pub mod num_of_paths;
+pub mod num_traverse_lattice;
 pub mod number_grouping;
 pub mod obtain_increasing_seq;
 pub mod octal_permission;
@@ -366,6 +367,7 @@ pub mod runner {
     use node_distance_k;
     use num_of_clans;
     use num_of_paths;
+    use num_traverse_lattice;
     use number_grouping;
     use obtain_increasing_seq;
     use octal_permission;
@@ -868,6 +870,9 @@ pub mod runner {
             Algo::NumOfPaths => {
                 num_of_paths::run();
             }
+            Algo::numTraverseLattice => {
+                num_traverse_lattice::run();
+            }
             Algo::NumberGrouping => {
                 number_grouping::run();
             }
@@ -1295,6 +1300,7 @@ mod test_runner {
     use crate::node_distance_k;
     use crate::num_of_clans;
     use crate::num_of_paths;
+    use crate::num_traverse_lattice;
     use crate::number_grouping;
     use crate::obtain_increasing_seq;
     use crate::octal_permission;
@@ -2667,6 +2673,14 @@ mod test_runner {
     }
 
     #[test]
+    fn num_of_trav_lattice_test() {
+        let r = 4;
+        let c = 5;
+        let r = num_traverse_lattice::exec(r, c);
+        assert_eq!(r, 35);
+    }
+
+    #[test]
     fn number_grouping_test() {
         let a = vec![10000, 20000, 30000, 40000, 50000, 60000, 10000, 120000, 150000, 200000, 300000, 1000000, 10000000, 100000000, 10000000];
         assert_eq!(number_grouping::exec(&a), 28);
@@ -3851,6 +3865,7 @@ pub enum Algo {
     NumberGrouping,
     NumOfClans,
     NumOfPaths,
+    numTraverseLattice,
     ObtainIncreasingSeq,
     OctalPermission,
     OctalToDec,
@@ -4086,6 +4101,7 @@ impl Algo {
             s if s.to_lowercase() == "node_distance_k" => Algo::NodeDistanceK,
             s if s.to_lowercase() == "num_of_clans" => Algo::NumOfClans,
             s if s.to_lowercase() == "num_of_paths" => Algo::NumOfPaths,
+            s if s.to_lowercase() == "num_traverse_lattice" => Algo::numTraverseLattice,
             s if s.to_lowercase() == "number_grouping" => Algo::NumberGrouping,
             s if s.to_lowercase() == "obtain_increasing_seq" => Algo::ObtainIncreasingSeq,
             s if s.to_lowercase() == "octal_permission" => Algo::OctalPermission,
