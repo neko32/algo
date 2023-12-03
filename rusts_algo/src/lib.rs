@@ -176,6 +176,7 @@ pub mod ring_buffer;
 pub mod roman_to_int;
 pub mod runlength;
 pub mod same_bst;
+pub mod scheherazade_num;
 pub mod selection_sort;
 pub mod shapearea;
 pub mod shared;
@@ -411,6 +412,7 @@ pub mod runner {
     use roman_to_int;
     use runlength::runlength;
     use same_bst;
+    use scheherazade_num;
     use shapearea;
     use selection_sort::selection_sort;
     use shorten_path;
@@ -1002,6 +1004,9 @@ pub mod runner {
             Algo::SameBST => {
                 same_bst::run();
             }
+            Algo::ScheherazadeNum => {
+                scheherazade_num::run();
+            }
             Algo::ShapeArea => {
                 shapearea::run();
             }
@@ -1344,6 +1349,7 @@ mod test_runner {
     use crate::roman_to_int;
     use crate::runlength::runlength;
     use crate::same_bst;
+    use crate::scheherazade_num;
     use crate::selection_sort::selection_sort;
     use crate::shapearea;
     use crate::shared::*;
@@ -3083,6 +3089,25 @@ mod test_runner {
     }
 
     #[test]
+    fn scheherazade_num_test() {
+        if let Some(a) = scheherazade_num::exec(682) {
+            assert_eq!(a, 682);    
+        } else {
+            assert!(false);
+        }
+        if let None = scheherazade_num::exec(99) {
+            assert!(true);
+        } else {
+            assert!(false);
+        }
+        if let None = scheherazade_num::exec(50020) {
+            assert!(true);
+        } else {
+            assert!(false);
+        }
+    }
+
+    #[test]
     fn shapearea_test() {
         assert_eq!(shapearea::exec(1), 1);
         assert_eq!(shapearea::exec(2), 5);
@@ -3908,6 +3933,7 @@ pub enum Algo {
     RomanToInt,
     RunLength,
     SameBST,
+    ScheherazadeNum,
     ShapeArea,
     SelectionSort,
     ShortenPath,
@@ -4145,6 +4171,7 @@ impl Algo {
             s if s.to_lowercase() == "roman_to_int" => Algo::RomanToInt,
             s if s.to_lowercase() == "runlength" => Algo::RunLength,
             s if s.to_lowercase() == "same_bst" => Algo::SameBST,
+            s if s.to_lowercase() == "scheherazade_num" => Algo::ScheherazadeNum,
             s if s.to_lowercase() == "selectionsort" => Algo::SelectionSort,
             s if s.to_lowercase() == "shapearea" => Algo::ShapeArea,
             s if s.to_lowercase() == "shorten_path" => Algo::ShortenPath,
