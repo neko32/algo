@@ -85,6 +85,7 @@ pub mod is_bst;
 pub mod is_divisor;
 pub mod is_mac_addr;
 pub mod is_palindrome;
+pub mod is_subseq;
 pub mod is_two_array_similar;
 pub mod island_size;
 pub mod jump_height_in_frames;
@@ -322,6 +323,7 @@ pub mod runner {
     use is_divisor;
     use is_mac_addr::is_mac_addr;
     use is_palindrome::is_palindrome;
+    use is_subseq;
     use is_two_array_similar;
     use island_size;
     use kadane::kadane;
@@ -730,6 +732,9 @@ pub mod runner {
             }
             Algo::IsMacAddr => {
                 is_mac_addr::run();
+            }
+            Algo::IsSubSeq => {
+                is_subseq::run();
             }
             Algo::IsTwoArraySimilar => {
                 is_two_array_similar::run();
@@ -1257,6 +1262,7 @@ mod test_runner {
     use crate::is_divisor;
     use crate::is_mac_addr::is_mac_addr;
     use crate::is_palindrome::is_palindrome;
+    use crate::is_subseq;
     use crate::is_two_array_similar;
     use crate::island_size;
     use crate::jump_height_in_frames;
@@ -2225,6 +2231,21 @@ mod test_runner {
     fn is_mac_addr_bad() {
         let mac = "00-1B-63-84-45-Z6";
         assert_eq!(is_mac_addr::exec(mac), false);
+    }
+
+    #[test]
+    fn is_subseq_test() {
+        assert_eq!(is_subseq::exec(&[5, 1, 22, 25, 6, -1, 8, 10], &[1, 6, -1, 10]), true);
+        assert_eq!(is_subseq::exec(&[5, 1, 22, 25, 6, -1, 8, 10], &[1, -1, 6, 10]), false);
+        assert_eq!(is_subseq::exec(&[3, 5], &[2, 8, 7]), false);
+        assert_eq!(is_subseq::exec(&[3, 5], &[3, 5, 7]), false);
+        assert_eq!(is_subseq::exec(&[3, 5, 7], &[3, 5, 7]), true);
+        assert_eq!(is_subseq::exec(&[3, 5, 7], &[3, 5]), true);
+        assert_eq!(is_subseq::exec(&[3, 5, 7], &[3, 7]), true);
+        assert_eq!(is_subseq::exec(&[3, 5, 7], &[5, 7]), true);
+        assert_eq!(is_subseq::exec(&[3, 5, 7], &[7, 5]), false);
+        assert_eq!(is_subseq::exec(&[3, 5, 7], &[7, 3]), false);
+        assert_eq!(is_subseq::exec(&[3, 5, 7], &[7, 5, 3]), false);
     }
 
     #[test]
@@ -3842,6 +3863,7 @@ pub enum Algo {
     IslandSize,
     IsMacAddr,
     IsPalindrome,
+    IsSubSeq,
     IsTwoArraySimilar,
     JumpHeightInFrames,
     Kadane,
@@ -4079,6 +4101,7 @@ impl Algo {
             s if s.to_lowercase() == "is_divisor" => Algo::IsDivisor,
             s if s.to_lowercase() == "is_palindrome" => Algo::IsPalindrome,
             s if s.to_lowercase() == "is_mac_addr" => Algo::IsMacAddr,
+            s if s.to_lowercase() == "is_subseq" => Algo::IsSubSeq,
             s if s.to_lowercase() == "is_two_array_similar" => Algo::IsTwoArraySimilar,
             s if s.to_lowercase() == "island_size" => Algo::IslandSize,
             s if s.to_lowercase() == "jump_height_in_frames" => Algo::JumpHeightInFrames,
