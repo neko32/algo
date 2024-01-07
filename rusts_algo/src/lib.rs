@@ -78,6 +78,7 @@ pub mod helon_formula;
 pub mod human_and_cat_legs;
 pub mod image_stride;
 pub mod inorder_traversal;
+pub mod integral_image;
 pub mod invert_btree;
 pub mod insertion_sort;
 pub mod ipv4;
@@ -317,6 +318,7 @@ pub mod runner {
     use image_stride;
     use inorder_traversal;
     use insertion_sort;
+    use integral_image;
     use invert_btree;
     use ipv4;
     use is_bst;
@@ -711,6 +713,9 @@ pub mod runner {
             }
             Algo::InsertionSort => {
                 insertion_sort::run();
+            }
+            Algo::IntegralImage => {
+                integral_image::run();
             }
             Algo::InvertBTree => {
                 invert_btree::run();
@@ -1256,6 +1261,7 @@ mod test_runner {
     use crate::image_stride;
     use crate::inorder_traversal;
     use crate::insertion_sort;
+    use crate::integral_image;
     use crate::invert_btree;
     use crate::ipv4;
     use crate::is_bst;
@@ -2162,6 +2168,26 @@ mod test_runner {
         insertion_sort::exec(&mut v);
         let expected = [-5, -3, 2, 4, 7, 8, 9, 9, 10, 15];
         assert_eq!(v, expected);
+    }
+
+    #[test]
+    fn integral_image_test() {
+        let ipt:Array2<i32> = arr2(&[
+            [1, 0, 0, 1, 0],
+            [0, 0, 0, 1, 0],
+            [0, 1, 0, 1, 0],
+            [1, 1, 0, 1, 0],
+            [1, 0, 0, 0, 1]
+        ]);
+        let expected:Array2<i32> = arr2(&[
+            [1, 1, 1, 2, 2],
+            [1, 1, 1, 3, 3],
+            [1, 2, 2, 5, 5],
+            [2, 4, 4, 8, 8],
+            [3, 5, 5, 9, 10]
+        ]);
+        let r = integral_image::exec(&ipt);
+        assert_eq!(r.view(), expected.view());
     }
 
     #[test]
@@ -3856,6 +3882,7 @@ pub enum Algo {
     ImageStride,
     InOrderTraversal,
     InsertionSort,
+    IntegralImage,
     InvertBTree,
     IPv4,
     IsBST,
@@ -4096,6 +4123,7 @@ impl Algo {
             s if s.to_lowercase() == "inorder_traversal" => Algo::InOrderTraversal,
             s if s.to_lowercase() == "invert_btree" => Algo::InvertBTree,
             s if s.to_lowercase() == "insertion_sort" => Algo::InsertionSort,
+            s if s.to_lowercase() == "integral_image" => Algo::IntegralImage,
             s if s.to_lowercase() == "ipv4" => Algo::IPv4,
             s if s.to_lowercase() == "is_bst" => Algo::IsBST,
             s if s.to_lowercase() == "is_divisor" => Algo::IsDivisor,
